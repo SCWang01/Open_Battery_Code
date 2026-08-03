@@ -1,0 +1,11 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Local editor settings
+.vscode/
+.claude/
+
+# Common operating-system metadata
+.DS_Store
+Thumbs.db
