@@ -17,7 +17,7 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
 
-DEFAULT_INPUT = Path("dsfunction_May2025.xlsx")
+DEFAULT_INPUT = Path("dsfunction_May2025_exact_V5_k20.xlsx")
 STATUS_HEADER = "P_ESS_state"
 REL_TOL = 1e-9
 ABS_TOL = 1e-6

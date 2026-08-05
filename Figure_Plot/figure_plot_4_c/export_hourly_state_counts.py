@@ -12,10 +12,10 @@ from openpyxl.utils import get_column_letter
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-SOURCE = SCRIPT_DIR / "dsfunction_May2025_classified.xlsx"
-OUTPUT = SCRIPT_DIR / Path(
-    "outputs/p_ess_state_hourly_May2025/P_ESS_state_hourly_counts_May2025.xlsx"
-)
+INPUT_DIR = SCRIPT_DIR / "input"
+OUTPUT_DIR = SCRIPT_DIR / "output"
+SOURCE = INPUT_DIR / "dsfunction_May2025_exact_V5_k20_classified.xlsx"
+OUTPUT = OUTPUT_DIR / "P_ESS_state_hourly_counts_May2025.xlsx"
 SOURCE_SHEET = "May2025"
 STATE_ORDER = ("MC", "MD", "NU", "DC", "DD", "CC", "CD", "NC")
 

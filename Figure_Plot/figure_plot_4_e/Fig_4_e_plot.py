@@ -12,9 +12,9 @@ DEFAULT_DATE = "2025-04-07"
 N_HOURS = 24
 PLOT_HOURS = np.arange(N_HOURS)
 
-RESULTS_PATH = BASE_DIR / "April2025_eta95%_std2_exact_V5_k20.csv"
-CURTAILMENT_PATH = BASE_DIR / "curtailment_202504.csv"
-PRICE_PATH = BASE_DIR / "202504 CAISO Average Price.csv"
+RESULTS_PATH = BASE_DIR/"input" / "April2025_eta95%_std2_exact_V5_k20.csv"
+CURTAILMENT_PATH = BASE_DIR/"input" / "curtailment_202504.csv"
+PRICE_PATH = BASE_DIR / "input" / "202504 CAISO Average Price.csv"
 OUTPUT_PATH = BASE_DIR / "Figs" / "Fig_4_e.png"
 
 FIGURE_WIDTH_MM = 180.0

@@ -27,8 +27,11 @@ from scipy.stats import t
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-STATE_WORKBOOK = SCRIPT_DIR / "P_ESS_state_hourly_counts_May2025.xlsx"
-PRICE_CSV = SCRIPT_DIR / "202505 CAISO Average Price.csv"
+INPUT_DIR = SCRIPT_DIR / "input"
+OUTPUT_DIR = SCRIPT_DIR / "output"
+FIGURES_DIR = SCRIPT_DIR / "figures"
+STATE_WORKBOOK = OUTPUT_DIR / "P_ESS_state_hourly_counts_May2025.xlsx"
+PRICE_CSV = INPUT_DIR / "202505 CAISO Average Price.csv"
 STATE_SHEET = "Hourly Counts"
 OUTPUT_BASENAME = "hourly_state_counts_and_price_May2025"
 
@@ -238,7 +241,8 @@ def write_source_data(
     state_counts: dict[str, list[int]], summaries: list[HourlyPriceSummary]
 ) -> Path:
     """Write the exact values displayed in the figure."""
-    output_path = SCRIPT_DIR / f"{OUTPUT_BASENAME}_source_data.csv"
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = OUTPUT_DIR / f"{OUTPUT_BASENAME}_source_data.csv"
     fieldnames = [
         "hour",
         *[f"count_{state}" for state in STATE_ORDER],
@@ -393,7 +397,8 @@ def build_figure(
 
 def save_figure(figure: plt.Figure) -> list[Path]:
     """Export one transparent figure in PNG, SVG, and PDF formats."""
-    base = SCRIPT_DIR / OUTPUT_BASENAME
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    base = FIGURES_DIR / OUTPUT_BASENAME
     paths = [
         base.with_suffix(".png"),
         base.with_suffix(".svg"),

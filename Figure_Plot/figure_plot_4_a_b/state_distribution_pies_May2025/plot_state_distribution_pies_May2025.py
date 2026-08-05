@@ -26,7 +26,7 @@ from openpyxl import load_workbook
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 SOURCE_WORKBOOK = (
-    PACKAGE_ROOT / "source_data" / "dsfunction_May2025_classified_final.xlsx"
+    PACKAGE_ROOT / "source_data" / "dsfunction_May2025_exact_V5_k20_classified.xlsx"
 )
 SOURCE_SHEET = "May2025"
 OUTPUT_DIR = Path(__file__).resolve().parent

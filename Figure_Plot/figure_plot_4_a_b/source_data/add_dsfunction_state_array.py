@@ -13,7 +13,7 @@ from openpyxl.utils import get_column_letter
 from classify_p_ess import as_float, classify_p_ess, values_match
 
 
-SOURCE = Path("dsfunction_May2025_classified.xlsx")
+SOURCE = Path("dsfunction_May2025_exact_V5_k20_classified.xlsx")
 STATE_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD", "NC")
 OUTPUT_HEADER = "dsfunction_state_share"
 LEGACY_OUTPUT_HEADER = "dsfunction_state_array"

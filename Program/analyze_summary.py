@@ -26,7 +26,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = PROJECT_ROOT / "Results"
 DEFAULT_INPUT = RESULTS_DIR / "summary_202301_202512_exact_V5_k20.csv"
 DEFAULT_CARBON_INPUT = (
-    PROJECT_ROOT.parent / "data" / "CAISO-historical-co2-20260720.csv"
+    PROJECT_ROOT / "data" / "CAISO-historical-co2-20260720.csv"
 )
 
 REQUIRED_COLUMNS = {

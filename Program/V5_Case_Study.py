@@ -325,8 +325,8 @@ def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Si
         noise = np.zeros((N_t)) # initialize noise
         priceN_t_with_error = np.zeros((N_t)) # initialize the priceN_t_with_error
         for tt in range(N_t):
-            rate = tt *0.001 + (meanstd / 100) # calculate the rate of error for each time interval
-            noise[tt] = random.uniform(-rate,rate) # generate the error for each time interval
+            rate = meanstd / 100 + tt * 0.001 # relative standard deviation: 2% initially, +0.1% per hour
+            noise[tt] = np.random.normal(0, rate) # generate Gaussian white noise for each time interval
             priceN_t_with_error[tt] = np.array(priceN_t[tt]*(1 + noise[tt])) # generate the prices with errors
             # adjust the extreme values
             if priceN_t_with_error[tt]<np.min(price):
@@ -491,7 +491,7 @@ def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax,
         ),
         index=False,
     )
-    return [total_profit,total_profit_actual, total_cost,total_cost_actual,total_cost_withoutESS,Cost,absorbed,P_cleared,Pgas,ncd,dsfunctions]
+    return [total_profit,total_profit_actual, total_cost,total_cost_actual,total_cost_withoutESS,Cost,absorbed,P_cleared,P_cleared_ctrl,Pgas,ncd,dsfunctions]
 
 
 #%% main
@@ -571,7 +571,7 @@ def run_one_month(num, export_dsfunctions=False):
         meanstd, price_glo, gas_glo, battery_glo, curtailment_glo,
         Pdmax_glo, Pcmax_glo, Smax_glo, Smin_glo, Cap_glo, eta_glo, SINI_glo,
     )
-    total_profit, total_profit_actual, total_cost, total_cost_actual, total_cost_withoutESS, costdetails, absorbed, P_cleared, Pgas, ncd, dsfunctions = result
+    total_profit, total_profit_actual, total_cost, total_cost_actual, total_cost_withoutESS, costdetails, absorbed, P_cleared, P_cleared_ctrl, Pgas, ncd, dsfunctions = result
 
     np.save(output_dir / f'ncd_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.npy', ncd)
     np.save(
@@ -588,6 +588,8 @@ def run_one_month(num, export_dsfunctions=False):
                 json.dumps(dsfunction.tolist(), separators=(',', ':'))
                 for dsfunction in dsfunctions
             ],
+            'P_ESS': P_cleared_ctrl,
+
         })
         export_data.to_excel(
             output_dir
@@ -651,4 +653,4 @@ def run_may_2025():
 
 
 if __name__ == '__main__':
-    run_all_months()
+    run_may_2025()
