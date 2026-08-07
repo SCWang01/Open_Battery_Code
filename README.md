@@ -1,109 +1,36 @@
-# CAISO Battery Energy Storage Bidding Case Study 
+# CAISO Battery Energy Storage Bidding Case Study
 
-This repository contains a battery energy storage case study for the California Independent System Operator (CAISO) market. It uses CAISO electricity prices, battery output, renewable curtailment, and natural-gas generation data to compare historical battery operation with an aggregated optimal-bidding method. The project evaluates battery profit, natural-gas generation cost, and carbon-emission reductions, and includes scripts for result aggregation and publication figures.
+This repository provides the data, code, model outputs, and figure source files for an academic case study of aggregated battery energy storage bidding in the California Independent System Operator (CAISO) market. The study compares historical fleet operation with a bidding-based operating strategy and evaluates battery profit, natural-gas generation cost, renewable-curtailment absorption, and modelled carbon-emission reduction.
 
-> **License status:** this repository does not currently contain a `LICENSE` file. The present release is source-available but is not open-source software under an OSI-approved license. Except where permitted by law or separately authorized in writing by the copyright holder, no permission is granted to copy, modify, redistribute, sublicense, or create derivative works. See [Copyright and permissions](#copyright-and-permissions).
+> **Licence status:** no `LICENSE` file is currently included. The repository is source-available for inspection and academic reproducibility, but no open-source licence or redistribution permission is granted. See [Licence, data terms, and disclaimer](#licence-data-terms-and-disclaimer).
 
-## Method overview
-
-V5 divides the aggregated CAISO battery fleet into two components:
-
-- a controllable fraction `k`, optimized through a demand-supply stair bidding function; and
-- a passive fraction `1-k`, which retains its historical output trajectory.
-
-The combined method output is:
+## Repository contents
 
 ```text
-P_method = P_optimized(k-unit) + (1-k) × P_actual
+<repo-root>/
+|-- Program/
+|   |-- V5_Case_Study.py        # Main V5 simulation and export workflow
+|   |-- cost_calculation.py     # Natural-gas cost and marginal-price models
+|   |-- analyze_summary.py      # Monthly and annual Excel analysis
+|   `-- CAISO-API/              # EIA/CAISO gas-unit parameter pipeline
+|-- data/
+|   |-- battery_data/           # Historical CAISO battery output
+|   |-- curtailment/            # Renewable-curtailment inputs
+|   |-- ng_cost/                # Monthly natural-gas merit-order stacks
+|   |-- ng_data/                # Hourly natural-gas generation
+|   `-- price/                  # CAISO market-price inputs
+|-- Results/                    # Committed model outputs and analysis workbook
+|-- Figure_Plot/                # Figure scripts, source data, and rendered assets
+`-- README.md                   # Reproducibility-oriented project documentation
 ```
 
-This output is compared with the historical operation of the complete battery fleet. The default value is `k = 0.2`. When `k = 1`, the entire fleet participates in the optimization.
+The core scripts resolve their data and result paths relative to the repository rather than the shell's current directory. Some legacy figure scripts use working-directory-relative paths; their commands are provided in [Figure source data and reproduction](#figure-source-data-and-reproduction).
 
-The default case-study settings are:
+## Requirements
 
-| Parameter | Default | Description |
-|---|---:|---|
-| Study period | 2023-01 to 2025-12 | Monthly case-study range |
-| `N_t` | 24 | Number of time intervals per day |
-| `eta` | 0.95 | Charge/discharge efficiency |
-| `k` | 0.2 | Fraction of the fleet participating in optimal bidding |
-| `N_price` | 100 | Number of candidate price points per interval |
-| `meanstd` | 2 | Price-forecast error parameter |
-| `COST_MODE` | `exact` | Piecewise merit-order natural-gas cost model |
-| Random seed | 42 | Seed used for reproducible price perturbations |
+Python 3.10 or later is recommended.
 
-## Repository structure
-
-```text
-Release/
-├── Program/
-│   ├── V5_Case_Study.py        # Main V5 case-study calculation
-│   ├── cost_calculation.py     # Natural-gas cost and marginal-price models
-│   ├── analyze_summary.py      # Monthly and annual Excel summary generator
-│   └── CAISO-API/              # EIA/CAISO gas-unit parameter pipeline
-├── data/
-│   ├── battery_data/           # Historical CAISO battery output
-│   ├── curtailment/            # Renewable-energy curtailment
-│   ├── ng_cost/                # Monthly natural-gas merit-order stacks
-│   ├── ng_data/                # Hourly natural-gas generation
-│   └── price/                  # CAISO market prices
-├── Figure_Plot/                # Figure scripts, source data, and exports
-├── Results/                    # Unified model and analysis output directory
-└── README.md
-```
-
-All core paths are resolved relative to the source files rather than the current working directory. CSV, NPY, and XLSX outputs from V5, together with the default workbook produced by `analyze_summary.py`, are written to the project-level `Results/` directory.
-
-## Main files
-
-### `Program/V5_Case_Study.py`
-
-The main simulation script. It:
-
-- reads monthly price, battery, curtailment, and natural-gas data;
-- reconstructs the equivalent battery capacity and initial state of charge;
-- builds and clears demand-supply stair functions with Gurobi;
-- combines the optimized and passive battery components;
-- calculates battery profit, natural-gas cost, renewable-energy absorption, and carbon reduction; and
-- exports hourly and monthly results to `Results/`.
-
-Running the file directly executes the complete January 2023 to December 2025 study.
-
-### `Program/cost_calculation.py`
-
-Provides the natural-gas generation cost functions used by V5. The default `exact` mode constructs a monthly piecewise merit-order stack from the plant-level workbooks in `data/ng_cost/`. It also provides a corresponding marginal-price calculation. A quadratic compatibility mode is retained for cases with the required fitted coefficient file.
-
-### `Program/analyze_summary.py`
-
-Reads the V5 monthly summary CSV, validates the study period and carbon-emission inputs, and creates an Excel workbook with:
-
-- `Monthly Analysis`;
-- `Annual Summary`; and
-- `Monthly Carbon Emission`.
-
-Unless `--output` is supplied, the workbook is written to `Results/`.
-
-### `Program/CAISO-API/`
-
-Contains the preprocessing pipeline used to derive monthly natural-gas unit parameters from EIA-923 and EIA-860/EIA-860M data. The pipeline covers source extraction, monthly splitting, invalid heat-content removal, fuel-consumption calculations, generator-capacity matching, and final marginal-fuel-cost generation.
-
-See `Program/CAISO-API/Readme_Generator_Parameter_Generation.md` for the detailed pipeline and formulas.
-
-### `Figure_Plot/`
-
-Contains the scripts and supporting workbooks used to reproduce the study figures. Individual figure directories may contain their own source data, exported PNG/SVG/PDF/TIFF files, and local instructions.
-
-### `data/`
-
-Contains source and derived datasets consumed by the model. Data in this directory is not automatically covered by any future software license applied to the project code. Each dataset remains subject to its original source terms and attribution requirements.
-
-### `Results/`
-
-Contains model outputs and generated analysis workbooks. Re-running the model can overwrite files with the same parameter-derived names, so preserve any result set that must remain unchanged.
-
-## Environment requirements
-
-Python 3.10 or later is recommended. The core dependencies are:
+### Core model and analysis
 
 ```text
 gurobipy
@@ -113,73 +40,58 @@ openpyxl
 tqdm
 ```
 
-The figure scripts may additionally require:
-
-```text
-matplotlib
-scipy
-```
-
-Install the open-source Python dependencies with:
+Install the open-source dependencies with:
 
 ```powershell
-python -m pip install numpy pandas openpyxl tqdm matplotlib scipy
+python -m pip install numpy pandas openpyxl tqdm
 ```
 
-The Gurobi Optimizer and its `gurobipy` package are not part of this repository. Install the Python package and configure a valid Gurobi license before running the optimization:
+Install Gurobi's Python package separately:
 
 ```powershell
 python -m pip install gurobipy
 ```
 
-Academic users may be eligible for an academic license under Gurobi's terms. Commercial, deployed, or other uses require a license appropriate to the intended use.
+The optimisation requires a valid Gurobi licence. Gurobi is not distributed or licensed through this repository. See [Gurobi Licensing](https://www.gurobi.com/product/licensing) and the [Gurobi Academic Program](https://www.gurobi.com/academics).
 
-- [Gurobi Licensing](https://www.gurobi.com/product/licensing)
-- [Gurobi Academic Program](https://www.gurobi.com/academics)
-
-## Running the project
-
-The following commands assume that the current directory is the `Release` project root.
-
-### 1. Run the complete case study
+### Figure and preprocessing dependencies
 
 ```powershell
-python Program/V5_Case_Study.py
+python -m pip install matplotlib scipy xlrd scikit-learn
 ```
 
-This command runs every month from January 2023 through December 2025. The model repeatedly invokes Gurobi for many hourly intervals and candidate price points, so a complete run may take a substantial amount of time.
+`matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline, and `scikit-learn` is used by its standalone K-means utility.
 
-### 2. Run only May 2025
+## Quick start
 
-```powershell
-Set-Location Program
-python -c "from V5_Case_Study import run_may_2025; print(run_may_2025())"
-Set-Location ..
+All commands below assume PowerShell and a current directory at `<repo-root>`.
+
+### 1. Inspect the committed results
+
+The repository already contains the complete default monthly outputs, summary CSV, analysis workbook, and rendered figure assets. Model inspection therefore does not require rerunning the optimisation.
+
+Start with:
+
+```text
+Results/summary_202301_202512_exact_V5_k20.csv
+Results/analysis_202301_202512.xlsx
+Figure_Plot/
 ```
 
-This entry point also exports the hourly demand-supply function workbook for May 2025.
-
-### 3. Generate the monthly and annual analysis workbook
-
-After the complete case study has finished, run:
+### 2. Regenerate the analysis workbook
 
 ```powershell
 python Program/analyze_summary.py
 ```
 
-The default input is:
+The default input and output are:
 
 ```text
 Results/summary_202301_202512_exact_V5_k20.csv
-```
-
-The default output is:
-
-```text
 Results/analysis_202301_202512.xlsx
 ```
 
-Custom input, output, and carbon-emission files can be supplied explicitly:
+Custom paths can be supplied explicitly:
 
 ```powershell
 python Program/analyze_summary.py Results/summary.csv `
@@ -187,84 +99,193 @@ python Program/analyze_summary.py Results/summary.csv `
   --carbon-input path/to/CAISO-historical-co2.csv
 ```
 
-## Outputs
+### 3. Run the May 2025 case
 
-`V5_Case_Study.py` creates the following output types in `Results/`:
+```powershell
+python Program/V5_Case_Study.py
+```
+
+Running the file directly calls `run_may_2025()`. It writes the May 2025 result files, the single-month summary, and the hourly demand-supply function workbook to `Results/`.
+
+The equivalent import-based command is:
+
+```powershell
+Push-Location Program
+python -c "from V5_Case_Study import run_may_2025; print(run_may_2025())"
+Pop-Location
+```
+
+### 4. Run the complete January 2023–December 2025 study
+
+```powershell
+Push-Location Program
+python -c "from V5_Case_Study import run_all_months; print(run_all_months())"
+Pop-Location
+```
+
+This is the full-study entry point. It produces one set of monthly outputs for each month and writes the aggregated summary CSV to `Results/`.
+
+## Configuration
+
+The model currently has no command-line interface or external configuration file. Edit the module-level settings near the top of `Program/V5_Case_Study.py` before running:
+
+```python
+START_YEAR_MONTH = (2023, 1)
+END_YEAR_MONTH = (2025, 12)
+eta = 0.95
+N_price = 100
+meanstd = 2
+k = 0.2
+COST_MODE = "exact"
+```
+
+`k` must be in `(0, 1]`. `COST_MODE="exact"` uses the monthly piecewise merit-order data in `data/ng_cost/`; the retained `quadratic` compatibility mode requires its fitted coefficient workbook.
+
+The `eta95%` fragment in monthly CSV filenames is currently hard-coded. Changing `eta` without also changing the naming logic can overwrite an existing file whose name still contains `eta95%`. Preserve required outputs before changing model parameters or file-naming code.
+
+## Model workflow
+
+`Program/V5_Case_Study.py` performs the following steps for each selected month:
+
+1. load market price, historical battery output, renewable-curtailment, and natural-gas generation data;
+2. reconstruct the equivalent fleet capacity, power limits, and initial state of charge;
+3. optimise the controllable `k` fraction over rolling horizons and construct stair bidding functions;
+4. combine the market-cleared controllable output with the historical passive fraction;
+5. calculate historical and counterfactual battery profit, natural-gas generation and cost, renewable-curtailment absorption, and modelled carbon reduction; and
+6. export hourly arrays, monthly tables, and summary metrics to `Results/`.
+
+Natural-gas costs are evaluated consistently with the selected cost mode through `Program/cost_calculation.py`. The default `exact` mode constructs the cost and marginal-price functions from monthly plant-level merit-order workbooks.
+
+## Inputs and outputs
+
+### Principal input data
+
+| Input | Location | Resolution/use |
+|---|---|---|
+| CAISO market price | `data/price/` | Five-minute price series used to form rolling forecasts |
+| Historical battery output | `data/battery_data/` | Daily five-minute fleet-operation files |
+| Renewable curtailment | `data/curtailment/` | Hourly curtailed renewable energy |
+| Natural-gas generation | `data/ng_data/` | Hourly historical gas generation |
+| Natural-gas cost stack | `data/ng_cost/` | Monthly plant-level merit-order inputs |
+| Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Monthly analysis-workbook input |
+
+Replacement monthly price files must include the additional 24-hour rolling horizon required at the end of the month. The committed price files contain the required additional 288 five-minute observations.
+
+### Model outputs
 
 | Type | Example | Contents |
 |---|---|---|
-| Monthly CSV | `January2023_eta95%_std2_exact_V5_k20.csv` | Hourly prices, profits, battery output, natural-gas output, and cost |
-| NCD array | `ncd_January2023_exact_V5_k20.npy` | NCD and state-of-charge status for each interval and price point |
-| Cleared-output array | `Pcleared_January2023_exact_V5_k20.npy` | Optimized battery cleared output |
-| Summary CSV | `summary_202301_202512_exact_V5_k20.csv` | Monthly profit, cost, gas, and carbon-reduction metrics |
+| Monthly CSV | `January2023_eta95%_std2_exact_V5_k20.csv` | Hourly prices, profits, battery outputs, natural-gas outputs, and costs |
+| NCD array | `ncd_January2023_exact_V5_k20.npy` | NCD and state-of-charge status by interval and candidate price |
+| Cleared-output array | `Pcleared_January2023_exact_V5_k20.npy` | Combined controllable and passive battery output |
+| Summary CSV | `summary_202301_202512_exact_V5_k20.csv` | Monthly profit, cost, gas, curtailment, and carbon metrics |
 | Demand-supply functions | `dsfunction_May2025_exact_V5_k20.xlsx` | Optional hourly stair-function export |
+| Analysis workbook | `analysis_202301_202512.xlsx` | Monthly, annual, and carbon-emission analysis sheets |
 
-Repeated runs overwrite output files with identical names. Back up required results before changing `k`, efficiency, the study period, or the cost mode.
+Repeated runs overwrite files with identical parameter-derived names.
 
-## Data sources and attribution
+## Figure source data and reproduction
 
-The existing project documentation identifies the following principal sources:
+`Figure_Plot/` contains the source data, plotting or numerical scripts, and committed outputs associated with the main and supplementary figures. In line with research-data reporting practice, the table below identifies the source-data location and the output that the current code produces.
 
-- CAISO market prices, battery output, renewable curtailment, and related power-system data;
+| Figure | Directory | Source data | Current reproducible output |
+|---|---|---|---|
+| Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1.py` computes `Res_pos` and `ResE_pos` in memory; it does not export a figure file |
+| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1.py` computes `Res_neg` and `ResE_neg` in memory; it does not export a figure file |
+| Figures 2 and 3 | `Figure_Plot/figure_plot_2_3/` | `settings.xlsx`, `tep2023.npy`, and `lmp2023.npy` | Generates the individual Figure 2 and Figure 3 PNG panels in `Figs/`; final composite assembly is not scripted |
+| Figure 4a–b | `Figure_Plot/figure_plot_4_a_b/` | Classified May 2025 demand-supply workbook in `source_data/` | Exports the state-distribution source CSV and composite PNG, SVG, and PDF |
+| Figure 4c | `Figure_Plot/figure_plot_4_c/` | May 2025 classified demand-supply workbook and CAISO price CSV in `input/` | Exports an auditable source CSV and PNG, SVG, and PDF; see the directory's `README.md` |
+| Figure 4d | `Figure_Plot/figure_plot_4_d/` | `analysis_202301_202512.xlsx` | Reproduces the profit plot and combined profit/carbon/cost radial figure in `outputs/` |
+| Figure 4e | `Figure_Plot/figure_plot_4_e/` | April 2025 model result, curtailment, and CAISO price CSVs in `input/` | Exports `Fig_4_e` as PNG, SVG, and PDF |
+
+The copies stored inside each figure directory are the figure source-data snapshots. They are not automatically updated when files in `data/` or `Results/` are regenerated.
+
+### Figures 1 and S1
+
+```powershell
+Push-Location Figure_Plot/figure_1
+python journalcasestudyFig1andFigS1.py
+Pop-Location
+
+Push-Location Figure_Plot/figure_plot_S1
+python journalcasestudyFig1andFigS1.py
+Pop-Location
+```
+
+These scripts reproduce the underlying numerical arrays; plotting or final figure export is not included in the current files.
+
+### Figures 2 and 3
+
+```powershell
+Push-Location Figure_Plot/figure_plot_2_3
+python journalcasestudyFig2andFig3.py
+Pop-Location
+```
+
+The script writes the individual panels to `Figure_Plot/figure_plot_2_3/Figs/`.
+
+### Figure 4a–b
+
+The committed classified workbook can be plotted directly:
+
+```powershell
+python Figure_Plot/figure_plot_4_a_b/state_distribution_pies_May2025/plot_state_distribution_pies_May2025.py
+```
+
+### Figure 4c
+
+```powershell
+Push-Location Figure_Plot/figure_plot_4_c
+python export_hourly_state_counts.py
+python plot_hourly_state_counts_price_May2025.py
+Pop-Location
+```
+
+For its detailed data schema and validation steps, see `Figure_Plot/figure_plot_4_c/README.md`.
+
+### Figure 4d
+
+```powershell
+python Figure_Plot/figure_plot_4_d/plot_profit_increment_radial.py
+python Figure_Plot/figure_plot_4_d/plot_reduction_rates_radial.py
+```
+
+The second script creates the combined three-panel profit, carbon-reduction, and gas-cost-reduction figure. Some separately committed historical artifacts in the output subdirectories are not regenerated by the current scripts.
+
+### Figure 4e
+
+```powershell
+python Figure_Plot/figure_plot_4_e/Fig_4_e_plot.py
+```
+
+An April 2025 date and custom PNG path may be supplied with `--date YYYY-MM-DD --output <path>`.
+
+## Natural-gas parameter preprocessing
+
+`Program/CAISO-API/` contains the preprocessing workflow used to derive monthly natural-gas generator parameters from EIA-923 and EIA-860/EIA-860M data. The workflow covers source extraction, monthly splitting, heat-content checks, fuel-consumption calculations, generator-capacity matching, and marginal-fuel-cost generation.
+
+See `Program/CAISO-API/Readme_Generator_Parameter_Generation.md` for its data flow, formulas, and commands.
+
+## Data availability and attribution
+
+The repository includes the model inputs used in the case study, the default model outputs, the analysis workbook, and figure-specific source-data snapshots. Principal external sources are:
+
+- California Independent System Operator (CAISO) market prices, battery output, renewable curtailment, and related power-system data;
 - U.S. Energy Information Administration (EIA) EIA-923 generation and fuel data; and
 - EIA-860 and EIA-860M generator-capacity data.
 
-The monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived data based on those sources.
+The monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived from these sources. Users should retain source names, dataset dates, and all notices required by the original providers. See [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) and [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use).
 
-When using or redistributing source data, retain the source name, dataset date, and any required proprietary notices. Suggested attribution formats are:
+## Licence, data terms, and disclaimer
 
-```text
-Source: U.S. Energy Information Administration (EIA), [dataset and date].
-Source: California Independent System Operator (CAISO), [dataset and date].
-```
+No root-level software licence is included. Unless separately authorised by the copyright holder or permitted by law, the original code and documentation may not be copied, modified, redistributed, sublicensed, or used to create derivative works. Source visibility alone does not grant an open-source licence.
 
-EIA states that U.S. government publications are generally in the public domain and may be used and distributed, while recommending source and publication-date acknowledgment. This general policy does not cover the EIA logo, protected third-party photographs, or other separately protected material.
+CAISO and EIA source materials remain subject to their providers' terms and are not relicensed by this repository. Gurobi and all Python dependencies are separately licensed by their respective owners. Derived data, results, and figures may be subject to both project copyright and the terms of their source data.
 
-CAISO materials, data, and APIs must be used under the current CAISO website and API terms, including applicable attribution, proprietary-notice, ownership, and access provisions. Cleaning, matching, aggregating, or deriving results from source data does not cancel the terms that apply to the original source.
-
-- [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php)
-- [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use)
-
-## Copyright and permissions
-
-### Current project license status
-
-No software license file is included in the repository root as of this release.
-
-| Material | Current status | Permission boundary |
-|---|---|---|
-| Original project Python code and documentation | **All rights reserved; no open-source license granted** | Copying, modifying, redistributing, selling, sublicensing, or creating derivative works requires written permission from the copyright holder unless otherwise permitted by law |
-| Original or directly reproduced EIA material | Subject to EIA policy | U.S. government publications are generally public domain; cite the source and date; protected third-party content and marks are excluded |
-| CAISO data, materials, and APIs | Subject to current CAISO terms | Not relicensed by this project; users must independently comply with CAISO attribution, ownership, and API conditions |
-| Gurobi Optimizer and `gurobipy` | Separately licensed by Gurobi | Not licensed through this project; users must obtain a valid license appropriate to their use |
-| NumPy, pandas, openpyxl, and other dependencies | Subject to their own licenses | This project does not modify or replace third-party software licenses |
-| Derived results in `Results/` and `Figure_Plot/` | No separate permission currently granted | May involve both project copyright and source-data terms; obtain permission and preserve attribution before public or commercial reuse |
-
-Source visibility does not itself grant an open-source license. GitHub's licensing guidance explains that, without a license, default copyright law applies and other users do not automatically receive permission to reproduce, distribute, or create derivative works:
-
-- [GitHub Docs — Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
-
-### Requirements before an open-source release
-
-If the copyright holders decide to release the project as open-source software, they should first:
-
-1. confirm ownership of all code, documentation, and figures, including authorization from co-authors or institutions;
-2. select a license appropriate to the intended permissions, such as MIT, BSD-3-Clause, Apache-2.0, or GPL-3.0;
-3. add the complete license text as a root-level `LICENSE` file and identify it in this section;
-4. list third-party and large derived datasets separately rather than applying the software license to CAISO, EIA, or other external materials;
-5. add a `NOTICE` or data-inventory file recording the source, date, and applicable terms for external data, code, and images; and
-6. verify that no Gurobi license keys, restricted binaries, credentials, or other non-redistributable materials are included.
-
-Until these steps are completed, the project should not be described as licensed under MIT, GPL, Apache, or any other open-source license.
-
-## Disclaimer
-
-This project is intended for academic research and methodological reproduction. It does not constitute electricity-market trading, system-operation, investment, legal, or compliance advice. The models, data, and results are provided in their current state. Users are responsible for validating data quality, model assumptions, license conditions, and fitness for their intended purpose.
-
-CAISO, EIA, Gurobi, and other third-party names and trademarks belong to their respective owners. The presence of those names does not imply endorsement, warranty, sponsorship, or affiliation.
+This repository is provided for academic research and methodological reproduction. It does not constitute electricity-market trading, system-operation, investment, legal, or compliance advice. Users are responsible for validating the model, data, assumptions, licence conditions, and fitness for their intended use.
 
 ## Citation and contributions
 
-The repository does not currently include a `CITATION.cff` file or finalized paper citation. Add a standard citation file, version number, DOI, and archival link when the associated paper or software release becomes available.
+The repository does not currently include a `CITATION.cff`, DOI, or final paper citation. These should be added when the associated publication or archived software release becomes available.
 
-Until an open-source license is formally adopted, contact the repository maintainer before modifying, redistributing, or contributing code.
+Until a software licence and contribution policy are formally adopted, contact the repository maintainer before modifying, redistributing, or contributing code.
