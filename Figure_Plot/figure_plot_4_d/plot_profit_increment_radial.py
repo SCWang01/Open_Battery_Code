@@ -41,13 +41,13 @@ FIGURE_WIDTH_MM = 90
 FIGURE_HEIGHT_MM = 90
 PNG_DPI = 720
 
-MAX_PERCENT = 40.0
-INNER_RADIUS = 10.0
+MAX_PERCENT = 200.0
+INNER_RADIUS = 50.0
 BAR_OUTER_RADIUS = INNER_RADIUS + MAX_PERCENT
-MONTH_LABEL_RADIUS = 56.0
-ANNULUS_INNER_RADIUS = 62.0
-ANNULUS_OUTER_RADIUS = 76.0
-PLOT_LIMIT = 78.0
+MONTH_LABEL_RADIUS = 280.0
+ANNULUS_INNER_RADIUS = 310.0
+ANNULUS_OUTER_RADIUS = 380.0
+PLOT_LIMIT = 390.0
 ANNUAL_TEXT_SPAN_DEGREES = 104.0
 SCALE_LABEL_ANGLE_DEGREES = 240.0
 SCALE_LABEL_FONTSIZE = 9.4
@@ -117,7 +117,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
 
         monthly_rows = monthly_sheet.iter_rows(values_only=True)
         monthly_headers = _header_map(next(monthly_rows))
-        required_monthly = {"month", "profit increment"}
+        required_monthly = {"month", "profit_increment_k20"}
         missing_monthly = required_monthly.difference(monthly_headers)
         if missing_monthly:
             raise ValueError(
@@ -129,7 +129,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
             code = _month_code(row[monthly_headers["month"]])
             if not re.fullmatch(r"202[3-5](0[1-9]|1[0-2])", code):
                 continue
-            raw_value = row[monthly_headers["profit increment"]]
+            raw_value = row[monthly_headers["profit_increment_k20"]]
             if raw_value is None:
                 raise ValueError(f"Missing profit increment value for {code}")
             monthly_values[code] = float(raw_value) * 100.0
@@ -143,7 +143,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
 
         annual_rows = annual_sheet.iter_rows(values_only=True)
         annual_headers = _header_map(next(annual_rows))
-        required_annual = {"annual", "profit increment rate"}
+        required_annual = {"annual", "profit_increment_rate_k20"}
         missing_annual = required_annual.difference(annual_headers)
         if missing_annual:
             raise ValueError(
@@ -157,7 +157,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
             if match is None:
                 continue
             year = int(match.group(1))
-            raw_value = row[annual_headers["profit increment rate"]]
+            raw_value = row[annual_headers["profit_increment_rate_k20"]]
             if raw_value is None:
                 raise ValueError(f"Missing annual profit increment rate for {year}")
             annual_values[year] = float(raw_value) * 100.0
@@ -277,10 +277,10 @@ def _draw_curved_text(
 
 
 def _draw_scale(ax: mpl.axes.Axes) -> None:
-    """Draw reversed percentage rings: 0% outside and 40% toward the center."""
+    """Draw reversed percentage rings: 0% outside and 200% toward the center."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
-    scale_values = (0, 10, 20, 30, 40)
-    label_angles = {20: 225.0, 30: 205.0, 40: 185.0}
+    scale_values = (0, 50, 100, 150, 200)
+    label_angles = {100: 225.0, 150: 200.0, 200: 185.0}
 
     for value in scale_values:
         radius = BAR_OUTER_RADIUS - value
@@ -467,9 +467,9 @@ def draw_profit_increment_panel(
     _draw_scale(ax)
     _draw_monthly_bars(ax, data)
     _draw_annual_annulus(ax, data)
-    _draw_grid_interval_legend(ax, 10.0)
+    _draw_grid_interval_legend(ax, 50.0)
 
-    # Keep a crisp, uncluttered center while retaining the 40% boundary ring.
+    # Keep a crisp, uncluttered center while retaining the 200% boundary ring.
     center = plt.Circle(
         (0.5, 0.5),
         INNER_RADIUS / PLOT_LIMIT / 2.0,

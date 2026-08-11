@@ -31,6 +31,7 @@ DEFAULT_CARBON_INPUT = (
 
 REQUIRED_COLUMNS = {
     "year_month",
+    "k",
     "total_profit",
     "total_profit_actual",
     "total_cost",
@@ -39,19 +40,6 @@ REQUIRED_COLUMNS = {
     "rate_carbon",
 }
 
-MONTHLY_COLUMNS = [
-    "Month",
-    "profit increment",
-    "cost reduction",
-    "carbon reduction",
-    "rate carbon",
-]
-ANNUAL_COLUMNS = [
-    "annual",
-    "profit increment rate",
-    "cost reduction rate",
-    "carbon reduction rate",
-]
 CARBON_COLUMNS = ["Month", "carbon emission"]
 
 PERCENT_FORMAT = "0.00%"
@@ -65,6 +53,7 @@ class MonthlyMetrics:
     """Numeric values read or calculated for one source month."""
 
     month: str
+    k: Decimal
     total_profit: Decimal
     profit_actual: Decimal
     total_cost: Decimal
@@ -75,6 +64,11 @@ class MonthlyMetrics:
     @property
     def profit_increment(self) -> Decimal:
         return self.total_profit / self.profit_actual - Decimal("1")
+
+    @property
+    def controlled_profit_increment(self) -> Decimal:
+        """Profit increment normalized to the controlled k-share baseline."""
+        return self.profit_increment / self.k
 
     @property
     def cost_reduction(self) -> Decimal:
@@ -112,6 +106,7 @@ def read_summary(input_path: Path) -> list[MonthlyMetrics]:
 
     metrics: list[MonthlyMetrics] = []
     seen_months: set[str] = set()
+    expected_k: Decimal | None = None
     with input_path.open("r", encoding="utf-8-sig", newline="") as source:
         reader = csv.DictReader(source)
         source_columns = set(reader.fieldnames or [])
@@ -126,6 +121,19 @@ def read_summary(input_path: Path) -> list[MonthlyMetrics]:
             if month in seen_months:
                 raise ValueError(f"Row {row_number}: duplicate month {month!r}.")
             seen_months.add(month)
+
+            k = parse_decimal(row.get("k"), "k", row_number)
+            if not Decimal("0") < k <= Decimal("1"):
+                raise ValueError(
+                    f"Row {row_number}: 'k' must be greater than 0 and at most 1."
+                )
+            if expected_k is None:
+                expected_k = k
+            elif k != expected_k:
+                raise ValueError(
+                    f"Row {row_number}: inconsistent 'k' value {k}; "
+                    f"expected {expected_k} for every month."
+                )
 
             total_profit = parse_decimal(row.get("total_profit"), "total_profit", row_number)
             profit_actual = parse_decimal(
@@ -145,6 +153,7 @@ def read_summary(input_path: Path) -> list[MonthlyMetrics]:
             metrics.append(
                 MonthlyMetrics(
                     month=month,
+                    k=k,
                     total_profit=total_profit,
                     profit_actual=profit_actual,
                     total_cost=total_cost,
@@ -232,12 +241,18 @@ def period_label(first_month: str, last_month: str) -> str:
     )
 
 
+def k_column_suffix(k: Decimal) -> str:
+    """Return an identifier-safe percentage suffix, e.g. 0.2 -> ``k20``."""
+    percentage = format((k * Decimal("100")).normalize(), "f")
+    return "k" + percentage.replace(".", "_")
+
+
 def aggregate_rates(
     period_metrics: list[MonthlyMetrics],
     emissions: dict[str, Decimal],
     period_name: str,
-) -> tuple[Decimal, Decimal, Decimal]:
-    """Calculate weighted profit, cost, and carbon rates for a period."""
+) -> tuple[Decimal, Decimal, Decimal, Decimal]:
+    """Calculate weighted whole-fleet, controlled-share, cost, and carbon rates."""
     total_profit = sum(
         (item.total_profit for item in period_metrics), Decimal("0")
     )
@@ -261,8 +276,17 @@ def aggregate_rates(
     if total_carbon_emission == 0:
         raise ZeroDivisionError(f"Period {period_name}: total carbon emission is zero.")
 
+    profit_increment = total_profit / total_profit_actual - Decimal("1")
+    controlled_profit_increment = (
+        (total_profit - total_profit_actual)
+        / sum(
+            (item.k * item.profit_actual for item in period_metrics),
+            Decimal("0"),
+        )
+    )
     return (
-        total_profit / total_profit_actual - Decimal("1"),
+        profit_increment,
+        controlled_profit_increment,
         Decimal("1") - total_cost / total_cost_actual,
         total_carbon_reduce / total_carbon_emission,
     )
@@ -313,14 +337,25 @@ def write_workbook(
         )
 
     workbook = Workbook()
+    k_suffix = k_column_suffix(metrics[0].k)
     monthly_sheet = workbook.active
     monthly_sheet.title = "Monthly Analysis"
-    monthly_sheet.append(MONTHLY_COLUMNS)
+    monthly_sheet.append(
+        [
+            "Month",
+            "profit increment",
+            f"profit_increment_{k_suffix}",
+            "cost reduction",
+            "carbon reduction",
+            "rate carbon",
+        ]
+    )
     for item in metrics:
         monthly_sheet.append(
             [
                 item.month,
                 float(item.profit_increment),
+                float(item.controlled_profit_increment),
                 float(item.cost_reduction),
                 float(item.carbon_reduce),
                 float(item.rate_carbon),
@@ -328,12 +363,20 @@ def write_workbook(
         )
     style_sheet(
         monthly_sheet,
-        percentage_columns=(2, 3, 5),
-        number_columns=(4,),
+        percentage_columns=(2, 3, 4, 6),
+        number_columns=(5,),
     )
 
     annual_sheet = workbook.create_sheet("Annual Summary")
-    annual_sheet.append(ANNUAL_COLUMNS)
+    annual_sheet.append(
+        [
+            "annual",
+            "profit increment rate",
+            f"profit_increment_rate_{k_suffix}",
+            "cost reduction rate",
+            "carbon reduction rate",
+        ]
+    )
     by_year: dict[str, list[MonthlyMetrics]] = defaultdict(list)
     for item in metrics:
         by_year[item.month[:4]].append(item)
@@ -341,32 +384,40 @@ def write_workbook(
     for year in sorted(by_year):
         year_metrics = sorted(by_year[year], key=lambda item: item.month)
         label = annual_label(year, [item.month for item in year_metrics])
-        profit_rate, cost_rate, carbon_rate = aggregate_rates(
-            year_metrics, emissions, label
-        )
+        (
+            profit_rate,
+            controlled_profit_rate,
+            cost_rate,
+            carbon_rate,
+        ) = aggregate_rates(year_metrics, emissions, label)
 
         annual_sheet.append(
             [
                 label,
                 float(profit_rate),
+                float(controlled_profit_rate),
                 float(cost_rate),
                 float(carbon_rate),
             ]
         )
 
     all_months_label = period_label(metrics[0].month, metrics[-1].month)
-    profit_rate, cost_rate, carbon_rate = aggregate_rates(
-        metrics, emissions, all_months_label
-    )
+    (
+        profit_rate,
+        controlled_profit_rate,
+        cost_rate,
+        carbon_rate,
+    ) = aggregate_rates(metrics, emissions, all_months_label)
     annual_sheet.append(
         [
             all_months_label,
             float(profit_rate),
+            float(controlled_profit_rate),
             float(cost_rate),
             float(carbon_rate),
         ]
     )
-    style_sheet(annual_sheet, percentage_columns=(2, 3, 4))
+    style_sheet(annual_sheet, percentage_columns=(2, 3, 4, 5))
 
     carbon_sheet = workbook.create_sheet("Monthly Carbon Emission")
     carbon_sheet.append(CARBON_COLUMNS)
