@@ -296,7 +296,7 @@ def Fig2_EV(Nev,pri,eta,index):
     plt.plot(x,Ressum,linewidth=3)
     plt.xlim(0.06,0.09)
     plt.xlabel('Price(USD/kWh)')
-    plt.ylabel('Discharge Power(MW)')
+    plt.ylabel('Discharge Power(kW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
     return TArrset
 
