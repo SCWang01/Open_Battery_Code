@@ -419,7 +419,7 @@ def _draw_annual_annulus(ax: mpl.axes.Axes, data: ProfitIncrementData) -> None:
         annual_months = data.monthly_percent[year_index * 12 : (year_index + 1) * 12]
         annual_label = (
             f"{year}: {annual_months.min():.2f}–{annual_months.max():.2f}%, "
-            f"avg. {data.annual_percent[year]:.2f}%"
+            f"Annual. {data.annual_percent[year]:.2f}%"
         )
         _draw_curved_text(
             ax=ax,

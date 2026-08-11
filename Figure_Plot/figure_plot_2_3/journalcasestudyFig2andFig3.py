@@ -179,7 +179,7 @@ def Fig2_n(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.legend(loc=4)
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
 
-def Fig2_p(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+def Fig2_o(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     N_price = 1000
     alphaset = [0,0.01,0.02]
     Res0= np.zeros((len(alphaset),N_price)) 
@@ -549,13 +549,13 @@ Fig2_e_h_k(0.5,2,0.6,0.6,0.9,pri[1,:],"k")
 Fig2_f_i_l(0.5,2,0.6,0.6,0.9,pri[2,:],"l")
 Fig2_m(0.5,2,0.6,0.6,1,pri[0,:],"m")
 Fig2_n(0.5,2,0.6,0.6,1,pri[1,:],"n")
-Fig2_p(0.5,2,0.6,0.6,1,pri[2,:],"p")
-Fig2_q(23,24,21,12,3,5,1,"q")
-Fig2_q(23,24,21,12,3,5,0.98,"r")
-Fig2_q(23,24,21,12,3,5,0.95,"s")
-Fig2_EV(20,pri[1,:],1,"t")
-Fig2_EV(20,pri[1,:],0.98,"u")
-Fig2_EV(20,pri[1,:],0.95,"v")
+Fig2_o(0.5,2,0.6,0.6,1,pri[2,:],"o")
+Fig2_q(23,24,21,12,3,5,1,"p")
+Fig2_q(23,24,21,12,3,5,0.98,"q")
+Fig2_q(23,24,21,12,3,5,0.95,"r")
+Fig2_EV(20,pri[1,:],1,"s")
+Fig2_EV(20,pri[1,:],0.98,"t")
+Fig2_EV(20,pri[1,:],0.95,"u")
 
 Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
 Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")
