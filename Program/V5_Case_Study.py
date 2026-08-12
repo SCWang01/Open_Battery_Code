@@ -4,7 +4,7 @@ Created on Apr 22nd, 2025
 
 @author:gcg
 
-Variant V5: an updated version of V3.  V3 collapses the entire CAISO battery
+Variant V6: an updated version of V5.  V3 collapses the entire CAISO battery
 fleet into a single equivalent battery and assumes 100% of it bids optimally
 through one aggregated demand function, which is unrealistic.  V5 splits the
 aggregate fleet with a ratio k in (0, 1]:
@@ -20,20 +20,32 @@ compared against the full actual fleet (100% hourly_battery) baseline.  At k=1
 this reproduces V3 exactly.  Data source and cost path are identical to V3:
 the hourly CAISO natural-gas data in ng_data/gasYYYYMM.xlsx with the 'exact'
 piecewise merit-order cost model.
+
+V6 enforces mutually exclusive charging and discharging inside each bidding
+optimization with binary charge/discharge states.  Solver-scale residuals are
+normalized during post-solve power classification.
+
+NOTE: although this module implements the V6 model, every exported file keeps
+the "V5" filename tag.  The downstream analysis and figure scripts hard-code
+V5 file names, so the V6 results are written under the V5 name to drop into
+the existing pipeline without restructuring it.
 """
 
-import calendar
-import json
-import random
-from pathlib import Path
-
+from cost_calculation import gas_cost, gas_marginal_price
 import gurobipy as gp
+from gurobipy import GRB
 import numpy as np
 import pandas as pd
-from gurobipy import GRB
+import matplotlib.pyplot as plt
+import zipfile
+import csv
+import json
+import random
+import calendar
+from pathlib import Path
+from io import StringIO
+from scipy.optimize import minimize
 from tqdm import tqdm
-
-from cost_calculation import gas_cost, gas_marginal_price
 
 #%% Global settings
 
@@ -67,8 +79,6 @@ def ensure_results_dir():
     """Create and return the project-level Results directory."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     return RESULTS_DIR
-
-
 #%% Read CAISO data
 
 def read_monthly_natural_gas(year, monthnum, Nday):
@@ -211,6 +221,18 @@ def build_dsfunction(pri0, Res0, numncd0):
     return dsfunction
 
 
+def clean_power(value, power_max, abs_tol=1e-3):
+    """Remove solver-scale residual power during post-solve processing.
+
+    The optimization model keeps its original solution.  This helper only
+    normalizes values used by the equivalent-power correction and output
+    classification, using a fixed absolute threshold.
+    """
+    if power_max <= 0 or abs(value) <= abs_tol:
+        return 0.0
+    return value
+
+
 def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     # get prices
     pri = price[1:N_t]
@@ -226,6 +248,10 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     ResPd= np.zeros((N_t,N_price)) # the discharge power of battery at each time interval
     ResPc= np.zeros((N_t,N_price)) # the charge power of battery at each time interval
     Res0 = np.zeros((N_price)) # the power of battery at the current time interval
+    # Retained for compatibility with the existing result schema.  Explicit
+    # simultaneous charge/discharge detection is no longer performed.
+    initial_value = 0
+    following_value = 0
 
     # traverse the price for the current interval from the minimum to the maximum
     for K in range(N_price):
@@ -235,6 +261,8 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=Smin, ub=Smax, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+        sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+        sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
         # Constraints
         # SOC initialization
         model.addConstr((SOC[0] == SOC_ini), 'SOC_initial')
@@ -243,40 +271,32 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
         # SOC bounds
         model.addConstrs(((SOC[t] >= Smin) for t in range(1, N_t+1)), 'SOC_lower_bound')
         model.addConstrs(((SOC[t] <= Smax) for t in range(1, N_t+1)), 'SOC_upper_bound')
+        # Charging and discharging are mutually exclusive in the optimization.
+        model.addConstrs((Pc[t] <= Pcmax * sc[t] for t in range(N_t)), 'charge_state')
+        model.addConstrs((Pd[t] <= Pdmax * sd[t] for t in range(N_t)), 'discharge_state')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         # objective function
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0]))*(24/N_t) +(sum(pri[t-1]*((Pd[t]-Pc[t])*(24/N_t)) for t in range(1,N_t)))) ), GRB.MAXIMIZE)
         # solve the model
         model.setParam('OutputFlag', 0)
         model.optimize()
-        # get power at time 0
-        Res0[K] = Pd[0].X-Pc[0].X # get the values of the power of battery at the current time interval
-        # adjust the power for simultaneously charge and discharge
-        if Pd[0].X*Pc[0].X !=0:
-            if Pd[0].X>Pc[0].X*eta**2:
-                Res0[K] = Pd[0].X-Pc[0].X*eta**2
-            else:
-                Res0[K] = Pd[0].X/(eta**2)-Pc[0].X
+        # Normalize solver-scale residuals before recording the net power.
+        pd0_clean = clean_power(Pd[0].X, Pdmax)
+        pc0_clean = clean_power(Pc[0].X, Pcmax)
+        Res0[K] = pd0_clean-pc0_clean
 
         # stair recognization
         for t in range(N_t):
-            if Pd[t].X*Pc[t].X !=0: # adjust the power for simultaneously charge and discharge
-                if Pd[t].X>Pc[t].X*eta**2:
-                    Res[t,K] = Pd[t].X-Pc[t].X*eta**2
-                    ResPd[t,K] = Pd[t].X-Pc[t].X*eta**2
-                    ResPc[t,K] = 0
-                else:
-                    Res[t,K] = Pd[t].X/(eta**2)-Pc[t].X
-                    ResPd[t,K] = 0
-                    ResPc[t,K] = Pd[t].X/(eta**2)-Pc[t].X
+            pd_clean = clean_power(Pd[t].X, Pdmax)
+            pc_clean = clean_power(Pc[t].X, Pcmax)
+            if pd_clean>pc_clean:
+                ResPd[t,K] = pd_clean
+                ResPc[t,K] = 0
+                Res[t,K] = pd_clean
             else:
-                if Pd[t].X>Pc[t].X:
-                    ResPd[t,K] = Pd[t].X
-                    ResPc[t,K] = 0
-                    Res[t,K] = Pd[t].X
-                else:
-                    ResPc[t,K] = -Pc[t].X
-                    ResPd[t,K] = 0
-                    Res[t,K] = -Pc[t].X
+                ResPc[t,K] = -pc_clean
+                ResPd[t,K] = 0
+                Res[t,K] = -pc_clean
         for t in range(N_t-1):
             ResE[t,K] = SOC[t+1].X
         # the index of interval when the battery first reach the maximum energy limit
@@ -306,7 +326,7 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     # Columns: price_low, price_high, powerstair, ncd0, ncd1, ncd2,
     # and first-reached SOC-limit state.
     dsfunction = build_dsfunction(pri0, Res0, numncd0)
-    return [numncd0,dsfunction]
+    return [numncd0, dsfunction, initial_value, following_value]
 
 
 #%% calculate the profit of the battery that bid by M1
@@ -317,6 +337,8 @@ def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Si
     P_cleared = np.zeros((N_t*Nday))
     ncd = np.zeros((N_t*Nday,4,N_price))
     dsfunctions = []
+    initial_value = 0
+    following_value = 0
 
     # for each time interval bid a demand-supply function
     for t in tqdm(range(N_t*Nday), desc=progress_desc, unit='hour', leave=False):
@@ -337,10 +359,12 @@ def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Si
         # bid a demand-supply function using the current day's power bounds
         # (Pdmax/Pcmax are length-Nday arrays; fixed within a calendar day)
         d = t // N_t
-        [numncd0,dsfunction] = biddingNEW(
+        numncd0, dsfunction, hourly_initial_value, hourly_following_value = biddingNEW(
             N_t, N_price, eta, CAP, Smax, Smin,
             Pdmax[d], Pcmax[d], priceN_t_with_error, Sinitial
         )
+        initial_value += hourly_initial_value
+        following_value += hourly_following_value
         dsfunctions.append(dsfunction.copy())
 
         # clearing and profit calculation
@@ -360,7 +384,10 @@ def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Si
     aveprice = np.mean(price[0:N_t*Nday])
     ESSend = ESSOC_status[-1]*CAP # the finally remained energy
     end_value = ESSend*aveprice # the profit of the finally remained energy
-    return profit, ESSOC_status,P_cleared,end_value,ncd,dsfunctions
+    return (
+        profit, ESSOC_status, P_cleared, end_value, ncd, dsfunctions,
+        initial_value, following_value,
+    )
 
 #%% calculate the profit of the battery that bid by M2 (the actual data)
 def calculate_profit_actual(eta,CAP,price, N_t,Nday, netoutput,Sinitial):
@@ -381,6 +408,24 @@ def calculate_profit_actual(eta,CAP,price, N_t,Nday, netoutput,Sinitial):
     end_value = ESSend*aveprice # the profit of the finally remained energy
     return profit, ESSOC_status,netoutput,end_value
 #%% Generation cost and carbon emission
+
+# monthly quadratic fuel-cost coefficients: fuel_cost($) = a*gas(MW)^2 + b*gas(MW) + c
+# fitted per month from CAISO natural-gas generation and fuel-cost data
+FUEL_COST_PARAMS_PATH = (
+    PROJECT_ROOT / 'Natural_Gas_Fuel_Cost' / 'Solution_Cost'
+    / 'fit_cost_coefficients.xlsx'
+)
+_fuel_cost_cache = None
+
+def load_fuel_cost_params():
+    """Load and memoize the monthly quadratic fuel-cost coefficients.
+    Returns {period 'yyyymm' (str): (a, b, c)}."""
+    global _fuel_cost_cache
+    if _fuel_cost_cache is None:
+        df = pd.read_excel(FUEL_COST_PARAMS_PATH)
+        _fuel_cost_cache = {str(p): (float(a), float(b), float(c))
+                            for p, a, b, c in zip(df['period'], df['a'], df['b'], df['c'])}
+    return _fuel_cost_cache
 
 # calculate the generation cost and the carbon emission
 def calculate_cost_and_carbon(gas_actual,curtailment, PESS_method,PESS_actual,N_t,Nday):
@@ -432,14 +477,17 @@ def calculate_cost_and_carbon(gas_actual,curtailment, PESS_method,PESS_actual,N_
     return Pgas, Cost, absorbed, diff, MargPrice
 
 def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin, Cap, eta, SINI):
-    # V5: split the aggregate fleet into a controllable k-unit (optimised by the
+    # V6: split the aggregate fleet into a controllable k-unit (optimised by the
     # bidding method) and a passive (1-k) remainder that keeps its actual output.
     # The controllable unit is a proportionally shrunk copy of the fleet, so its
     # capacity and power scale by k while its SOC trajectory (hence SINI) is
     # unchanged.  P_method = P_cleared_controlled + (1-k)*battery.
 
     # controllable k-unit: optimised bidding on the k-scaled battery
-    profit_ctrl, ESSOC_status_ctrl, P_cleared_ctrl, end_value_ctrl, ncd, dsfunctions = calculate_profit(
+    (
+        profit_ctrl, ESSOC_status_ctrl, P_cleared_ctrl, end_value_ctrl, ncd,
+        dsfunctions, initial_value, following_value,
+    ) = calculate_profit(
         N_t, N_day, N_price, eta, Cap*k, Smax, Smin, Pdmax*k, Pcmax*k,
         price, SINI, meanstd, f'{year}-{monthnum}'
     )
@@ -491,7 +539,11 @@ def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax,
         ),
         index=False,
     )
-    return [total_profit,total_profit_actual, total_cost,total_cost_actual,total_cost_withoutESS,Cost,absorbed,P_cleared,P_cleared_ctrl,Pgas,ncd,dsfunctions]
+    return [
+        total_profit, total_profit_actual, total_cost, total_cost_actual,
+        total_cost_withoutESS, Cost, absorbed, P_cleared, P_cleared_ctrl,
+        Pgas, ncd, dsfunctions, initial_value, following_value,
+    ]
 
 
 #%% main
@@ -542,9 +594,10 @@ TOTALMONTH_CARBON = {
 }
 
 
-def run_one_month(num, export_dsfunctions=False):
+def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     """Compute a single month (0-based index into monthlist) and return its
-    summary dict.
+    summary dict.  When ``return_detection_counts`` is true, also return the
+    month's simultaneous-charge/discharge counts as a second dict.
 
     Sets the module-level globals the other functions read, writes the per-month
     CSV / .npy files, and returns the row that goes into the summary table.  This
@@ -571,13 +624,15 @@ def run_one_month(num, export_dsfunctions=False):
         meanstd, price_glo, gas_glo, battery_glo, curtailment_glo,
         Pdmax_glo, Pcmax_glo, Smax_glo, Smin_glo, Cap_glo, eta_glo, SINI_glo,
     )
-    total_profit, total_profit_actual, total_cost, total_cost_actual, total_cost_withoutESS, costdetails, absorbed, P_cleared, P_cleared_ctrl, Pgas, ncd, dsfunctions = result
+    (
+        total_profit, total_profit_actual, total_cost, total_cost_actual,
+        total_cost_withoutESS, costdetails, absorbed, P_cleared,
+        P_cleared_ctrl, Pgas, ncd, dsfunctions, initial_value,
+        following_value,
+    ) = result
 
     np.save(output_dir / f'ncd_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.npy', ncd)
-    np.save(
-        output_dir / f'Pcleared_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.npy',
-        P_cleared,
-    )
+    np.save(output_dir / f'Pcleared_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.npy', P_cleared)
     if export_dsfunctions:
         times = pd.date_range(
             f'{year}-{monthnum}-01 00:00:00', periods=len(dsfunctions), freq='h'
@@ -589,11 +644,9 @@ def run_one_month(num, export_dsfunctions=False):
                 for dsfunction in dsfunctions
             ],
             'P_ESS': P_cleared_ctrl,
-
         })
         export_data.to_excel(
-            output_dir
-            / f'dsfunction_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.xlsx',
+            output_dir / f'dsfunction_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.xlsx',
             sheet_name=f'{month}{year}',
             index=False,
         )
@@ -605,7 +658,7 @@ def run_one_month(num, export_dsfunctions=False):
     year_month = f'{year}{monthnum}'
     totalmonth_carbon = TOTALMONTH_CARBON.get(year_month)
     rate_carbon = carbon_reduce / totalmonth_carbon if totalmonth_carbon is not None else np.nan
-    return {
+    summary = {
         'year_month': year_month,
         'k': k,
         'total_profit': total_profit,
@@ -620,35 +673,62 @@ def run_one_month(num, export_dsfunctions=False):
         'rate_carbon': rate_carbon,
         'skipped_gas_dates': ','.join(skipped_gas_dates),
     }
+    detection_counts = {
+        'Month': year_month,
+        'Initial_Value': initial_value,
+        'following_value': following_value,
+    }
+    if return_detection_counts:
+        return summary, detection_counts
+    return summary
+
+
+def write_detection_summary(detection_rows, summary_path):
+    """Write monthly simultaneous-charge/discharge counts beside a summary."""
+    summary_name = summary_path.name
+    if summary_name.startswith('summary_'):
+        summary_name = summary_name[len('summary_'):]
+    detection_path = summary_path.with_name(
+        f'simultaneous_charge_discharge_counts_{summary_name}'
+    )
+    columns = ['Month', 'Initial_Value', 'following_value']
+    pd.DataFrame(detection_rows, columns=columns).to_csv(detection_path, index=False)
+    print(f'Wrote simultaneous charge/discharge counts: {detection_path}')
+    return detection_path
 
 
 def run_all_months():
     output_dir = ensure_results_dir()
 
-    summaries = [
-        run_one_month(num)
+    month_results = [
+        run_one_month(num, return_detection_counts=True)
         for num in tqdm(range(len(monthlist)), desc='All months', unit='month')
     ]
+    summaries = [summary for summary, _ in month_results]
+    detection_rows = [counts for _, counts in month_results]
 
     start_period = f'{START_YEAR_MONTH[0]}{START_YEAR_MONTH[1]:02d}'
     end_period = f'{END_YEAR_MONTH[0]}{END_YEAR_MONTH[1]:02d}'
-    summary_path = (
-        output_dir
-        / f'summary_{start_period}_{end_period}_{COST_MODE}_V5_k{int(k*100)}.csv'
-    )
+    summary_path = output_dir / f'summary_{start_period}_{end_period}_{COST_MODE}_V5_k{int(k*100)}.csv'
     pd.DataFrame(summaries).to_csv(summary_path, index=False)
+    write_detection_summary(detection_rows, summary_path)
     return summary_path
 
 
 def run_may_2025():
     """Run only May 2025 and export its NCD and hourly dsfunctions."""
     may_2025_index = year_month_list.index((2025, 5))
-    summary = run_one_month(may_2025_index, export_dsfunctions=True)
+    summary, detection_counts = run_one_month(
+        may_2025_index,
+        export_dsfunctions=True,
+        return_detection_counts=True,
+    )
     summary_path = (
         ensure_results_dir()
         / f'summary_202505_{COST_MODE}_V5_k{int(k*100)}.csv'
     )
     pd.DataFrame([summary]).to_csv(summary_path, index=False)
+    write_detection_summary([detection_counts], summary_path)
     return summary_path
 
 
