@@ -523,6 +523,7 @@ def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax,
     res_date = {'price': price[:N_t*N_day], 'profit': profit, 'profit_actual': profit_actual,
     'P_ESS': P_cleared, 'P_ESS_controlled': P_cleared_ctrl, 'P_ESS_passive': battery_passive,
     'P_ESS_actual': P_cleared_actual,
+    'SOC_controlled': ESSOC_status_ctrl,
     'P_natural_gas':Pgas[:,0],'P_natural_gas_actual':Pgas[:,1], 'P_renewable_absorbed':absorbed,
     'marginal_price_gas': MargPrice[:,0], 'marginal_price_gas_actual': MargPrice[:,1], 'marginal_price_gas_withoutESS': MargPrice[:,2],
     'cost': Cost[:,0], 'cost_actual': Cost[:,1], 'cost_withoutESS': Cost[:,2],
@@ -542,7 +543,7 @@ def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax,
     return [
         total_profit, total_profit_actual, total_cost, total_cost_actual,
         total_cost_withoutESS, Cost, absorbed, P_cleared, P_cleared_ctrl,
-        Pgas, ncd, dsfunctions, initial_value, following_value,
+        ESSOC_status_ctrl, Pgas, ncd, dsfunctions, initial_value, following_value,
     ]
 
 
@@ -627,7 +628,7 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     (
         total_profit, total_profit_actual, total_cost, total_cost_actual,
         total_cost_withoutESS, costdetails, absorbed, P_cleared,
-        P_cleared_ctrl, Pgas, ncd, dsfunctions, initial_value,
+        P_cleared_ctrl, ESSOC_status_ctrl, Pgas, ncd, dsfunctions, initial_value,
         following_value,
     ) = result
 

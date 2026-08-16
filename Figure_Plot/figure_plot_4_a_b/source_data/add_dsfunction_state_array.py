@@ -1,4 +1,4 @@
-"""Add an hourly dsfunction state interval-width share array."""
+"""Add an hourly dsfunction state interval-width array."""
 
 from __future__ import annotations
 
@@ -14,9 +14,9 @@ from classify_p_ess import as_float, classify_p_ess, values_match
 
 
 SOURCE = Path("dsfunction_May2025_exact_V5_k20_classified.xlsx")
-STATE_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD", "NC")
-OUTPUT_HEADER = "dsfunction_state_share"
-LEGACY_OUTPUT_HEADER = "dsfunction_state_array"
+STATE_ORDER = ("CC", "CD", "NU", "DC", "DD")
+OUTPUT_HEADER = "dsfunction_state_width"
+LEGACY_OUTPUT_HEADERS = ("dsfunction_state_share", "dsfunction_state_array")
 
 
 def find_column(headers: list[object], header: str) -> int:
@@ -26,8 +26,8 @@ def find_column(headers: list[object], header: str) -> int:
     return matches[0]
 
 
-def format_share(value: float) -> str:
-    """Format one share compactly while retaining analysis-grade precision."""
+def format_width(value: float) -> str:
+    """Format one interval width compactly while retaining analysis-grade precision."""
     if abs(value) < 5e-13:
         return "0"
     if abs(value - 1.0) < 5e-13:
@@ -35,7 +35,7 @@ def format_share(value: float) -> str:
     return f"{value:.10f}".rstrip("0").rstrip(".")
 
 
-def state_share_array(
+def state_width_array(
     dsfunction_value: object,
     excel_row: int,
 ) -> tuple[str, list[str], list[float]]:
@@ -45,7 +45,6 @@ def state_share_array(
     states: list[str] = []
     widths = Counter({state: 0.0 for state in STATE_ORDER})
     for ds_row_number, ds_row in enumerate(dsfunction, start=1):
-        state = classify_p_ess(ds_row[2], dsfunction, excel_row)
         third = as_float(
             ds_row[2],
             name=f"dsfunction segment {ds_row_number}, column 3",
@@ -61,16 +60,36 @@ def state_share_array(
             name=f"dsfunction segment {ds_row_number}, column 5",
             excel_row=excel_row,
         )
+        sixth = as_float(
+            ds_row[5],
+            name=f"dsfunction segment {ds_row_number}, column 6",
+            excel_row=excel_row,
+        )
         seventh = as_float(
             ds_row[6],
             name=f"dsfunction segment {ds_row_number}, column 7",
             excel_row=excel_row,
         )
-        if values_match(seventh, 0.0) and values_match(fourth - fifth, 0.0):
-            if third > 0:
-                state = "DD"
-            elif third < 0:
-                state = "CC"
+        if all(values_match(value, 0.0) for value in (fourth, fifth, sixth)):
+            state = "mB" #marginal boundary
+        else:
+            state = classify_p_ess(third, dsfunction, excel_row)
+            if values_match(seventh, 0.0) and values_match(fourth - fifth, 0.0):
+                if third > 0:
+                    state = "DD"
+                elif third < 0:
+                    state = "CC"
+            if (
+                state == "NU"
+                and values_match(fourth, 0.0)
+                and values_match(fifth, 0.0)
+                and values_match(sixth, 1.0)
+                and (
+                    values_match(seventh, 1.0)
+                    or values_match(seventh, -1.0)
+                )
+            ):
+                state = "mB"
         lower = as_float(
             ds_row[0],
             name=f"dsfunction segment {ds_row_number}, column 1",
@@ -88,14 +107,12 @@ def state_share_array(
                 "positive interval width."
             )
         states.append(state)
-        widths[state] += width
+        if state in STATE_ORDER:
+            widths[state] += width
 
-    total_width = sum(widths.values())
-    if total_width <= 0:
-        raise ValueError(f"Row {excel_row}: total interval width must be greater than 0.")
-    shares = [widths[state] / total_width for state in STATE_ORDER]
-    array = "[" + ",".join(format_share(share) for share in shares) + "]"
-    return array, states, shares
+    state_widths = [widths[state] for state in STATE_ORDER]
+    array = "[" + ",".join(format_width(width) for width in state_widths) + "]"
+    return array, states, state_widths
 
 
 def main() -> None:
@@ -107,18 +124,24 @@ def main() -> None:
     headers = [cell.value for cell in worksheet[1]]
     dsfunction_col = find_column(headers, "dsfunction")
 
-    output_col = 5
+    # Preserve the established workbook layout and write the state-width
+    # output to column 6.
+    output_col = 6
     existing_headers = [
         index
         for index, value in enumerate(headers, start=1)
-        if value in (OUTPUT_HEADER, LEGACY_OUTPUT_HEADER)
+        if value in (OUTPUT_HEADER, *LEGACY_OUTPUT_HEADERS)
     ]
     if existing_headers and existing_headers != [output_col]:
-        raise ValueError(f"Existing {OUTPUT_HEADER!r} column is not in column 5; cannot update safely.")
+        raise ValueError(
+            f"Existing {OUTPUT_HEADER!r} column is not in column {output_col}; "
+            "cannot update safely."
+        )
     if worksheet.max_column >= output_col:
         current_header = worksheet.cell(1, output_col).value
-        if current_header not in (None, OUTPUT_HEADER, LEGACY_OUTPUT_HEADER):
-            raise ValueError(f"Column 5 is already occupied by {current_header!r}.")
+        if current_header not in (None, OUTPUT_HEADER, *LEGACY_OUTPUT_HEADERS):
+            # Make room instead of overwriting existing column-6 data.
+            worksheet.insert_cols(output_col, amount=1)
 
     style_source_col = 4 if worksheet.max_column >= 4 else 3
     for excel_row in range(1, worksheet.max_row + 1):
@@ -135,9 +158,8 @@ def main() -> None:
 
     segment_state_counts: Counter[str] = Counter()
     nc_rows: list[int] = []
-    maximum_share_sum_error = 0.0
     for excel_row in range(2, worksheet.max_row + 1):
-        value, states, shares = state_share_array(
+        value, states, _ = state_width_array(
             worksheet.cell(excel_row, dsfunction_col).value,
             excel_row,
         )
@@ -145,11 +167,7 @@ def main() -> None:
         cell.value = value
         cell.number_format = "@"
         segment_state_counts.update(states)
-        maximum_share_sum_error = max(
-            maximum_share_sum_error,
-            abs(sum(shares) - 1.0),
-        )
-        if "NC" in states:
+        if "mB" in states:
             nc_rows.append(excel_row)
 
     temporary = SOURCE.with_name(f"{SOURCE.stem}.tmp{SOURCE.suffix}")
@@ -158,9 +176,9 @@ def main() -> None:
 
     print(f"Updated: {SOURCE}")
     print(f"Records: {worksheet.max_row - 1}")
+    print(f"Output state order: {STATE_ORDER}")
     print(f"Segment state counts: {dict(segment_state_counts)}")
-    print(f"Worksheet rows containing NC: {nc_rows}")
-    print(f"Maximum share-sum error: {maximum_share_sum_error:.3g}")
+    print(f"Worksheet rows containing mB: {nc_rows}")
 
 
 if __name__ == "__main__":

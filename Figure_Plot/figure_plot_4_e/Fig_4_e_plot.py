@@ -153,14 +153,14 @@ def plot_fig_4_e(date=DEFAULT_DATE, output_path=OUTPUT_PATH):
         increment_charge,
         width=bar_width,
         color="#008000",
-        label="Increment of Charging Power",
+        label="Increment of charging power",
     )
     curtailment_bars = ax_power.bar(
         hours + bar_width / 2,
         actual_curtailment,
         width=bar_width,
         color="#9467bd",
-        label="Actual Curtailment",
+        label="Actual curtailment",
     )
     (price_line,) = ax_price.plot(
         hours,
@@ -170,13 +170,13 @@ def plot_fig_4_e(date=DEFAULT_DATE, output_path=OUTPUT_PATH):
         linewidth=0.9,
         markersize=2.1,
         markeredgewidth=0,
-        label="Electricity Price",
+        label="Price",
     )
 
     ax_power.axhline(0, color="black", linewidth=0.8)
-    ax_power.set_xlabel("Hours")
+    ax_power.set_xlabel("Time (hours)")
     ax_power.set_ylabel("Power (MW)", color="#1f4e79")
-    ax_price.set_ylabel("Electricity Price (USD/MWh)")
+    ax_price.set_ylabel("Price (USD/MWh)")
     ax_power.set_xticks(np.arange(0, N_HOURS, 5))
     ax_power.set_xlim(-0.4, N_HOURS - 0.6)
     ax_power.grid(axis="y", linestyle=":", linewidth=0.6, alpha=0.45)
@@ -189,7 +189,7 @@ def plot_fig_4_e(date=DEFAULT_DATE, output_path=OUTPUT_PATH):
 
     ax_power.legend(
         [curtailment_bars, increment_bars, price_line],
-        ["Actual Curtailment", "Increment of Charging Power", "Electricity Price"],
+        ["Actual curtailment", "Increment of charging power", "Price"],
         loc="upper center",
         bbox_to_anchor=(0.5, 0.99),
         ncol=3,

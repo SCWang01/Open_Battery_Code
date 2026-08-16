@@ -92,7 +92,7 @@ class MetricData:
 METRICS = (
     MetricSpec(
         key="carbon",
-        title="Carbon reduction rate",
+        title="Carbon-emission reduction rate",
         monthly_header="rate carbon",
         annual_header="carbon reduction rate",
         axis_min=0.0,
@@ -104,7 +104,7 @@ METRICS = (
     ),
     MetricSpec(
         key="cost",
-        title="Cost reduction rate",
+        title="Natural-gas fuel-cost reduction rate",
         monthly_header="cost reduction",
         annual_header="cost reduction rate",
         axis_min=-2.0,

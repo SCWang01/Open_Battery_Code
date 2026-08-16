@@ -300,7 +300,24 @@ def Fig2_EV(Nev,pri,eta,index):
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
     return TArrset
 
+def _configure_fig3_style():
+    """Apply the shared typography for all Fig3 plots."""
+    plt.rcParams.update({
+        "font.family": "Times New Roman",
+        "font.serif": ["Times New Roman"],
+        "font.size": 14,
+        "axes.labelsize": 14,
+        "xtick.labelsize": 14,
+        "ytick.labelsize": 14,
+        "legend.fontsize": 14,
+    })
+
+
+FIG3_FIGSIZE = (9 / 2.54, 5.3 / 2.54)
+
+
 def Fig3_d(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 5000
     priset = np.zeros((3,N_t-1))
     priset[0,:] = pri
@@ -326,18 +343,21 @@ def Fig3_d(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    plt.xlabel('price(CNY/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "g":
+    #     plt.xlabel('Price (CNY/kWh)')
+    # if index in {"d", "g"}:
+    #     plt.ylabel('Net power (MW)')
     plt.xlim((0,4))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
 
 
 def Fig3_e(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 5000
     priset = np.zeros((3,N_t-1))
     priset[0,:] = pri
@@ -363,17 +383,18 @@ def Fig3_e(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "h":
+    #     plt.xlabel('Price (USD/kWh)')
     plt.xlim((0,0.23))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
 
 def Fig3_f(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 5000
     priset = np.zeros((3,N_t-1))
     priset[0,:] = pri
@@ -400,18 +421,19 @@ def Fig3_f(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "i":
+    #     plt.xlabel('Price (USD/kWh)')
     plt.xlim((0,0.13))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
 
 
 def Fig3_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 1000
     Siniset = [0.2,0.8,0.5]
     Res0= np.zeros((3,N_price)) 
@@ -433,17 +455,19 @@ def Fig3_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    plt.xlabel('price(CNY/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "j":
+    #     plt.xlabel('Price (CNY/kWh)')
+    #     plt.ylabel('Net power (MW)')
     plt.xlim((0.2,1.2))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
 
 def Fig3_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 1000
     Siniset = [0.2,0.8,0.5]
     Res0= np.zeros((3,N_price)) 
@@ -465,17 +489,18 @@ def Fig3_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "k":
+    #     plt.xlabel('Price (USD/kWh)')
     plt.xlim((0.04,0.12))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)   
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
     
 def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
+    _configure_fig3_style()
     N_price = 1000
     Siniset = [0.2,0.8,0.5]
     Res0= np.zeros((3,N_price)) 
@@ -498,15 +523,15 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             model.optimize()
             Res0[i,K] = Pd[0].X-Pc[0].X
     # plot the figure
-    plt.figure(figsize=(3, 2))
+    plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    # if index == "l":
+    #     plt.xlabel('Price (USD/kWh)')
     plt.xlim((0.02,0.035))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
-    plt.savefig("Figs/3-"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)   
+    plt.savefig("Figs/3-"+index+".png", bbox_inches="tight", transparent=True, dpi=600)
     
     
 # def Fig2_f_i_l_new(SOC_ini,Cap,Pcmax,Pdmax,eta,index):
@@ -538,24 +563,24 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
 #     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)        
     
     
-Fig2_d_g_j(0.5,2,0.6,0.6,1,pri[0,:],"d")
-Fig2_e_h_k(0.5,2,0.6,0.6,1,pri[1,:],"e")
-Fig2_f_i_l(0.5,2,0.6,0.6,1,pri[2,:],"f")
-Fig2_d_g_j(0.5,2,0.6,0.6,0.98,pri[0,:],"g")
-Fig2_e_h_k(0.5,2,0.6,0.6,0.98,pri[1,:],"h")
-Fig2_f_i_l(0.5,2,0.6,0.6,0.98,pri[2,:],"i")
-Fig2_d_g_j(0.5,2,0.6,0.6,0.9,pri[0,:],"j")
-Fig2_e_h_k(0.5,2,0.6,0.6,0.9,pri[1,:],"k")
-Fig2_f_i_l(0.5,2,0.6,0.6,0.9,pri[2,:],"l")
-Fig2_m(0.5,2,0.6,0.6,1,pri[0,:],"m")
-Fig2_n(0.5,2,0.6,0.6,1,pri[1,:],"n")
-Fig2_o(0.5,2,0.6,0.6,1,pri[2,:],"o")
-Fig2_q(23,24,21,12,3,5,1,"p")
-Fig2_q(23,24,21,12,3,5,0.98,"q")
-Fig2_q(23,24,21,12,3,5,0.95,"r")
-Fig2_EV(20,pri[1,:],1,"s")
-Fig2_EV(20,pri[1,:],0.98,"t")
-Fig2_EV(20,pri[1,:],0.95,"u")
+# Fig2_d_g_j(0.5,2,0.6,0.6,1,pri[0,:],"d")
+# Fig2_e_h_k(0.5,2,0.6,0.6,1,pri[1,:],"e")
+# Fig2_f_i_l(0.5,2,0.6,0.6,1,pri[2,:],"f")
+# Fig2_d_g_j(0.5,2,0.6,0.6,0.98,pri[0,:],"g")
+# Fig2_e_h_k(0.5,2,0.6,0.6,0.98,pri[1,:],"h")
+# Fig2_f_i_l(0.5,2,0.6,0.6,0.98,pri[2,:],"i")
+# Fig2_d_g_j(0.5,2,0.6,0.6,0.9,pri[0,:],"j")
+# Fig2_e_h_k(0.5,2,0.6,0.6,0.9,pri[1,:],"k")
+# Fig2_f_i_l(0.5,2,0.6,0.6,0.9,pri[2,:],"l")
+# Fig2_m(0.5,2,0.6,0.6,1,pri[0,:],"m")
+# Fig2_n(0.5,2,0.6,0.6,1,pri[1,:],"n")
+# Fig2_o(0.5,2,0.6,0.6,1,pri[2,:],"o")
+# Fig2_q(23,24,21,12,3,5,1,"p")
+# Fig2_q(23,24,21,12,3,5,0.98,"q")
+# Fig2_q(23,24,21,12,3,5,0.95,"r")
+# Fig2_EV(20,pri[1,:],1,"s")
+# Fig2_EV(20,pri[1,:],0.98,"t")
+# Fig2_EV(20,pri[1,:],0.95,"u")
 
 Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
 Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")

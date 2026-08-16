@@ -1,9 +1,9 @@
 """Create the May 2025 dsfunction/P_ESS state-distribution pie figure.
 
 All deliverables are written beside this script so that the complete folder can
-be moved as one reproducible figure package.  Panel (a) sums the hourly
-``dsfunction_state_share`` arrays vertically, excludes MC/MD, and renormalizes
-CC/CD/NU/DC/DD to 100%.  Panel (b) counts the hourly ``P_ESS_state`` labels.
+be moved as one reproducible figure package.  Panel (a) sums the hourly raw
+``dsfunction_state_width`` arrays vertically and normalizes CC/CD/NU/DC/DD to
+100%.  Panel (b) counts the hourly ``P_ESS_state`` labels.
 """
 
 from __future__ import annotations
@@ -33,18 +33,18 @@ OUTPUT_DIR = Path(__file__).resolve().parent
 OUTPUT_BASENAME = "state_distribution_pies_May2025"
 SOURCE_DATA_NAME = f"{OUTPUT_BASENAME}_source_data.csv"
 
-ARRAY_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD", "NC")
+P_ESS_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD", "NC")
 LEFT_ORDER = ("CC", "CD", "NU", "DC", "DD")
 LEGEND_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD")
 
 LEGEND_LABELS = {
-    "MC": "max-rate charge",
-    "CC": "charge-for-charge",
-    "CD": "charge-for-discharge",
-    "NU": "null",
-    "DC": "discharge-for-charge",
-    "DD": "discharge-for-discharge",
-    "MD": "max-rate discharge",
+    "MC": "Max-rate charge",
+    "CC": "Charge-for-charge",
+    "CD": "Charge-for-discharge",
+    "NU": "Null segment",
+    "DC": "Discharge-for-charge",
+    "DD": "Discharge-for-discharge",
+    "MD": "Max-rate discharge",
 }
 
 COLORS = {
@@ -103,10 +103,10 @@ def read_source_data() -> tuple[Counter[str], dict[str, float], int]:
         rows = worksheet.iter_rows(values_only=True)
         headers = next(rows)
         state_col = find_unique_header(headers, "P_ESS_state")
-        share_col = find_unique_header(headers, "dsfunction_state_share")
+        width_col = find_unique_header(headers, "dsfunction_state_width")
 
         p_ess_counts: Counter[str] = Counter()
-        share_sums = {state: 0.0 for state in ARRAY_ORDER}
+        width_sums = {state: 0.0 for state in LEFT_ORDER}
         record_count = 0
 
         for excel_row, row in enumerate(rows, start=2):
@@ -114,41 +114,36 @@ def read_source_data() -> tuple[Counter[str], dict[str, float], int]:
                 continue
 
             p_ess_state = row[state_col]
-            if p_ess_state not in ARRAY_ORDER:
+            if p_ess_state not in P_ESS_ORDER:
                 raise ValueError(
                     f"Excel row {excel_row}: unknown P_ESS_state {p_ess_state!r}."
                 )
             p_ess_counts[p_ess_state] += 1
 
-            raw_array = row[share_col]
+            raw_array = row[width_col]
             if not isinstance(raw_array, str):
                 raise ValueError(
-                    f"Excel row {excel_row}: dsfunction_state_share must be text."
+                    f"Excel row {excel_row}: dsfunction_state_width must be text."
                 )
             try:
-                shares = ast.literal_eval(raw_array)
+                widths = ast.literal_eval(raw_array)
             except (SyntaxError, ValueError) as exc:
                 raise ValueError(
-                    f"Excel row {excel_row}: invalid dsfunction_state_share: {exc}"
+                    f"Excel row {excel_row}: invalid dsfunction_state_width: {exc}"
                 ) from exc
 
-            if not isinstance(shares, (list, tuple)) or len(shares) != len(ARRAY_ORDER):
+            if not isinstance(widths, (list, tuple)) or len(widths) != len(LEFT_ORDER):
                 raise ValueError(
-                    f"Excel row {excel_row}: expected {len(ARRAY_ORDER)} shares."
+                    f"Excel row {excel_row}: expected {len(LEFT_ORDER)} widths."
                 )
-            numeric_shares = [float(value) for value in shares]
-            if not all(math.isfinite(value) and value >= 0 for value in numeric_shares):
+            numeric_widths = [float(value) for value in widths]
+            if not all(math.isfinite(value) and value >= 0 for value in numeric_widths):
                 raise ValueError(
-                    f"Excel row {excel_row}: shares must be finite and non-negative."
-                )
-            if not math.isclose(sum(numeric_shares), 1.0, rel_tol=0, abs_tol=1e-8):
-                raise ValueError(
-                    f"Excel row {excel_row}: shares sum to {sum(numeric_shares):.12g}, "
-                    "not 1."
+                    f"Excel row {excel_row}: widths must be finite and non-negative."
                 )
 
-            for state, value in zip(ARRAY_ORDER, numeric_shares):
-                share_sums[state] += value
+            for state, value in zip(LEFT_ORDER, numeric_widths):
+                width_sums[state] += value
             record_count += 1
     finally:
         workbook.close()
@@ -157,25 +152,23 @@ def read_source_data() -> tuple[Counter[str], dict[str, float], int]:
         raise ValueError(f"Expected 744 May 2025 records; found {record_count}.")
     if sum(p_ess_counts.values()) != record_count:
         raise ValueError("P_ESS counts do not reconcile to the worksheet record count.")
-    if not math.isclose(
-        sum(share_sums.values()), record_count, rel_tol=0, abs_tol=1e-6
+    if math.isclose(
+        sum(width_sums.values()), 0.0, rel_tol=0, abs_tol=1e-12
     ):
-        raise ValueError("Vertical dsfunction share sums do not reconcile to the records.")
-    if not math.isclose(share_sums["NC"], 0.0, rel_tol=0, abs_tol=1e-12):
-        raise ValueError("NC has a non-zero dsfunction share and cannot be silently omitted.")
+        raise ValueError("The five plotted dsfunction width totals are all zero.")
     if p_ess_counts["NC"] != 0:
         raise ValueError("NC occurs in P_ESS_state and cannot be silently omitted.")
 
-    return p_ess_counts, share_sums, record_count
+    return p_ess_counts, width_sums, record_count
 
 
 def source_rows(
-    p_ess_counts: Counter[str], share_sums: dict[str, float], record_count: int
+    p_ess_counts: Counter[str], width_sums: dict[str, float], record_count: int
 ) -> list[dict[str, object]]:
     """Build one auditable table containing raw totals and plotted percentages."""
-    left_total = sum(share_sums[state] for state in LEFT_ORDER)
+    left_total = sum(width_sums.values())
     rows: list[dict[str, object]] = []
-    for state in ARRAY_ORDER:
+    for state in P_ESS_ORDER:
         in_left = state in LEFT_ORDER
         in_legend = state in LEGEND_ORDER
         rows.append(
@@ -183,10 +176,12 @@ def source_rows(
                 "state": state,
                 "legend_label": LEGEND_LABELS.get(state, "not classified"),
                 "color_hex": COLORS.get(state, ""),
-                "dsfunction_vertical_sum_all_states": f"{share_sums[state]:.12f}",
+                "dsfunction_vertical_width_sum": (
+                    f"{width_sums[state]:.12f}" if in_left else ""
+                ),
                 "included_in_left_pie": str(in_left).lower(),
                 "dsfunction_left_normalized_percent": (
-                    f"{100.0 * share_sums[state] / left_total:.8f}" if in_left else ""
+                    f"{100.0 * width_sums[state] / left_total:.8f}" if in_left else ""
                 ),
                 "p_ess_count": p_ess_counts[state],
                 "p_ess_percent": f"{100.0 * p_ess_counts[state] / record_count:.8f}",
@@ -211,8 +206,8 @@ def percent_text(percent: float) -> str:
     return f"{percent:.2f}%"
 
 
-def draw_left_pie(ax: plt.Axes, share_sums: dict[str, float]) -> None:
-    values = [share_sums[state] for state in LEFT_ORDER]
+def draw_left_pie(ax: plt.Axes, width_sums: dict[str, float]) -> None:
+    values = [width_sums[state] for state in LEFT_ORDER]
     ax.pie(
         values,
         colors=[COLORS[state] for state in LEFT_ORDER],
@@ -342,7 +337,7 @@ def draw_legend(ax: plt.Axes) -> None:
 
 
 def build_figure(
-    p_ess_counts: Counter[str], share_sums: dict[str, float], record_count: int
+    p_ess_counts: Counter[str], width_sums: dict[str, float], record_count: int
 ) -> plt.Figure:
     configure_matplotlib()
     mm_per_inch = 25.4
@@ -364,7 +359,7 @@ def build_figure(
     legend_ax = fig.add_subplot(grid[0, 1])
     right_ax = fig.add_subplot(grid[0, 2])
 
-    draw_left_pie(left_ax, share_sums)
+    draw_left_pie(left_ax, width_sums)
     draw_legend(legend_ax)
     draw_right_pie(right_ax, p_ess_counts, record_count)
     add_aligned_panel_labels(fig, left_ax, right_ax)
@@ -399,20 +394,20 @@ def save_figure(fig: plt.Figure) -> list[Path]:
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    p_ess_counts, share_sums, record_count = read_source_data()
-    rows = source_rows(p_ess_counts, share_sums, record_count)
+    p_ess_counts, width_sums, record_count = read_source_data()
+    rows = source_rows(p_ess_counts, width_sums, record_count)
     csv_path = write_source_csv(rows)
-    fig = build_figure(p_ess_counts, share_sums, record_count)
+    fig = build_figure(p_ess_counts, width_sums, record_count)
     figure_paths = save_figure(fig)
     plt.close(fig)
 
-    left_total = sum(share_sums[state] for state in LEFT_ORDER)
+    left_total = sum(width_sums.values())
     print(f"Source workbook: {SOURCE_WORKBOOK}")
     print(f"Records: {record_count}")
     print(
         "Panel (a): "
         + ", ".join(
-            f"{state}={100.0 * share_sums[state] / left_total:.2f}%"
+            f"{state}={100.0 * width_sums[state] / left_total:.2f}%"
             for state in LEFT_ORDER
         )
     )

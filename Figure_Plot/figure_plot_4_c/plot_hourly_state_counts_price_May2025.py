@@ -337,7 +337,7 @@ def build_figure(
     count_axis.set_ylim(0, 35)
     count_axis.set_xticks(hours)
     count_axis.set_yticks(range(0, 36, 5))
-    count_axis.set_xlabel("Hours")
+    count_axis.set_xlabel("Time (hours)")
     count_axis.set_ylabel("Count")
     count_axis.tick_params(axis="both", direction="out", length=2.8, width=0.65)
 
@@ -366,7 +366,7 @@ def build_figure(
             edgecolor=PRICE_COLOR,
             hatch=CI_HATCH,
             linewidth=0,
-            label="90% Confidence Interval",
+            label="90% Confidence interval",
         ),
         Line2D(
             [0],
