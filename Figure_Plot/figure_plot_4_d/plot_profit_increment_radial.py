@@ -41,7 +41,10 @@ FIGURE_WIDTH_MM = 90
 FIGURE_HEIGHT_MM = 90
 PNG_DPI = 720
 
-MAX_PERCENT = 200.0
+# The workbook currently reaches about 209%.  Keep headroom so the chart does
+# not reject valid observations when a later workbook contains a slightly
+# larger monthly increment.
+MAX_PERCENT = 250.0
 INNER_RADIUS = 50.0
 BAR_OUTER_RADIUS = INNER_RADIUS + MAX_PERCENT
 MONTH_LABEL_RADIUS = 280.0
@@ -277,10 +280,13 @@ def _draw_curved_text(
 
 
 def _draw_scale(ax: mpl.axes.Axes) -> None:
-    """Draw reversed percentage rings: 0% outside and 200% toward the center."""
+    """Draw reversed percentage rings: 0% outside and MAX_PERCENT inward."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
     scale_values = (0, 50, 100, 150, 200)
-    label_angles = {100: 225.0, 150: 200.0, 200: 185.0}
+    # Place the 100% and 150% labels near the requested month axes.  The
+    # 200% label remains in its established position.
+    # Keep the 150% label slightly to the right of its previous midpoint.
+    label_angles = {100: 245.0, 150: 222.0, 200: 185.0}
 
     for value in scale_values:
         radius = BAR_OUTER_RADIUS - value

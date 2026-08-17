@@ -42,10 +42,12 @@ import csv
 import json
 import random
 import calendar
+import tempfile
 from pathlib import Path
 from io import StringIO
 from scipy.optimize import minimize
 from tqdm import tqdm
+from openpyxl import load_workbook
 
 #%% Global settings
 
@@ -65,7 +67,7 @@ monthnumlist = np.array([f'{month:02d}' for _, month in year_month_list])
 eta = 0.95 # Set the efficiency of the equivalent battery
 Smax = 1 # Set the maximum SOC of the equivalent battery
 Smin = 0 # Set the minimum SOC of the equivalent battery
-N_price = 100 # the number of traversed prices
+N_price = 300 # the number of traversed prices
 meanstd = 2 # prediction error variable
 k = 0.2 # fraction of the fleet treated as the controllable (optimised) unit; must be in (0, 1]
 PROGRAM_DIR = Path(__file__).resolve().parent
@@ -79,6 +81,191 @@ def ensure_results_dir():
     """Create and return the project-level Results directory."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     return RESULTS_DIR
+
+
+def Marginal_Check(input_path, control_capacity, eta, initial_soc):
+    """Append each dsfunction stair's one-hour post-action SOC as column 8.
+
+    The workbook's ``SOC`` column records the Control battery state after the
+    cleared ``P_ESS`` for that hour.  Therefore each candidate stair is applied
+    to the state before the hour: ``initial_soc`` for the first row and the
+    preceding row's recorded SOC thereafter.
+
+    Existing eighth values are replaced so the operation is idempotent.  The
+    workbook is validated completely before a temporary file atomically
+    replaces the input file.
+    """
+    input_path = Path(input_path)
+    if not input_path.is_file():
+        raise FileNotFoundError(f'dsfunction workbook not found: {input_path}')
+
+    control_capacity = float(control_capacity)
+    eta = float(eta)
+    initial_soc = float(initial_soc)
+    if not np.isfinite(control_capacity) or control_capacity <= 0:
+        raise ValueError('control_capacity must be a finite positive number')
+    if not np.isfinite(eta) or eta <= 0:
+        raise ValueError('eta must be a finite positive number')
+    if not np.isfinite(initial_soc):
+        raise ValueError('initial_soc must be finite')
+
+    workbook = load_workbook(input_path, data_only=False)
+    worksheet = workbook.active
+    headers = [cell.value for cell in worksheet[1]]
+    required_headers = ('time', 'dsfunction', 'P_ESS', 'SOC')
+    header_columns = {}
+    for header in required_headers:
+        matches = [
+            index for index, value in enumerate(headers, start=1)
+            if value == header
+        ]
+        if len(matches) != 1:
+            raise ValueError(
+                f'Header {header!r} appears {len(matches)} times in '
+                f'{input_path}; exactly one is required'
+            )
+        header_columns[header] = matches[0]
+
+    if worksheet.max_row < 2:
+        raise ValueError(f'No hourly records found in {input_path}')
+
+    excel_rows = range(2, worksheet.max_row + 1)
+    times = pd.to_datetime(
+        [worksheet.cell(row, header_columns['time']).value for row in excel_rows],
+        errors='coerce',
+    )
+    if times.isna().any():
+        bad_index = int(np.flatnonzero(times.isna())[0])
+        raise ValueError(f'Invalid time at Excel row {bad_index + 2}')
+    if len(times) > 1:
+        hourly_steps = np.diff(times.to_numpy(dtype='datetime64[ns]'))
+        bad_steps = np.flatnonzero(hourly_steps != np.timedelta64(1, 'h'))
+        if bad_steps.size:
+            row = int(bad_steps[0]) + 3
+            raise ValueError(f'Time is not hourly and continuous at Excel row {row}')
+    if (
+        times[0].day != 1
+        or times[0].hour != 0
+        or times[-1].year != times[0].year
+        or times[-1].month != times[0].month
+        or times[-1].day != calendar.monthrange(times[0].year, times[0].month)[1]
+        or times[-1].hour != 23
+    ):
+        raise ValueError('Time column must cover one complete calendar month')
+
+    time_step = 24 / N_t
+    serialized_dsfunctions = []
+    matrix_widths = set()
+    previous_actual_soc = initial_soc
+    for excel_row in excel_rows:
+        p_ess_value = worksheet.cell(excel_row, header_columns['P_ESS']).value
+        actual_soc_value = worksheet.cell(excel_row, header_columns['SOC']).value
+        try:
+            p_ess = float(p_ess_value)
+            actual_soc = float(actual_soc_value)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f'P_ESS and SOC must be numeric at Excel row {excel_row}'
+            ) from exc
+        if not np.isfinite(p_ess) or not np.isfinite(actual_soc):
+            raise ValueError(
+                f'P_ESS and SOC must be finite at Excel row {excel_row}'
+            )
+
+        if p_ess >= 0:
+            expected_actual_soc = (
+                previous_actual_soc
+                - p_ess / eta / control_capacity * time_step
+            )
+        else:
+            expected_actual_soc = (
+                previous_actual_soc
+                - p_ess * eta / control_capacity * time_step
+            )
+        if not np.isclose(actual_soc, expected_actual_soc, rtol=1e-9, atol=1e-9):
+            raise ValueError(
+                f'Control SOC is inconsistent with P_ESS at Excel row '
+                f'{excel_row}: expected {expected_actual_soc}, found {actual_soc}'
+            )
+
+        dsfunction_value = worksheet.cell(
+            excel_row, header_columns['dsfunction']
+        ).value
+        if not isinstance(dsfunction_value, str):
+            raise ValueError(f'dsfunction must be JSON text at Excel row {excel_row}')
+        try:
+            dsfunction = json.loads(dsfunction_value)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                f'Invalid dsfunction JSON at Excel row {excel_row}'
+            ) from exc
+        if not isinstance(dsfunction, list) or not dsfunction:
+            raise ValueError(
+                f'dsfunction must be a non-empty matrix at Excel row {excel_row}'
+            )
+
+        enriched_dsfunction = []
+        for stair_index, stair in enumerate(dsfunction, start=1):
+            if not isinstance(stair, list) or len(stair) not in (7, 8):
+                raise ValueError(
+                    f'dsfunction stair {stair_index} at Excel row {excel_row} '
+                    'must contain 7 or 8 values'
+                )
+            matrix_widths.add(len(stair))
+            try:
+                power = float(stair[2])
+            except (TypeError, ValueError) as exc:
+                raise ValueError(
+                    f'dsfunction power at Excel row {excel_row}, stair '
+                    f'{stair_index} must be numeric'
+                ) from exc
+            if not np.isfinite(power):
+                raise ValueError(
+                    f'dsfunction power at Excel row {excel_row}, stair '
+                    f'{stair_index} must be finite'
+                )
+
+            if power >= 0:
+                candidate_soc = (
+                    previous_actual_soc
+                    - power / eta / control_capacity * time_step
+                )
+            else:
+                candidate_soc = (
+                    previous_actual_soc
+                    - power * eta / control_capacity * time_step
+                )
+            enriched_dsfunction.append([*stair[:7], candidate_soc])
+
+        serialized_dsfunctions.append(
+            json.dumps(enriched_dsfunction, separators=(',', ':'))
+        )
+        previous_actual_soc = actual_soc
+
+    if len(matrix_widths) != 1:
+        raise ValueError(
+            'All dsfunction stairs must consistently contain either 7 or 8 values'
+        )
+
+    for excel_row, serialized in zip(excel_rows, serialized_dsfunctions):
+        worksheet.cell(excel_row, header_columns['dsfunction']).value = serialized
+
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            prefix=f'.{input_path.stem}.',
+            suffix=input_path.suffix,
+            dir=input_path.parent,
+            delete=False,
+        ) as temporary_file:
+            temporary_path = Path(temporary_file.name)
+        workbook.save(temporary_path)
+        temporary_path.replace(input_path)
+    finally:
+        if temporary_path is not None and temporary_path.exists():
+            temporary_path.unlink()
+
+    return input_path
 #%% Read CAISO data
 
 def read_monthly_natural_gas(year, monthnum, Nday):
@@ -236,7 +423,16 @@ def clean_power(value, power_max, abs_tol=1e-3):
 def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     # get prices
     pri = price[1:N_t]
-    pri0 = np.linspace(min(price), max(price), N_price) # traverse price for the current interval from the minimum to maximum
+    price_min = np.min(price)
+    price_max = np.max(price)
+    price_span = max(price_max - price_min, 1.0)
+    # Expand both sides by one original span.  The resulting interval is three
+    # times as wide and always contains the original prices, regardless of sign.
+    pri0 = np.linspace(
+        price_min - price_span,
+        price_max + price_span,
+        N_price,
+    )
 
     # initialize variables for the stair recognization
     iup= np.zeros((N_price)) # the index of interval when the battery first reach the maximum energy limit
@@ -297,7 +493,7 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
                 ResPc[t,K] = -pc_clean
                 ResPd[t,K] = 0
                 Res[t,K] = -pc_clean
-        for t in range(N_t-1):
+        for t in range(N_t):
             ResE[t,K] = SOC[t+1].X
         # the index of interval when the battery first reach the maximum energy limit
         upper_limit_hits = np.flatnonzero(np.isclose(ResE[:, K], Smax, rtol=0, atol=1e-6))
@@ -645,12 +841,18 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
                 for dsfunction in dsfunctions
             ],
             'P_ESS': P_cleared_ctrl,
+            'SOC': ESSOC_status_ctrl,
         })
+        dsfunction_path = (
+            output_dir
+            / f'dsfunction_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.xlsx'
+        )
         export_data.to_excel(
-            output_dir / f'dsfunction_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.xlsx',
+            dsfunction_path,
             sheet_name=f'{month}{year}',
             index=False,
         )
+        Marginal_Check(dsfunction_path, Cap_glo*k, eta_glo, SINI_glo)
 
     totalabsorbed = float(np.sum(absorbed))
     totalgas = float(np.sum(gas_glo))
@@ -732,6 +934,41 @@ def run_may_2025():
     write_detection_summary([detection_counts], summary_path)
     return summary_path
 
+def run_april_2025():
+    """Run only April 2025 and export its NCD and hourly dsfunctions."""
+    april_2025_index = year_month_list.index((2025, 4))
+    summary, detection_counts = run_one_month(
+        april_2025_index,
+        export_dsfunctions=True,
+        return_detection_counts=True,
+    )
+    summary_path = (
+        ensure_results_dir()
+        / f'summary_202504_{COST_MODE}_V5_k{int(k*100)}.csv'
+    )
+    pd.DataFrame([summary]).to_csv(summary_path, index=False)
+    write_detection_summary([detection_counts], summary_path)
+    return summary_path
+
+
+
+def run_Jan_2025():
+    """Run only January 2025 and export its NCD and hourly dsfunctions."""
+    jan_2025_index = year_month_list.index((2025, 1))
+    summary, detection_counts = run_one_month(
+        jan_2025_index,
+        export_dsfunctions=True,
+        return_detection_counts=True,
+    )
+    summary_path = (
+        ensure_results_dir()
+        / f'summary_202501_{COST_MODE}_V5_k{int(k*100)}.csv'
+    )
+    pd.DataFrame([summary]).to_csv(summary_path, index=False)
+    write_detection_summary([detection_counts], summary_path)
+    return summary_path
 
 if __name__ == '__main__':
     run_may_2025()
+    # run_april_2025()
+    # run_Jan_2025()

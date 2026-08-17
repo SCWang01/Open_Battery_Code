@@ -30,7 +30,7 @@ def values_match(left: float, right: float) -> bool:
 
 
 def parse_dsfunction(value: Any, excel_row: int) -> Sequence[Sequence[Any]]:
-    """Parse and validate one dsfunction cell."""
+    """Parse one dsfunction cell with 7 core columns and optional SOC."""
     if isinstance(value, str):
         try:
             value = ast.literal_eval(value)
@@ -43,10 +43,10 @@ def parse_dsfunction(value: Any, excel_row: int) -> Sequence[Sequence[Any]]:
         raise ValueError(f"Row {excel_row}: dsfunction must be a non-empty 2-D array.")
 
     for ds_row_number, ds_row in enumerate(value, start=1):
-        if not isinstance(ds_row, (list, tuple)) or len(ds_row) != 7:
+        if not isinstance(ds_row, (list, tuple)) or len(ds_row) not in (7, 8):
             raise ValueError(
                 f"Row {excel_row}: dsfunction segment {ds_row_number} "
-                "must contain exactly 7 numbers."
+                "must contain 7 core values and may contain an eighth SOC value."
             )
     return value
 
@@ -63,8 +63,13 @@ def as_float(value: Any, *, name: str, excel_row: int) -> float:
     return result
 
 
-def classify_p_ess(p_ess_value: Any, dsfunction_value: Any, excel_row: int) -> str:
-    """Return the requested P_ESS state label for one worksheet row."""
+def classify_p_ess(p_ess_value: Any, ds_row: Sequence[Any], excel_row: int) -> str:
+    """Return the state for one dsfunction segment.
+
+    The caller supplies the segment being classified.  This is important
+    because column 3 may legitimately contain the same P_ESS value in more
+    than one segment; classification must use each segment's own columns 4-7.
+    """
     p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
 
     if values_match(p_ess, 1860.0):
@@ -73,6 +78,51 @@ def classify_p_ess(p_ess_value: Any, dsfunction_value: Any, excel_row: int) -> s
         return "MC"
     if values_match(p_ess, 0.0):
         return "NU"
+
+    seventh = as_float(
+        ds_row[6],
+        name="dsfunction segment column 7",
+        excel_row=excel_row,
+    )
+
+    if values_match(seventh, 1.0):
+        return "DC" if p_ess > 0 else "CC"
+    if values_match(seventh, -1.0):
+        return "DD" if p_ess > 0 else "CD"
+
+    if values_match(seventh, 0.0):
+        fourth = as_float(
+            ds_row[3],
+            name="dsfunction segment column 4",
+            excel_row=excel_row,
+        )
+        fifth = as_float(
+            ds_row[4],
+            name="dsfunction segment column 5",
+            excel_row=excel_row,
+        )
+
+        if values_match(fourth, fifth):
+            return "DD" if p_ess > 0 else "CC"
+        if p_ess > 0:
+            return "DC" if fourth > fifth else "DD"
+        return "CC" if fourth > fifth else "CD"
+
+    return "NC"
+
+
+def classify_p_ess_from_dsfunction(
+    p_ess_value: Any,
+    dsfunction_value: Any,
+    excel_row: int,
+) -> str:
+    """Match P_ESS to a dsfunction segment, then classify by its first 7 columns."""
+    p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
+
+    # These three states do not depend on a dsfunction segment.  In particular,
+    # their candidate power may occur more than once in the table.
+    if any(values_match(p_ess, value) for value in (1860.0, -1860.0, 0.0)):
+        return classify_p_ess(p_ess, (), excel_row)
 
     dsfunction = parse_dsfunction(dsfunction_value, excel_row)
     matches = []
@@ -88,40 +138,10 @@ def classify_p_ess(p_ess_value: Any, dsfunction_value: Any, excel_row: int) -> s
     if len(matches) != 1:
         raise ValueError(
             f"Row {excel_row}: P_ESS={p_ess:g} matched {len(matches)} rows in "
-            f"dsfunction column 3; exactly 1 match expected."
+            "dsfunction column 3; exactly 1 match expected."
         )
 
-    ds_row_number, matched_row = matches[0]
-    seventh = as_float(
-        matched_row[6],
-        name=f"dsfunction segment {ds_row_number}, column 7",
-        excel_row=excel_row,
-    )
-
-    if values_match(seventh, 1.0):
-        return "DC" if p_ess > 0 else "CC"
-    if values_match(seventh, -1.0):
-        return "DD" if p_ess > 0 else "CD"
-
-    if values_match(seventh, 0.0):
-        fourth = as_float(
-            matched_row[3],
-            name=f"dsfunction segment {ds_row_number}, column 4",
-            excel_row=excel_row,
-        )
-        fifth = as_float(
-            matched_row[4],
-            name=f"dsfunction segment {ds_row_number}, column 5",
-            excel_row=excel_row,
-        )
-
-        if values_match(fourth, fifth):
-            return "DD" if p_ess > 0 else "CC"
-        if p_ess > 0:
-            return "DC" if fourth > fifth else "DD"
-        return "CC" if fourth > fifth else "CD"
-
-    return "NC"
+    return classify_p_ess(p_ess, matches[0][1], excel_row)
 
 
 def find_column(headers: list[Any], header_name: str) -> int:
@@ -193,7 +213,7 @@ def classify_workbook(input_path: Path, output_path: Path, sheet_name: str | Non
 
     counts: Counter = Counter()
     for excel_row in range(2, worksheet.max_row + 1):
-        state = classify_p_ess(
+        state = classify_p_ess_from_dsfunction(
             worksheet.cell(row=excel_row, column=p_ess_col).value,
             worksheet.cell(row=excel_row, column=dsfunction_col).value,
             excel_row,

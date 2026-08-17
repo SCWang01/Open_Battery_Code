@@ -96,9 +96,9 @@ METRICS = (
         monthly_header="rate carbon",
         annual_header="carbon reduction rate",
         axis_min=0.0,
-        axis_max=6.0,
-        ticks=(0.0, 2.0, 4.0, 6.0),
-        label_ticks=(2.0, 4.0, 6.0),
+        axis_max=8.0,
+        ticks=(0.0, 2.0, 4.0, 6.0, 8.0),
+        label_ticks=(2.0, 4.0, 6.0, 8.0),
         bar_color="#55A868",
         annulus_color="#DCEFE3",
     ),
@@ -107,10 +107,10 @@ METRICS = (
         title="Natural-gas fuel-cost reduction rate",
         monthly_header="cost reduction",
         annual_header="cost reduction rate",
-        axis_min=-2.0,
-        axis_max=16.0,
-        ticks=(-2.0, 0.0, 4.0, 8.0, 12.0, 16.0),
-        label_ticks=(4.0, 8.0, 12.0, 16.0),
+        axis_min=-1.0,
+        axis_max=20.0,
+        ticks=(0.0, 5.0, 10.0, 15.0, 20.0),
+        label_ticks=(5.0, 10.0, 15.0, 20.0),
         bar_color="#E69F45",
         annulus_color="#F9E6CF",
     ),
@@ -246,7 +246,12 @@ def _draw_scale(ax: mpl.axes.Axes, spec: MetricSpec) -> None:
     """Draw transparent percentage rings without opaque label backgrounds."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
     label_angle = np.deg2rad(SCALE_LABEL_ANGLE_DEGREES)
-    cost_label_angles = {4.0: 235.0, 8.0: 225.0, 12.0: 205.0, 16.0: 185.0}
+    cost_label_angles = {
+        5.0: 235.0,
+        10.0: 220.0,
+        15.0: 202.0,
+        20.0: 185.0,
+    }
 
     for tick in spec.ticks:
         radius = float(_value_to_radius(tick, spec))
@@ -412,7 +417,7 @@ def draw_metric_panel(
     _draw_scale(ax, spec)
     _draw_monthly_bars(ax, data, spec)
     _draw_annual_annulus(ax, data, spec)
-    _draw_grid_interval_legend(ax, 2.0 if spec.key == "carbon" else 4.0)
+    _draw_grid_interval_legend(ax, 2.0 if spec.key == "carbon" else 5.0)
 
     center = plt.Circle(
         (0.5, 0.5),
