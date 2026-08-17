@@ -970,5 +970,3 @@ def run_Jan_2025():
 
 if __name__ == '__main__':
     run_may_2025()
-    # run_april_2025()
-    # run_Jan_2025()
