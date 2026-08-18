@@ -998,4 +998,4 @@ def run_Jan_2025():
     return summary_path
 
 if __name__ == '__main__':
-    run_may_2025()
+    run_all_months()
