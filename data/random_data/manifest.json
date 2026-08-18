@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "rng_algorithm": "numpy.random.RandomState(MT19937)",
+  "sample_semantics": "standard_normal_price_error_innovations",
+  "dtype": "float64",
+  "n_t": 24,
+  "start_year_month": "202301",
+  "end_year_month": "202512",
+  "generation_order": "year_month_then_c_order",
+  "files": [
+    {
+      "year_month": "202301",
+      "filename": "price_error_z_202301.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202302",
+      "filename": "price_error_z_202302.npy",
+      "shape": [
+        672,
+        24
+      ]
+    },
+    {
+      "year_month": "202303",
+      "filename": "price_error_z_202303.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202304",
+      "filename": "price_error_z_202304.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202305",
+      "filename": "price_error_z_202305.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202306",
+      "filename": "price_error_z_202306.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202307",
+      "filename": "price_error_z_202307.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202308",
+      "filename": "price_error_z_202308.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202309",
+      "filename": "price_error_z_202309.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202310",
+      "filename": "price_error_z_202310.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202311",
+      "filename": "price_error_z_202311.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202312",
+      "filename": "price_error_z_202312.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202401",
+      "filename": "price_error_z_202401.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202402",
+      "filename": "price_error_z_202402.npy",
+      "shape": [
+        696,
+        24
+      ]
+    },
+    {
+      "year_month": "202403",
+      "filename": "price_error_z_202403.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202404",
+      "filename": "price_error_z_202404.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202405",
+      "filename": "price_error_z_202405.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202406",
+      "filename": "price_error_z_202406.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202407",
+      "filename": "price_error_z_202407.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202408",
+      "filename": "price_error_z_202408.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202409",
+      "filename": "price_error_z_202409.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202410",
+      "filename": "price_error_z_202410.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202411",
+      "filename": "price_error_z_202411.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202412",
+      "filename": "price_error_z_202412.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202501",
+      "filename": "price_error_z_202501.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202502",
+      "filename": "price_error_z_202502.npy",
+      "shape": [
+        672,
+        24
+      ]
+    },
+    {
+      "year_month": "202503",
+      "filename": "price_error_z_202503.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202504",
+      "filename": "price_error_z_202504.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202505",
+      "filename": "price_error_z_202505.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202506",
+      "filename": "price_error_z_202506.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202507",
+      "filename": "price_error_z_202507.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202508",
+      "filename": "price_error_z_202508.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202509",
+      "filename": "price_error_z_202509.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202510",
+      "filename": "price_error_z_202510.npy",
+      "shape": [
+        744,
+        24
+      ]
+    },
+    {
+      "year_month": "202511",
+      "filename": "price_error_z_202511.npy",
+      "shape": [
+        720,
+        24
+      ]
+    },
+    {
+      "year_month": "202512",
+      "filename": "price_error_z_202512.npy",
+      "shape": [
+        744,
+        24
+      ]
+    }
+  ]
+}

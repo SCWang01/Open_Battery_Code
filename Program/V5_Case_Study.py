@@ -4,7 +4,7 @@ Created on Apr 22nd, 2025
 
 @author:gcg
 
-Variant V6: an updated version of V5.  V3 collapses the entire CAISO battery
+Variant V5: an updated version of V5.  V3 collapses the entire CAISO battery
 fleet into a single equivalent battery and assumes 100% of it bids optimally
 through one aggregated demand function, which is unrealistic.  V5 splits the
 aggregate fleet with a ratio k in (0, 1]:
@@ -32,6 +32,12 @@ the existing pipeline without restructuring it.
 """
 
 from cost_calculation import gas_cost, gas_marginal_price
+from Random_Generator import (
+    END_YEAR_MONTH as RANDOM_END_YEAR_MONTH,
+    N_T as RANDOM_N_T,
+    START_YEAR_MONTH as RANDOM_START_YEAR_MONTH,
+    load_monthly_innovations,
+)
 import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
@@ -40,7 +46,6 @@ import matplotlib.pyplot as plt
 import zipfile
 import csv
 import json
-import random
 import calendar
 import tempfile
 from pathlib import Path
@@ -51,11 +56,9 @@ from openpyxl import load_workbook
 
 #%% Global settings
 
-random.seed(42)  # set the random seed
-np.random.seed(42)  # set the random seed
-N_t = 24  # The number of time intervals in one day
-START_YEAR_MONTH = (2023, 1)
-END_YEAR_MONTH = (2025, 12)
+N_t = RANDOM_N_T  # The number of time intervals in one day
+START_YEAR_MONTH = RANDOM_START_YEAR_MONTH
+END_YEAR_MONTH = RANDOM_END_YEAR_MONTH
 year_month_list = [
     (year, month)
     for year in range(START_YEAR_MONTH[0], END_YEAR_MONTH[0] + 1)
@@ -81,6 +84,11 @@ def ensure_results_dir():
     """Create and return the project-level Results directory."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     return RESULTS_DIR
+
+
+def load_monthly_price_error_data(year_value, month_value, n_day):
+    """Load the fixed random scenario assigned to one calendar month."""
+    return load_monthly_innovations(year_value, month_value, n_day=n_day)
 
 
 def Marginal_Check(input_path, control_capacity, eta, initial_soc):
@@ -526,7 +534,19 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
 
 
 #%% calculate the profit of the battery that bid by M1
-def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Sinitial,meanstd, progress_desc):
+def calculate_profit(
+    N_t, Nday, N_price, eta, CAP, Smax, Smin, Pdmax, Pcmax, price,
+    Sinitial, meanstd, price_error_z, progress_desc,
+):
+    expected_noise_shape = (N_t * Nday, N_t)
+    if np.shape(price_error_z) != expected_noise_shape:
+        raise ValueError(
+            f'price_error_z has shape {np.shape(price_error_z)}, '
+            f'expected {expected_noise_shape}'
+        )
+    if not np.isfinite(price_error_z).all():
+        raise ValueError('price_error_z contains non-finite values')
+
     # Initialize the battery
     ESSOC_status = np.zeros((N_t*Nday))
     profit = np.zeros((N_t*Nday))
@@ -540,12 +560,11 @@ def calculate_profit(N_t, Nday, N_price, eta,CAP,Smax,Smin,Pdmax,Pcmax,price, Si
     for t in tqdm(range(N_t*Nday), desc=progress_desc, unit='hour', leave=False):
         # generate prices with prediction error
         priceN_t = price[t:t+N_t] # get price of next N_t intervals
-        noise = np.zeros((N_t)) # initialize noise
         priceN_t_with_error = np.zeros((N_t)) # initialize the priceN_t_with_error
         for tt in range(N_t):
             rate = meanstd / 100 + tt * 0.001 # relative standard deviation: 2% initially, +0.1% per hour
-            noise[tt] = np.random.normal(0, rate) # generate Gaussian white noise for each time interval
-            priceN_t_with_error[tt] = np.array(priceN_t[tt]*(1 + noise[tt])) # generate the prices with errors
+            noise = price_error_z[t, tt] * rate
+            priceN_t_with_error[tt] = np.array(priceN_t[tt]*(1 + noise)) # generate the prices with errors
             # adjust the extreme values
             if priceN_t_with_error[tt]<np.min(price):
                 priceN_t_with_error[tt] =np.min(price)
@@ -672,7 +691,10 @@ def calculate_cost_and_carbon(gas_actual,curtailment, PESS_method,PESS_actual,N_
     ])
     return Pgas, Cost, absorbed, diff, MargPrice
 
-def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin, Cap, eta, SINI):
+def calculate_main(
+    meanstd, price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin,
+    Cap, eta, SINI, price_error_z,
+):
     # V6: split the aggregate fleet into a controllable k-unit (optimised by the
     # bidding method) and a passive (1-k) remainder that keeps its actual output.
     # The controllable unit is a proportionally shrunk copy of the fleet, so its
@@ -685,7 +707,7 @@ def calculate_main(meanstd,price, gas, battery, curtailment, Pdmax, Pcmax, Smax,
         dsfunctions, initial_value, following_value,
     ) = calculate_profit(
         N_t, N_day, N_price, eta, Cap*k, Smax, Smin, Pdmax*k, Pcmax*k,
-        price, SINI, meanstd, f'{year}-{monthnum}'
+        price, SINI, meanstd, price_error_z, f'{year}-{monthnum}'
     )
     # passive (1-k) remainder: keeps its original actual output, (1-k)*battery.
     # At k=1 the remainder and its capacity are both zero; skip it to avoid a
@@ -804,14 +826,20 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     """
     global year, month, monthnum, N_day
 
-    random.seed(42)
-    np.random.seed(42)
+    if not isinstance(num, (int, np.integer)):
+        raise TypeError(f'month index must be an integer, got {type(num).__name__}')
+    num = int(num)
+    if num < 0 or num >= len(year_month_list):
+        raise IndexError(
+            f'month index {num} is outside 0..{len(year_month_list) - 1}'
+        )
 
     year_num, month_num = year_month_list[num]
     year = str(year_num)
     month = monthlist[num]
     monthnum = monthnumlist[num]
     N_day = calendar.monthrange(int(year), int(monthnum))[1]
+    price_error_z = load_monthly_price_error_data(year_num, month_num, N_day)
 
     output_dir = ensure_results_dir()
 
@@ -820,6 +848,7 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     result = calculate_main(
         meanstd, price_glo, gas_glo, battery_glo, curtailment_glo,
         Pdmax_glo, Pcmax_glo, Smax_glo, Smin_glo, Cap_glo, eta_glo, SINI_glo,
+        price_error_z,
     )
     (
         total_profit, total_profit_actual, total_cost, total_cost_actual,
