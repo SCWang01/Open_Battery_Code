@@ -14,7 +14,7 @@ Field mapping:
     ``cost reduction rate`` -> annual cost rate -> fraction -> percent
 Integrity:
     All 36 monthly rows and the three matching annual rows are retained for
-    every metric. Cost values below zero extend outward from 0%.
+    every metric. Carbon and cost values below zero extend outward from 0%.
 """
 
 from __future__ import annotations
@@ -32,7 +32,6 @@ from plot_profit_increment_radial import (
     ANNUAL_TEXT_SPAN_DEGREES,
     GRID_COLOR,
     MONTHS,
-    SCALE_LABEL_ANGLE_DEGREES,
     SCALE_LABEL_FONTSIZE,
     SOURCE_WORKBOOK,
     TEXT_COLOR,
@@ -76,6 +75,7 @@ class MetricSpec:
     axis_max: float
     ticks: tuple[float, ...]
     label_ticks: tuple[float, ...]
+    label_tick_angles: dict[float, float]
     bar_color: str
     annulus_color: str
 
@@ -95,10 +95,11 @@ METRICS = (
         title="Carbon-emission reduction rate",
         monthly_header="rate carbon",
         annual_header="carbon reduction rate",
-        axis_min=0.0,
-        axis_max=8.0,
-        ticks=(0.0, 2.0, 4.0, 6.0, 8.0),
-        label_ticks=(2.0, 4.0, 6.0, 8.0),
+        axis_min=-0.5,
+        axis_max=3.0,
+        ticks=(0.0, 1.0, 2.0, 3.0),
+        label_ticks=(1.0, 2.0, 3.0),
+        label_tick_angles={1.0: 235.0, 2.0: 220.0, 3.0: 202.0},
         bar_color="#55A868",
         annulus_color="#DCEFE3",
     ),
@@ -107,10 +108,11 @@ METRICS = (
         title="Natural-gas fuel-cost reduction rate",
         monthly_header="cost reduction",
         annual_header="cost reduction rate",
-        axis_min=-1.0,
-        axis_max=20.0,
-        ticks=(0.0, 5.0, 10.0, 15.0, 20.0),
-        label_ticks=(5.0, 10.0, 15.0, 20.0),
+        axis_min=-0.5,
+        axis_max=15.0,
+        ticks=(0.0, 5.0, 10.0, 15.0),
+        label_ticks=(5.0, 10.0, 15.0),
+        label_tick_angles={5.0: 235.0, 10.0: 220.0, 15.0: 202.0},
         bar_color="#E69F45",
         annulus_color="#F9E6CF",
     ),
@@ -245,13 +247,6 @@ def _format_tick(value: float) -> str:
 def _draw_scale(ax: mpl.axes.Axes, spec: MetricSpec) -> None:
     """Draw transparent percentage rings without opaque label backgrounds."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
-    label_angle = np.deg2rad(SCALE_LABEL_ANGLE_DEGREES)
-    cost_label_angles = {
-        5.0: 235.0,
-        10.0: 220.0,
-        15.0: 202.0,
-        20.0: 185.0,
-    }
 
     for tick in spec.ticks:
         radius = float(_value_to_radius(tick, spec))
@@ -269,13 +264,8 @@ def _draw_scale(ax: mpl.axes.Axes, spec: MetricSpec) -> None:
         # Omit labels that would crowd the month ring or the center boundary;
         # the remaining values sit in the annual-sector gap and stay legible.
         if tick in spec.label_ticks:
-            tick_label_angle = (
-                np.deg2rad(cost_label_angles[tick])
-                if spec.key == "cost"
-                else label_angle
-            )
             ax.text(
-                tick_label_angle,
+                np.deg2rad(spec.label_tick_angles[tick]),
                 radius,
                 _format_tick(tick),
                 ha="center",
@@ -417,7 +407,7 @@ def draw_metric_panel(
     _draw_scale(ax, spec)
     _draw_monthly_bars(ax, data, spec)
     _draw_annual_annulus(ax, data, spec)
-    _draw_grid_interval_legend(ax, 2.0 if spec.key == "carbon" else 5.0)
+    _draw_grid_interval_legend(ax, 1.0 if spec.key == "carbon" else 5.0)
 
     center = plt.Circle(
         (0.5, 0.5),
