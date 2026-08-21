@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-08-21T09:50:44.878766+00:00",
-  "status": "success",
+  "started_at": "2026-08-21T13:32:35.718348+00:00",
+  "status": "failed",
   "figures": [
     "4a",
     "4b",
@@ -43,34 +43,28 @@
     [
       "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
       "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_d\\plot_reduction_rates_radial.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_e\\Fig_4_e_plot.py",
-      "--date",
-      "2025-04-07"
     ]
   ],
   "files": [
     {
       "role": "May dsfunction source workbook",
       "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20.xlsx",
-      "size": 98725,
-      "sha256": "4fbd41409a7d69e6278a94e3679cc6f454d77794fdb8c256a0cad973ad6a8fe8",
+      "size": 101061,
+      "sha256": "19a5d18e508ac2b2fdae11d17a7d20ad8646b3637aee5ab9522c5b1c45ee918b",
       "source": "Results\\dsfunction_May2025_exact_V5_k20.xlsx",
       "action": "copied"
     },
     {
       "role": "classified May dsfunction workbook",
       "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 117618,
-      "sha256": "7752e01398a10944762e87a8f3057315fb3995ffeff7b4ddb2914380b3778256"
+      "size": 120268,
+      "sha256": "48c5756ff021a8f23b8240254733cdaefb9145d6b87ead0b8eb48afcaa46b30e"
     },
     {
       "role": "Figure 4c classified dsfunction workbook",
       "path": "Figure_Plot\\figure_plot_4_c\\input\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 117618,
-      "sha256": "7752e01398a10944762e87a8f3057315fb3995ffeff7b4ddb2914380b3778256",
+      "size": 120268,
+      "sha256": "48c5756ff021a8f23b8240254733cdaefb9145d6b87ead0b8eb48afcaa46b30e",
       "source": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
       "action": "copied"
     },
@@ -85,158 +79,13 @@
     {
       "role": "Figure 4d analysis workbook",
       "path": "Figure_Plot\\figure_plot_4_d\\analysis_202301_202512.xlsx",
-      "size": 10495,
-      "sha256": "5ebde6bfe865db59b85571368529e4e2b2fdcf32d8ad604016a44a61c0aa615e",
+      "size": 10498,
+      "sha256": "e9616db5a420c72753848fc35f61596c69b410531f8e9e71bf9d6c5e2fad7609",
       "source": "Results\\analysis_202301_202512.xlsx",
       "action": "copied"
-    },
-    {
-      "role": "Figure 4e April result CSV",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "size": 350685,
-      "sha256": "4f5089afe338b6f6520ff46be2aea7300719026d10c90b6d2923f8d1c1fdbf02",
-      "source": "Results\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "action": "copied"
-    },
-    {
-      "role": "Figure 4e price input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\202504 CAISO Average Price.csv",
-      "size": 276337,
-      "sha256": "32b57b03b28abb5a3599c314f1bae21d0a42c1c293ecd1fa6f6a4da77cc8964e",
-      "source": "data\\price\\202504 CAISO Average Price.csv",
-      "action": "unchanged"
-    },
-    {
-      "role": "Figure 4e curtailment input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\curtailment_202504.csv",
-      "size": 17591,
-      "sha256": "95b8d627bf745e453fe181f0461319ea917b4dc778d9deaea7256b8113763b52",
-      "source": "data\\curtailment\\curtailment_202504.csv",
-      "action": "unchanged"
     }
   ],
-  "outputs": [
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.png",
-      "size": 290708,
-      "sha256": "215e390e1fd54f2b7a518808d158a415106ff8f745f829ba7f0584470f54738f"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.svg",
-      "size": 13110,
-      "sha256": "7bbe009a8cdab91ae883513d3c99ec6553272536e49409b4d1cb509c97ccd203"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.pdf",
-      "size": 32643,
-      "sha256": "90b45d36eaaf8b11f8eaf711d4774d2919418e3e2444b403aa1a63cc6b45ac1c"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025_source_data.csv",
-      "size": 754,
-      "sha256": "0d3b7fdcdd99c377f92683b2e5a4d6462cb58d93772167f93d08f272d60f70d9"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\P_ESS_state_hourly_counts_May2025.xlsx",
-      "size": 6803,
-      "sha256": "b63a7378743cedad9e20ef71dd4bff7108c5a6665d6ac3686228df26db179f25"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\hourly_state_counts_and_price_May2025_source_data.csv",
-      "size": 1927,
-      "sha256": "0c9bd1503f52756293d2c7708fd76fc0c57d5d3ebe8718ed204243816e4c6ed6"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.png",
-      "size": 287312,
-      "sha256": "c85183e8dfc3da978b457dd9c6d21c8c8d2aed167c32e22f1bb486748b468838"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.svg",
-      "size": 64008,
-      "sha256": "92842575840d17caefadf88745124eb2bc65094f54b4fccf2f8d16b3008f613b"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.pdf",
-      "size": 39751,
-      "sha256": "153dcbf4ec4ad2ea7bcafe13b5294c32e46168a0d89ded0a9df00b5271a96946"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.png",
-      "size": 1601520,
-      "sha256": "216430ce4a444bbf923c8a833cf4bcb6c3a5042a302a119d351b6c8123996747"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.svg",
-      "size": 88605,
-      "sha256": "e31ead799898a5a1925bd71e528f1d70b21a19f29b9319f01d90b5d7b3b2593c"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.pdf",
-      "size": 47865,
-      "sha256": "e79eaea2073d295e1fc907575fde1596feb5d11fe7aece1c313d5da7ef1c9ad2"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.tiff",
-      "size": 2082546,
-      "sha256": "5b6041f430fd791361ffc6c9976d2e0d8d0c6873baf41e5e7e5826743ae86c58"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.png",
-      "size": 3892824,
-      "sha256": "bd5c3933296e32b77c37dc008cf5da7e37bc5bbaae98a614b5cd88a0332569c3"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.svg",
-      "size": 253662,
-      "sha256": "f992fc79c20342a75e63c78c7d932af8cd2fc0582deb9d07b541092540187c7e"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.pdf",
-      "size": 88331,
-      "sha256": "f6c851f662d9892b2e487ddac447cd3f08db9fd59c6ccccef7d750bfd0f52910"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.tiff",
-      "size": 6285496,
-      "sha256": "6f2eebb8616064a705271a7b02e52abc9b85c819c24842c63da6558c00807bc1"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.png",
-      "size": 216353,
-      "sha256": "d8345ce347dd8a6f714adfcd0c36e42163e4b3554ea77d1a958e98bc62ffb644"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.svg",
-      "size": 27955,
-      "sha256": "7e516e492be944981172a7a3d02bc8543b29bf3c1457f3f8b7d23aa60d4b27e1"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.pdf",
-      "size": 35056,
-      "sha256": "647bb57a6c762a1de007cc7ad76056f064629e183b8f166c48c4a56a0ace81ae"
-    }
-  ],
-  "error": null,
-  "finished_at": "2026-08-21T09:50:58.854637+00:00"
+  "outputs": [],
+  "error": "Command '['D:\\\\Deep_Learning_Env\\\\envs\\\\deep_learning_env\\\\python.exe', 'D:\\\\Research\\\\Release_Open\\\\Figure_Plot\\\\figure_plot_4_d\\\\plot_reduction_rates_radial.py']' returned non-zero exit status 1.",
+  "finished_at": "2026-08-21T13:32:43.356938+00:00"
 }
