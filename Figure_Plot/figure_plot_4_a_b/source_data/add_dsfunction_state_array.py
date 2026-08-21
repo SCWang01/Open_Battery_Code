@@ -8,6 +8,7 @@ read-only and is never used as an output target.
 
 from __future__ import annotations
 
+import argparse
 import ast
 from collections import Counter
 from copy import copy
@@ -17,7 +18,12 @@ from typing import Sequence
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
-from classify_p_ess import as_float, classify_p_ess, values_match
+from classify_p_ess import (
+    as_float,
+    classify_p_ess,
+    resolve_power_limits,
+    values_match,
+)
 
 
 SOURCE = Path("dsfunction_May2025_exact_V5_k20_classified.xlsx")
@@ -75,6 +81,9 @@ def is_marginal_boundary(eighth: float) -> bool:
 def state_width_array(
     dsfunction_value: object,
     excel_row: int,
+    *,
+    pcmax: float,
+    pdmax: float,
 ) -> tuple[str, list[str], list[float]]:
     """Classify embedded rows and return widths in ``STATE_ORDER``.
 
@@ -99,7 +108,13 @@ def state_width_array(
         if is_marginal_boundary(eighth):
             state = "mB"
         else:
-            state = classify_p_ess(third, ds_row, excel_row)
+            state = classify_p_ess(
+                third,
+                ds_row,
+                excel_row,
+                pcmax=pcmax,
+                pdmax=pdmax,
+            )
             if values_match(seventh, 0.0) and values_match(fourth - fifth, 0.0):
                 if third > 0:
                     state = "DD"
@@ -121,7 +136,25 @@ def state_width_array(
     return array, states, state_widths
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
+    """Build command-line options for explicit or inferred power limits."""
+    parser = argparse.ArgumentParser(
+        description="Add dsfunction state widths using asymmetric power limits."
+    )
+    parser.add_argument(
+        "--pcmax",
+        type=float,
+        help="Positive controlled-unit charge limit (default: infer globally)",
+    )
+    parser.add_argument(
+        "--pdmax",
+        type=float,
+        help="Positive controlled-unit discharge limit (default: infer globally)",
+    )
+    return parser
+
+
+def main(*, pcmax: float | None = None, pdmax: float | None = None) -> None:
     """Update only the derived width column in ``SOURCE``."""
     if not SOURCE.is_file():
         raise FileNotFoundError(f"Input file not found: {SOURCE}")
@@ -130,6 +163,14 @@ def main() -> None:
     worksheet = workbook.active
     headers = [cell.value for cell in worksheet[1]]
     dsfunction_col = find_column(headers, "dsfunction")
+    resolved_pcmax, resolved_pdmax = resolve_power_limits(
+        (
+            (worksheet.cell(row, dsfunction_col).value, row)
+            for row in range(2, worksheet.max_row + 1)
+        ),
+        pcmax=pcmax,
+        pdmax=pdmax,
+    )
 
     # Column 6 is the established derived-output position. P_ESS_state remains
     # untouched in its existing column.
@@ -168,6 +209,8 @@ def main() -> None:
         value, states, _ = state_width_array(
             worksheet.cell(excel_row, dsfunction_col).value,
             excel_row,
+            pcmax=resolved_pcmax,
+            pdmax=resolved_pdmax,
         )
         cell = worksheet.cell(excel_row, output_col)
         cell.value = value
@@ -182,6 +225,7 @@ def main() -> None:
 
     print(f"Updated: {SOURCE}")
     print(f"Records: {worksheet.max_row - 1}")
+    print(f"Power limits: Pcmax={resolved_pcmax:g}, Pdmax={resolved_pdmax:g}")
     print(f"Output state order: {STATE_ORDER}")
     print(f"Segment state counts: {dict(segment_state_counts)}")
     print(f"Worksheet rows containing mB: {mb_rows}")
@@ -189,6 +233,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     try:
-        main()
+        args = build_parser().parse_args()
+        main(pcmax=args.pcmax, pdmax=args.pdmax)
     except Exception as exc:
         raise SystemExit(f"Error: {exc}") from None

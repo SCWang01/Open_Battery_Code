@@ -31,7 +31,7 @@ V5 file names, so the V6 results are written under the V5 name to drop into
 the existing pipeline without restructuring it.
 """
 
-from cost_calculation import gas_cost, gas_marginal_price
+from cost_calculation import gas_cost, gas_marginal_price, ng_carbon_emission
 from Random_Generator import (
     END_YEAR_MONTH as RANDOM_END_YEAR_MONTH,
     N_T as RANDOM_N_T,
@@ -70,7 +70,7 @@ monthnumlist = np.array([f'{month:02d}' for _, month in year_month_list])
 eta = 0.95 # Set the efficiency of the equivalent battery
 Smax = 1 # Set the maximum SOC of the equivalent battery
 Smin = 0 # Set the minimum SOC of the equivalent battery
-N_price = 300 # the number of traversed prices
+N_price = 150 # the number of traversed prices
 meanstd = 2 # prediction error variable
 k = 0.2 # fraction of the fleet treated as the controllable (optimised) unit; must be in (0, 1]
 PROGRAM_DIR = Path(__file__).resolve().parent
@@ -342,14 +342,16 @@ def readdata(Ntall,Nt,Nday):
     hourly_price = price.reshape(n_hours_price, points_per_hour).mean(axis=1)
     hourly_battery = battery.reshape(n_hours_battery, points_per_hour).mean(axis=1)
 
-    # Use the same monthly power capacity on every valid day, but set it to
-    # zero on missing/invalid days whose ESS output is all zero.
+    # Use the corresponding monthly charge/discharge peak on every valid day,
+    # but set both limits to zero on missing/invalid all-zero days.
     daily_battery = hourly_battery.reshape(Nday, Nt)
-    monthly_Pdmax = np.ceil(hourly_battery.max()/100)*100
+    monthly_Pdmax = np.ceil(max(0.0, hourly_battery.max())/100)*100
+    monthly_Pcmax = np.ceil(max(0.0, -hourly_battery.min())/100)*100
     zero_output_days = np.all(daily_battery == 0, axis=1)
     Pdmax = np.full(Nday, monthly_Pdmax, dtype=float)
+    Pcmax = np.full(Nday, monthly_Pcmax, dtype=float)
     Pdmax[zero_output_days] = 0
-    Pcmax = Pdmax.copy()
+    Pcmax[zero_output_days] = 0
 
     # calculate the capacity and the SOC at 0:00 on the first day of the month
     E = np.zeros((Nt*Nday+1))
@@ -362,11 +364,13 @@ def readdata(Ntall,Nt,Nday):
     Emin = min(E)
     Cap = 1000 *np.ceil((Emax-Emin)/1000)
     SOC = E/Cap
-    smin_oringinal = np.min(SOC)
-    if smin_oringinal<0:
-        SINI = np.ceil(-smin_oringinal/0.05)*0.05
-    else:
-        SINI = 0
+    smin_original = np.min(SOC)
+    # Shift the reconstructed trajectory by exactly enough to make its
+    # minimum zero.  Rounding this offset to a 5% grid can push the maximum
+    # above 100% (the passive and actual-baseline paths are not optimized
+    # subject to SOC bounds).  Since Cap already covers the full E range,
+    # the exact shift gives 0 <= SINI + E/Cap <= 1 up to floating-point error.
+    SINI = max(0.0, float(-smin_original))
     return hourly_price, hourly_gas, hourly_battery, Pdmax, Pcmax, Smax, Smin, Cap, eta, SINI, curtailment, skipped_gas_dates
 
 
@@ -434,8 +438,8 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     price_min = np.min(price)
     price_max = np.max(price)
     price_span = max(price_max - price_min, 1.0)
-    # Expand both sides by one original span.  The resulting interval is three
-    # times as wide and always contains the original prices, regardless of sign.
+    # Expand both sides by two full-price spans.  The resulting interval is five
+    # times as wide and always contains every input price, regardless of sign.
     pri0 = np.linspace(
         price_min - price_span,
         price_max + price_span,
@@ -562,7 +566,14 @@ def calculate_profit(
         priceN_t = price[t:t+N_t] # get price of next N_t intervals
         priceN_t_with_error = np.zeros((N_t)) # initialize the priceN_t_with_error
         for tt in range(N_t):
-            rate = meanstd / 100 + tt * 0.001 # relative standard deviation: 2% initially, +0.1% per hour
+            if tt == 0:
+                # The current price is observed exactly; prediction errors
+                # apply only to the future prices used by biddingNEW.
+                priceN_t_with_error[tt] = priceN_t[tt]
+                continue
+            # The fixed-price forecasts used by biddingNEW start at tt=1.
+            # Increase the error from 2.0% at horizon 1 to 4.2% at horizon 23.
+            rate = meanstd / 100 + (tt - 1) * 0.001
             noise = price_error_z[t, tt] * rate
             priceN_t_with_error[tt] = np.array(priceN_t[tt]*(1 + noise)) # generate the prices with errors
             # adjust the extreme values
@@ -584,11 +595,18 @@ def calculate_profit(
 
         # clearing and profit calculation
         price_cleared = priceN_t[0]
-        for i in range(len(dsfunction)):
-            price_low = dsfunction[i, 0]
-            price_high = dsfunction[i, 1]
-            if price_low <= price_cleared <= price_high: # the battery is cleared by regarded as a price-taker
-                P_cleared[t] = dsfunction[i, 2]
+        # The first and last stair extend beyond the sampled forecast grid so
+        # every possible clearing price maps to a bid, including price spikes.
+        if price_cleared < dsfunction[0, 0]:
+            P_cleared[t] = dsfunction[0, 2]
+        elif price_cleared > dsfunction[-1, 1]:
+            P_cleared[t] = dsfunction[-1, 2]
+        else:
+            for i in range(len(dsfunction)):
+                price_low = dsfunction[i, 0]
+                price_high = dsfunction[i, 1]
+                if price_low <= price_cleared <= price_high: # the battery is cleared by regarded as a price-taker
+                    P_cleared[t] = dsfunction[i, 2]
         if P_cleared[t] >=0:
             Sinitial = Sinitial - P_cleared[t]/eta/CAP*(24/N_t)
         else:
@@ -623,6 +641,16 @@ def calculate_profit_actual(eta,CAP,price, N_t,Nday, netoutput,Sinitial):
     end_value = ESSend*aveprice # the profit of the finally remained energy
     return profit, ESSOC_status,netoutput,end_value
 #%% Generation cost and carbon emission
+
+def carbon_emission_calculation(gas_generation, year_value, month_value):
+    """Calculate natural-gas CO2 using the cost-ranked dispatch order.
+
+    Each dispatched plant contributes ``mmbtu_per_mwh * MWh * 0.05306``
+    metric tonnes of CO2.  The underlying merit-order stack is the same stable
+    ``$_per_mwh`` ordering used by the exact gas-cost calculation.
+    """
+    return ng_carbon_emission(gas_generation, year_value, month_value)
+
 
 # monthly quadratic fuel-cost coefficients: fuel_cost($) = a*gas(MW)^2 + b*gas(MW) + c
 # fitted per month from CAISO natural-gas generation and fuel-cost data
@@ -689,7 +717,12 @@ def calculate_cost_and_carbon(gas_actual,curtailment, PESS_method,PESS_actual,N_
         gas_marginal_price(Pgas[:, 1], year, month_int, COST_MODE),
         gas_marginal_price(Pgas[:, 2], year, month_int, COST_MODE),
     ])
-    return Pgas, Cost, absorbed, diff, MargPrice
+    Carbon = np.column_stack([
+        carbon_emission_calculation(Pgas[:, 0], year, month_int),
+        carbon_emission_calculation(Pgas[:, 1], year, month_int),
+        carbon_emission_calculation(Pgas[:, 2], year, month_int),
+    ])
+    return Pgas, Cost, absorbed, diff, MargPrice, Carbon
 
 def calculate_main(
     meanstd, price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin,
@@ -732,12 +765,17 @@ def calculate_main(
     total_profit_actual = sum(profit_actual) + end_value_actual
 
     # cost/carbon: full method output vs. full actual baseline
-    Pgas, Cost, absorbed, diff, MargPrice = calculate_cost_and_carbon(gas,curtailment,P_cleared,P_cleared_actual,N_t,N_day)
+    Pgas, Cost, absorbed, diff, MargPrice, Carbon = calculate_cost_and_carbon(
+        gas, curtailment, P_cleared, P_cleared_actual, N_t, N_day
+    )
 
     # summarize the results
     total_cost = sum(Cost[:,0])
     total_cost_actual = sum(Cost[:,1])
     total_cost_withoutESS = sum(Cost[:,2])
+    total_carbon = sum(Carbon[:,0])
+    total_carbon_actual = sum(Carbon[:,1])
+    total_carbon_withoutESS = sum(Carbon[:,2])
     res_date = {'price': price[:N_t*N_day], 'profit': profit, 'profit_actual': profit_actual,
     'P_ESS': P_cleared, 'P_ESS_controlled': P_cleared_ctrl, 'P_ESS_passive': battery_passive,
     'P_ESS_actual': P_cleared_actual,
@@ -745,8 +783,11 @@ def calculate_main(
     'P_natural_gas':Pgas[:,0],'P_natural_gas_actual':Pgas[:,1], 'P_renewable_absorbed':absorbed,
     'marginal_price_gas': MargPrice[:,0], 'marginal_price_gas_actual': MargPrice[:,1], 'marginal_price_gas_withoutESS': MargPrice[:,2],
     'cost': Cost[:,0], 'cost_actual': Cost[:,1], 'cost_withoutESS': Cost[:,2],
+    'carbon': Carbon[:,0], 'carbon_actual': Carbon[:,1], 'carbon_withoutESS': Carbon[:,2],
     'total_profit': total_profit, 'total_profit_actual': total_profit_actual,
     'total_cost': total_cost, 'total_cost_actual': total_cost_actual, 'total_cost_withoutESS': total_cost_withoutESS,
+    'total_carbon': total_carbon, 'total_carbon_actual': total_carbon_actual,
+    'total_carbon_withoutESS': total_carbon_withoutESS,
     'total_absorb': sum(absorbed)}
 
     output_dir = ensure_results_dir()
@@ -762,6 +803,7 @@ def calculate_main(
         total_profit, total_profit_actual, total_cost, total_cost_actual,
         total_cost_withoutESS, Cost, absorbed, P_cleared, P_cleared_ctrl,
         ESSOC_status_ctrl, Pgas, ncd, dsfunctions, initial_value, following_value,
+        total_carbon, total_carbon_actual, total_carbon_withoutESS, Carbon,
     ]
 
 
@@ -854,7 +896,8 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
         total_profit, total_profit_actual, total_cost, total_cost_actual,
         total_cost_withoutESS, costdetails, absorbed, P_cleared,
         P_cleared_ctrl, ESSOC_status_ctrl, Pgas, ncd, dsfunctions, initial_value,
-        following_value,
+        following_value, total_carbon, total_carbon_actual,
+        total_carbon_withoutESS, carbon_details,
     ) = result
 
     np.save(output_dir / f'ncd_{month}{year}_{COST_MODE}_V5_k{int(k*100)}.npy', ncd)
@@ -886,7 +929,7 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     totalabsorbed = float(np.sum(absorbed))
     totalgas = float(np.sum(gas_glo))
     rate_gas = totalabsorbed / totalgas
-    carbon_reduce = (8500 / 1000) * 0.053165 * totalabsorbed
+    carbon_reduce = total_carbon_actual - total_carbon
     year_month = f'{year}{monthnum}'
     totalmonth_carbon = TOTALMONTH_CARBON.get(year_month)
     rate_carbon = carbon_reduce / totalmonth_carbon if totalmonth_carbon is not None else np.nan
@@ -898,6 +941,9 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
         'total_cost': total_cost,
         'total_cost_actual': total_cost_actual,
         'total_cost_withoutESS': total_cost_withoutESS,
+        'total_carbon': total_carbon,
+        'total_carbon_actual': total_carbon_actual,
+        'total_carbon_withoutESS': total_carbon_withoutESS,
         'total_absorbed': totalabsorbed,
         'total_natural_gas': totalgas,
         'rate_gas': rate_gas,
@@ -998,4 +1044,4 @@ def run_Jan_2025():
     return summary_path
 
 if __name__ == '__main__':
-    run_all_months()
+    run_may_2025()

@@ -7,7 +7,8 @@ _ng_cost_cache = {}
 _ng_carbon_cache = {}
 _NG_COST_DIR = Path(__file__).resolve().parent.parent / 'data' / 'ng_cost'
 
-_CARBON_FACTOR_MTCO2_PER_MMBTU = 0.053165
+# EPA 2025 GHG Emission Factors Hub: natural-gas stationary combustion.
+_CARBON_FACTOR_MTCO2_PER_MMBTU = 0.05306
 
 _quad_coe_cache = None
 _FUEL_COE_PATH = Path(__file__).resolve().parent / 'Fuel_Coe.xlsx'
@@ -72,9 +73,8 @@ def ng_carbon_emission(gas_generation, year, month):
     emissions are calculated as::
 
         generation (MWh)
-        * Mcf_per_MWh (Mcf/MWh)
-        * MMBtuPer_Unit (MMBtu/Mcf)
-        * 0.053165 (metric tonnes CO2/MMBtu)
+        * mmbtu_per_mwh (MMBtu/MWh)
+        * 0.05306 (metric tonnes CO2/MMBtu)
 
     Parameters
     ----------
@@ -98,9 +98,7 @@ def ng_carbon_emission(gas_generation, year, month):
         # Dispatch order is determined only by marginal generation cost.  The
         # carbon columns are carried along after sorting and do not influence
         # which plants are called.
-        columns = [
-            'capacity', '$_per_mwh', 'Mcf_per_MWh', 'MMBtuPer_Unit'
-        ]
+        columns = ['capacity', '$_per_mwh', 'mmbtu_per_mwh']
         supply = df[columns].copy()
         for column in columns:
             supply[column] = pd.to_numeric(supply[column], errors='coerce')
@@ -117,7 +115,7 @@ def ng_carbon_emission(gas_generation, year, month):
         if supply.empty:
             raise ValueError(f'No valid natural-gas supply data found in {path}')
 
-        carbon_parameters = supply[['Mcf_per_MWh', 'MMBtuPer_Unit']]
+        carbon_parameters = supply[['mmbtu_per_mwh']]
         invalid_carbon = (
             ~np.isfinite(carbon_parameters).all(axis=1)
             | (carbon_parameters <= 0.0).any(axis=1)
@@ -128,14 +126,13 @@ def ng_carbon_emission(gas_generation, year, month):
                 for row_index in supply.index[invalid_carbon]
             )
             raise ValueError(
-                f'Invalid Mcf_per_MWh or MMBtuPer_Unit in {path} '
+                f'Invalid mmbtu_per_mwh in {path} '
                 f'(Excel row(s): {invalid_rows})'
             )
 
         unit_cap = supply['capacity'].to_numpy(dtype=float)
         carbon_intensity = (
-            supply['Mcf_per_MWh'].to_numpy(dtype=float)
-            * supply['MMBtuPer_Unit'].to_numpy(dtype=float)
+            supply['mmbtu_per_mwh'].to_numpy(dtype=float)
             * _CARBON_FACTOR_MTCO2_PER_MMBTU
         )
         cap = np.cumsum(unit_cap)
