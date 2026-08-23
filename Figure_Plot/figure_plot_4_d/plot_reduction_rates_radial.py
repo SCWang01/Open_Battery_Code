@@ -1,4 +1,4 @@
-"""Create a combined radial figure for profit, carbon, and cost rates.
+"""Create combined and standalone radial figures for the study rates.
 
 Figure contract
 ---------------
@@ -50,8 +50,22 @@ from plot_profit_increment_radial import (
 OUTPUT_ROOT = Path(__file__).with_name("outputs")
 OUTPUT_DIRECTORY = "combined_radial"
 OUTPUT_STEM = "profit_carbon_cost_radial_2023_2025"
+STANDALONE_OUTPUTS = {
+    "carbon": (
+        "carbon_reduction_radial",
+        "carbon_reduction_rate_radial_2023_2025",
+        "Carbon reduction rate",
+    ),
+    "cost": (
+        "cost_reduction_radial",
+        "cost_reduction_rate_radial_2023_2025",
+        "Generation-cost reduction rate",
+    ),
+}
 FIGURE_WIDTH_MM = 250
 FIGURE_HEIGHT_MM = 90
+STANDALONE_FIGURE_WIDTH_MM = 90
+STANDALONE_FIGURE_HEIGHT_MM = 90
 PNG_DPI = 720
 INNER_RADIUS = 10.0
 DATA_OUTER_RADIUS = 50.0
@@ -96,10 +110,10 @@ METRICS = (
         monthly_header="rate carbon",
         annual_header="carbon reduction rate",
         axis_min=-0.5,
-        axis_max=3.0,
-        ticks=(0.0, 1.0, 2.0, 3.0),
-        label_ticks=(1.0, 2.0, 3.0),
-        label_tick_angles={1.0: 235.0, 2.0: 220.0, 3.0: 202.0},
+        axis_max=15.0,
+        ticks=(0.0, 5.0, 10.0, 15.0),
+        label_ticks=(5.0, 10.0, 15.0),
+        label_tick_angles={5.0: 235.0, 10.0: 220.0, 15.0: 202.0},
         bar_color="#55A868",
         annulus_color="#DCEFE3",
     ),
@@ -153,14 +167,14 @@ def _month_code(value: object) -> str:
 
 
 def load_metric_data(workbook_path: Path, spec: MetricSpec) -> MetricData:
-    """Load one metric using its explicit monthly and Sheet2 field mapping."""
+    """Load one metric using its explicit monthly and annual field mapping."""
     if not workbook_path.exists():
         raise FileNotFoundError(f"Workbook not found: {workbook_path}")
 
     workbook = load_workbook(workbook_path, data_only=True, read_only=True)
     try:
         monthly_sheet = workbook["Monthly Analysis"]
-        annual_sheet = workbook.worksheets[1]
+        annual_sheet = workbook["Annual Summary"]
 
         monthly_rows = monthly_sheet.iter_rows(values_only=True)
         monthly_headers = _header_map(next(monthly_rows))
@@ -193,7 +207,9 @@ def load_metric_data(workbook_path: Path, spec: MetricSpec) -> MetricData:
         required_annual = {"annual", spec.annual_header}
         missing_annual = required_annual.difference(annual_headers)
         if missing_annual:
-            raise ValueError(f"Missing Sheet2 columns: {sorted(missing_annual)}")
+            raise ValueError(
+                f"Missing Annual Summary columns: {sorted(missing_annual)}"
+            )
 
         annual_values: dict[int, float] = {}
         for row in annual_rows:
@@ -407,7 +423,8 @@ def draw_metric_panel(
     _draw_scale(ax, spec)
     _draw_monthly_bars(ax, data, spec)
     _draw_annual_annulus(ax, data, spec)
-    _draw_grid_interval_legend(ax, 1.0 if spec.key == "carbon" else 5.0)
+    grid_interval = spec.ticks[1] - spec.ticks[0]
+    _draw_grid_interval_legend(ax, grid_interval)
 
     center = plt.Circle(
         (0.5, 0.5),
@@ -453,11 +470,33 @@ def create_combined_figure(
     return fig
 
 
-def export_figure(fig: mpl.figure.Figure) -> Path:
+def create_metric_figure(
+    data: MetricData,
+    spec: MetricSpec,
+    title: str,
+) -> mpl.figure.Figure:
+    """Create a journal-column-width standalone reduction-rate figure."""
+    fig = plt.figure(
+        figsize=(
+            STANDALONE_FIGURE_WIDTH_MM / 25.4,
+            STANDALONE_FIGURE_HEIGHT_MM / 25.4,
+        ),
+        facecolor="none",
+    )
+    ax = fig.add_axes([0.02, 0.005, 0.96, 0.86], projection="polar")
+    draw_metric_panel(ax, data, spec, title)
+    return fig
+
+
+def export_figure(
+    fig: mpl.figure.Figure,
+    output_directory: str = OUTPUT_DIRECTORY,
+    output_stem: str = OUTPUT_STEM,
+) -> Path:
     """Export editable vectors plus 720 dpi PNG and compressed TIFF."""
-    output_dir = OUTPUT_ROOT / OUTPUT_DIRECTORY
+    output_dir = OUTPUT_ROOT / output_directory
     output_dir.mkdir(parents=True, exist_ok=True)
-    stem = output_dir / OUTPUT_STEM
+    stem = output_dir / output_stem
     fig.savefig(stem.with_suffix(".svg"), transparent=True)
     fig.savefig(stem.with_suffix(".png"), dpi=PNG_DPI, transparent=True)
     fig.savefig(
@@ -483,6 +522,13 @@ def main() -> None:
     output_dir = export_figure(figure)
     plt.close(figure)
 
+    standalone_dirs = []
+    for spec in METRICS:
+        directory, stem, title = STANDALONE_OUTPUTS[spec.key]
+        figure = create_metric_figure(metric_data[spec.key], spec, title)
+        standalone_dirs.append(export_figure(figure, directory, stem))
+        plt.close(figure)
+
     print(
         f"Profit increment rate: {len(profit_data.monthly_percent)} months, "
         f"range {profit_data.monthly_percent.min():.2f}% to "
@@ -502,6 +548,10 @@ def main() -> None:
             )
         )
     print(f"Created combined figures in: {output_dir}")
+    print(
+        "Created standalone figures in: "
+        + ", ".join(str(path) for path in standalone_dirs)
+    )
 
 
 if __name__ == "__main__":

@@ -1,37 +1,11 @@
 {
-  "started_at": "2026-08-21T15:19:14.247293+00:00",
+  "started_at": "2026-08-22T04:47:29.950775+00:00",
   "status": "success",
   "figures": [
-    "4a",
-    "4b",
-    "4c",
-    "4d",
-    "4e"
+    "4d"
   ],
   "skip_analysis": false,
   "commands": [
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\source_data\\classify_p_ess.py",
-      "--input",
-      "dsfunction_May2025_exact_V5_k20.xlsx"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\source_data\\add_dsfunction_state_array.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\plot_state_distribution_pies_May2025.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_c\\export_hourly_state_counts.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_c\\plot_hourly_state_counts_price_May2025.py"
-    ],
     [
       "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
       "D:\\Research\\Release_Open\\Program\\analyze_summary.py"
@@ -43,133 +17,19 @@
     [
       "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
       "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_d\\plot_reduction_rates_radial.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_e\\Fig_4_e_plot.py",
-      "--date",
-      "2025-04-07"
     ]
   ],
   "files": [
     {
-      "role": "May dsfunction source workbook",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20.xlsx",
-      "size": 101061,
-      "sha256": "19a5d18e508ac2b2fdae11d17a7d20ad8646b3637aee5ab9522c5b1c45ee918b",
-      "source": "Results\\dsfunction_May2025_exact_V5_k20.xlsx",
-      "action": "unchanged"
-    },
-    {
-      "role": "classified May dsfunction workbook",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120270,
-      "sha256": "da3b82cb8139ea91f999d12643649e96699c9a6ebbab068e6da5ea264b20cb37"
-    },
-    {
-      "role": "Figure 4c classified dsfunction workbook",
-      "path": "Figure_Plot\\figure_plot_4_c\\input\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120270,
-      "sha256": "da3b82cb8139ea91f999d12643649e96699c9a6ebbab068e6da5ea264b20cb37",
-      "source": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "action": "copied"
-    },
-    {
-      "role": "Figure 4c price input",
-      "path": "Figure_Plot\\figure_plot_4_c\\input\\202505 CAISO Average Price.csv",
-      "size": 284587,
-      "sha256": "0dfc6482c43a96cddca28888a719de0807884c8aff9ecb5964bb193f4f293643",
-      "source": "data\\price\\202505 CAISO Average Price.csv",
-      "action": "unchanged"
-    },
-    {
       "role": "Figure 4d analysis workbook",
       "path": "Figure_Plot\\figure_plot_4_d\\analysis_202301_202512.xlsx",
-      "size": 10497,
-      "sha256": "e8edf9994872b4facbb11445c1ef2a35d7c4f3653ae09417584ffbef4aa41d01",
+      "size": 9107,
+      "sha256": "838ec9694e87a7b1db73b4bdbcee4f2b33f4b102451e6428b538c6b3b5b2446b",
       "source": "Results\\analysis_202301_202512.xlsx",
       "action": "copied"
-    },
-    {
-      "role": "Figure 4e April result CSV",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "size": 349952,
-      "sha256": "42d83192e99a7124551c3cc34e342a8e38e774802a01c7e4178ca90388651b65",
-      "source": "Results\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "action": "copied"
-    },
-    {
-      "role": "Figure 4e price input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\202504 CAISO Average Price.csv",
-      "size": 276337,
-      "sha256": "32b57b03b28abb5a3599c314f1bae21d0a42c1c293ecd1fa6f6a4da77cc8964e",
-      "source": "data\\price\\202504 CAISO Average Price.csv",
-      "action": "unchanged"
-    },
-    {
-      "role": "Figure 4e curtailment input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\curtailment_202504.csv",
-      "size": 17591,
-      "sha256": "95b8d627bf745e453fe181f0461319ea917b4dc778d9deaea7256b8113763b52",
-      "source": "data\\curtailment\\curtailment_202504.csv",
-      "action": "unchanged"
     }
   ],
   "outputs": [
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.png",
-      "size": 290209,
-      "sha256": "b8b2fc114392c5ff89a026b0bf79ff82e50a78b9f521ff8a5085a4bd319f3155"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.svg",
-      "size": 13233,
-      "sha256": "11dd520a24ad675cb0fcdb4e8c412ffea3113541cd34898dffe56a8ecbcd9ef9"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.pdf",
-      "size": 32702,
-      "sha256": "a9892f216cb3d3aac388eb5d92291c1b7c6eb3c7d58177906127a60b875dde62"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025_source_data.csv",
-      "size": 753,
-      "sha256": "726bad8fc94329bd314a2b55aeaadc23b5022f12c47f2b65207e5cb90d6c68f3"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\P_ESS_state_hourly_counts_May2025.xlsx",
-      "size": 6784,
-      "sha256": "7ba7654fa64b3e7cd3d68027f74557a2889f8851b5c0e2604d62770eabd625dd"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\hourly_state_counts_and_price_May2025_source_data.csv",
-      "size": 1923,
-      "sha256": "fa89086338667c18e76f59b1bb70ca4bf072e11a0cb6e5e6f59c1a69436c5199"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.png",
-      "size": 287096,
-      "sha256": "39cb9e11441290c67c80c2f4b74cbe88b7de8d418a6f17e5e6cc996d8002cab2"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.svg",
-      "size": 64000,
-      "sha256": "afdc939ec12857a6e038c8edc9f474bbeacb5080496525241f8a511bfae642d2"
-    },
-    {
-      "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.pdf",
-      "size": 39654,
-      "sha256": "3f81f9817a96165898086a33a53e608fae16eeb3ffa156d20509741831285ff8"
-    },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.png",
@@ -180,13 +40,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.svg",
       "size": 88615,
-      "sha256": "377535f61af06e84c7dc4ef6800ca3fcbb18852571c2479b97198046541b1fab"
+      "sha256": "34b9c09b02b33c956176fba5b711b9dbd93038db79beaf68c36cf3fba272e763"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.pdf",
       "size": 47844,
-      "sha256": "08331bee0d8aa03098fa8dc6a2e62393d97986590f4e4d44d7722e0a18af52a7"
+      "sha256": "eb49ed20f13d642e6c4ccd5be99abe7b2f48c3ad0d42eed704e937dfd5e695c8"
     },
     {
       "role": "generated figure output",
@@ -197,46 +57,76 @@
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.png",
-      "size": 3865075,
-      "sha256": "23b3cb94c9823251b746a64f9ff08eb91f8e3ae8ecd8ac1626a29d8abacfff0b"
+      "size": 3916711,
+      "sha256": "7c73618e79e08ced168e0623bcb8401dffe69e903ad9ff614bd79bd2e24d7c81"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.svg",
-      "size": 253271,
-      "sha256": "bbd3ac996093e66fd771cd8c2217889ce8ac30ab6a37ce44ff10e4efdbbdacfc"
+      "size": 248149,
+      "sha256": "469a2a5fedcbb05a25a4bd5c875de4f6150e607923defc166fd9862910789c7b"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.pdf",
-      "size": 88176,
-      "sha256": "36bdb3d88f6b07c7c9b328416badddcb06afb8cb1bec702f74a02b7c1bc87d70"
+      "size": 86227,
+      "sha256": "dabff94931583fa42f55b1d683113eb99b99b1dfdec575c73788c4780f48bbcc"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.tiff",
-      "size": 6239626,
-      "sha256": "143498d8706a25380500ce67ed1ac8200bdb0cf113efc8322387b80e1b660172"
+      "size": 6408562,
+      "sha256": "f31d1e143faa53f3842a0bd4f53718292d8198cef4c1ee7f152a2303cfee97e4"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.png",
-      "size": 216353,
-      "sha256": "d8345ce347dd8a6f714adfcd0c36e42163e4b3554ea77d1a958e98bc62ffb644"
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.png",
+      "size": 1242628,
+      "sha256": "284d498d0e889d255021962589709b6b45c64f28fc1588d7032a5df4bda7a1e9"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.svg",
-      "size": 27955,
-      "sha256": "0745f714ce40745383793696e6063e49d2a72652f706591e0c7073c66899698d"
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.svg",
+      "size": 80294,
+      "sha256": "4047f87b808677cdf10d5b2848cef07f8eef08aba070d089fc66a7a675aedd10"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.pdf",
-      "size": 35056,
-      "sha256": "2193aa70a13b997abb14e127660c93a9ce62fd415e937b6f6335053733efced5"
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.pdf",
+      "size": 45650,
+      "sha256": "41ea645df50a204a720e50adba82532f83236260d396f34ee0f76149a6fceac3"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.tiff",
+      "size": 1641998,
+      "sha256": "0223eed674483cc7733a6e7d4bb0bcfa509ef583d5298e88f89a12d8f7cb202b"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.png",
+      "size": 1234440,
+      "sha256": "208627d706f10b8f25b23174cbfb3f2327f7dc0bc5ae627be94c3b4ed9477370"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.svg",
+      "size": 80307,
+      "sha256": "22cc84220988b94ec9df6a4661e61e6966c587d30aa9e97001b1c5bcfdf67145"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.pdf",
+      "size": 46255,
+      "sha256": "988e7c189a0e264e3b583ba3b470b67a15987c70dc244eda05161aedae12ff79"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.tiff",
+      "size": 1625676,
+      "sha256": "c866fc7c4484d80ffc4a68480ee8fb26652608abf8c4fb8757f6c536db695c20"
     }
   ],
   "error": null,
-  "finished_at": "2026-08-21T15:19:27.756310+00:00"
+  "finished_at": "2026-08-22T04:47:38.470749+00:00"
 }

@@ -95,8 +95,7 @@ Custom paths can be supplied explicitly:
 
 ```powershell
 python Program/analyze_summary.py Results/summary.csv `
-  --output Results/analysis_custom.xlsx `
-  --carbon-input path/to/CAISO-historical-co2.csv
+  --output Results/analysis_custom.xlsx
 ```
 
 ### 3. Run the May 2025 case
@@ -167,7 +166,7 @@ Natural-gas costs are evaluated consistently with the selected cost mode through
 | Renewable curtailment | `data/curtailment/` | Hourly curtailed renewable energy |
 | Natural-gas generation | `data/ng_data/` | Hourly historical gas generation |
 | Natural-gas cost stack | `data/ng_cost/` | Monthly plant-level merit-order inputs |
-| Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Monthly analysis-workbook input |
+| Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Retained source data for independent historical-emissions analysis |
 
 Replacement monthly price files must include the additional 24-hour rolling horizon required at the end of the month. The committed price files contain the required additional 288 five-minute observations.
 
@@ -180,7 +179,7 @@ Replacement monthly price files must include the additional 24-hour rolling hori
 | Cleared-output array | `Pcleared_January2023_exact_V5_k20.npy` | Combined controllable and passive battery output |
 | Summary CSV | `summary_202301_202512_exact_V5_k20.csv` | Monthly profit, cost, gas, curtailment, and carbon metrics |
 | Demand-supply functions | `dsfunction_May2025_exact_V5_k20.xlsx` | Optional hourly stair-function export |
-| Analysis workbook | `analysis_202301_202512.xlsx` | Monthly, annual, and carbon-emission analysis sheets |
+| Analysis workbook | `analysis_202301_202512.xlsx` | Monthly and annual analysis sheets |
 
 Repeated runs overwrite files with identical parameter-derived names.
 

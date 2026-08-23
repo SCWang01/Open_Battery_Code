@@ -18,7 +18,8 @@ plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman', 'Times', 'DejaVu Serif']
 plt.rcParams['font.size'] = 15
 
-N_t = 24  # 24 hourly prices (hours 1..24)
+N_forecasts = 23  # Forecast prices 1..23; the original price 24 is omitted.
+N_t = N_forecasts + 1  # Include x=0 for the binding-interval price.
 Path("Figs").mkdir(exist_ok=True)
 DATA_DIR = Path(__file__).resolve().parent
 
@@ -26,31 +27,37 @@ info = load_workbook(DATA_DIR / "settings.xlsx", data_only=True)
 setting_table = info.worksheets[0]
 
 Nsubfigs = 3
-pri = np.zeros((Nsubfigs, N_t))
+pri = np.zeros((Nsubfigs, N_forecasts))
 for i in range(Nsubfigs):
-    for j in range(N_t):
+    for j in range(N_forecasts):
         pri[i, j] = setting_table.cell(row=i + 1, column=j + 2).value
 
-t = np.arange(1, N_t + 1)         # Time (Hour), 1..24
+t = np.arange(N_t)  # x=0 is binding-interval price; x=1..23 are forecasts.
 figsize = (11 / 2.54, 4.5 / 2.54)  # 11 cm x 4.5 cm
+
+
+def add_binding_interval_price(price):
+    """Prepend the x=0 price by linearly extrapolating forecast points 1 and 2."""
+    binding_price = 2 * price[0] - price[1]
+    return np.concatenate(([binding_price], price[:N_forecasts]))
 
 # (price data, ylabel, yticks) for figures 1..3
 configs = [
-    (pri[0, :],        'Price (CNY/kWh)', [0.25, 0.50, 0.75, 1.00]),
-    (pri[1, :] / 1000, 'Price (USD/kWh)', [0.06, 0.07, 0.08]),
-    (pri[2, :] / 1000, 'Price (USD/kWh)', [0.00, 0.02, 0.04]),
+    (add_binding_interval_price(pri[0, :]),        'Price (CNY/kWh)', [0.25, 0.50, 0.75, 1.00]),
+    (add_binding_interval_price(pri[1, :] / 1000), 'Price (USD/kWh)', [0.06, 0.07, 0.08]),
+    (add_binding_interval_price(pri[2, :] / 1000), 'Price (USD/kWh)', [0.00, 0.02, 0.04]),
 ]
 
 for idx, (price, ylabel, yticks) in enumerate(configs, start=1):
     fig, ax = plt.subplots(figsize=figsize)
-    line = ax.plot(t, price, linewidth=3)
-    # vertical dashed line from the t=1 point down to the x-axis
-    ax.autoscale_view()
-    ymin, _ = ax.get_ylim()
-    ax.plot([1, 1], [ymin, price[0]], linestyle='--',
-            color=line[0].get_color(), linewidth=1.5)
-    ax.set_xlim(0, 25)
-    ax.set_xticks([1, 5, 10, 15, 20, 25])
+    ax.plot(t, price, linewidth=3)
+    ax.set_xlim(0, 23)
+    ax.set_xticks([0, 1, 5, 10, 15, 20, 23])
+    ax.set_xticklabels(['', '1', '5', '10', '15', '20', '23'])
+    ax.annotate('(binding)', xy=(0, price[0]), xytext=(0, -0.24),
+                textcoords='axes fraction', ha='center', va='top',
+                arrowprops=dict(arrowstyle='-', linestyle='--', lw=1.2,
+                                color='k'))
     ax.set_xlabel('Time (hours)')
     ax.set_ylabel(ylabel)
     ax.set_yticks(yticks)

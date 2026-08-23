@@ -241,23 +241,45 @@ def Fig2_q(Ti_ini,Tmax,Tmin,Pmax,Ra,C,eta,index):
     plt.ylabel('demand power(MW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
 
-def Fig2_EV(Nev,pri,eta,index): 
+def generate_ev_fleet(Nev, seed=42):
+    """Generate EV fleet parameters once and save to CSV for reproducibility."""
+    import pandas as pd
+    rng = np.random.default_rng(seed)
+    fleet = {
+        'SINIset': rng.random(Nev) * 0.6 + 0.1,
+        'Pseries': np.full(Nev, 7.0),
+        'Capset':  np.full(Nev, 50.0),
+        'TArrset': rng.normal(0, 1, size=Nev),
+        'TDepset': rng.normal(10, 1, size=Nev),
+    }
+    pd.DataFrame(fleet).to_csv(DATA_DIR / "ev_fleet_seed42.csv", index=False)
+    return fleet
+
+
+def Fig2_EV(Nev,pri,eta,index,fleet=None):
     Emax = 1
     Emin = 0.1
     Emaxset = np.zeros((Nev,N_t+1))
     Eminset = np.zeros((Nev,N_t+1))
     Pdmaxset = np.zeros((Nev,N_t))
 
-    SINIset = np.random.rand((Nev))*0.6+0.1
-    Pseries = np.random.normal(7,0,size = Nev )
+    if fleet is None:
+        SINIset = np.random.rand((Nev))*0.6+0.1
+        Pseries = np.random.normal(7,0,size = Nev )
+        Capset = np.random.normal(50,0,size = Nev ) # Capacity
+        TArrset = np.random.normal(0,1,size = Nev )
+        TDepset = np.random.normal(10,1,size = Nev )
+    else:
+        SINIset = np.asarray(fleet['SINIset'])
+        Pseries = np.asarray(fleet['Pseries'])
+        Capset  = np.asarray(fleet['Capset'])
+        TArrset = np.asarray(fleet['TArrset'])
+        TDepset = np.asarray(fleet['TDepset'])
     for t in range(N_t):
         for s in range(Nev):
             Pdmaxset[s,t] = Pseries[s]
     Pcmaxset = Pdmaxset
-    Capset = np.random.normal(50,0,size = Nev ) # Capacity 
     etaset = np.random.normal(eta,0,size = Nev ) # eta
-    TArrset = np.random.normal(0,1,size = Nev ) #
-    TDepset = np.random.normal(10,1,size = Nev )
     Ressum = np.zeros((N_price))
     
     for i in range(Nev):
@@ -291,13 +313,13 @@ def Fig2_EV(Nev,pri,eta,index):
         model.optimize()
         Ressum[K] = sum(Pd[s,0].X for s in range(Nev))-sum(Pc[s,0].X for s in range(Nev))
 
-    plt.figure(figsize=(8, 4))
+    _configure_fig3_style()
+    plt.figure(figsize=(10.1 / 2.54, 3.7 / 2.54))
     x=pri0/1000
-    plt.plot(x,Ressum,linewidth=3)
+    plt.plot(x,Ressum,linewidth=5,color='black')
     plt.xlim(0.06,0.09)
-    plt.xlabel('Price(USD/kWh)')
-    plt.ylabel('Discharge Power(kW)')
-    plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
+    plt.xticks([0.06, 0.07, 0.08, 0.09])
+    plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
     return TArrset
 
 def _configure_fig3_style():
@@ -578,19 +600,20 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
 # Fig2_q(23,24,21,12,3,5,1,"p")
 # Fig2_q(23,24,21,12,3,5,0.98,"q")
 # Fig2_q(23,24,21,12,3,5,0.95,"r")
-# Fig2_EV(20,pri[1,:],1,"s")
-# Fig2_EV(20,pri[1,:],0.98,"t")
-# Fig2_EV(20,pri[1,:],0.95,"u")
+ev_fleet = generate_ev_fleet(20)
+Fig2_EV(20,pri[1,:],1,"s",fleet=ev_fleet)
+Fig2_EV(20,pri[1,:],0.98,"t",fleet=ev_fleet)
+Fig2_EV(20,pri[1,:],0.95,"u",fleet=ev_fleet)
 
-Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
-Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")
-Fig3_f(0.5,2,0.6,0.6,1,pri[2,:],"f")
-Fig3_d(0.5,2,0.6,0.6,0.9,pri[0,:],"g")
-Fig3_e(0.5,2,0.6,0.6,0.9,pri[1,:],"h")
-Fig3_f(0.5,2,0.6,0.6,0.9,pri[2,:],"i")
-Fig3_j(0.5,2,0.6,0.6,1,pri[0,:],"j")
-Fig3_k(0.5,2,0.6,0.6,1,pri[1,:],"k")
-Fig3_l(0.5,2,0.6,0.6,1,pri[2,:],"l")
+# Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
+# Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")
+# Fig3_f(0.5,2,0.6,0.6,1,pri[2,:],"f")
+# Fig3_d(0.5,2,0.6,0.6,0.9,pri[0,:],"g")
+# Fig3_e(0.5,2,0.6,0.6,0.9,pri[1,:],"h")
+# Fig3_f(0.5,2,0.6,0.6,0.9,pri[2,:],"i")
+# Fig3_j(0.5,2,0.6,0.6,1,pri[0,:],"j")
+# Fig3_k(0.5,2,0.6,0.6,1,pri[1,:],"k")
+# Fig3_l(0.5,2,0.6,0.6,1,pri[2,:],"l")
 
 # for i in range(5):
 #     Fig2_f_i_l_new(0.5,2,0.6,0.6,0.8,str(i))

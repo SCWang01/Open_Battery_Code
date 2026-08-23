@@ -249,6 +249,14 @@ def expected_outputs(config: GenerationConfig) -> list[Path]:
             base / "combined_radial" / f"profit_carbon_cost_radial_2023_2025{suffix}"
             for suffix in (".png", ".svg", ".pdf", ".tiff")
         )
+        paths.extend(
+            base / "carbon_reduction_radial" / f"carbon_reduction_rate_radial_2023_2025{suffix}"
+            for suffix in (".png", ".svg", ".pdf", ".tiff")
+        )
+        paths.extend(
+            base / "cost_reduction_radial" / f"cost_reduction_rate_radial_2023_2025{suffix}"
+            for suffix in (".png", ".svg", ".pdf", ".tiff")
+        )
     if config.wants_4e:
         base = FIGURE_DIR / "figure_plot_4_e" / "Figs"
         paths.extend(base / f"Fig_4_e{suffix}" for suffix in (".png", ".svg", ".pdf"))
@@ -392,4 +400,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

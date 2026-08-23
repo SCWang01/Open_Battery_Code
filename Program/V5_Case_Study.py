@@ -809,52 +809,6 @@ def calculate_main(
 
 #%% main
 
-# Monthly total carbon (tonnes) used for the carbon-reduction rate, from
-# CAISO-historical-co2-20260720.csv.  Values cover the full case-study period.
-TOTALMONTH_CARBON = {
-    '202301': 4271420.12,
-    '202302': 3319377.50,
-    '202303': 3161825.37,
-    '202304': 2067690.22,
-    '202305': 2816288.03,
-    '202306': 2257595.84,
-    '202307': 4423043.17,
-    '202308': 5216585.65,
-    '202309': 3828422.03,
-    '202310': 4303965.85,
-    '202311': 3973537.47,
-    '202312': 4373438.85,
-    '202401': 3858551.08,
-    '202402': 3126751.18,
-    '202403': 2261180.98,
-    '202404': 1917601.57,
-    '202405': 1649742.34,
-    '202406': 2655335.59,
-    '202407': 4669362.14,
-    '202408': 4308940.88,
-    '202409': 4077587.38,
-    '202410': 4189340.87,
-    '202411': 3620906.08,
-    '202412': 4241056.99,
-    '202501': 3655694.77,
-    '202502': 2541019.37,
-    '202503': 2337717.50,
-    '202504': 1880394.26,
-    '202505': 1962830.77,
-    '202506': 2297500.97,
-    '202507': 2716766.79,
-    '202508': 3983855.56,
-    '202509': 4226129.62,
-    '202510': 3613190.63,
-    '202511': 3704954.99,
-    '202512': 4200458.41,
-    '202601': 3539955.03,
-    '202602': 2740413.26,
-    '202603': 2700115.12,
-    '202604': 1906090.45,
-}
-
-
 def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     """Compute a single month (0-based index into monthlist) and return its
     summary dict.  When ``return_detection_counts`` is true, also return the
@@ -931,8 +885,11 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     rate_gas = totalabsorbed / totalgas
     carbon_reduce = total_carbon_actual - total_carbon
     year_month = f'{year}{monthnum}'
-    totalmonth_carbon = TOTALMONTH_CARBON.get(year_month)
-    rate_carbon = carbon_reduce / totalmonth_carbon if totalmonth_carbon is not None else np.nan
+    rate_carbon = (
+        carbon_reduce / total_carbon_actual
+        if total_carbon_actual != 0
+        else 0.0
+    )
     summary = {
         'year_month': year_month,
         'k': k,

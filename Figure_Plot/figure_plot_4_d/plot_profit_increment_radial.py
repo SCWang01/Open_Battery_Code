@@ -41,14 +41,13 @@ FIGURE_WIDTH_MM = 90
 FIGURE_HEIGHT_MM = 90
 PNG_DPI = 720
 
-# The workbook currently reaches about 209%.  Keep headroom so the chart does
-# not reject valid observations when a later workbook contains a slightly
-# larger monthly increment.
-MAX_PERCENT = 250.0
+# Match the reference radial layout: monthly bars use a 200% scale, leaving
+# a clear outer gap for month labels before the annual annulus.
+MAX_PERCENT = 200.0
 INNER_RADIUS = 50.0
 BAR_OUTER_RADIUS = INNER_RADIUS + MAX_PERCENT
-MONTH_LABEL_RADIUS = 280.0
 ANNULUS_INNER_RADIUS = 310.0
+MONTH_LABEL_RADIUS = 280.0
 ANNULUS_OUTER_RADIUS = 380.0
 PLOT_LIMIT = 390.0
 ANNUAL_TEXT_SPAN_DEGREES = 104.0
@@ -109,14 +108,14 @@ def _month_code(value: object) -> str:
 
 
 def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
-    """Load the 36 monthly rates and the three annual rates from Sheet2."""
+    """Load the 36 monthly rates and three rates from Annual Summary."""
     if not workbook_path.exists():
         raise FileNotFoundError(f"Workbook not found: {workbook_path}")
 
     workbook = load_workbook(workbook_path, data_only=True, read_only=True)
     try:
         monthly_sheet = workbook["Monthly Analysis"]
-        annual_sheet = workbook.worksheets[1]
+        annual_sheet = workbook["Annual Summary"]
 
         monthly_rows = monthly_sheet.iter_rows(values_only=True)
         monthly_headers = _header_map(next(monthly_rows))
@@ -150,7 +149,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
         missing_annual = required_annual.difference(annual_headers)
         if missing_annual:
             raise ValueError(
-                f"Missing Sheet2 annual columns: {sorted(missing_annual)}"
+                f"Missing Annual Summary columns: {sorted(missing_annual)}"
             )
 
         annual_values: dict[int, float] = {}
@@ -283,10 +282,9 @@ def _draw_scale(ax: mpl.axes.Axes) -> None:
     """Draw reversed percentage rings: 0% outside and MAX_PERCENT inward."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
     scale_values = (0, 50, 100, 150, 200)
-    # Place the 100% and 150% labels near the requested month axes.  The
-    # 200% label remains in its established position.
-    # Keep the 150% label slightly to the right of its previous midpoint.
-    label_angles = {100: 245.0, 150: 222.0, 200: 185.0}
+    # Align 100% with 2025 Jan and 150% with 2025 Feb; retain the established
+    # 200% position in the inner scale gap.
+    label_angles = {100: 245.0, 150: 255.0, 200: 185.0}
 
     for value in scale_values:
         radius = BAR_OUTER_RADIUS - value

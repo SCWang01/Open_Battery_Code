@@ -1,11 +1,9 @@
 """Create monthly and annual battery-study analysis in an Excel workbook.
 
-The workbook contains three sheets:
+The workbook contains two sheets:
 
 * ``Monthly Analysis``: monthly profit, cost, and carbon metrics.
 * ``Annual Summary``: calendar-year (or partial-year) aggregate rates.
-* ``Monthly Carbon Emission``: the CAISO carbon-emission denominators used by
-  the annual carbon-reduction calculation.
 """
 
 from __future__ import annotations
@@ -25,9 +23,6 @@ from openpyxl.worksheet.worksheet import Worksheet
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = PROJECT_ROOT / "Results"
 DEFAULT_INPUT = RESULTS_DIR / "summary_202301_202512_exact_V5_k20.csv"
-DEFAULT_CARBON_INPUT = (
-    PROJECT_ROOT / "data" / "CAISO-historical-co2-20260720.csv"
-)
 
 REQUIRED_COLUMNS = {
     "year_month",
@@ -37,10 +32,8 @@ REQUIRED_COLUMNS = {
     "total_cost",
     "total_cost_actual",
     "carbon_reduce",
-    "rate_carbon",
+    "total_carbon_actual",
 }
-
-CARBON_COLUMNS = ["Month", "carbon emission"]
 
 PERCENT_FORMAT = "0.00%"
 NUMBER_FORMAT = "#,##0.00"
@@ -59,7 +52,7 @@ class MonthlyMetrics:
     total_cost: Decimal
     cost_actual: Decimal
     carbon_reduce: Decimal
-    rate_carbon: Decimal
+    carbon_actual: Decimal
 
     @property
     def profit_increment(self) -> Decimal:
@@ -73,6 +66,13 @@ class MonthlyMetrics:
     @property
     def cost_reduction(self) -> Decimal:
         return Decimal("1") - self.total_cost / self.cost_actual
+
+    @property
+    def rate_carbon(self) -> Decimal:
+        """Carbon reduction relative to the matching original-mode emission."""
+        if self.carbon_actual == 0:
+            return Decimal("0")
+        return self.carbon_reduce / self.carbon_actual
 
 
 def parse_decimal(value: str | None, column: str, row_number: int) -> Decimal:
@@ -161,8 +161,10 @@ def read_summary(input_path: Path) -> list[MonthlyMetrics]:
                     carbon_reduce=parse_decimal(
                         row.get("carbon_reduce"), "carbon_reduce", row_number
                     ),
-                    rate_carbon=parse_decimal(
-                        row.get("rate_carbon"), "rate_carbon", row_number
+                    carbon_actual=parse_decimal(
+                        row.get("total_carbon_actual"),
+                        "total_carbon_actual",
+                        row_number,
                     ),
                 )
             )
@@ -191,40 +193,6 @@ def select_complete_calendar_years(
     return selected
 
 
-def read_carbon_emissions(carbon_input_path: Path) -> dict[str, Decimal]:
-    """Read the wide CAISO year-by-month carbon-emission CSV."""
-    if not carbon_input_path.is_file():
-        raise FileNotFoundError(
-            f"Carbon-emission CSV does not exist: {carbon_input_path}"
-        )
-
-    emissions: dict[str, Decimal] = {}
-    with carbon_input_path.open("r", encoding="utf-8-sig", newline="") as source:
-        reader = csv.reader(source)
-        header = next(reader, None)
-        if header is None or len(header) < 13:
-            raise ValueError(
-                "Carbon-emission CSV must contain a year column followed by Jan.-Dec."
-            )
-
-        for row_number, row in enumerate(reader, start=2):
-            if not row or not row[0].strip():
-                continue
-            year = row[0].strip()
-            if len(year) != 4 or not year.isdigit():
-                raise ValueError(
-                    f"Carbon row {row_number}: invalid year value {row[0]!r}."
-                )
-            for month_number, raw_value in enumerate(row[1:13], start=1):
-                if not raw_value.strip():
-                    continue
-                key = f"{year}{month_number:02d}"
-                emissions[key] = parse_decimal(
-                    raw_value, f"carbon emission for {key}", row_number
-                )
-    return emissions
-
-
 def annual_label(year: str, months: list[str]) -> str:
     """Label a full calendar year or the exact span of a partial year."""
     month_numbers = [int(month[4:]) for month in months]
@@ -249,7 +217,6 @@ def k_column_suffix(k: Decimal) -> str:
 
 def aggregate_rates(
     period_metrics: list[MonthlyMetrics],
-    emissions: dict[str, Decimal],
     period_name: str,
 ) -> tuple[Decimal, Decimal, Decimal, Decimal]:
     """Calculate weighted whole-fleet, controlled-share, cost, and carbon rates."""
@@ -266,16 +233,13 @@ def aggregate_rates(
     total_carbon_reduce = sum(
         (item.carbon_reduce for item in period_metrics), Decimal("0")
     )
-    total_carbon_emission = sum(
-        (emissions[item.month] for item in period_metrics), Decimal("0")
+    total_carbon_actual = sum(
+        (item.carbon_actual for item in period_metrics), Decimal("0")
     )
     if total_profit_actual == 0:
         raise ZeroDivisionError(f"Period {period_name}: total actual profit is zero.")
     if total_cost_actual == 0:
         raise ZeroDivisionError(f"Period {period_name}: total actual cost is zero.")
-    if total_carbon_emission == 0:
-        raise ZeroDivisionError(f"Period {period_name}: total carbon emission is zero.")
-
     profit_increment = total_profit / total_profit_actual - Decimal("1")
     controlled_profit_increment = (
         (total_profit - total_profit_actual)
@@ -284,11 +248,16 @@ def aggregate_rates(
             Decimal("0"),
         )
     )
+    carbon_reduction = (
+        total_carbon_reduce / total_carbon_actual
+        if total_carbon_actual != 0
+        else Decimal("0")
+    )
     return (
         profit_increment,
         controlled_profit_increment,
         Decimal("1") - total_cost / total_cost_actual,
-        total_carbon_reduce / total_carbon_emission,
+        carbon_reduction,
     )
 
 
@@ -326,16 +295,9 @@ def style_sheet(
 
 def write_workbook(
     metrics: list[MonthlyMetrics],
-    emissions: dict[str, Decimal],
     output_path: Path,
 ) -> None:
-    """Create all three requested worksheets and save the workbook."""
-    missing_months = [item.month for item in metrics if item.month not in emissions]
-    if missing_months:
-        raise ValueError(
-            "Carbon-emission CSV is missing input months: " + ", ".join(missing_months)
-        )
-
+    """Create the monthly and annual worksheets and save the workbook."""
     workbook = Workbook()
     k_suffix = k_column_suffix(metrics[0].k)
     monthly_sheet = workbook.active
@@ -389,7 +351,7 @@ def write_workbook(
             controlled_profit_rate,
             cost_rate,
             carbon_rate,
-        ) = aggregate_rates(year_metrics, emissions, label)
+        ) = aggregate_rates(year_metrics, label)
 
         annual_sheet.append(
             [
@@ -407,7 +369,7 @@ def write_workbook(
         controlled_profit_rate,
         cost_rate,
         carbon_rate,
-    ) = aggregate_rates(metrics, emissions, all_months_label)
+    ) = aggregate_rates(metrics, all_months_label)
     annual_sheet.append(
         [
             all_months_label,
@@ -419,12 +381,6 @@ def write_workbook(
     )
     style_sheet(annual_sheet, percentage_columns=(2, 3, 4, 5))
 
-    carbon_sheet = workbook.create_sheet("Monthly Carbon Emission")
-    carbon_sheet.append(CARBON_COLUMNS)
-    for item in metrics:
-        carbon_sheet.append([item.month, float(emissions[item.month])])
-    style_sheet(carbon_sheet, number_columns=(2,))
-
     output_path.parent.mkdir(parents=True, exist_ok=True)
     workbook.save(output_path)
 
@@ -432,11 +388,9 @@ def write_workbook(
 def analyze_summary(
     input_path: Path,
     output_path: Path | None = None,
-    carbon_input_path: Path = DEFAULT_CARBON_INPUT,
 ) -> Path:
     """Analyze the source CSV and write the requested Excel workbook."""
     metrics = select_complete_calendar_years(read_summary(input_path))
-    emissions = read_carbon_emissions(carbon_input_path)
     if output_path is None:
         output_path = RESULTS_DIR / (
             f"analysis_{metrics[0].month}_{metrics[-1].month}.xlsx"
@@ -444,7 +398,7 @@ def analyze_summary(
     if output_path.suffix.lower() != ".xlsx":
         raise ValueError(f"Output path must use the .xlsx extension: {output_path}")
 
-    write_workbook(metrics, emissions, output_path)
+    write_workbook(metrics, output_path)
     return output_path
 
 
@@ -465,18 +419,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Output .xlsx; default is analysis_<start>_<end>.xlsx in Results.",
     )
-    parser.add_argument(
-        "--carbon-input",
-        type=Path,
-        default=DEFAULT_CARBON_INPUT,
-        help=f"CAISO monthly carbon-emission CSV (default: {DEFAULT_CARBON_INPUT})",
-    )
     return parser
 
 
 def main() -> None:
     args = build_parser().parse_args()
-    output_path = analyze_summary(args.input, args.output, args.carbon_input)
+    output_path = analyze_summary(args.input, args.output)
     print(f"Created {output_path}")
 
 
