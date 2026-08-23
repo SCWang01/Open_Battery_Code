@@ -316,9 +316,11 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
     _configure_fig3_style()
     plt.figure(figsize=(10.1 / 2.54, 3.7 / 2.54))
     x=pri0/1000
-    plt.plot(x,Ressum,linewidth=5,color='black')
+    # Convert net battery power to power demand: charging values are positive.
+    plt.plot(x,-Ressum,linewidth=5,color='black')
     plt.xlim(0.06,0.09)
     plt.xticks([0.06, 0.07, 0.08, 0.09])
+
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
     return TArrset
 
