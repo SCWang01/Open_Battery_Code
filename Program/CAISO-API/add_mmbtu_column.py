@@ -1,4 +1,8 @@
-"""Add mmbtu_per_mwh column to CAISO natural gas data files."""
+"""Deprecated compatibility utility for pre-grouping gas workbooks.
+
+Canonical files are now built by ``build_cc_grouped_stacks.py``, which derives
+``mmbtu_per_mwh = Elec_MMBtu / Netgen`` directly during final assembly.
+"""
 
 from pathlib import Path
 import pandas as pd

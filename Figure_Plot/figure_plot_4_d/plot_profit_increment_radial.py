@@ -18,6 +18,7 @@ Integrity:
 
 from __future__ import annotations
 
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
 import re
@@ -523,11 +524,24 @@ def export_figure(fig: mpl.figure.Figure, output_dir: Path) -> None:
         print(f"Warning: PDF is open and could not be replaced: {stem.with_suffix('.pdf')}")
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
+    """Build a backward-compatible CLI with explicit sensitivity paths."""
+    parser = argparse.ArgumentParser(
+        description="Plot Figure 4d profit-increment radial rates."
+    )
+    parser.add_argument("--input", type=Path, default=SOURCE_WORKBOOK)
+    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
+    return parser
+
+
+def main(
+    workbook_path: Path = SOURCE_WORKBOOK,
+    output_dir: Path = OUTPUT_DIR,
+) -> None:
     configure_matplotlib()
-    data = load_profit_increment_data(SOURCE_WORKBOOK)
+    data = load_profit_increment_data(workbook_path)
     figure = create_figure(data)
-    export_figure(figure, OUTPUT_DIR)
+    export_figure(figure, output_dir)
     plt.close(figure)
 
     print(f"Monthly observations: {len(data.monthly_percent)}")
@@ -541,8 +555,9 @@ def main() -> None:
             f"{year}={data.annual_percent[year]:.2f}%" for year in YEARS
         )
     )
-    print(f"Created figures in: {OUTPUT_DIR}")
+    print(f"Created figures in: {output_dir}")
 
 
 if __name__ == "__main__":
-    main()
+    cli_arguments = build_parser().parse_args()
+    main(cli_arguments.input, cli_arguments.output_dir)

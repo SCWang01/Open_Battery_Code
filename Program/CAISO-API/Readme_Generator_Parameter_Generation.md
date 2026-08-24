@@ -2,7 +2,7 @@
 
 > This `CAISO-API` directory turns two official data sources — **EIA-923** (generation & fuel data) and **EIA-860 / EIA-860M** (generator capacity information) — into **monthly operating and cost parameters for every natural-gas unit** in the California CAISO grid.
 >
-> The final products are `Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx`. Each file has one row per "unit × month" combination, containing the following key parameters:
+> `Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx` is the ungrouped base. For 2023--2025, the canonical final products are `../../data/ng_cost/CAISO_NG_Final_YYYY_MM.xlsx`, assembled by `build_cc_grouped_stacks.py` after CA/CT combined-cycle grouping.
 
 | Parameter | Meaning | Source |
 |---|---|---|
@@ -11,6 +11,7 @@
 | `Elec_MMBtu` | Electric fuel consumption heat (MMBtu) | EIA-923 Page 1 |
 | `Quantity` / `Elec_Quantity` | Fuel consumed / electric fuel consumed (mcf) | EIA-923 Page 1 |
 | `Mcf_per_MWh` | Gas consumed per MWh generated (mcf/MWh), **computed here** | `Cost_D_MWH.py` |
+| `mmbtu_per_mwh` | Heat input per MWh (MMBtu/MWh), directly derived as `Elec_MMBtu / Netgen` | `build_cc_grouped_stacks.py` |
 | `average_capacity` | Monthly average output (MW), **computed here** | `Cost_D_MWH.py` |
 | `capacity` | Matched nameplate capacity (MW), **matched here** | `match_monthly.py` + `match_generator_capacity.py` |
 | `Minimum Load (MW)` | Minimum technical output (MW), **matched here** | same as above |
@@ -37,14 +38,17 @@ Month_Agg_Clear/CAISO_NG_YYYY_MM.xlsx
 Month_Agg_Clear/CAISO_NG_YYYY_MM.xlsx  (now contains all unit parameters)
    │ ⑥ calculate_final_monthly.py  —— multiply by monthly gas price -> $_per_mwh, sort by cost ascending
    ▼
-Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx   ★ FINAL OUTPUT
+Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx   (ungrouped base)
+   │ ⑦ build_cc_grouped_stacks.py —— retain non-CA/CT rows; rebuild CA+CT by EIA-860 Unit Code
+   ▼
+../../data/ng_cost/CAISO_NG_Final_YYYY_MM.xlsx   ★ CANONICAL 2023–2025 OUTPUT
 ```
 
 The "capacity–minimum-load matching table" consumed at step ⑤ is produced by the supporting script:
 
 ```
 EIA-860 annual generator tables + EIA-860M (Data/3_1_Generator_Y20xx.xlsx, may_generator2026.xlsx)
-   │ ⑧ match_generator_capacity.py —— match every (Plant ID, Prime Mover) key,
+   │ ⑨ match_generator_capacity.py —— match every (Plant ID, Prime Mover) key,
    │                                  serialize capacity/minimum-load arrays as JSON
    ▼
 Generator_Info/CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx
@@ -124,11 +128,11 @@ Matches the capacity arrays from the matching table to every monthly row by (Pla
 | `write_excel_atomically(...)` | Atomic write, as above |
 | `process_monthly_files(...)` | Iterates all monthly files and updates them in place |
 
-> **Where does the capacity table come from?** See supporting script ⑧ below.
+> **Where does the capacity table come from?** See supporting script ⑨ below.
 
-### ⑥ `calculate_final_monthly.py` — Compute cost & produce the final files
+### ⑥ `calculate_final_monthly.py` — Compute cost & produce the ungrouped base
 
-The last step. It reads the monthly gas price `Month_Agg_Clear/Fuel_Cost.xls` (one `$/Mcf` per month), multiplies it by each row's consumption rate to get the marginal fuel cost, then sorts by cost ascending:
+This step produces the ungrouped base. It reads the monthly gas price `Month_Agg_Clear/Fuel_Cost.xls` (one `$/Mcf` per month), multiplies it by each row's consumption rate to get the marginal fuel cost, then sorts by cost ascending:
 
 ```
 $_per_mwh = Mcf_per_MWh × monthly gas price ($/Mcf)
@@ -145,19 +149,28 @@ $_per_mwh = Mcf_per_MWh × monthly gas price ($/Mcf)
 | `process_range(start, end, input_dir, fuel_cost_file, output_dir)` | Main flow: verifies the gas price covers all months → computes month by month → writes `Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx` |
 | `process_year(year, ...)` | Compatibility wrapper: processes January–December of one year |
 
+### ⑦ `build_cc_grouped_stacks.py` — Assemble the canonical 2023–2025 files
+
+This is the final canonical assembly step. It reads non-CA/CT rows from the
+immutable `Month_Agg_Clear_V2` base, derives `mmbtu_per_mwh` directly from
+`Elec_MMBtu / Netgen`, and rebuilds CA/CT records from uncleaned `Month_Agg`
+data using annual EIA-860 `Plant Code + Unit Code` membership. CA, CT, and any
+existing `CC_GROUPED` rows are excluded before assembly, so rerunning the
+command is idempotent. Outputs are atomically written to `../../data/ng_cost`.
+
 ---
 
 ## III. Supporting Scripts: Feeding the Matching Table
 
-### ⑦ `extract_ca_operable.py` — Extract California operating units
+### ⑧ `extract_ca_operable.py` — Extract California operating units
 
-The annual EIA generator file `Data/3_1_Generator_Y2025.xlsx` is large; this script streams it read-only and copies every row with `State = CA` (plus the intro rows before the header) verbatim into `Generator_Info/3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx` (the default input consumed by ⑧ `match_generator_capacity.py`).
+The annual EIA generator file `Data/3_1_Generator_Y2025.xlsx` is large; this script streams it read-only and copies every row with `State = CA` (plus the intro rows before the header) verbatim into `Generator_Info/3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx` (the default input consumed by ⑨ `match_generator_capacity.py`).
 
 | Function | Purpose |
 |---|---|
 | `extract_ca_operable(input_path, output_path)` | Iterates the `Operable` sheet, locates the `State` column, copies `CA` rows, and returns the row count |
 
-### ⑧ `match_generator_capacity.py` — Build the "capacity–minimum-load matching table"
+### ⑨ `match_generator_capacity.py` — Build the "capacity–minimum-load matching table"
 
 For every (Plant ID, Prime Mover) combination that appears in the CAISO monthly files, it matches all generators of that plant/type in the EIA generator tables under the **same composite key**, storing capacities and minimum loads as JSON arrays.
 
@@ -175,7 +188,7 @@ For every (Plant ID, Prime Mover) combination that appears in the CAISO monthly 
 | `build_capacity_table_from_pairs(...)` | Orchestrates the whole matching flow and returns matching statistics |
 | `build_capacity_table(...)` | Wrapper that reads a plant-operation workbook via `read_operation_pairs` and delegates to `build_capacity_table_from_pairs` |
 
-### ⑨ `summarize_plant_operation_months.py` — Summarize unit operating months
+### ⑩ `summarize_plant_operation_months.py` — Summarize unit operating months
 
 A supporting statistic: for each (Plant ID, Prime Mover) combination, it counts which months between 2023-01 and 2025-12 it appears in, writing `CAISO_NG_Plant_Operation_2023_01_to_2025_12.xlsx`. Useful for observing unit commissioning/retirement dates.
 
@@ -184,13 +197,13 @@ A supporting statistic: for each (Plant ID, Prime Mover) combination, it counts 
 | `collect_operation_months(folder)` | Reads files month by month; a set guarantees the same combination in one month is counted only once |
 | `write_summary(operation_months, path)` | Writes the four-column summary; `Operation Time` is a comma-separated list of `YYYY_MM`, `Total Operation Time` is the month count |
 
-### ⑩ Other files
+### ⑪ Other files
 
 | File | Description |
 |---|---|
 | `kmeans_mmbtu_cluster.py` | **Standalone experimental script, not on the main pipeline**: runs one-dimensional K-means clustering (default 5 clusters) on a single month's `MMBtuPer_Unit` values, output to `Cluster_Result/`, for heat-content-based grouping analysis |
 | `Fule_Cost_Function_Generation.py` | Empty placeholder file (not implemented) |
-| `add_mmbtu_column.py` | Legacy utility: adds a `mmbtu_per_mwh` (= `Elec_MMBtu` / `Netgen`) column to the `CAISO_NG_Final_*.xlsx` files in `data/ng_cost/` for 2023-2025; not part of the main `Month_Agg` pipeline |
+| `add_mmbtu_column.py` | Deprecated compatibility utility; the canonical builder now derives `mmbtu_per_mwh` directly and does not require this script |
 | `Info.md` | Project notes: total MMBtu comes from EIA-923, capacity from EIA-860, plus the unit-conversion formulas |
 
 ---
@@ -250,8 +263,11 @@ python match_generator_capacity.py                  # -> Generator_Info/...Capac
 # 5. Match capacity and Minimum Load (in-place update of Month_Agg_Clear)
 python match_monthly.py
 
-# 6. Compute cost and produce the final files
+# 6. Compute cost and produce the ungrouped base
 python calculate_final_monthly.py                   # -> Month_Agg_Clear_V2/CAISO_NG_Final_YYYY_MM.xlsx
+
+# 7. Rebuild CA/CT by Unit Code and write the canonical 2023–2025 files
+python build_cc_grouped_stacks.py                   # -> ../../data/ng_cost/CAISO_NG_Final_YYYY_MM.xlsx
 ```
 
 > Note: `calculate_final_monthly.py` requires `Month_Agg_Clear/Fuel_Cost.xls` to have a price for every month being processed; the file is read with `xlrd`, so run `pip install xlrd` on first use.

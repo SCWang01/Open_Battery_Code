@@ -19,6 +19,7 @@ Integrity:
 
 from __future__ import annotations
 
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
 import re
@@ -492,9 +493,10 @@ def export_figure(
     fig: mpl.figure.Figure,
     output_directory: str = OUTPUT_DIRECTORY,
     output_stem: str = OUTPUT_STEM,
+    output_root: Path = OUTPUT_ROOT,
 ) -> Path:
     """Export editable vectors plus 720 dpi PNG and compressed TIFF."""
-    output_dir = OUTPUT_ROOT / output_directory
+    output_dir = output_root / output_directory
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = output_dir / output_stem
     fig.savefig(stem.with_suffix(".svg"), transparent=True)
@@ -512,21 +514,36 @@ def export_figure(
     return output_dir
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
+    """Build a backward-compatible CLI with explicit sensitivity paths."""
+    parser = argparse.ArgumentParser(
+        description="Plot combined and standalone Figure 4d radial rates."
+    )
+    parser.add_argument("--input", type=Path, default=SOURCE_WORKBOOK)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    return parser
+
+
+def main(
+    workbook_path: Path = SOURCE_WORKBOOK,
+    output_root: Path = OUTPUT_ROOT,
+) -> None:
     configure_matplotlib()
-    profit_data = load_profit_increment_data(SOURCE_WORKBOOK)
+    profit_data = load_profit_increment_data(workbook_path)
     metric_data = {
-        spec.key: load_metric_data(SOURCE_WORKBOOK, spec) for spec in METRICS
+        spec.key: load_metric_data(workbook_path, spec) for spec in METRICS
     }
     figure = create_combined_figure(profit_data, metric_data)
-    output_dir = export_figure(figure)
+    output_dir = export_figure(figure, output_root=output_root)
     plt.close(figure)
 
     standalone_dirs = []
     for spec in METRICS:
         directory, stem, title = STANDALONE_OUTPUTS[spec.key]
         figure = create_metric_figure(metric_data[spec.key], spec, title)
-        standalone_dirs.append(export_figure(figure, directory, stem))
+        standalone_dirs.append(
+            export_figure(figure, directory, stem, output_root=output_root)
+        )
         plt.close(figure)
 
     print(
@@ -555,4 +572,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    cli_arguments = build_parser().parse_args()
+    main(cli_arguments.input, cli_arguments.output_root)
