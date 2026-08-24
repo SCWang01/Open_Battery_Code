@@ -3,10 +3,11 @@
 Created on Mar 11 08:51:41 2024
 @author:gcg
 
-Charge/discharge mutual exclusion enforced via binary variable:
-    Pc[t] <= Pcmax * charge_state[t]
-    Pd[t] <= Pdmax * (1 - charge_state[t])
-where charge_state[t] ∈ {0,1}: 1 = charging, 0 = discharging.
+Charge/discharge mutual exclusion follows the paper's two-status formulation:
+    Pc[t] <= Pcmax * sc[t]
+    Pd[t] <= Pdmax * sd[t]
+    sc[t] + sd[t] <= 1
+where sc[t], sd[t] ∈ {0,1}; (0,0) is the explicit idle mode.
 """
 #%% Global settings
 
@@ -19,20 +20,22 @@ from openpyxl import load_workbook
 N_t = 24 # time
 WORKBOOK_PATH = 'settings_sequence.xlsx'
 info = load_workbook(WORKBOOK_PATH, data_only=True) # datatable
-setting_table_positive = info.worksheets[0] # positive price data for Fig1
-setting_table_negative = info.worksheets[1] # negative price data for FigS1
+if 'negative price case' not in info.sheetnames:
+    raise KeyError(
+        f"Worksheet 'negative price case' not found in {WORKBOOK_PATH}; "
+        f"available sheets: {info.sheetnames}"
+    )
+setting_table_negative = info['negative price case'] # negative price data for FigS1
 N_price = 6 # six stairs
-pri_pos = np.zeros((N_price,N_t)) # initialize the price matrix
 pri_neg = np.zeros((N_price,N_t)) # initialize the price matrix
 # read price data
 for i in range(N_price):
     for j in range(N_t):
-        pri_pos[i,j] = setting_table_positive.cell(row=i+2, column=j+2).value  # load the positve-case price of Fig 1
-        pri_neg[i,j] = setting_table_negative.cell(row=i+2, column=j+2).value  # load the negatve-case price of Fig S1
+        pri_neg[i,j] = setting_table_negative.cell(row=i+2, column=j+2).value  # load the negative-case price of Fig S1
 info.close()
 
 #%% function
-def Fig1(SOC_ini,SOC_min,Cap,Pcmax,Pdmax,eta,pri):
+def FigS1(SOC_ini,SOC_min,Cap,Pcmax,Pdmax,eta,pri):
     Res= np.zeros((N_price,N_t)) # Initialize the P matrix
     ResE = np.zeros((N_price,N_t+1)) # Initialize the E matrix
     for K in range(N_price):    # for each stair example
@@ -47,9 +50,9 @@ def Fig1(SOC_ini,SOC_min,Cap,Pcmax,Pdmax,eta,pri):
         # set constraints
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t] <= Pcmax * sc[t]   for t in range(N_t)), 'Pc_mode')
-        model.addConstrs((Pd[t] <= Pdmax * sd[t]   for t in range(N_t)), 'Pd_mode')
-        model.addConstrs((sc[t] + sd[t] <= 1       for t in range(N_t)), 'mutually_exclusive_state')
+        model.addConstrs((Pc[t] <= Pcmax * sc[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax * sd[t] for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         model.setObjective(((sum(pri[K,t]*((Pd[t]-Pc[t])) for t in range(0, N_t))) ), GRB.MAXIMIZE)
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -113,11 +116,9 @@ def save_and_verify_results(workbook_path, power, soc):
         saved_workbook.close()
 
 #%% main
-#Fig1
-Res_pos, ResE_pos = Fig1(14/22,0,22,5,5,1,pri_pos)# sequence is Res_pos
 
 #Fig S1
-# Res_neg, ResE_neg = Fig1(0.5,0.1,2,0.6,0.6,0.9,pri_neg)# sequence is Res_neg
-save_and_verify_results(WORKBOOK_PATH, Res_pos, ResE_pos)
+Res_neg, ResE_neg = FigS1(0.5,0.1,2,0.6,0.6,0.9,pri_neg)# sequence is Res_neg
+save_and_verify_results(WORKBOOK_PATH, Res_neg, ResE_neg)
 
 # %%

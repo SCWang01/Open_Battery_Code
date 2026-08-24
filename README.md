@@ -214,8 +214,8 @@ Repeated runs overwrite files with identical parameter-derived names.
 
 | Figure | Directory | Source data | Current reproducible output |
 |---|---|---|---|
-| Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1_binary.py` computes `Res_pos` and `ResE_pos` and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
-| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1_binary.py` computes `Res_neg` and `ResE_neg` and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
+| Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1.py` solves the six stair examples with the ideal-battery (M1-equivalent, eta=1, no binary modes) formulation, computes `Res_pos` and `ResE_pos`, and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
+| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFigS1_binary.py` solves the six stair examples with the two-status (binary mutual-exclusion, eta=0.9) M2 formulation, computes `Res_neg` and `ResE_neg`, and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
 | Figures 2 and 3 | `Figure_Plot/figure_plot_2_3/` | `settings.xlsx`, `tep2023.npy`, and `lmp2023.npy` | Generates the individual Figure 2 and Figure 3 PNG panels in `Figs/`; final composite assembly is not scripted |
 | Figure 4a–b | `Figure_Plot/figure_plot_4_a_b/` | Classified May 2025 demand-supply workbook in `source_data/` | Exports the state-distribution source CSV and composite PNG, SVG, and PDF |
 | Figure 4c | `Figure_Plot/figure_plot_4_c/` | May 2025 classified demand-supply workbook and CAISO price CSV in `input/` | Exports an auditable source CSV and PNG, SVG, and PDF; see the directory's `README.md` |
@@ -228,15 +228,15 @@ The copies stored inside each figure directory are the figure source-data snapsh
 
 ```powershell
 Push-Location Figure_Plot/figure_1
-python journalcasestudyFig1andFigS1_binary.py
+python journalcasestudyFig1.py
 Pop-Location
 
 Push-Location Figure_Plot/figure_plot_S1
-python journalcasestudyFig1andFigS1_binary.py
+python journalcasestudyFigS1_binary.py
 Pop-Location
 ```
 
-Each script solves the six stair-example optimisations and writes the resulting Power and SOC arrays back into `settings_sequence.xlsx`. Neither script exports a rendered figure file.
+Each script solves the six stair-example optimisations and writes the resulting Power and SOC arrays back into `settings_sequence.xlsx`. Figure 1 uses the ideal-battery (M1-equivalent) formulation with eta=1 and no binary mode variables; Supplementary Figure S1 uses the two-status M2 formulation with binary mutual exclusion and eta=0.9. Each script reads its price table by worksheet name (`positive price case` for Fig 1, `negative price case` for Fig S1). Neither script exports a rendered figure file.
 
 ### Figures 2 and 3
 
