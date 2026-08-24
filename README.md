@@ -10,7 +10,7 @@ This repository provides the data, code, model outputs, and figure source files 
 <repo-root>/
 |-- Program/
 |   |-- V5_Case_Study.py        # Main V5 simulation and export workflow
-|   |-- cost_calculation.py     # Natural-gas cost and marginal-price models
+|   |-- cost_calculation.py     # Natural-gas cost, marginal-price, and carbon-emission models
 |   |-- analyze_summary.py      # Monthly and annual Excel analysis
 |   |-- Random_Generator.py     # Fixed price-error scenario generation/loading
 |   `-- CAISO-API/              # EIA/CAISO gas-unit parameter pipeline
@@ -20,7 +20,12 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- ng_cost/                # Monthly natural-gas merit-order stacks
 |   |-- ng_data/                # Hourly natural-gas generation
 |   |-- price/                  # CAISO market-price inputs
-|   `-- random_data/            # Fixed price-error scenarios (manifest + .npy)
+|   |-- random_data/            # Fixed price-error scenarios (manifest + .npy)
+|   |-- settings.xlsx           # Figure 2/3 price-sequence source data
+|   |-- settings_sequence.xlsx  # Figure 1/S1 price-sequence source data
+|   |-- lmp2023.npy             # Figure 2_q 2023 LMP source array
+|   |-- tep2023.npy             # Figure 2_q 2023 temperature source array
+|   `-- CAISO-historical-co2-20260720.csv  # Retained historical-emissions source
 |-- Results/                    # Committed model outputs and analysis workbook
 |-- Figure_Plot/                # Figure scripts, source data, and rendered assets
 `-- README.md                   # Reproducibility-oriented project documentation
@@ -142,20 +147,20 @@ k = 0.2
 COST_MODE = "exact"
 ```
 
-`k` must be in `(0, 1]`. `COST_MODE="exact"` uses the monthly piecewise merit-order data in `data/ng_cost/`; the retained `quadratic` compatibility mode requires its fitted coefficient workbook.
+`k` must be in `(0, 1]`. `COST_MODE="exact"` uses the monthly piecewise merit-order data in `data/ng_cost/`; the retained `quadratic` compatibility mode requires `Program/Fuel_Coe.xlsx`, only `exact` runs end-to-end with the committed data.
 
 The `eta95%` fragment in monthly CSV filenames is currently hard-coded. Changing `eta` without also changing the naming logic can overwrite an existing file whose name still contains `eta95%`. Preserve required outputs before changing model parameters or file-naming code.
 
 ## Model workflow
 
-`Program/V5_Case_Study.py` performs the following steps for each selected month:
+`Program/V5_Case_Study.py` performs the following steps for each selected month (entry point `run_one_month`, batched by `run_all_months`):
 
-1. load market price, historical battery output, renewable-curtailment, and natural-gas generation data;
-2. reconstruct the equivalent fleet capacity, power limits, and initial state of charge;
-3. optimise the controllable `k` fraction over rolling horizons and construct stair bidding functions;
-4. combine the market-cleared controllable output with the historical passive fraction;
-5. calculate historical and counterfactual battery profit, natural-gas generation and cost, renewable-curtailment absorption, and modelled carbon reduction; and
-6. export hourly arrays, monthly tables, and summary metrics to `Results/`.
+1. load market price, historical battery output, renewable-curtailment, and natural-gas generation data — `readdata`, with the fixed price-error scenario loaded by `load_monthly_price_error_data` (`Program/Random_Generator.py`);
+2. reconstruct the equivalent fleet capacity, power limits, and initial state of charge — `readdata` (returns `Cap`, `Pdmax`, `Pcmax`, `SINI`);
+3. optimise the controllable `k` fraction over rolling horizons and construct stair bidding functions — `calculate_profit` → `biddingNEW` (Gurobi MILP, one solve per candidate price) → `build_dsfunction`;
+4. combine the market-cleared controllable output with the historical passive fraction — `calculate_main` (`P_method = P_cleared_controlled + (1-k) * battery`);
+5. calculate historical and counterfactual battery profit, natural-gas generation and cost, renewable-curtailment absorption, and modelled carbon reduction — `calculate_profit_actual` for the baselines and `calculate_cost_and_carbon` for the gas/curtailment/carbon deltas, with cost, marginal price, and carbon from `Program/cost_calculation.py`; and
+6. export hourly arrays, monthly tables, and summary metrics to `Results/` — `run_one_month` writes the monthly CSV, `ncd_*.npy`, and `Pcleared_*.npy` (plus the optional `dsfunction_*.xlsx` enriched by `Marginal_Check`); `run_all_months` writes the aggregated `summary_*.csv`; `Program/analyze_summary.py` builds the monthly/annual `analysis_*.xlsx` workbook from that summary.
 
 If any hourly natural-gas observation is missing, the model fills that gas value
 with zero and records the date as a skipped gas date. To preserve calendar
@@ -179,7 +184,7 @@ Natural-gas costs are evaluated consistently with the selected cost mode through
 | Price-error scenarios | `data/random_data/` | Fixed standard-normal price-error innovations (`price_error_z_*.npy` + `manifest.json`) used by the model's forecast-error sampling |
 | Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Retained source data for independent historical-emissions analysis |
 
-Replacement monthly price files must include the additional 23-hour rolling horizon required at the end of the month. The committed price files contain the required additional 276 five-minute observations.
+Replacement monthly price files must include the additional rolling horizon required at the end of the month: `biddingNEW` reads `price[t:t+N_t]`, so the last in-month hour needs 23 subsequent hourly prices. The committed price files contain one full extra day beyond each month (288 five-minute observations, i.e. 24 hourly values), which covers that horizon.
 
 ### Model outputs
 
