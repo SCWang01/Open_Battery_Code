@@ -29,20 +29,21 @@ from typing import Iterable, Iterator, Sequence
 from openpyxl import Workbook, load_workbook
 
 
-DEFAULT_MONTHLY_DIR = Path("Month_Agg_Clear")
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_MONTHLY_DIR = BASE_DIR / "Month_Agg_Clear"
 DEFAULT_START_YEAR_MONTH = (2023, 1)
 DEFAULT_END_YEAR_MONTH = (2026, 4)
-DEFAULT_GENERATOR_FILE = Path(
-    "Generator_Info/3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx"
+DEFAULT_GENERATOR_FILE = (
+    BASE_DIR / "Generator_Info" / "3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx"
 )
 DEFAULT_ANNUAL_GENERATOR_FILES = (
-    Path("Data/3_1_Generator_Y2023.xlsx"),
-    Path("Data/3_1_Generator_Y2024.xlsx"),
-    Path("Data/3_1_Generator_Y2025.xlsx"),
+    BASE_DIR / "Data" / "3_1_Generator_Y2023.xlsx",
+    BASE_DIR / "Data" / "3_1_Generator_Y2024.xlsx",
+    BASE_DIR / "Data" / "3_1_Generator_Y2025.xlsx",
 )
-DEFAULT_SUPPLEMENTAL_GENERATOR_FILE = Path("Data/may_generator2026.xlsx")
-DEFAULT_OUTPUT_FILE = Path(
-    "Generator_Info/CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx"
+DEFAULT_SUPPLEMENTAL_GENERATOR_FILE = BASE_DIR / "Data" / "may_generator2026.xlsx"
+DEFAULT_OUTPUT_FILE = (
+    BASE_DIR / "Generator_Info" / "CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx"
 )
 ANNUAL_SHEET_NAMES = ("Operable", "Retired and Canceled")
 SUPPLEMENTAL_SHEET_NAMES = ("Operating", "Retired")

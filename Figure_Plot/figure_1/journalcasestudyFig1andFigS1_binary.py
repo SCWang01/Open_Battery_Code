@@ -115,7 +115,7 @@ def save_and_verify_results(workbook_path, power, soc):
 Res_pos, ResE_pos = Fig1(14/22,0,22,5,5,1,pri_pos)# sequence is Res_pos
 
 #Fig S1
-# Res_neg, ResE_neg = Fig1(0.5,0.1,2,0.6,0.6,0.9,pri_neg)# sequence is Res_pos
+# Res_neg, ResE_neg = Fig1(0.5,0.1,2,0.6,0.6,0.9,pri_neg)# sequence is Res_neg
 save_and_verify_results(WORKBOOK_PATH, Res_pos, ResE_pos)
 
 # %%

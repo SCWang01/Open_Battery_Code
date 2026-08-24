@@ -8,7 +8,7 @@ from ``Month_Agg_Clear/Fuel_Cost.xls`` and multiplies each month's price by
     $_per_mwh = monthly fuel cost ($/Mcf) * Mcf_per_MWh
 
 Rows are sorted from lowest to highest ``$_per_mwh`` and written as
-``CAISO_NG_Final_YYYY_MM.xlsx`` in ``Month_Agg_Clear_v2``.  Rows with a blank
+``CAISO_NG_Final_YYYY_MM.xlsx`` in ``Month_Agg_Clear_V2``.  Rows with a blank
 or negative ``$_per_mwh`` are removed before sorting and writing.
 """
 
@@ -26,7 +26,7 @@ import pandas as pd
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT_DIR = BASE_DIR / "Month_Agg_Clear"
 DEFAULT_FUEL_COST_FILE = DEFAULT_INPUT_DIR / "Fuel_Cost.xls"
-DEFAULT_OUTPUT_DIR = BASE_DIR / "Month_Agg_Clear_v2"
+DEFAULT_OUTPUT_DIR = BASE_DIR / "Month_Agg_Clear_V2"
 DEFAULT_START = (2023, 1)
 DEFAULT_END = (2026, 4)
 FUEL_COST_SHEET = "Data 1"

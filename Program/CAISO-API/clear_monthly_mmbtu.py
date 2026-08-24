@@ -8,7 +8,7 @@ import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT_DIR = BASE_DIR / "Month_Agg"
-DEFAULT_OUTPUT_DIR = BASE_DIR / "Month_Agg_clear"
+DEFAULT_OUTPUT_DIR = BASE_DIR / "Month_Agg_Clear"
 TARGET_COLUMN = "MMBtuPer_Unit"
 
 

@@ -100,7 +100,7 @@ Thus, the confidence interval has 31 daily observations and 30 degrees of freedo
 
 - The left y-axis shows state counts from 0 to 35.
 - The right y-axis shows price from 0 to 60 USD/MWh.
-- The x-axis contains the 24 clock hours, from 00:00 to 23:00.
+- The x-axis contains the 24 clock hours (0 to 23, labelled as integers).
 - State counts are drawn as stacked bars.
 - The average price is drawn as a magenta line with diamond markers.
 - The 90% confidence interval is drawn as a semi-transparent magenta hatched band.

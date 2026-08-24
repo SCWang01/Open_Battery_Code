@@ -78,7 +78,7 @@ EIA-923 Page 1 stores 12 months as separate column groups (e.g. `Quantity\nJanua
 
 | Function | Purpose |
 |---|---|
-| `clean_header(column)` | Collapses two-line column names (`Netgen\nJune`) into single-line strings |
+| `clean_header(column)` | Collapses multi-line column names (e.g. static columns such as `Balancing\nAuthority Code`) into single-line strings |
 | `split_monthly(source, output_dir, sheet)` | Validates the file holds exactly one year; for each of the 12 months extracts the six metric columns `[Quantity, Elec_Quantity, MMBtuPer_Unit, Tot_MMBtu, Elec_MMBtu, Netgen]` plus the static columns, prepends `YEAR`/`MONTH`, and writes `Month_Agg/CAISO_NG_YYYY_MM.xlsx` |
 
 ### ③ `clear_monthly_mmbtu.py` — Clean invalid rows
@@ -105,6 +105,7 @@ average_capacity = Netgen / (days in the actual month × 24)
 | `calculate_average_capacity(frame)` | First validates `YEAR`/`MONTH` as a single valid integer pair, then uses `calendar.monthrange` for the day count → hours; `Netgen / hours` gives average output |
 | `write_excel_atomically(frame, file)` | **Atomic write**: saves to a temp file first, then `os.replace` over the target so a half-written file can never be left behind |
 | `process_workbook(input, output)` | Combines the calculation and row removal, updating `Month_Agg_Clear` files in place |
+| `process_monthly_files(input_dir, output_dir)` | Directory-level entry point called by `main()`: iterates every monthly file and updates them in place |
 
 ### ⑤ `match_monthly.py` — Match nameplate capacity & minimum load
 
@@ -150,7 +151,7 @@ $_per_mwh = Mcf_per_MWh × monthly gas price ($/Mcf)
 
 ### ⑦ `extract_ca_operable.py` — Extract California operating units
 
-The annual EIA generator file `Data/3_1_Generator_Y20xx.xlsx` is large; this script streams it read-only and copies every row with `State = CA` (plus the intro rows before the header) verbatim into `Data/3_1_Generator_Y20xx__CA_Operable.xlsx`.
+The annual EIA generator file `Data/3_1_Generator_Y2025.xlsx` is large; this script streams it read-only and copies every row with `State = CA` (plus the intro rows before the header) verbatim into `Generator_Info/3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx` (the default input consumed by ⑧ `match_generator_capacity.py`).
 
 | Function | Purpose |
 |---|---|
@@ -167,15 +168,16 @@ For every (Plant ID, Prime Mover) combination that appears in the CAISO monthly 
 | `read_operation_pairs(operation_path)` | Reads the (Plant ID, Prime Mover) list from a plant-operation workbook (optional entry point) |
 | `read_monthly_operation_pairs(monthly_dir, start, end)` | **Default entry point**: iterates all monthly files from 2023-01 to 2026-04 and collects deduplicated (Plant, Mover) keys |
 | `collect_generator_values(path, requested_keys, ...)` | Streams one EIA generator workbook, keeping only the requested keys; appends each matched row's capacity/minimum-load to the two arrays |
-| `collect_annual_generator_values(paths, keys)` | Checks the 2023/2024/2025 annual files' `Operable` and `Retired and Canceled` sheets in order, **stopping at the first match**; each later year only fills keys missed earlier |
+| `collect_annual_generator_values(paths, keys)` | Checks the 2023/2024/2025 annual files' `Operable` and `Retired and Canceled` sheets in order, appending every matching row within a year; each later year only fills keys missed in earlier years |
 | `collect_supplemental_generator_values(path, keys)` | Backfills remaining misses from EIA-860M `may_generator2026.xlsx` (`Operating`/`Retired` sheets, NG rows only; that workbook has no minimum-load field, so `None` placeholders keep both arrays aligned) |
 | `serialize_array(values)` | Serializes a capacity array as a JSON string into an Excel cell (e.g. `[16.7, 16.7, …]`; `[]` when unmatched) |
 | `write_output(pairs, values, path)` | Writes the four-column matching table `Generator_Info/CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx` and tallies unmatched rows |
 | `build_capacity_table_from_pairs(...)` | Orchestrates the whole matching flow and returns matching statistics |
+| `build_capacity_table(...)` | Wrapper that reads a plant-operation workbook via `read_operation_pairs` and delegates to `build_capacity_table_from_pairs` |
 
 ### ⑨ `summarize_plant_operation_months.py` — Summarize unit operating months
 
-A supporting statistic: for each (Plant ID, Prime Mover) combination, it counts which months between 2023-01 and 2026-04 it appears in, writing `CAISO_NG_Plant_Operation_2023_01_to_2026_04.xlsx`. Useful for observing unit commissioning/retirement dates.
+A supporting statistic: for each (Plant ID, Prime Mover) combination, it counts which months between 2023-01 and 2025-12 it appears in, writing `CAISO_NG_Plant_Operation_2023_01_to_2025_12.xlsx`. Useful for observing unit commissioning/retirement dates.
 
 | Function | Purpose |
 |---|---|
@@ -188,6 +190,7 @@ A supporting statistic: for each (Plant ID, Prime Mover) combination, it counts 
 |---|---|
 | `kmeans_mmbtu_cluster.py` | **Standalone experimental script, not on the main pipeline**: runs one-dimensional K-means clustering (default 5 clusters) on a single month's `MMBtuPer_Unit` values, output to `Cluster_Result/`, for heat-content-based grouping analysis |
 | `Fule_Cost_Function_Generation.py` | Empty placeholder file (not implemented) |
+| `add_mmbtu_column.py` | Legacy utility: adds a `mmbtu_per_mwh` (= `Elec_MMBtu` / `Netgen`) column to the `CAISO_NG_Final_*.xlsx` files in `data/ng_cost/` for 2023-2025; not part of the main `Month_Agg` pipeline |
 | `Info.md` | Project notes: total MMBtu comes from EIA-923, capacity from EIA-860, plus the unit-conversion formulas |
 
 ---

@@ -12,13 +12,15 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- V5_Case_Study.py        # Main V5 simulation and export workflow
 |   |-- cost_calculation.py     # Natural-gas cost and marginal-price models
 |   |-- analyze_summary.py      # Monthly and annual Excel analysis
+|   |-- Random_Generator.py     # Fixed price-error scenario generation/loading
 |   `-- CAISO-API/              # EIA/CAISO gas-unit parameter pipeline
 |-- data/
 |   |-- battery_data/           # Historical CAISO battery output
 |   |-- curtailment/            # Renewable-curtailment inputs
 |   |-- ng_cost/                # Monthly natural-gas merit-order stacks
 |   |-- ng_data/                # Hourly natural-gas generation
-|   `-- price/                  # CAISO market-price inputs
+|   |-- price/                  # CAISO market-price inputs
+|   `-- random_data/            # Fixed price-error scenarios (manifest + .npy)
 |-- Results/                    # Committed model outputs and analysis workbook
 |-- Figure_Plot/                # Figure scripts, source data, and rendered assets
 `-- README.md                   # Reproducibility-oriented project documentation
@@ -166,9 +168,10 @@ Natural-gas costs are evaluated consistently with the selected cost mode through
 | Renewable curtailment | `data/curtailment/` | Hourly curtailed renewable energy |
 | Natural-gas generation | `data/ng_data/` | Hourly historical gas generation |
 | Natural-gas cost stack | `data/ng_cost/` | Monthly plant-level merit-order inputs |
+| Price-error scenarios | `data/random_data/` | Fixed standard-normal price-error innovations (`price_error_z_*.npy` + `manifest.json`) used by the model's forecast-error sampling |
 | Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Retained source data for independent historical-emissions analysis |
 
-Replacement monthly price files must include the additional 24-hour rolling horizon required at the end of the month. The committed price files contain the required additional 288 five-minute observations.
+Replacement monthly price files must include the additional 23-hour rolling horizon required at the end of the month. The committed price files contain the required additional 276 five-minute observations.
 
 ### Model outputs
 

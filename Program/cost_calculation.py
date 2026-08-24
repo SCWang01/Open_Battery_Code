@@ -157,7 +157,8 @@ def _load_quad_coefficients():
 
     Returns a dict keyed by ``(year, month)`` mapping to the ``(a, b, c)``
     coefficients of ``cost = a * gas**2 + b * gas + c``.  The workbook is
-    produced by Qua_Fit.py and holds one row per month.
+    produced by the external Qua_Fit.py script (not included in this
+    repository) and holds one row per month.
     """
     global _quad_coe_cache
     if _quad_coe_cache is None:
@@ -177,7 +178,8 @@ def quad_cost(gas_generation, year, month):
     """Monthly quadratic natural-gas generation cost from Fuel_Coe.xlsx.
 
     Evaluates ``cost = a * gas**2 + b * gas + c`` using the per-month
-    coefficients fitted by Qua_Fit.py.  Mirrors :func:`ng_cost` at the zero
+    coefficients fitted by the external Qua_Fit.py script (not included in
+    this repository).  Mirrors :func:`ng_cost` at the zero
     boundary: ``gas <= 0`` returns 0.  Values above the fitted ``gas_max`` are
     extrapolated by the quadratic itself (convex, since ``a > 0``).
 

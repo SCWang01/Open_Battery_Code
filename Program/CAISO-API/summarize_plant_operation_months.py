@@ -4,7 +4,7 @@ Input files:
     Month_Agg_Clear/CAISO_NG_YYYY_MM.xlsx
 
 Period:
-    2024-06 through 2025-05 (inclusive)
+    2023-01 through 2025-12 (inclusive)
 
 Output columns:
     Plant ID | Prime Mover | Operation Time | Total Operation Time
@@ -25,10 +25,11 @@ from typing import Iterable
 from openpyxl import Workbook, load_workbook
 
 
-DEFAULT_FOLDER = Path("Month_Agg_Clear")
-DEFAULT_OUTPUT_NAME = "CAISO_NG_Plant_Operation_2023_01_to_2026_04.xlsx"
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_FOLDER = BASE_DIR / "Month_Agg_Clear"
+DEFAULT_OUTPUT_NAME = "CAISO_NG_Plant_Operation_2023_01_to_2025_12.xlsx"
 START_YEAR_MONTH = (2023, 1)
-END_YEAR_MONTH = (2026, 4)
+END_YEAR_MONTH = (2025, 12)
 
 
 def iter_year_months(
@@ -186,8 +187,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Group CAISO natural-gas records by Plant ID and Reported Prime "
-            "Mover, then summarize the months present from 2024-06 through "
-            "2025-05."
+            "Mover, then summarize the months present from 2023-01 through "
+            "2025-12."
         )
     )
     parser.add_argument(

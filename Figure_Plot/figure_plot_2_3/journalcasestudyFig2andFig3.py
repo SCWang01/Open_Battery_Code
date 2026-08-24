@@ -91,7 +91,7 @@ def Fig2_e_h_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
         
 def Fig2_f_i_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     Res0= np.zeros((N_price))
-    pri0 = np.linspace(min(pri)*1.2, max(pri)*1.2, N_price) # traverse the price; both bounds use 1.2× to stay within the negative-price range
+    pri0 = np.linspace(min(pri)*1.2, max(pri)*1.2, N_price) # traverse the price; both bounds are scaled by 1.2x to widen the sweep beyond the observed prices
     for K in range(N_price):    
         # build the optimization
         model = gp.Model()    

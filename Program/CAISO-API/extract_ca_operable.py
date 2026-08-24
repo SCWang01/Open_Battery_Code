@@ -13,8 +13,11 @@ from pathlib import Path
 from openpyxl import Workbook, load_workbook
 
 
-DEFAULT_INPUT = Path("Data/3_1_Generator_Y2024.xlsx")
-DEFAULT_OUTPUT = Path("Data/3_1_Generator_Y2024__CA_Operable.xlsx")
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_INPUT = BASE_DIR / "Data" / "3_1_Generator_Y2025.xlsx"
+DEFAULT_OUTPUT = (
+    BASE_DIR / "Generator_Info" / "3_1_Generator_Y2025_Early_Release_CA_Operable.xlsx"
+)
 SHEET_NAME = "Operable"
 
 

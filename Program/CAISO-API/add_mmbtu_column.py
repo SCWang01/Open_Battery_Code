@@ -43,8 +43,8 @@ def add_mmbtu_column(file_path):
         return False
 
 def main():
-    """Process all CAISO NG files for 2023-2025."""
-    data_dir = Path(__file__).parent / 'data' / 'ng_cost'
+    """Add mmbtu_per_mwh to CAISO_NG_Final files (2023-2025) in data/ng_cost."""
+    data_dir = Path(__file__).resolve().parent.parent.parent / 'data' / 'ng_cost'
 
     # Find all files for 2023-2025
     files = []

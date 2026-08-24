@@ -149,7 +149,8 @@ def classify_p_ess(
 
     The caller supplies the segment being classified.  This is important
     because column 3 may legitimately contain the same P_ESS value in more
-    than one segment; classification must use each segment's own columns 4-7.
+    than one segment; classification must use each segment's own columns 4, 5,
+    and 7.
     """
     p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
 

@@ -1,4 +1,8 @@
-"""Split Page 1 of CAISO_NG.xlsx into one tidy XLSX file per month."""
+"""Split Page 1 of CAISO_NG.xlsx into one tidy XLSX file per month.
+
+By default this splits ``Data/CAISO_NG_2023.xlsx``; pass ``--source`` to split
+another year's workbook.
+"""
 
 import argparse
 from pathlib import Path

@@ -4,7 +4,7 @@ Created on Apr 22nd, 2025
 
 @author:gcg
 
-Variant V6: an updated version of V5.  V3 collapses the entire CAISO battery
+Variant V5.  V3 collapses the entire CAISO battery
 fleet into a single equivalent battery and assumes 100% of it bids optimally
 through one aggregated demand function, which is unrealistic.  V5 splits the
 aggregate fleet with a ratio k in (0, 1]:
@@ -21,14 +21,10 @@ this reproduces V3 exactly.  Data source and cost path are identical to V3:
 the hourly CAISO natural-gas data in ng_data/gasYYYYMM.xlsx with the 'exact'
 piecewise merit-order cost model.
 
-V6 enforces mutually exclusive charging and discharging inside each bidding
-optimization with binary charge/discharge states.  Solver-scale residuals are
-normalized during post-solve power classification.
+The bidding optimization enforces mutually exclusive charging and discharging
+through binary charge/discharge states.  Solver-scale residuals are normalized
+during post-solve power classification.
 
-NOTE: every exported file keeps the "V5" filename tag.  The downstream
-analysis and figure scripts hard-code V5 file names, so the V6 results are
-written under the V5 name to drop into the existing pipeline without
-restructuring it.
 """
 
 from cost_calculation import gas_cost, gas_marginal_price, ng_carbon_emission
@@ -57,6 +53,8 @@ from openpyxl import load_workbook
 #%% Global settings
 
 N_t = RANDOM_N_T  # The number of time intervals in one day
+# Aliases of the Random_Generator constants: change them there, not here, so
+# the scenario data and the study period stay consistent.
 START_YEAR_MONTH = RANDOM_START_YEAR_MONTH
 END_YEAR_MONTH = RANDOM_END_YEAR_MONTH
 year_month_list = [
@@ -424,8 +422,8 @@ def clean_power(value, power_max, abs_tol=1e-3):
     """Remove solver-scale residual power during post-solve processing.
 
     The optimization model keeps its original solution.  This helper only
-    normalizes values used by the equivalent-power correction and output
-    classification, using a fixed absolute threshold.
+    normalizes values used for output classification, using a fixed absolute
+    threshold.
     """
     if power_max <= 0 or abs(value) <= abs_tol:
         return 0.0
@@ -572,7 +570,8 @@ def calculate_profit(
                 priceN_t_with_error[tt] = priceN_t[tt]
                 continue
             # The fixed-price forecasts used by biddingNEW start at tt=1.
-            # Increase the error from 2.0% at horizon 1 to 4.2% at horizon 23.
+            # The base error is meanstd% (2% by default) at horizon 1, growing
+            # by 0.1 percentage point per horizon step.
             rate = meanstd / 100 + (tt - 1) * 0.001
             noise = price_error_z[t, tt] * rate
             priceN_t_with_error[tt] = np.array(priceN_t[tt]*(1 + noise)) # generate the prices with errors
@@ -652,23 +651,8 @@ def carbon_emission_calculation(gas_generation, year_value, month_value):
     return ng_carbon_emission(gas_generation, year_value, month_value)
 
 
-# monthly quadratic fuel-cost coefficients: fuel_cost($) = a*gas(MW)^2 + b*gas(MW) + c
-# fitted per month from CAISO natural-gas generation and fuel-cost data
-FUEL_COST_PARAMS_PATH = (
-    PROJECT_ROOT / 'Natural_Gas_Fuel_Cost' / 'Solution_Cost'
-    / 'fit_cost_coefficients.xlsx'
-)
-_fuel_cost_cache = None
-
-def load_fuel_cost_params():
-    """Load and memoize the monthly quadratic fuel-cost coefficients.
-    Returns {period 'yyyymm' (str): (a, b, c)}."""
-    global _fuel_cost_cache
-    if _fuel_cost_cache is None:
-        df = pd.read_excel(FUEL_COST_PARAMS_PATH)
-        _fuel_cost_cache = {str(p): (float(a), float(b), float(c))
-                            for p, a, b, c in zip(df['period'], df['a'], df['b'], df['c'])}
-    return _fuel_cost_cache
+# The 'quadratic' cost mode is implemented in cost_calculation.py
+# (quad_cost / quad_marginal_price), which reads Program/Fuel_Coe.xlsx.
 
 # calculate the generation cost and the carbon emission
 def calculate_cost_and_carbon(gas_actual,curtailment, PESS_method,PESS_actual,N_t,Nday):
@@ -812,13 +796,12 @@ def calculate_main(
 def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     """Compute a single month (0-based index into monthlist) and return its
     summary dict.  When ``return_detection_counts`` is true, also return the
-    month's simultaneous-charge/discharge counts as a second dict.
+    month's legacy detection placeholders as a second dict.
 
     Sets the module-level globals the other functions read, writes the per-month
     CSV / .npy files, and returns the row that goes into the summary table.  This
-    is the single source of truth for the per-month pipeline; both
-    run_all_months and the distributed driver call it, so edits here apply to
-    sequential and distributed modes alike.
+    is the single source of truth for the per-month pipeline; run_all_months
+    calls it, so edits here apply to every month.
     """
     global year, month, monthnum, N_day
 
@@ -919,7 +902,7 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
 
 
 def write_detection_summary(detection_rows, summary_path):
-    """Write monthly simultaneous-charge/discharge counts beside a summary."""
+    """Write monthly legacy detection placeholders beside a summary."""
     summary_name = summary_path.name
     if summary_name.startswith('summary_'):
         summary_name = summary_name[len('summary_'):]

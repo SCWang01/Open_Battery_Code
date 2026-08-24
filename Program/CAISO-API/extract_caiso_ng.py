@@ -68,7 +68,7 @@ def find_header_row(source_file: Path, sheet_name: str, required_fields: list[st
 
 
 def read_eia_page(source_file: Path, sheet_name: str, required_fields: list[str]) -> pd.DataFrame:
-    """Read one EIA page and remove the repeated early-release warning column."""
+    """Read one EIA page, remove the repeated early-release warning column, and unify column names."""
     header_row = find_header_row(source_file, sheet_name, required_fields)
     frame = pd.read_excel(source_file, sheet_name=sheet_name, header=header_row)
 

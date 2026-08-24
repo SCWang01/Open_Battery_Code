@@ -3,7 +3,7 @@
 The default inputs are:
 
 * ``Month_Agg_Clear/CAISO_NG_YYYY_MM.xlsx``
-* ``Month_Agg_Clear/CAISO_NG_Plant_Capacity_Minimum_Load.xlsx``
+* ``Generator_Info/CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx``
 
 The monthly files are updated in place with ``capacity`` and
 ``Minimum Load (MW)``.  Capacity is the smallest leading cumulative sum of
@@ -30,7 +30,7 @@ import pandas as pd
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_MONTHLY_DIR = BASE_DIR / "Month_Agg_Clear"
 DEFAULT_CAPACITY_FILE = (
-    DEFAULT_MONTHLY_DIR / "CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx"
+    BASE_DIR / "Generator_Info" / "CAISO_NG_Plant_Capacity_Minimum_Load_2023_01_to_2026_04.xlsx"
 )
 DEFAULT_PATTERN = "CAISO_NG_????_??.xlsx"
 
