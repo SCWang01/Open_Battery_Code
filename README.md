@@ -237,7 +237,7 @@ The script writes the individual panels to `Figure_Plot/figure_plot_2_3/Figs/`.
 Three auxiliary scripts in the same directory are not called by `journalcasestudyFig2andFig3.py` but support standalone use:
 
 - `price_plot_fig_2.py` — plots the three input price series for Figure 2 as separate PNG files in `Figs/`.
-- `price_plot_fig_3.py` — plots the three price-series sets used by `Fig3_d`, `Fig3_e`, and `Fig3_f`, saving one PNG per set in `Figs/`.
+- `price_plot_fig_3.py` — plots the three price-series sets used by `Fig3_a`, `Fig3_b`, and `Fig3_c`, saving one PNG per set in `Figs/`.
 - `legend.py` — exports the shared seven-state color legend as a standalone transparent PNG in `Figs/`.
 
 ### Figure 4 — automated generation

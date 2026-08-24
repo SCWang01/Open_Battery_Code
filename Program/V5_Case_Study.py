@@ -1,32 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Apr 22nd, 2025
-
-@author:gcg
-
-Variant V5.  V3 collapses the entire CAISO battery
-fleet into a single equivalent battery and assumes 100% of it bids optimally
-through one aggregated demand function, which is unrealistic.  V5 splits the
-aggregate fleet with a ratio k in (0, 1]:
-
-  * a controllable k-unit (capacity Cap*k, power Pdmax*k / Pcmax*k) is optimised
-    by the bidding method (M1), and
-  * the remaining (1-k) portion keeps its original actual output,
-    (1-k) * hourly_battery.
-
-The combined "method" output is therefore
-    P_method = P_optimised(k-unit) + (1-k) * hourly_battery,
-compared against the full actual fleet (100% hourly_battery) baseline.  At k=1
-this reproduces V3 exactly.  Data source and cost path are identical to V3:
-the hourly CAISO natural-gas data in ng_data/gasYYYYMM.xlsx with the 'exact'
-piecewise merit-order cost model.
-
-The bidding optimization enforces mutually exclusive charging and discharging
-through binary charge/discharge states.  Solver-scale residuals are normalized
-during post-solve power classification.
-
-"""
-
 from cost_calculation import gas_cost, gas_marginal_price, ng_carbon_emission
 from Random_Generator import (
     END_YEAR_MONTH as RANDOM_END_YEAR_MONTH,
@@ -340,8 +312,7 @@ def readdata(Ntall,Nt,Nday):
     hourly_price = price.reshape(n_hours_price, points_per_hour).mean(axis=1)
     hourly_battery = battery.reshape(n_hours_battery, points_per_hour).mean(axis=1)
 
-    # Use the corresponding monthly charge/discharge peak on every valid day,
-    # but set both limits to zero on missing/invalid all-zero days.
+
     daily_battery = hourly_battery.reshape(Nday, Nt)
     monthly_Pdmax = np.ceil(max(0.0, hourly_battery.max())/100)*100
     monthly_Pcmax = np.ceil(max(0.0, -hourly_battery.min())/100)*100
@@ -372,7 +343,7 @@ def readdata(Ntall,Nt,Nday):
     return hourly_price, hourly_gas, hourly_battery, Pdmax, Pcmax, Smax, Smin, Cap, eta, SINI, curtailment, skipped_gas_dates
 
 
-#%% M1: the demand function bidding -- the proposed method
+
 def build_dsfunction(pri0, Res0, numncd0):
     """Build price stairs enriched with representative NCD and SOC-limit values.
 
@@ -621,7 +592,6 @@ def calculate_profit(
         initial_value, following_value,
     )
 
-#%% calculate the profit of the battery that bid by M2 (the actual data)
 def calculate_profit_actual(eta,CAP,price, N_t,Nday, netoutput,Sinitial):
     # Initialize the battery
     ESSOC_status = np.zeros((N_t*Nday))

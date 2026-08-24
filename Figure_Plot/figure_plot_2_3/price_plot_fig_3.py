@@ -42,7 +42,7 @@ def add_binding_interval_price(price):
 
 configs = [
     (
-        "d",
+        "a",
         add_binding_interval_price(
             np.vstack((pri[0, :], pri[0, :] * 2, pri[0, :] + 2))
         ),
@@ -51,7 +51,7 @@ configs = [
         "%.0f",
     ),
     (
-        "e",
+        "b",
         add_binding_interval_price(
             np.vstack((pri[1, :], pri[1, :] * 2, pri[1, :] + 80)) / 1000
         ),
@@ -60,7 +60,7 @@ configs = [
         "%.2f",
     ),
     (
-        "f",
+        "c",
         add_binding_interval_price(
             np.vstack((pri[2, :], pri[2, :] * 2, pri[2, :] + 80)) / 1000
         ),
