@@ -4,7 +4,7 @@ Created on Apr 22nd, 2025
 
 @author:gcg
 
-Variant V5: an updated version of V5.  V3 collapses the entire CAISO battery
+Variant V6: an updated version of V5.  V3 collapses the entire CAISO battery
 fleet into a single equivalent battery and assumes 100% of it bids optimally
 through one aggregated demand function, which is unrealistic.  V5 splits the
 aggregate fleet with a ratio k in (0, 1]:
@@ -25,10 +25,10 @@ V6 enforces mutually exclusive charging and discharging inside each bidding
 optimization with binary charge/discharge states.  Solver-scale residuals are
 normalized during post-solve power classification.
 
-NOTE: although this module implements the V6 model, every exported file keeps
-the "V5" filename tag.  The downstream analysis and figure scripts hard-code
-V5 file names, so the V6 results are written under the V5 name to drop into
-the existing pipeline without restructuring it.
+NOTE: every exported file keeps the "V5" filename tag.  The downstream
+analysis and figure scripts hard-code V5 file names, so the V6 results are
+written under the V5 name to drop into the existing pipeline without
+restructuring it.
 """
 
 from cost_calculation import gas_cost, gas_marginal_price, ng_carbon_emission
@@ -438,7 +438,7 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     price_min = np.min(price)
     price_max = np.max(price)
     price_span = max(price_max - price_min, 1.0)
-    # Expand both sides by two full-price spans.  The resulting interval is five
+    # Expand both sides by one full-price span.  The resulting interval is three
     # times as wide and always contains every input price, regardless of sign.
     pri0 = np.linspace(
         price_min - price_span,

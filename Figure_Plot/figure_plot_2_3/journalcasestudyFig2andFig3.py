@@ -35,19 +35,18 @@ def Fig2_d_g_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     Res0= np.zeros((N_price)) 
     pri0 = np.linspace(min(pri)*0.8, max(pri)*1.2, N_price) # traverse the price
     
-    #### min - abs min * 0.2
-    
-    
     for K in range(N_price):    
         # build the optimization
         model = gp.Model()    
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'PDPC')
+        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1, N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -57,8 +56,8 @@ def Fig2_d_g_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     plt.plot(pri0,Res0.T,linewidth=3)
     plt.xlim((0.25,1.25))
-    plt.xlabel('price(CNY/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (CNY/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
 
 def Fig2_e_h_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
@@ -70,10 +69,12 @@ def Fig2_e_h_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'PDPC')
+        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -83,24 +84,26 @@ def Fig2_e_h_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     plt.plot(pri0/1000,Res0.T,linewidth=3)
     plt.xlim((0.06,0.08))
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
 
         
 def Fig2_f_i_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
-    Res0= np.zeros((N_price)) 
-    pri0 = np.linspace(min(pri)*1.2, max(pri)*1.2, N_price) # traverse the price
+    Res0= np.zeros((N_price))
+    pri0 = np.linspace(min(pri)*1.2, max(pri)*1.2, N_price) # traverse the price; both bounds use 1.2× to stay within the negative-price range
     for K in range(N_price):    
         # build the optimization
         model = gp.Model()    
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'state')
+        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -110,8 +113,8 @@ def Fig2_f_i_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     plt.plot(pri0/1000,Res0.T,linewidth=3)
     plt.xlim((0.02,0.04))
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
     
 def Fig2_m(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
@@ -127,9 +130,12 @@ def Fig2_m(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -139,8 +145,8 @@ def Fig2_m(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     for k in range(len(alphaset)):
         plt.plot(pri0,Res0[k,:].T,label='dissipation rate='+str(alphaset[k]),linewidth=3)
-    plt.xlabel('price(CNY/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (CNY/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.6,0.68))
     plt.ylim((-0.65,0.65))
     plt.legend(loc=4)
@@ -160,9 +166,12 @@ def Fig2_n(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -172,8 +181,8 @@ def Fig2_n(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     for k in range(len(alphaset)):
         plt.plot(pri0/1000,Res0[k,:].T,label='dissipation rate='+str(alphaset[k]),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.055,0.075))
     plt.ylim((-0.65,0.65))
     plt.legend(loc=4)
@@ -192,10 +201,12 @@ def Fig2_o(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'PDPC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -205,8 +216,8 @@ def Fig2_o(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=(12, 6))
     for k in range(len(alphaset)):
         plt.plot(pri0/1000,Res0[k,:].T,label='dissipation rate='+str(alphaset[k]),linewidth=3)
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('discharge power(MW)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.022,0.030))
     plt.ylim((-0.65,0.65))
     plt.legend(loc=4)
@@ -219,7 +230,7 @@ def Fig2_q(Ti_ini,Tmax,Tmin,Pmax,Ra,C,eta,index):
     To = tem[0*N_t+10:1*N_t+10]
     pri = lmp[0*N_t+10:1*N_t+10]
     print(pri)
-    print(To)
+    print(To)  # debug: remove before final run
     pri0 = np.linspace(15,30, N_price) # traverse the price
     for K in range(N_price):        
         # build the optimization model 
@@ -237,8 +248,8 @@ def Fig2_q(Ti_ini,Tmax,Tmin,Pmax,Ra,C,eta,index):
     plt.figure(figsize=(12, 6))
     plt.plot(pri0/1000,Res0.T,linewidth=3)
     plt.xlim((0.015,0.030))
-    plt.xlabel('price(USD/kWh)')
-    plt.ylabel('demand power(MW)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Power (MW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
 
 def generate_ev_fleet(Nev, seed=42):
@@ -277,8 +288,9 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
         TDepset = np.asarray(fleet['TDepset'])
     for t in range(N_t):
         for s in range(Nev):
-            Pdmaxset[s,t] = Pseries[s]
-    Pcmaxset = Pdmaxset
+            if TArrset[s] <= t <= TDepset[s]:
+                Pdmaxset[s,t] = Pseries[s]
+    Pcmaxset = Pdmaxset.copy()
     etaset = np.random.normal(eta,0,size = Nev ) # eta
     Ressum = np.zeros((N_price))
     
@@ -304,8 +316,11 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
         SOC = model.addVars( Nev,N_t+1, vtype=GRB.CONTINUOUS, lb=Eminset, ub=Emaxset, name='SOC')
         Pd = model.addVars( Nev,N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmaxset, name='Pd')
         Pc = model.addVars( Nev,N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmaxset, name='Pc')
+        charge_state = model.addVars(Nev, N_t, vtype=GRB.BINARY, name='charge_state')
         model.addConstrs((Capset[s]*SOC[s,t+1] == Capset[s]*SOC[s,t] -Pd[s,t]/etaset[s] 
                         + Pc[s,t]*etaset[s] for s in range(Nev) for t in range(N_t)), 'SOC')
+        model.addConstrs((Pc[s,t] <= Pcmaxset[s,t]*charge_state[s,t] for s in range(Nev) for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[s,t] <= Pdmaxset[s,t]*(1-charge_state[s,t]) for s in range(Nev) for t in range(N_t)), 'Pd_mode')
         model.setObjective(((pri0[K]*(sum(Pd[s,0] for s in range(Nev))-sum(Pc[s,0] for s in range(Nev)))
                            +(sum(pri[t-1]*(sum(Pd[s,t] for s in range(Nev))-sum(Pc[s,t] for s in range(Nev)) )
                                    for t in range(1,N_t))))  ), GRB.MAXIMIZE)  
@@ -320,6 +335,7 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
     plt.plot(x,-Ressum,linewidth=5,color='black')
     plt.xlim(0.06,0.09)
     plt.xticks([0.06, 0.07, 0.08, 0.09])
+    plt.xlabel('Price (USD/kWh)')
 
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
     return TArrset
@@ -358,9 +374,12 @@ def Fig3_d(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -370,10 +389,8 @@ def Fig3_d(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    # if index == "g":
-    #     plt.xlabel('Price (CNY/kWh)')
-    # if index in {"d", "g"}:
-    #     plt.ylabel('Net power (MW)')
+    plt.xlabel('Price (CNY/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0,4))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -398,9 +415,12 @@ def Fig3_e(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -410,8 +430,8 @@ def Fig3_e(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    # if index == "h":
-    #     plt.xlabel('Price (USD/kWh)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0,0.23))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -435,10 +455,12 @@ def Fig3_f(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'PDPC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -448,8 +470,8 @@ def Fig3_f(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='price'+str(k),linewidth=3)
-    # if index == "i":
-    #     plt.xlabel('Price (USD/kWh)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0,0.13))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -470,9 +492,12 @@ def Fig3_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -482,9 +507,8 @@ def Fig3_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    # if index == "j":
-    #     plt.xlabel('Price (CNY/kWh)')
-    #     plt.ylabel('Net power (MW)')
+    plt.xlabel('Price (CNY/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.2,1.2))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -504,9 +528,12 @@ def Fig3_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -516,8 +543,8 @@ def Fig3_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    # if index == "k":
-    #     plt.xlabel('Price (USD/kWh)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.04,0.12))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -537,10 +564,12 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
+            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t]*Pd[t]==0 for t in range(N_t)), 'PDPC')
+            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -550,8 +579,8 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
     plt.figure(figsize=FIG3_FIGSIZE)
     for k in range(3):
         plt.plot(pri0/1000,Res0[k,:].T,label='SOCini='+str(Siniset[k]),linewidth=3)
-    # if index == "l":
-    #     plt.xlabel('Price (USD/kWh)')
+    plt.xlabel('Price (USD/kWh)')
+    plt.ylabel('Net power (MW)')
     plt.xlim((0.02,0.035))
     plt.ylim((-0.65,0.65))
     # plt.legend(loc=4)
@@ -582,40 +611,40 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
 #     plt.figure(figsize=(12, 6))
 #     plt.plot(pri0/1000,Res0.T,linewidth=3)
 #     # plt.xlim((0.02,0.04))
-#     plt.xlabel('price(USD/kWh)')
-#     plt.ylabel('discharge power(MW)')
+#     plt.xlabel('Price (CNY/kWh)')
+#     plt.ylabel('Net power (MW)')
 #     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)        
     
     
-# Fig2_d_g_j(0.5,2,0.6,0.6,1,pri[0,:],"d")
-# Fig2_e_h_k(0.5,2,0.6,0.6,1,pri[1,:],"e")
-# Fig2_f_i_l(0.5,2,0.6,0.6,1,pri[2,:],"f")
-# Fig2_d_g_j(0.5,2,0.6,0.6,0.98,pri[0,:],"g")
-# Fig2_e_h_k(0.5,2,0.6,0.6,0.98,pri[1,:],"h")
-# Fig2_f_i_l(0.5,2,0.6,0.6,0.98,pri[2,:],"i")
-# Fig2_d_g_j(0.5,2,0.6,0.6,0.9,pri[0,:],"j")
-# Fig2_e_h_k(0.5,2,0.6,0.6,0.9,pri[1,:],"k")
-# Fig2_f_i_l(0.5,2,0.6,0.6,0.9,pri[2,:],"l")
-# Fig2_m(0.5,2,0.6,0.6,1,pri[0,:],"m")
-# Fig2_n(0.5,2,0.6,0.6,1,pri[1,:],"n")
-# Fig2_o(0.5,2,0.6,0.6,1,pri[2,:],"o")
-# Fig2_q(23,24,21,12,3,5,1,"p")
-# Fig2_q(23,24,21,12,3,5,0.98,"q")
-# Fig2_q(23,24,21,12,3,5,0.95,"r")
+Fig2_d_g_j(0.5,2,0.6,0.6,1,pri[0,:],"d")
+Fig2_e_h_k(0.5,2,0.6,0.6,1,pri[1,:],"e")
+Fig2_f_i_l(0.5,2,0.6,0.6,1,pri[2,:],"f")
+Fig2_d_g_j(0.5,2,0.6,0.6,0.98,pri[0,:],"g")
+Fig2_e_h_k(0.5,2,0.6,0.6,0.98,pri[1,:],"h")
+Fig2_f_i_l(0.5,2,0.6,0.6,0.98,pri[2,:],"i")
+Fig2_d_g_j(0.5,2,0.6,0.6,0.9,pri[0,:],"j")
+Fig2_e_h_k(0.5,2,0.6,0.6,0.9,pri[1,:],"k")
+Fig2_f_i_l(0.5,2,0.6,0.6,0.9,pri[2,:],"l")
+Fig2_m(0.5,2,0.6,0.6,1,pri[0,:],"m")
+Fig2_n(0.5,2,0.6,0.6,1,pri[1,:],"n")
+Fig2_o(0.5,2,0.6,0.6,1,pri[2,:],"o")
+Fig2_q(23,24,21,12,3,5,1,"p")
+Fig2_q(23,24,21,12,3,5,0.98,"q")
+Fig2_q(23,24,21,12,3,5,0.95,"r")
 ev_fleet = generate_ev_fleet(20)
 Fig2_EV(20,pri[1,:],1,"s",fleet=ev_fleet)
 Fig2_EV(20,pri[1,:],0.98,"t",fleet=ev_fleet)
 Fig2_EV(20,pri[1,:],0.95,"u",fleet=ev_fleet)
 
-# Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
-# Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")
-# Fig3_f(0.5,2,0.6,0.6,1,pri[2,:],"f")
-# Fig3_d(0.5,2,0.6,0.6,0.9,pri[0,:],"g")
-# Fig3_e(0.5,2,0.6,0.6,0.9,pri[1,:],"h")
-# Fig3_f(0.5,2,0.6,0.6,0.9,pri[2,:],"i")
-# Fig3_j(0.5,2,0.6,0.6,1,pri[0,:],"j")
-# Fig3_k(0.5,2,0.6,0.6,1,pri[1,:],"k")
-# Fig3_l(0.5,2,0.6,0.6,1,pri[2,:],"l")
+Fig3_d(0.5,2,0.6,0.6,1,pri[0,:],"d")
+Fig3_e(0.5,2,0.6,0.6,1,pri[1,:],"e")
+Fig3_f(0.5,2,0.6,0.6,1,pri[2,:],"f")
+Fig3_d(0.5,2,0.6,0.6,0.9,pri[0,:],"g")
+Fig3_e(0.5,2,0.6,0.6,0.9,pri[1,:],"h")
+Fig3_f(0.5,2,0.6,0.6,0.9,pri[2,:],"i")
+Fig3_j(0.5,2,0.6,0.6,1,pri[0,:],"j")
+Fig3_k(0.5,2,0.6,0.6,1,pri[1,:],"k")
+Fig3_l(0.5,2,0.6,0.6,1,pri[2,:],"l")
 
 # for i in range(5):
 #     Fig2_f_i_l_new(0.5,2,0.6,0.6,0.8,str(i))

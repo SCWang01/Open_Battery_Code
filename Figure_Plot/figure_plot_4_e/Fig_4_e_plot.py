@@ -67,7 +67,10 @@ def read_day_results(date):
     if len(day_results) != N_HOURS:
         raise ValueError(f"Expected {N_HOURS} result rows for {date}, got {len(day_results)}")
 
-    # User-defined charging-power increment for the controlled ESS case.
+    # Difference between the k-share of actual fleet output and the controlled
+    # unit's cleared output: positive = controlled unit charged more than its
+    # proportional share, negative = it charged less.  k=0.2 is the fleet
+    # split ratio defined in V5_Case_Study.py.
     increment_charge = (
         day_results["P_ESS_actual"].to_numpy() * 0.2
         - day_results["P_ESS_controlled"].to_numpy()

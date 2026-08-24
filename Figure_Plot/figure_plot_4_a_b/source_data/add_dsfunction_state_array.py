@@ -1,7 +1,8 @@
 """Add an hourly dsfunction state interval-width array.
 
 Marginal-boundary (mB) classification is local to the derived width output:
-an embedded dsfunction row is mB exactly when its eighth value is within
+an embedded dsfunction row is mB exactly when its eighth value — a normalized
+interval fraction appended by Marginal_Check in V5_Case_Study.py — is within
 ``MB_TOLERANCE`` of either 0 or 1. The worksheet's ``P_ESS_state`` column is
 read-only and is never used as an output target.
 """

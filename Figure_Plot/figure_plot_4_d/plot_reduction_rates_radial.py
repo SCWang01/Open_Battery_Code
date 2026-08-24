@@ -452,7 +452,7 @@ def create_combined_figure(
     profit_data: ProfitIncrementData,
     metric_data: dict[str, MetricData],
 ) -> mpl.figure.Figure:
-    """Create the final 260 mm × 90 mm three-panel figure."""
+    """Create the final 250 mm × 90 mm three-panel figure."""
     fig = plt.figure(
         figsize=(FIGURE_WIDTH_MM / 25.4, FIGURE_HEIGHT_MM / 25.4),
         facecolor="none",

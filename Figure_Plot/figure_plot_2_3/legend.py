@@ -25,8 +25,10 @@ LEGEND_LABELS = {
 }
 
 
-# Match the order shown in the reference figure: discharge items first,
-# followed by charge items and the null stair.
+# Match the order shown in the reference figure: max-rate discharge (MD),
+# discharge-for-discharge (DD), and discharge-for-charge (DC) first,
+# followed by max-rate charge (MC), charge-for-charge (CC),
+# charge-for-discharge (CD), and the null stair (NU).
 LEGEND_ORDER = ("MD", "DD", "DC", "MC", "CC", "CD", "NU")
 
 

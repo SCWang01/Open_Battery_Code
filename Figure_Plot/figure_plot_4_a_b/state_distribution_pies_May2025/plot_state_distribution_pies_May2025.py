@@ -301,7 +301,12 @@ def draw_right_pie(
 def add_aligned_panel_labels(
     fig: plt.Figure, left_ax: plt.Axes, right_ax: plt.Axes
 ) -> None:
-    """Place both panel labels on one exact figure-coordinate baseline."""
+    """Compute figure-coordinate x-centres for the two panel axes (no-op placeholder).
+
+    The panel label positions are pre-computed here for future use but no
+    drawing calls are currently issued.  Add ``fig.text(...)`` calls when
+    panel labels are required.
+    """
     inverse_figure = fig.transFigure.inverted()
     left_center_x = inverse_figure.transform(left_ax.transData.transform((0, 0)))[0]
     right_center_x = inverse_figure.transform(right_ax.transData.transform((0, 0)))[0]

@@ -132,7 +132,7 @@ The model currently has no command-line interface or external configuration file
 START_YEAR_MONTH = (2023, 1)
 END_YEAR_MONTH = (2025, 12)
 eta = 0.95
-N_price = 100
+N_price = 300
 meanstd = 2
 k = 0.2
 COST_MODE = "exact"
@@ -189,8 +189,8 @@ Repeated runs overwrite files with identical parameter-derived names.
 
 | Figure | Directory | Source data | Current reproducible output |
 |---|---|---|---|
-| Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1.py` computes `Res_pos` and `ResE_pos` in memory; it does not export a figure file |
-| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1.py` computes `Res_neg` and `ResE_neg` in memory; it does not export a figure file |
+| Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1_binary.py` computes `Res_pos` and `ResE_pos` and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
+| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFig1andFigS1_binary.py` computes `Res_neg` and `ResE_neg` and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
 | Figures 2 and 3 | `Figure_Plot/figure_plot_2_3/` | `settings.xlsx`, `tep2023.npy`, and `lmp2023.npy` | Generates the individual Figure 2 and Figure 3 PNG panels in `Figs/`; final composite assembly is not scripted |
 | Figure 4a–b | `Figure_Plot/figure_plot_4_a_b/` | Classified May 2025 demand-supply workbook in `source_data/` | Exports the state-distribution source CSV and composite PNG, SVG, and PDF |
 | Figure 4c | `Figure_Plot/figure_plot_4_c/` | May 2025 classified demand-supply workbook and CAISO price CSV in `input/` | Exports an auditable source CSV and PNG, SVG, and PDF; see the directory's `README.md` |
@@ -203,15 +203,15 @@ The copies stored inside each figure directory are the figure source-data snapsh
 
 ```powershell
 Push-Location Figure_Plot/figure_1
-python journalcasestudyFig1andFigS1.py
+python journalcasestudyFig1andFigS1_binary.py
 Pop-Location
 
 Push-Location Figure_Plot/figure_plot_S1
-python journalcasestudyFig1andFigS1.py
+python journalcasestudyFig1andFigS1_binary.py
 Pop-Location
 ```
 
-These scripts reproduce the underlying numerical arrays; plotting or final figure export is not included in the current files.
+Each script solves the six stair-example optimisations and writes the resulting Power and SOC arrays back into `settings_sequence.xlsx`. Neither script exports a rendered figure file.
 
 ### Figures 2 and 3
 
@@ -222,6 +222,29 @@ Pop-Location
 ```
 
 The script writes the individual panels to `Figure_Plot/figure_plot_2_3/Figs/`.
+
+Three auxiliary scripts in the same directory are not called by `journalcasestudyFig2andFig3.py` but support standalone use:
+
+- `price_plot_fig_2.py` — plots the three input price series for Figure 2 as separate PNG files in `Figs/`.
+- `price_plot_fig_3.py` — plots the three price-series sets used by `Fig3_d`, `Fig3_e`, and `Fig3_f`, saving one PNG per set in `Figs/`.
+- `legend.py` — exports the shared seven-state color legend as a standalone transparent PNG in `Figs/`.
+
+### Figure 4 — automated generation
+
+`Figure_Plot/Figure_Generation.py` is the orchestration entry point for all Figure 4 panels. It resolves canonical inputs from `Results/` and `data/`, copies fresh snapshots into each figure directory, runs the classification and plotting scripts in dependency order, and writes a provenance manifest to `Figure_Plot/Figure_Generation_manifest.json`.
+
+```powershell
+# Regenerate all Figure 4 panels
+python Figure_Plot/Figure_Generation.py
+
+# Regenerate selected panels only
+python Figure_Plot/Figure_Generation.py --figures 4d 4e
+
+# Use the existing analysis workbook without rebuilding it
+python Figure_Plot/Figure_Generation.py --skip-analysis
+```
+
+The individual scripts described below can still be run directly against pre-existing figure-directory inputs.
 
 ### Figure 4a–b
 

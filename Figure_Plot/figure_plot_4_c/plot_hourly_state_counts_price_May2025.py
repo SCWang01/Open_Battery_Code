@@ -162,7 +162,11 @@ def parse_timestamp(value: str) -> datetime:
 
 
 def read_daily_hourly_prices() -> tuple[dict[int, list[float]], int, int]:
-    """Return 31 daily means per hour after excluding all non-May rows."""
+    """Return per-hour price groups, included-row count, and excluded-row count.
+
+    Iterates the price CSV, groups the five-minute prices by (day, hour) for
+    May rows only, and counts included and excluded rows for validation.
+    """
     if not PRICE_CSV.is_file():
         raise FileNotFoundError(f"Price CSV not found: {PRICE_CSV.name}")
 

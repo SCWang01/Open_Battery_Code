@@ -41,7 +41,7 @@ def max_rate_values_match(left: float, right: float) -> bool:
 
 
 def parse_dsfunction(value: Any, excel_row: int) -> Sequence[Sequence[Any]]:
-    """Parse one dsfunction cell with 7 core columns and optional SOC."""
+    """Parse one dsfunction cell with 7 core columns and an optional eighth column."""
     if isinstance(value, str):
         try:
             value = ast.literal_eval(value)
@@ -200,7 +200,7 @@ def classify_p_ess_from_dsfunction(
     pcmax: float,
     pdmax: float,
 ) -> str:
-    """Match P_ESS to a dsfunction segment, then classify by its first 7 columns."""
+    """Match P_ESS to a dsfunction segment, then classify by its NCD and SOC-limit columns."""
     p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
 
     # These three states do not depend on a dsfunction segment.  In particular,
