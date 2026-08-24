@@ -3,10 +3,11 @@
 Created on Mar 11 08:51:41 2024
 @author:gcg
 
-Charge/discharge mutual exclusion enforced via binary variable:
-    Pc[t] <= Pcmax * charge_state[t]
-    Pd[t] <= Pdmax * (1 - charge_state[t])
-where charge_state[t] ∈ {0,1}: 1 = charging, 0 = discharging.
+Charge/discharge mutual exclusion follows the paper's two-status formulation:
+    Pc[t] <= Pcmax * sc[t]
+    Pd[t] <= Pdmax * sd[t]
+    sc[t] + sd[t] <= 1
+where sc[t], sd[t] ∈ {0,1}; (0,0) is the explicit idle mode.
 """
 #%% Global settings
 
@@ -42,12 +43,14 @@ def Fig1(SOC_ini,SOC_min,Cap,Pcmax,Pdmax,eta,pri):
         SOC          = model.addVars(N_t+1, vtype=GRB.CONTINUOUS, lb=SOC_min, ub=1,     name='SOC') # State of charge
         Pc           = model.addVars(N_t,   vtype=GRB.CONTINUOUS, lb=0,       ub=Pcmax, name='Pc')  # charge power
         Pd           = model.addVars(N_t,   vtype=GRB.CONTINUOUS, lb=0,       ub=Pdmax, name='Pd')  # discharge power
-        charge_state = model.addVars(N_t,   vtype=GRB.BINARY,                           name='cs')  # 1=charging, 0=discharging
+        sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+        sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
         # set constraints
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t] <= Pcmax * charge_state[t]       for t in range(N_t)), 'PC_bin')
-        model.addConstrs((Pd[t] <= Pdmax * (1-charge_state[t])   for t in range(N_t)), 'PD_bin')
+        model.addConstrs((Pc[t] <= Pcmax * sc[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax * sd[t] for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         model.setObjective(((sum(pri[K,t]*((Pd[t]-Pc[t])) for t in range(0, N_t))) ), GRB.MAXIMIZE)
         # solve the model
         model.setParam('OutputFlag', 0)

@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-08-24T07:47:03.982714+00:00",
+  "started_at": "2026-08-24T10:19:15.464015+00:00",
   "status": "success",
   "figures": [
     "4a",
@@ -63,14 +63,14 @@
     {
       "role": "classified May dsfunction workbook",
       "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120271,
-      "sha256": "272d80c0122839f4d04c9af4fe7f821eb3cb460f054001a895170a056a44902e"
+      "size": 120272,
+      "sha256": "4b695ba4e25d24069a37e74692938fa343f5533dfc471f2a4fa72a09ad4da633"
     },
     {
       "role": "Figure 4c classified dsfunction workbook",
       "path": "Figure_Plot\\figure_plot_4_c\\input\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120271,
-      "sha256": "272d80c0122839f4d04c9af4fe7f821eb3cb460f054001a895170a056a44902e",
+      "size": 120272,
+      "sha256": "4b695ba4e25d24069a37e74692938fa343f5533dfc471f2a4fa72a09ad4da633",
       "source": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
       "action": "copied"
     },
@@ -86,7 +86,7 @@
       "role": "Figure 4d analysis workbook",
       "path": "Figure_Plot\\figure_plot_4_d\\analysis_202301_202512.xlsx",
       "size": 9107,
-      "sha256": "8d8f1f3aeb3974aa2ab124e48ec4ab38ee4da002979dce3925b41d713e1d625f",
+      "sha256": "d4bdeb9a3e84b8052b0969fa170701428512092ba3f8c2d2bcd9951aaea60a69",
       "source": "Results\\analysis_202301_202512.xlsx",
       "action": "copied"
     },
@@ -119,20 +119,20 @@
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.png",
-      "size": 290209,
-      "sha256": "b8b2fc114392c5ff89a026b0bf79ff82e50a78b9f521ff8a5085a4bd319f3155"
+      "size": 295628,
+      "sha256": "6788612963ab321dfde97bbbac307914aac5cc50a3e7718ca1b06aece9b0219d"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.svg",
-      "size": 13233,
-      "sha256": "bb27edea9d4ebbf1c9383b1145681635d1b1b70763321cb15b043db072b4f97d"
+      "size": 13707,
+      "sha256": "2fc7c1d9269a8481f04fdb53c1748074807ea9829bdf708a951993609cdb76ee"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.pdf",
-      "size": 32702,
-      "sha256": "316a5b546cf61b11408f1602ab937d98ff8ce4b38dcb98a21aeb8258f2978681"
+      "size": 33393,
+      "sha256": "4bdc83c6afed0ead2fe05190a9f2b92896c00ba9cf03782ab39abaad4d5261a8"
     },
     {
       "role": "generated figure output",
@@ -144,7 +144,7 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_c\\output\\P_ESS_state_hourly_counts_May2025.xlsx",
       "size": 6784,
-      "sha256": "8e9d5890dcfcd6963eca02c79f47375c663eb859da3e1c650bdaeff5cbf3b125"
+      "sha256": "242b6c4db45ffc0afcc4ad7063b9e779d5ee3e32c20152614734e91bba565363"
     },
     {
       "role": "generated figure output",
@@ -162,13 +162,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.svg",
       "size": 64000,
-      "sha256": "0cf935fdbf366423d969508924175535bf1c60a36dfeec99c116601d2337e5c0"
+      "sha256": "a9127f83ba1e2d9ee95caf0e19b7136518a9cceaa440ea17ec7e9e84d8a5f767"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.pdf",
       "size": 39654,
-      "sha256": "d57258504cc870fda75bec11512595895a396f3eb84295fa9b4d0742e2ad42d0"
+      "sha256": "967c338a46bfccf809db24d0c6b23f576eb02cffb5dd4163f66a9756ebdab749"
     },
     {
       "role": "generated figure output",
@@ -180,13 +180,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.svg",
       "size": 87052,
-      "sha256": "23a23a32ee63fdfcc262aaafcd57a17a9e49f264b10795aab531e537ffe923b1"
+      "sha256": "f454b1f4d90a3178c346a0748d6c4dad879f2e87225a6ecf13235f8857a3ebe3"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.pdf",
       "size": 47442,
-      "sha256": "db461d7f26e861e3e4860b1c613be04c7ee7d1c646e4023b8f3f118575926ad8"
+      "sha256": "8762ecc37f1ddc2ac65d0eb601a74fa2118098ea13c711255cf836f83d1d8c45"
     },
     {
       "role": "generated figure output",
@@ -204,13 +204,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.svg",
       "size": 246545,
-      "sha256": "ba5b982d70481b36072e9702ffe734898224d4a40ece5caace15bf44e1a3c5c6"
+      "sha256": "7da63a86237c5cc156bd6afb77ec18922a7ed0f21578990510289fe22c76ed49"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.pdf",
       "size": 85800,
-      "sha256": "198b3aafc54d1d7bad2610b6ab5a751b031007c5fe0fe04b38ded13d3ada9a16"
+      "sha256": "f5d1e0f85b79e7d5c8d1ab96fae1afb529d480b2c54f833c7f7e698ea3cf64d8"
     },
     {
       "role": "generated figure output",
@@ -228,13 +228,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.svg",
       "size": 80294,
-      "sha256": "02931e74ab7c7ff3dac885c94b4eaabc8dabf81035865a629dfd94a86f7e430f"
+      "sha256": "2ed3f690e529d614eaa6febce72460e3de83fbef9bd9a65fac688f1e45a0a0a7"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.pdf",
       "size": 45648,
-      "sha256": "285104e6b9c18831e8b73d23da5cd53e721faad39a1716caf777801e522a45c9"
+      "sha256": "b3d6eda4f6550b0ee4f25bbefe5dcd0489ca8a83a5cff9293aa89abc2a976ac1"
     },
     {
       "role": "generated figure output",
@@ -252,13 +252,13 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.svg",
       "size": 80307,
-      "sha256": "b58cf2ea7e9f0392e7f104612dc10f199c534df214723ad2b3004e56cdd0b37b"
+      "sha256": "32a2a86043a237f0c59d54b99164484d261b78f7df14ca8ef59220bca174e465"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.pdf",
       "size": 46255,
-      "sha256": "dd3bc08303b302b733d1ff7c64a07ef0b93cda6f407be0ba9967cfc0e8bf8ad5"
+      "sha256": "dac16fb29c80aa220d04d5d3dd49d0c41c0d8051fa2ac7d8734397ef4a7b1c3c"
     },
     {
       "role": "generated figure output",
@@ -276,15 +276,15 @@
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.svg",
       "size": 27955,
-      "sha256": "906276a2449be9a3314844ee666a4365c7e928f33abf7dc229a19208a4e958bf"
+      "sha256": "41769fd32d488b256145e7973163b1daf5c55edfa84ebba3fdba2a26bd739f22"
     },
     {
       "role": "generated figure output",
       "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.pdf",
       "size": 35056,
-      "sha256": "08bf6851b005622859c1917165000dbe285808376b1190fe5fd9360f35ab0591"
+      "sha256": "8e8c442527f9cc7689c6d92e0c6472b9cbacf5c646dc5ac1b80d87dc7cc43119"
     }
   ],
   "error": null,
-  "finished_at": "2026-08-24T07:47:20.827422+00:00"
+  "finished_at": "2026-08-24T10:19:36.490506+00:00"
 }

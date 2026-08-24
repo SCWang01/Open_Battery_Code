@@ -168,6 +168,13 @@ alignment, the historical battery series is left at zero for that entire date;
 its derived charge/discharge limits are therefore also zero, disabling
 controllable battery operation on that date.
 
+The charge/discharge limits used by each rolling optimization are selected from
+the calendar day of its binding interval and then held fixed across that
+optimization's 24-hour look-ahead horizon. The limits are selected again as the
+binding interval advances, so they switch to zero only when the binding interval
+itself enters a skipped or otherwise invalid day, and return to the monthly
+limits when the binding interval enters the next valid day.
+
 Natural-gas costs are evaluated consistently with the selected cost mode through `Program/cost_calculation.py`. The default `exact` mode constructs the cost and marginal-price functions from monthly plant-level merit-order workbooks.
 
 ## Inputs and outputs
@@ -183,6 +190,8 @@ Natural-gas costs are evaluated consistently with the selected cost mode through
 | Natural-gas cost stack | `data/ng_cost/` | Monthly plant-level merit-order inputs |
 | Price-error scenarios | `data/random_data/` | Fixed standard-normal price-error innovations (`price_error_z_*.npy` + `manifest.json`) used by the model's forecast-error sampling |
 | Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Retained source data for independent historical-emissions analysis |
+
+Each stored `price_error_z_YYYYMM.npy` array has 24 columns per binding interval. Column 0 is an unused placeholder for the exactly observed binding-interval price; columns 1--23 supply the standard-normal innovations for forecast horizons 2--24. Reproduction must therefore draw all 24 columns per binding interval and discard column 0 during simulation; generating only 23 values per interval would shift the seeded stream and produce different scenarios.
 
 Replacement monthly price files must include the additional rolling horizon required at the end of the month: `biddingNEW` reads `price[t:t+N_t]`, so the last in-month hour needs 23 subsequent hourly prices. The committed price files contain one full extra day beyond each month (288 five-minute observations, i.e. 24 hourly values), which covers that horizon.
 

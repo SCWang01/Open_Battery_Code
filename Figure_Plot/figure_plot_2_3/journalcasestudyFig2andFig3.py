@@ -14,6 +14,7 @@ import random
 from pathlib import Path
 
 N_t = 24 # time
+EV_DELTA_T = 1.0  # length of one EV time slot in the same units as the offsets
 Path("Figs").mkdir(exist_ok=True)
 DATA_DIR = Path(__file__).resolve().parent
 info = load_workbook(DATA_DIR / "settings.xlsx", data_only=True)
@@ -41,12 +42,14 @@ def Fig2_d_g_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+        sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+        sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1, N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -69,12 +72,14 @@ def Fig2_e_h_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+        sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+        sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -98,12 +103,14 @@ def Fig2_f_i_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
         SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
         Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
         Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-        charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+        sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+        sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
         '''storage'''
         model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
         model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC_t')
-        model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-        model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+        model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+        model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
         model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
         # solve the model
         model.setParam('OutputFlag', 0)
@@ -130,13 +137,15 @@ def Fig2_m(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
-            model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
+            model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)
             # solve the model
             model.setParam('OutputFlag', 0)
             model.optimize()
@@ -166,13 +175,15 @@ def Fig2_n(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
-            model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
+            model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)
             # solve the model
             model.setParam('OutputFlag', 0)
             model.optimize()
@@ -201,12 +212,14 @@ def Fig2_o(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == (1-alpha)*Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -249,7 +262,7 @@ def Fig2_q(Ti_ini,Tmax,Tmin,Pmax,Ra,C,eta,index):
     plt.plot(pri0/1000,Res0.T,linewidth=3)
     plt.xlim((0.015,0.030))
     plt.xlabel('Price (USD/kWh)')
-    plt.ylabel('Power (MW)')
+    plt.ylabel('Net Power (kW)')
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)    
 
 def generate_ev_fleet(Nev, seed=42):
@@ -267,6 +280,30 @@ def generate_ev_fleet(Nev, seed=42):
     return fleet
 
 
+def _map_ev_times_to_indices(arrival_raw, departure_raw, delta_t=EV_DELTA_T):
+    """Map continuous EV offsets to zero-based discrete time-slot indices.
+
+    The corresponding one-based indices in the supplementary methods are
+    obtained by adding one to both returned arrays.
+    """
+    if delta_t <= 0:
+        raise ValueError("delta_t must be positive")
+
+    arrival_raw = np.asarray(arrival_raw, dtype=float)
+    departure_raw = np.asarray(departure_raw, dtype=float)
+    if arrival_raw.shape != departure_raw.shape:
+        raise ValueError("arrival and departure arrays must have the same shape")
+
+    # Match the supplementary methods in zero-based code coordinates.  The
+    # departure index is the exclusive upper bound for operating intervals and
+    # the first index at which the prescribed departure state is enforced:
+    # a_i - 1 = floor(max(a_i_raw, 0) / delta_t)
+    # d_i - 1 = ceil(d_i_raw / delta_t)
+    arrival_indices = np.floor(np.maximum(arrival_raw, 0.0) / delta_t).astype(int)
+    departure_indices = np.ceil(departure_raw / delta_t).astype(int)
+    return arrival_indices, departure_indices
+
+
 def Fig2_EV(Nev,pri,eta,index,fleet=None):
     Emax = 1
     Emin = 0.1
@@ -278,17 +315,23 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
         SINIset = np.random.rand((Nev))*0.6+0.1
         Pseries = np.random.normal(7,0,size = Nev )
         Capset = np.random.normal(50,0,size = Nev ) # Capacity
-        TArrset = np.random.normal(0,1,size = Nev )
-        TDepset = np.random.normal(10,1,size = Nev )
+        TArrset_raw = np.random.normal(0,1,size = Nev )
+        TDepset_raw = np.random.normal(10,1,size = Nev )
     else:
         SINIset = np.asarray(fleet['SINIset'])
         Pseries = np.asarray(fleet['Pseries'])
         Capset  = np.asarray(fleet['Capset'])
-        TArrset = np.asarray(fleet['TArrset'])
-        TDepset = np.asarray(fleet['TDepset'])
+        TArrset_raw = np.asarray(fleet['TArrset'])
+        TDepset_raw = np.asarray(fleet['TDepset'])
+
+
+    arrival_indices, departure_indices = _map_ev_times_to_indices(
+        TArrset_raw, TDepset_raw, EV_DELTA_T
+    )
+
     for t in range(N_t):
         for s in range(Nev):
-            if TArrset[s] <= t <= TDepset[s]:
+            if arrival_indices[s] <= t < departure_indices[s]:
                 Pdmaxset[s,t] = Pseries[s]
     Pcmaxset = Pdmaxset.copy()
     etaset = np.random.normal(eta,0,size = Nev ) # eta
@@ -297,13 +340,11 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
     for i in range(Nev):
         if etaset[i]>=1:
             etaset[i] = 1
-        if TArrset[i]<0:
-            TArrset[i]=0
         for t in range(N_t+1):
-            if t<=TArrset[i]:
+            if t<=arrival_indices[i]:
                 Emaxset[i,t] = SINIset[i]
                 Eminset[i,t] = SINIset[i]
-            elif t>=TDepset[i]:
+            elif t>=departure_indices[i]:
                 Emaxset[i,t] = Emax
                 Eminset[i,t] = Emax   
             else:
@@ -316,11 +357,8 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
         SOC = model.addVars( Nev,N_t+1, vtype=GRB.CONTINUOUS, lb=Eminset, ub=Emaxset, name='SOC')
         Pd = model.addVars( Nev,N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmaxset, name='Pd')
         Pc = model.addVars( Nev,N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmaxset, name='Pc')
-        charge_state = model.addVars(Nev, N_t, vtype=GRB.BINARY, name='charge_state')
         model.addConstrs((Capset[s]*SOC[s,t+1] == Capset[s]*SOC[s,t] -Pd[s,t]/etaset[s] 
                         + Pc[s,t]*etaset[s] for s in range(Nev) for t in range(N_t)), 'SOC')
-        model.addConstrs((Pc[s,t] <= Pcmaxset[s,t]*charge_state[s,t] for s in range(Nev) for t in range(N_t)), 'Pc_mode')
-        model.addConstrs((Pd[s,t] <= Pdmaxset[s,t]*(1-charge_state[s,t]) for s in range(Nev) for t in range(N_t)), 'Pd_mode')
         model.setObjective(((pri0[K]*(sum(Pd[s,0] for s in range(Nev))-sum(Pc[s,0] for s in range(Nev)))
                            +(sum(pri[t-1]*(sum(Pd[s,t] for s in range(Nev))-sum(Pc[s,t] for s in range(Nev)) )
                                    for t in range(1,N_t))))  ), GRB.MAXIMIZE)  
@@ -338,7 +376,7 @@ def Fig2_EV(Nev,pri,eta,index,fleet=None):
     plt.xlabel('Price (USD/kWh)')
 
     plt.savefig("Figs/"+index+".png",bbox_inches='tight',  transparent=True, dpi=600)
-    return TArrset
+    return arrival_indices
 
 def _configure_fig3_style():
     """Apply the shared typography for all Fig3 plots."""
@@ -374,12 +412,14 @@ def Fig3_d(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -415,12 +455,14 @@ def Fig3_e(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -455,12 +497,14 @@ def Fig3_f(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(price[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -492,12 +536,14 @@ def Fig3_j(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -528,12 +574,14 @@ def Fig3_k(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)
@@ -564,12 +612,14 @@ def Fig3_l(SOC_ini,Cap,Pcmax,Pdmax,eta,pri,index):
             SOC = model.addVars( N_t+1, vtype=GRB.CONTINUOUS, lb=0.1, ub=1, name='SOC')
             Pc = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc')
             Pd = model.addVars( N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd')
-            charge_state = model.addVars(N_t, vtype=GRB.BINARY, name='charge_state')
+            sc = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+            sd = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
             '''storage'''
             model.addConstr((Cap*SOC[0] == Cap*SOC_ini), 'SOC_1')
             model.addConstrs((Cap*SOC[t] == Cap*SOC[t-1] - (Pd[t-1]/eta - eta*Pc[t-1]) for t in range(1, N_t+1)), 'SOC')
-            model.addConstrs((Pc[t] <= Pcmax*charge_state[t] for t in range(N_t)), 'Pc_mode')
-            model.addConstrs((Pd[t] <= Pdmax*(1-charge_state[t]) for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((Pc[t] <= Pcmax*sc[t] for t in range(N_t)), 'Pc_mode')
+            model.addConstrs((Pd[t] <= Pdmax*sd[t] for t in range(N_t)), 'Pd_mode')
+            model.addConstrs((sc[t] + sd[t] <= 1 for t in range(N_t)), 'mutually_exclusive_state')
             model.setObjective(((pri0[K]*((Pd[0]-Pc[0])) +(sum(pri[t-1]*((Pd[t]-Pc[t])) for t in range(1,N_t)))) ), GRB.MAXIMIZE)   
             # solve the model
             model.setParam('OutputFlag', 0)

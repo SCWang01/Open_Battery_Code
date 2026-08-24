@@ -301,16 +301,22 @@ def draw_right_pie(
 def add_aligned_panel_labels(
     fig: plt.Figure, left_ax: plt.Axes, right_ax: plt.Axes
 ) -> None:
-    """Compute figure-coordinate x-centres for the two panel axes (no-op placeholder).
-
-    The panel label positions are pre-computed here for future use but no
-    drawing calls are currently issued.  Add ``fig.text(...)`` calls when
-    panel labels are required.
-    """
+    """Add panel labels aligned to the horizontal centres of both pie axes."""
     inverse_figure = fig.transFigure.inverted()
     left_center_x = inverse_figure.transform(left_ax.transData.transform((0, 0)))[0]
     right_center_x = inverse_figure.transform(right_ax.transData.transform((0, 0)))[0]
     panel_y = 0.055
+
+    for label, center_x in (("(a)", left_center_x), ("(b)", right_center_x)):
+        fig.text(
+            center_x,
+            panel_y,
+            label,
+            ha="center",
+            va="center",
+            fontsize=9,
+            color="#222222",
+        )
 
 
 def draw_legend(ax: plt.Axes) -> None:
