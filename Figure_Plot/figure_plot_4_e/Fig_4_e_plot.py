@@ -23,7 +23,7 @@ PNG_DPI = 720
 
 
 def configure_matplotlib():
-    """Configure typography to match the May 2025 hourly-state figure."""
+    """Configure typography to match the April 2025 hourly-state figure."""
     mpl.rcParams.update(
         {
             "font.family": ["Times New Roman", "Arial", "DejaVu Serif"],

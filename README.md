@@ -40,12 +40,14 @@ numpy
 pandas
 openpyxl
 tqdm
+matplotlib
+scipy
 ```
 
 Install the open-source dependencies with:
 
 ```powershell
-python -m pip install numpy pandas openpyxl tqdm
+python -m pip install numpy pandas openpyxl tqdm matplotlib scipy
 ```
 
 Install Gurobi's Python package separately:

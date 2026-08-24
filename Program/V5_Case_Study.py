@@ -712,7 +712,7 @@ def calculate_main(
     meanstd, price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin,
     Cap, eta, SINI, price_error_z,
 ):
-    # V6: split the aggregate fleet into a controllable k-unit (optimised by the
+    # V5: split the aggregate fleet into a controllable k-unit (optimised by the
     # bidding method) and a passive (1-k) remainder that keeps its actual output.
     # The controllable unit is a proportionally shrunk copy of the fleet, so its
     # capacity and power scale by k while its SOC trajectory (hence SINI) is

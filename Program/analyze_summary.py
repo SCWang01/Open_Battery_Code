@@ -194,7 +194,7 @@ def select_complete_calendar_years(
 
 
 def annual_label(year: str, months: list[str]) -> str:
-    """Label a full calendar year or the exact span of a partial year."""
+    """Label a complete calendar year included in the analysis."""
     month_numbers = [int(month[4:]) for month in months]
     if month_numbers == list(range(1, 13)):
         return f"{year}-{int(year) + 1}"
