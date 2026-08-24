@@ -6,11 +6,11 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-22T22:46:23.925713</dc:date>
+    <dc:date>2026-08-24T15:47:16.795237</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.10.1, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -175,7 +175,7 @@ L 119.803924 76.075819
 L 123.973713 75.729336 
 L 127.559055 75.635451 
 L 127.559055 75.635451 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 127.559055 93.78281 
@@ -270,7 +270,7 @@ L 120.550448 94.2729
 L 124.046194 93.905482 
 L 127.559055 93.78281 
 L 127.559055 93.78281 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
    </g>
    <g id="line2d_3">
     <path d="M 127.559055 111.930169 
@@ -347,7 +347,7 @@ L 121.965576 112.419535
 L 124.751632 112.052744 
 L 127.559055 111.930169 
 L 127.559055 111.930169 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
    </g>
    <g id="line2d_4">
     <path d="M 127.559055 130.077529 
@@ -404,7 +404,7 @@ L 125.116832 130.291196
 L 126.822992 130.096803 
 L 127.559055 130.077529 
 L 127.559055 130.077529 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke-dasharray: 5.76,4.32; stroke-dashoffset: 0; stroke: #b7b7b7; stroke-opacity: 0.78; stroke-width: 1.8"/>
    </g>
    <g id="matplotlib.axis_1"/>
    <g id="matplotlib.axis_2"/>
@@ -420,7 +420,7 @@ C 234.447002 125.380376 229.507411 106.94557 220.126732 90.697759
 C 210.746054 74.449947 197.25084 60.954733 181.003028 51.574055 
 C 164.755217 42.193377 146.320412 37.253786 127.559055 37.253786 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 203.074792 187.740763 
@@ -434,7 +434,7 @@ C 90.362893 246.090088 108.797698 251.029679 127.559055 251.029679
 C 146.320412 251.029679 164.755217 246.090088 181.003028 236.709409 
 C 197.25084 227.328731 210.746054 213.833517 220.126732 197.585706 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 52.043318 187.740763 
@@ -448,7 +448,7 @@ C 57.86727 60.954733 44.372056 74.449947 34.991378 90.697759
 C 25.6107 106.94557 20.671108 125.380376 20.671108 144.141732 
 C 20.671108 162.903089 25.6107 181.337894 34.991378 197.585706 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #dcefe3; stroke: #ffffff; stroke-width: 1.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 128.843527 77.245565 
@@ -458,7 +458,7 @@ L 138.157688 76.460275
 C 136.621897 76.219777 135.078364 76.031622 133.529771 75.896138 
 C 131.981178 75.760653 130.428422 75.677918 128.874201 75.648076 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 140.084496 80.299027 
@@ -468,7 +468,7 @@ L 149.749433 79.328942
 C 148.278736 78.82541 146.791325 78.372082 145.289786 77.969746 
 C 143.788246 77.567409 142.273447 77.216298 140.748019 76.917021 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 149.624336 86.958221 
@@ -478,7 +478,7 @@ L 160.666934 84.166913
 C 159.306017 83.415646 157.919924 82.710919 156.511061 82.053956 
 C 155.102198 81.396992 153.671382 80.788173 152.221098 80.228555 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 157.172934 95.050244 
@@ -488,7 +488,7 @@ L 170.578469 90.827188
 C 169.368684 89.851014 168.126023 88.916301 166.852644 88.024672 
 C 165.579265 87.133042 164.275907 86.285014 162.944833 85.482058 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 161.738259 104.961376 
@@ -498,7 +498,7 @@ L 179.182881 99.107399
 C 178.160986 97.935978 177.099515 96.799679 176.000311 95.700476 
 C 174.901108 94.601273 173.764809 93.539802 172.593389 92.517906 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
     <path d="M 169.727116 110.116396 
@@ -508,7 +508,7 @@ L 186.218729 108.755955
 C 185.415774 107.42488 184.567745 106.121522 183.676116 104.848143 
 C 182.784486 103.574765 181.849773 102.332104 180.873599 101.122318 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
     <path d="M 186.306116 111.711612 
@@ -518,7 +518,7 @@ L 191.472233 119.47969
 C 190.912615 118.029406 190.303795 116.59859 189.646832 115.189727 
 C 188.989868 113.780864 188.285141 112.39477 187.533875 111.033853 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
     <path d="M 190.562147 122.570953 
@@ -528,7 +528,7 @@ L 194.783767 130.952768
 C 194.48449 129.427341 194.133378 127.912542 193.731042 126.411002 
 C 193.328705 124.909462 192.875377 123.422052 192.371845 121.951354 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
     <path d="M 190.607561 134.2686 
@@ -538,7 +538,7 @@ L 196.052712 142.826587
 C 196.022869 141.272365 195.940134 139.719609 195.80465 138.171016 
 C 195.669165 136.622424 195.48101 135.078891 195.240512 133.543099 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_15">
     <path d="M 191.424403 145.36801 
@@ -548,7 +548,7 @@ L 195.240512 154.740366
 C 195.48101 153.204574 195.669165 151.661041 195.80465 150.112448 
 C 195.940134 148.563855 196.022869 147.011099 196.052712 145.456878 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
     <path d="M 192.574919 156.897338 
@@ -558,7 +558,7 @@ L 192.371845 166.33211
 C 192.875377 164.861413 193.328705 163.374002 193.731042 161.872463 
 C 194.133378 160.370923 194.48449 158.856124 194.783767 157.330696 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
     <path d="M 190.442053 168.406262 
@@ -568,7 +568,7 @@ L 187.533875 177.249611
 C 188.285141 175.888695 188.989868 174.502601 189.646832 173.093738 
 C 190.303795 171.684875 190.912615 170.254059 191.472233 168.803775 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
     <path d="M 183.827744 178.085176 
@@ -578,7 +578,7 @@ L 180.873599 187.161146
 C 181.849773 185.951361 182.784486 184.7087 183.676116 183.435321 
 C 184.567745 182.161943 185.415774 180.858584 186.218729 179.52751 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
     <path d="M 171.763902 182.704078 
@@ -588,7 +588,7 @@ L 172.593389 195.765558
 C 173.764809 194.743663 174.901108 193.682192 176.000311 192.582989 
 C 177.099515 191.483785 178.160986 190.347487 179.182881 189.176066 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_20">
     <path d="M 147.013052 168.251335 
@@ -598,7 +598,7 @@ L 162.944833 202.801406
 C 164.275907 201.998451 165.579265 201.150422 166.852644 200.258793 
 C 168.126023 199.367164 169.368684 198.43245 170.578469 197.456277 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_21">
     <path d="M 141.055903 168.59123 
@@ -608,7 +608,7 @@ L 152.221098 208.05491
 C 153.671382 207.495292 155.102198 206.886472 156.511061 206.229509 
 C 157.919924 205.572545 159.306017 204.867818 160.666934 204.116552 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_22">
     <path d="M 137.700331 173.761974 
@@ -618,7 +618,7 @@ L 140.748019 211.366444
 C 142.273447 211.067167 143.788246 210.716055 145.289786 210.313719 
 C 146.791325 209.911383 148.278736 209.458055 149.749433 208.954522 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_23">
     <path d="M 135.421564 194.350666 
@@ -628,7 +628,7 @@ L 128.874201 212.635389
 C 130.428422 212.605546 131.981178 212.522811 133.529771 212.387327 
 C 135.078364 212.251843 136.621897 212.063688 138.157688 211.823189 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_24">
     <path d="M 126.314554 208.956173 
@@ -638,7 +638,7 @@ L 116.960422 211.823189
 C 118.496214 212.063688 120.039746 212.251843 121.588339 212.387327 
 C 123.136932 212.522811 124.689688 212.605546 126.24391 212.635389 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_25">
     <path d="M 115.682612 204.676467 
@@ -648,7 +648,7 @@ L 105.368677 208.954522
 C 106.839375 209.458055 108.326785 209.911383 109.828325 210.313719 
 C 111.329864 210.716055 112.844664 211.067167 114.370091 211.366444 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_26">
     <path d="M 106.208846 199.472092 
@@ -658,7 +658,7 @@ L 94.451176 204.116552
 C 95.812093 204.867818 97.198187 205.572545 98.607049 206.229509 
 C 100.015912 206.886472 101.446728 207.495292 102.897012 208.05491 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_27">
     <path d="M 96.743402 195.225424 
@@ -668,7 +668,7 @@ L 84.539641 197.456277
 C 85.749426 198.43245 86.992088 199.367164 88.265466 200.258793 
 C 89.538845 201.150422 90.842203 201.998451 92.173277 202.801406 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_28">
     <path d="M 88.706324 188.679454 
@@ -678,7 +678,7 @@ L 75.935229 189.176066
 C 76.957124 190.347487 78.018596 191.483785 79.117799 192.582989 
 C 80.217002 193.682192 81.353301 194.743663 82.524721 195.765558 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_29">
     <path d="M 76.108089 185.657428 
@@ -688,7 +688,7 @@ L 68.899381 179.52751
 C 69.702336 180.858584 70.550365 182.161943 71.441994 183.435321 
 C 72.333624 184.7087 73.268337 185.951361 74.244511 187.161146 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_30">
     <path d="M 81.18537 169.741382 
@@ -698,7 +698,7 @@ L 63.645878 168.803775
 C 64.205496 170.254059 64.814315 171.684875 65.471279 173.093738 
 C 66.128242 174.502601 66.832969 175.888695 67.584236 177.249611 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_31">
     <path d="M 78.318472 161.000552 
@@ -708,7 +708,7 @@ L 60.334344 157.330696
 C 60.633621 158.856124 60.984732 160.370923 61.387068 161.872463 
 C 61.789405 163.374002 62.242733 164.861413 62.746265 166.33211 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_32">
     <path d="M 98.57077 148.681177 
@@ -718,7 +718,7 @@ L 59.065398 145.456878
 C 59.095241 147.011099 59.177976 148.563855 59.313461 150.112448 
 C 59.448945 151.661041 59.6371 153.204574 59.877598 154.740366 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_33">
     <path d="M 107.318454 143.753093 
@@ -728,7 +728,7 @@ L 59.877598 133.543099
 C 59.6371 135.078891 59.448945 136.622424 59.313461 138.171016 
 C 59.177976 139.719609 59.095241 141.272365 59.065398 142.826587 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_34">
     <path d="M 101.983211 139.123951 
@@ -738,7 +738,7 @@ L 62.746265 121.951354
 C 62.242733 123.422052 61.789405 124.909462 61.387068 126.411002 
 C 60.984732 127.912542 60.633621 129.427341 60.334344 130.952768 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_35">
     <path d="M 83.441153 127.118051 
@@ -748,7 +748,7 @@ L 67.584236 111.033853
 C 66.832969 112.39477 66.128242 113.780864 65.471279 115.189727 
 C 64.814315 116.59859 64.205496 118.029406 63.645878 119.47969 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_36">
     <path d="M 83.59048 117.618192 
@@ -758,7 +758,7 @@ L 74.244511 101.122318
 C 73.268337 102.332104 72.333624 103.574765 71.441994 104.848143 
 C 70.550365 106.121522 69.702336 107.42488 68.899381 108.755955 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_37">
     <path d="M 81.768363 104.195965 
@@ -768,7 +768,7 @@ L 82.524721 92.517906
 C 81.353301 93.539802 80.217002 94.601273 79.117799 95.700476 
 C 78.018596 96.799679 76.957124 97.935978 75.935229 99.107399 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_38">
     <path d="M 90.723877 98.491395 
@@ -778,7 +778,7 @@ L 92.173277 85.482058
 C 90.842203 86.285014 89.538845 87.133042 88.265466 88.024672 
 C 86.992088 88.916301 85.749426 89.851014 84.539641 90.827188 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_39">
     <path d="M 102.054621 97.940529 
@@ -788,7 +788,7 @@ L 102.897012 80.228555
 C 101.446728 80.788173 100.015912 81.396992 98.607049 82.053956 
 C 97.198187 82.710919 95.812093 83.415646 94.451176 84.166913 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_40">
     <path d="M 105.606625 80.02393 
@@ -798,7 +798,7 @@ L 114.370091 76.917021
 C 112.844664 77.216298 111.329864 77.567409 109.828325 77.969746 
 C 108.326785 78.372082 106.839375 78.82541 105.368677 79.328942 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="patch_41">
     <path d="M 116.960422 76.460275 
@@ -808,10 +808,10 @@ L 126.240947 75.493795
 C 124.683225 75.523704 123.126971 75.606626 121.57489 75.742416 
 C 120.022809 75.878205 118.4758 76.066784 116.936549 76.307824 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: #55a868; opacity: 0.94; stroke: #ffffff; stroke-width: 0.35; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <text style="fill: #333333; font: 700 15.5px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="127.559055" y="26.440945" transform="rotate(-0 127.559055 26.440945)">Carbon reduction rate</text>
+    <text style="font-weight: 700; font-size: 15.5px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="127.559055" y="26.440945" transform="rotate(-0 127.559055 26.440945)">Carbon reduction rate</text>
    </g>
    <g id="line2d_5">
     <path d="M 127.559055 56.943671 
@@ -936,7 +936,7 @@ L 118.444376 57.421351
 L 122.995461 57.063172 
 L 127.559055 56.943671 
 L 127.559055 56.943671 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #55a868; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #55a868; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="line2d_6">
     <path d="M 127.559055 37.253786 
@@ -1085,7 +1085,7 @@ L 118.243157 37.660526
 L 122.896668 37.355519 
 L 127.559055 37.253786 
 L 127.559055 37.253786 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #55a868; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #55a868; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="patch_42">
     <path d="M 127.559055 158.205936 
@@ -1099,400 +1099,400 @@ C 113.494852 147.871603 114.976745 151.449209 117.614161 154.086626
 C 120.251578 156.724043 123.829185 158.205936 127.559055 158.205936 
 L 127.559055 158.205936 
 z
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; opacity: 0.75; stroke: #b7b7b7; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; opacity: 0.75; stroke: #b7b7b7; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_7">
     <path d="M 127.559055 130.077529 
 L 127.559055 37.253786 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
    </g>
    <g id="line2d_8">
     <path d="M 139.739013 151.173834 
 L 220.126732 197.585706 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
    </g>
    <g id="line2d_9">
     <path d="M 115.379098 151.173834 
 L 34.991378 197.585706 
-" clip-path="url(#p2ac0a0de2c)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
+" clip-path="url(#pae5e33150f)" style="fill: none; stroke: #ffffff; stroke-width: 1.35"/>
    </g>
    <g id="text_2">
-    <text style="fill: #333333; font: 600 9.4px 'Times New Roman'; text-anchor: middle" x="86.307441" y="175.133345" transform="rotate(-0 86.307441 175.133345)">5%</text>
+    <text style="font-weight: 600; font-size: 9.4px; font-family: 'Times New Roman'; text-anchor: middle; fill: #333333" x="86.307441" y="175.133345" transform="rotate(-0 86.307441 175.133345)">5%</text>
    </g>
    <g id="text_3">
-    <text style="fill: #333333; font: 600 9.4px 'Times New Roman'; text-anchor: middle" x="106.853862" y="170.924143" transform="rotate(-0 106.853862 170.924143)">10%</text>
+    <text style="font-weight: 600; font-size: 9.4px; font-family: 'Times New Roman'; text-anchor: middle; fill: #333333" x="106.853862" y="170.924143" transform="rotate(-0 106.853862 170.924143)">10%</text>
    </g>
    <g id="text_4">
-    <text style="fill: #333333; font: 600 9.4px 'Times New Roman'; text-anchor: middle" x="122.290512" y="159.288757" transform="rotate(-0 122.290512 159.288757)">15%</text>
+    <text style="font-weight: 600; font-size: 9.4px; font-family: 'Times New Roman'; text-anchor: middle; fill: #333333" x="122.290512" y="159.288757" transform="rotate(-0 122.290512 159.288757)">15%</text>
    </g>
    <g id="text_5">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="136.031073" y="65.822549" transform="rotate(-85 136.031073 65.822549)">JAN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="136.031073" y="65.822549" transform="rotate(-85 136.031073 65.822549)">JAN</text>
    </g>
    <g id="text_6">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="149.502347" y="68.483544" transform="rotate(-75 149.502347 68.483544)">FEB</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="149.502347" y="68.483544" transform="rotate(-75 149.502347 68.483544)">FEB</text>
    </g>
    <g id="text_7">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="162.306886" y="73.443375" transform="rotate(-65 162.306886 73.443375)">MAR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="162.306886" y="73.443375" transform="rotate(-65 162.306886 73.443375)">MAR</text>
    </g>
    <g id="text_8">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="174.055629" y="80.551339" transform="rotate(-55 174.055629 80.551339)">APR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="174.055629" y="80.551339" transform="rotate(-55 174.055629 80.551339)">APR</text>
    </g>
    <g id="text_9">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="184.391597" y="89.591465" transform="rotate(-45 184.391597 89.591465)">MAY</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="184.391597" y="89.591465" transform="rotate(-45 184.391597 89.591465)">MAY</text>
    </g>
    <g id="text_10">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="193.000738" y="100.289074" transform="rotate(-35 193.000738 100.289074)">JUN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="193.000738" y="100.289074" transform="rotate(-35 193.000738 100.289074)">JUN</text>
    </g>
    <g id="text_11">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="199.621466" y="112.319123" transform="rotate(-25 199.621466 112.319123)">JUL</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="199.621466" y="112.319123" transform="rotate(-25 199.621466 112.319123)">JUL</text>
    </g>
    <g id="text_12">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="204.052614" y="125.316087" transform="rotate(-15 204.052614 125.316087)">AUG</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="204.052614" y="125.316087" transform="rotate(-15 204.052614 125.316087)">AUG</text>
    </g>
    <g id="text_13">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="206.159544" y="138.885058" transform="rotate(-5 206.159544 138.885058)">SEP</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="206.159544" y="138.885058" transform="rotate(-5 206.159544 138.885058)">SEP</text>
    </g>
    <g id="text_14">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="205.878238" y="152.61375" transform="rotate(-355 205.878238 152.61375)">OCT</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="205.878238" y="152.61375" transform="rotate(-355 205.878238 152.61375)">OCT</text>
    </g>
    <g id="text_15">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="203.217243" y="166.085024" transform="rotate(-345 203.217243 166.085024)">NOV</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="203.217243" y="166.085024" transform="rotate(-345 203.217243 166.085024)">NOV</text>
    </g>
    <g id="text_16">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="198.257413" y="178.889563" transform="rotate(-335 198.257413 178.889563)">DEC</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="198.257413" y="178.889563" transform="rotate(-335 198.257413 178.889563)">DEC</text>
    </g>
    <g id="text_17">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="191.149448" y="190.638306" transform="rotate(-325 191.149448 190.638306)">JAN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="191.149448" y="190.638306" transform="rotate(-325 191.149448 190.638306)">JAN</text>
    </g>
    <g id="text_18">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="182.109322" y="200.974275" transform="rotate(-315 182.109322 200.974275)">FEB</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="182.109322" y="200.974275" transform="rotate(-315 182.109322 200.974275)">FEB</text>
    </g>
    <g id="text_19">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="171.411713" y="209.583415" transform="rotate(-305 171.411713 209.583415)">MAR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="171.411713" y="209.583415" transform="rotate(-305 171.411713 209.583415)">MAR</text>
    </g>
    <g id="text_20">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="159.381664" y="216.204143" transform="rotate(-295 159.381664 216.204143)">APR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="159.381664" y="216.204143" transform="rotate(-295 159.381664 216.204143)">APR</text>
    </g>
    <g id="text_21">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="146.384701" y="220.635291" transform="rotate(-285 146.384701 220.635291)">MAY</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="146.384701" y="220.635291" transform="rotate(-285 146.384701 220.635291)">MAY</text>
    </g>
    <g id="text_22">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="132.81573" y="222.742221" transform="rotate(-275 132.81573 222.742221)">JUN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="132.81573" y="222.742221" transform="rotate(-275 132.81573 222.742221)">JUN</text>
    </g>
    <g id="text_23">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="122.30238" y="222.742221" transform="rotate(-85 122.30238 222.742221)">JUL</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="122.30238" y="222.742221" transform="rotate(-85 122.30238 222.742221)">JUL</text>
    </g>
    <g id="text_24">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="108.733409" y="220.635291" transform="rotate(-75 108.733409 220.635291)">AUG</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="108.733409" y="220.635291" transform="rotate(-75 108.733409 220.635291)">AUG</text>
    </g>
    <g id="text_25">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="95.736446" y="216.204143" transform="rotate(-65 95.736446 216.204143)">SEP</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="95.736446" y="216.204143" transform="rotate(-65 95.736446 216.204143)">SEP</text>
    </g>
    <g id="text_26">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="83.706397" y="209.583415" transform="rotate(-55 83.706397 209.583415)">OCT</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="83.706397" y="209.583415" transform="rotate(-55 83.706397 209.583415)">OCT</text>
    </g>
    <g id="text_27">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="73.008788" y="200.974275" transform="rotate(-45 73.008788 200.974275)">NOV</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="73.008788" y="200.974275" transform="rotate(-45 73.008788 200.974275)">NOV</text>
    </g>
    <g id="text_28">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="63.968662" y="190.638306" transform="rotate(-35 63.968662 190.638306)">DEC</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="63.968662" y="190.638306" transform="rotate(-35 63.968662 190.638306)">DEC</text>
    </g>
    <g id="text_29">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="56.860698" y="178.889563" transform="rotate(-25 56.860698 178.889563)">JAN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="56.860698" y="178.889563" transform="rotate(-25 56.860698 178.889563)">JAN</text>
    </g>
    <g id="text_30">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="51.900867" y="166.085024" transform="rotate(-15 51.900867 166.085024)">FEB</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="51.900867" y="166.085024" transform="rotate(-15 51.900867 166.085024)">FEB</text>
    </g>
    <g id="text_31">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="49.239872" y="152.61375" transform="rotate(-5 49.239872 152.61375)">MAR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="49.239872" y="152.61375" transform="rotate(-5 49.239872 152.61375)">MAR</text>
    </g>
    <g id="text_32">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="48.958566" y="138.885058" transform="rotate(-355 48.958566 138.885058)">APR</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="48.958566" y="138.885058" transform="rotate(-355 48.958566 138.885058)">APR</text>
    </g>
    <g id="text_33">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="51.065496" y="125.316087" transform="rotate(-345 51.065496 125.316087)">MAY</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="51.065496" y="125.316087" transform="rotate(-345 51.065496 125.316087)">MAY</text>
    </g>
    <g id="text_34">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="55.496644" y="112.319123" transform="rotate(-335 55.496644 112.319123)">JUN</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="55.496644" y="112.319123" transform="rotate(-335 55.496644 112.319123)">JUN</text>
    </g>
    <g id="text_35">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="62.117372" y="100.289074" transform="rotate(-325 62.117372 100.289074)">JUL</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="62.117372" y="100.289074" transform="rotate(-325 62.117372 100.289074)">JUL</text>
    </g>
    <g id="text_36">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="70.726513" y="89.591465" transform="rotate(-315 70.726513 89.591465)">AUG</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="70.726513" y="89.591465" transform="rotate(-315 70.726513 89.591465)">AUG</text>
    </g>
    <g id="text_37">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="81.062481" y="80.551339" transform="rotate(-305 81.062481 80.551339)">SEP</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="81.062481" y="80.551339" transform="rotate(-305 81.062481 80.551339)">SEP</text>
    </g>
    <g id="text_38">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="92.811225" y="73.443375" transform="rotate(-295 92.811225 73.443375)">OCT</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="92.811225" y="73.443375" transform="rotate(-295 92.811225 73.443375)">OCT</text>
    </g>
    <g id="text_39">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="105.615763" y="68.483544" transform="rotate(-285 105.615763 68.483544)">NOV</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="105.615763" y="68.483544" transform="rotate(-285 105.615763 68.483544)">NOV</text>
    </g>
    <g id="text_40">
-    <text style="fill: #333333; font: 600 7.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="119.087037" y="65.822549" transform="rotate(-275 119.087037 65.822549)">DEC</text>
+    <text style="font-weight: 600; font-size: 7.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="119.087037" y="65.822549" transform="rotate(-275 119.087037 65.822549)">DEC</text>
    </g>
    <g id="text_41">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="143.541238" y="50.742507" transform="rotate(-350.289772 143.541238 50.742507)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="143.541238" y="50.742507" transform="rotate(-350.289772 143.541238 50.742507)">2</text>
    </g>
    <g id="text_42">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="149.08796" y="51.863069" transform="rotate(-346.867616 149.08796 51.863069)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="149.08796" y="51.863069" transform="rotate(-346.867616 149.08796 51.863069)">0</text>
    </g>
    <g id="text_43">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="154.557903" y="53.31273" transform="rotate(-343.445461 154.557903 53.31273)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="154.557903" y="53.31273" transform="rotate(-343.445461 154.557903 53.31273)">2</text>
    </g>
    <g id="text_44">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="159.925396" y="55.08408" transform="rotate(-340.02727 159.925396 55.08408)">3</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="159.925396" y="55.08408" transform="rotate(-340.02727 159.925396 55.08408)">3</text>
    </g>
    <g id="text_45">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="164.036442" y="56.687483" transform="rotate(-337.35886 164.036442 56.687483)">:</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="164.036442" y="56.687483" transform="rotate(-337.35886 164.036442 56.687483)">:</text>
    </g>
    <g id="text_46">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="172.196809" y="60.557545" transform="rotate(-331.895757 172.196809 60.557545)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="172.196809" y="60.557545" transform="rotate(-331.895757 172.196809 60.557545)">0</text>
    </g>
    <g id="text_47">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="176.045361" y="62.729672" transform="rotate(-329.223384 176.045361 62.729672)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="176.045361" y="62.729672" transform="rotate(-329.223384 176.045361 62.729672)">.</text>
    </g>
    <g id="text_48">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="179.782982" y="65.075261" transform="rotate(-326.554975 179.782982 65.075261)">3</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="179.782982" y="65.075261" transform="rotate(-326.554975 179.782982 65.075261)">3</text>
    </g>
    <g id="text_49">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="184.406525" y="68.331373" transform="rotate(-323.135085 184.406525 68.331373)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="184.406525" y="68.331373" transform="rotate(-323.135085 184.406525 68.331373)">0</text>
    </g>
    <g id="text_50">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="189.237412" y="72.206861" transform="rotate(-319.389571 189.237412 72.206861)">–</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="189.237412" y="72.206861" transform="rotate(-319.389571 189.237412 72.206861)">–</text>
    </g>
    <g id="text_51">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="193.836281" y="76.42043" transform="rotate(-315.617442 193.836281 76.42043)">4</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="193.836281" y="76.42043" transform="rotate(-315.617442 193.836281 76.42043)">4</text>
    </g>
    <g id="text_52">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="196.951677" y="79.61647" transform="rotate(-312.918453 196.951677 79.61647)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="196.951677" y="79.61647" transform="rotate(-312.918453 196.951677 79.61647)">.</text>
    </g>
    <g id="text_53">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="199.889528" y="82.927779" transform="rotate(-310.241549 199.889528 82.927779)">5</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="199.889528" y="82.927779" transform="rotate(-310.241549 199.889528 82.927779)">5</text>
    </g>
    <g id="text_54">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="203.425219" y="87.368758" transform="rotate(-306.808634 203.425219 87.368758)">5</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="203.425219" y="87.368758" transform="rotate(-306.808634 203.425219 87.368758)">5</text>
    </g>
    <g id="text_55">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="208.08549" y="94.198376" transform="rotate(-301.807632 208.08549 94.198376)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="208.08549" y="94.198376" transform="rotate(-301.807632 208.08549 94.198376)">%</text>
    </g>
    <g id="text_56">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="211.56145" y="100.296059" transform="rotate(-297.562642 211.56145 100.296059)">,</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="211.56145" y="100.296059" transform="rotate(-297.562642 211.56145 100.296059)">,</text>
    </g>
    <g id="text_57">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="215.962708" y="110.029571" transform="rotate(-291.100017 215.962708 110.029571)">A</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="215.962708" y="110.029571" transform="rotate(-291.100017 215.962708 110.029571)">A</text>
    </g>
    <g id="text_58">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="218.441882" y="117.324626" transform="rotate(-286.439929 218.441882 117.324626)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="218.441882" y="117.324626" transform="rotate(-286.439929 218.441882 117.324626)">n</text>
    </g>
    <g id="text_59">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="220.05442" y="123.563761" transform="rotate(-282.542647 220.05442 123.563761)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="220.05442" y="123.563761" transform="rotate(-282.542647 220.05442 123.563761)">n</text>
    </g>
    <g id="text_60">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="221.23959" y="129.900846" transform="rotate(-278.643666 221.23959 129.900846)">u</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="221.23959" y="129.900846" transform="rotate(-278.643666 221.23959 129.900846)">u</text>
    </g>
    <g id="text_61">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="221.963674" y="135.980028" transform="rotate(-274.941192 221.963674 135.980028)">a</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="221.963674" y="135.980028" transform="rotate(-274.941192 221.963674 135.980028)">a</text>
    </g>
    <g id="text_62">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="222.250246" y="140.616981" transform="rotate(-272.131774 222.250246 140.616981)">l</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="222.250246" y="140.616981" transform="rotate(-272.131774 222.250246 140.616981)">l</text>
    </g>
    <g id="text_63">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="222.315637" y="143.953124" transform="rotate(-270.114044 222.315637 143.953124)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="222.315637" y="143.953124" transform="rotate(-270.114044 222.315637 143.953124)">.</text>
    </g>
    <g id="text_64">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="221.941372" y="152.557419" transform="rotate(-264.904644 221.941372 152.557419)">1</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="221.941372" y="152.557419" transform="rotate(-264.904644 221.941372 152.557419)">1</text>
    </g>
    <g id="text_65">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="221.502137" y="156.532972" transform="rotate(-262.485973 221.502137 156.532972)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="221.502137" y="156.532972" transform="rotate(-262.485973 221.502137 156.532972)">.</text>
    </g>
    <g id="text_66">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="220.822232" y="160.899573" transform="rotate(-259.8136 220.822232 160.899573)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="220.822232" y="160.899573" transform="rotate(-259.8136 220.822232 160.899573)">0</text>
    </g>
    <g id="text_67">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="219.633752" y="166.526897" transform="rotate(-256.335381 219.633752 166.526897)">7</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="219.633752" y="166.526897" transform="rotate(-256.335381 219.633752 166.526897)">7</text>
    </g>
    <g id="text_68">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="217.305443" y="174.546194" transform="rotate(-251.284544 217.305443 174.546194)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="217.305443" y="174.546194" transform="rotate(-251.284544 217.305443 174.546194)">%</text>
    </g>
    <g id="text_69">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="51.10317" y="207.551474" transform="rotate(-309.671083 51.10317 207.551474)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="51.10317" y="207.551474" transform="rotate(-309.671083 51.10317 207.551474)">2</text>
    </g>
    <g id="text_70">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="54.931878" y="211.90301" transform="rotate(-313.014908 54.931878 211.90301)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="54.931878" y="211.90301" transform="rotate(-313.014908 54.931878 211.90301)">0</text>
    </g>
    <g id="text_71">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="59.007881" y="216.023818" transform="rotate(-316.358734 59.007881 216.023818)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="59.007881" y="216.023818" transform="rotate(-316.358734 59.007881 216.023818)">2</text>
    </g>
    <g id="text_72">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="63.351696" y="219.929018" transform="rotate(-319.728566 63.351696 219.929018)">4</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="63.351696" y="219.929018" transform="rotate(-319.728566 63.351696 219.929018)">4</text>
    </g>
    <g id="text_73">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="66.906807" y="222.803047" transform="rotate(-322.365778 66.906807 222.803047)">:</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="66.906807" y="222.803047" transform="rotate(-322.365778 66.906807 222.803047)">:</text>
    </g>
    <g id="text_74">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="74.487865" y="228.1045" transform="rotate(-327.703836 74.487865 228.1045)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="74.487865" y="228.1045" transform="rotate(-327.703836 74.487865 228.1045)">0</text>
    </g>
    <g id="text_75">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="78.368175" y="230.435156" transform="rotate(-330.315041 78.368175 230.435156)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="78.368175" y="230.435156" transform="rotate(-330.315041 78.368175 230.435156)">.</text>
    </g>
    <g id="text_76">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="82.378827" y="232.601014" transform="rotate(-332.944507 82.378827 232.601014)">6</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="82.378827" y="232.601014" transform="rotate(-332.944507 82.378827 232.601014)">6</text>
    </g>
    <g id="text_77">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="87.675979" y="235.112265" transform="rotate(-336.326512 87.675979 235.112265)">6</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="87.675979" y="235.112265" transform="rotate(-336.326512 87.675979 235.112265)">6</text>
    </g>
    <g id="text_78">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="93.593874" y="237.483385" transform="rotate(-340.004554 93.593874 237.483385)">–</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="93.593874" y="237.483385" transform="rotate(-340.004554 93.593874 237.483385)">–</text>
    </g>
    <g id="text_79">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="99.209162" y="239.339323" transform="rotate(-343.416441 99.209162 239.339323)">1</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="99.209162" y="239.339323" transform="rotate(-343.416441 99.209162 239.339323)">1</text>
    </g>
    <g id="text_80">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="103.977067" y="240.631045" transform="rotate(-346.266135 103.977067 240.631045)">1</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="103.977067" y="240.631045" transform="rotate(-346.266135 103.977067 240.631045)">1</text>
    </g>
    <g id="text_81">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="107.975942" y="241.521398" transform="rotate(-348.629444 107.975942 241.521398)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="107.975942" y="241.521398" transform="rotate(-348.629444 107.975942 241.521398)">.</text>
    </g>
    <g id="text_82">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="112.008131" y="242.246097" transform="rotate(-350.992753 112.008131 242.246097)">1</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="112.008131" y="242.246097" transform="rotate(-350.992753 112.008131 242.246097)">1</text>
    </g>
    <g id="text_83">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="117.346411" y="242.944564" transform="rotate(-354.098643 117.346411 242.944564)">8</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="117.346411" y="242.944564" transform="rotate(-354.098643 117.346411 242.944564)">8</text>
    </g>
    <g id="text_84">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="125.806541" y="243.455509" transform="rotate(-358.98905 125.806541 243.455509)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="125.806541" y="243.455509" transform="rotate(-358.98905 125.806541 243.455509)">%</text>
    </g>
    <g id="text_85">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="132.994498" y="243.322142" transform="rotate(-3.136877 132.994498 243.322142)">,</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="132.994498" y="243.322142" transform="rotate(-3.136877 132.994498 243.322142)">,</text>
    </g>
    <g id="text_86">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="143.870307" y="242.12255" transform="rotate(-9.451578 143.870307 242.12255)">A</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="143.870307" y="242.12255" transform="rotate(-9.451578 143.870307 242.12255)">A</text>
    </g>
    <g id="text_87">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="151.597386" y="240.51837" transform="rotate(-14.005001 151.597386 240.51837)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="151.597386" y="240.51837" transform="rotate(-14.005001 151.597386 240.51837)">n</text>
    </g>
    <g id="text_88">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="157.945123" y="238.709087" transform="rotate(-17.813078 157.945123 238.709087)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="157.945123" y="238.709087" transform="rotate(-17.813078 157.945123 238.709087)">n</text>
    </g>
    <g id="text_89">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="164.161358" y="236.481155" transform="rotate(-21.622815 164.161358 236.481155)">u</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="164.161358" y="236.481155" transform="rotate(-21.622815 164.161358 236.481155)">u</text>
    </g>
    <g id="text_90">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="169.914974" y="233.987566" transform="rotate(-25.240543 169.914974 233.987566)">a</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="169.914974" y="233.987566" transform="rotate(-25.240543 169.914974 233.987566)">a</text>
    </g>
    <g id="text_91">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="174.16935" y="231.855916" transform="rotate(-27.985656 174.16935 231.855916)">l</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="174.16935" y="231.855916" transform="rotate(-27.985656 174.16935 231.855916)">l</text>
    </g>
    <g id="text_92">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="177.159404" y="230.200451" transform="rotate(-29.957201 177.159404 230.200451)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="177.159404" y="230.200451" transform="rotate(-29.957201 177.159404 230.200451)">.</text>
    </g>
    <g id="text_93">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="184.948157" y="225.214469" transform="rotate(-35.293599 184.948157 225.214469)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="184.948157" y="225.214469" transform="rotate(-35.293599 184.948157 225.214469)">2</text>
    </g>
    <g id="text_94">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="188.579838" y="222.517505" transform="rotate(-37.903144 188.579838 222.517505)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="188.579838" y="222.517505" transform="rotate(-37.903144 188.579838 222.517505)">.</text>
    </g>
    <g id="text_95">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="192.121419" y="219.626822" transform="rotate(-40.540356 192.121419 219.626822)">4</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="192.121419" y="219.626822" transform="rotate(-40.540356 192.121419 219.626822)">4</text>
    </g>
    <g id="text_96">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="196.446857" y="215.701276" transform="rotate(-43.910189 196.446857 215.701276)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="196.446857" y="215.701276" transform="rotate(-43.910189 196.446857 215.701276)">2</text>
    </g>
    <g id="text_97">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="202.285161" y="209.581069" transform="rotate(-48.790636 202.285161 209.581069)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="202.285161" y="209.581069" transform="rotate(-48.790636 202.285161 209.581069)">%</text>
    </g>
    <g id="text_98">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="38.732973" y="177.138286" transform="rotate(-110.378708 38.732973 177.138286)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="38.732973" y="177.138286" transform="rotate(-110.378708 38.732973 177.138286)">2</text>
    </g>
    <g id="text_99">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="37.007996" y="172.058593" transform="rotate(-107.134512 37.007996 172.058593)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="37.007996" y="172.058593" transform="rotate(-107.134512 37.007996 172.058593)">0</text>
    </g>
    <g id="text_100">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="35.573251" y="166.88942" transform="rotate(-103.890317 35.573251 166.88942)">2</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="35.573251" y="166.88942" transform="rotate(-103.890317 35.573251 166.88942)">2</text>
    </g>
    <g id="text_101">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="34.432026" y="161.640357" transform="rotate(-100.641827 34.432026 161.640357)">5</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="34.432026" y="161.640357" transform="rotate(-100.641827 34.432026 161.640357)">5</text>
    </g>
    <g id="text_102">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="33.748574" y="157.499838" transform="rotate(-98.104129 33.748574 157.499838)">:</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="33.748574" y="157.499838" transform="rotate(-98.104129 33.748574 157.499838)">:</text>
    </g>
    <g id="text_103">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="32.970574" y="149.786614" transform="rotate(-93.415265 32.970574 149.786614)">-</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="32.970574" y="149.786614" transform="rotate(-93.415265 32.970574 149.786614)">-</text>
    </g>
    <g id="text_104">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="32.808564" y="145.232575" transform="rotate(-90.659605 32.808564 145.232575)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="32.808564" y="145.232575" transform="rotate(-90.659605 32.808564 145.232575)">0</text>
    </g>
    <g id="text_105">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="32.852954" y="141.043364" transform="rotate(-88.126201 32.852954 141.043364)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="32.852954" y="141.043364" transform="rotate(-88.126201 32.852954 141.043364)">.</text>
    </g>
    <g id="text_106">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="33.082471" y="136.860209" transform="rotate(-85.592798 33.082471 136.860209)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="33.082471" y="136.860209" transform="rotate(-85.592798 33.082471 136.860209)">0</text>
    </g>
    <g id="text_107">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="33.651873" y="131.481298" transform="rotate(-82.32176 33.651873 131.481298)">4</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="33.651873" y="131.481298" transform="rotate(-82.32176 33.651873 131.481298)">4</text>
    </g>
    <g id="text_108">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="34.624368" y="125.648775" transform="rotate(-78.74579 34.624368 125.648775)">–</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="34.624368" y="125.648775" transform="rotate(-78.74579 34.624368 125.648775)">–</text>
    </g>
    <g id="text_109">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="35.847253" y="120.313373" transform="rotate(-75.435562 35.847253 120.313373)">1</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="35.847253" y="120.313373" transform="rotate(-75.435562 35.847253 120.313373)">1</text>
    </g>
    <g id="text_110">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="37.220788" y="115.543779" transform="rotate(-72.434024 37.220788 115.543779)">3</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="37.220788" y="115.543779" transform="rotate(-72.434024 37.220788 115.543779)">3</text>
    </g>
    <g id="text_111">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="38.571029" y="111.58445" transform="rotate(-69.904378 38.571029 111.58445)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="38.571029" y="111.58445" transform="rotate(-69.904378 38.571029 111.58445)">.</text>
    </g>
    <g id="text_112">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="40.094704" y="107.688574" transform="rotate(-67.374733 40.094704 107.688574)">3</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="40.094704" y="107.688574" transform="rotate(-67.374733 40.094704 107.688574)">3</text>
    </g>
    <g id="text_113">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="42.296268" y="102.800438" transform="rotate(-64.132685 42.296268 102.800438)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="42.296268" y="102.800438" transform="rotate(-64.132685 42.296268 102.800438)">0</text>
    </g>
    <g id="text_114">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="46.001253" y="95.900978" transform="rotate(-59.396042 46.001253 95.900978)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="46.001253" y="95.900978" transform="rotate(-59.396042 46.001253 95.900978)">%</text>
    </g>
    <g id="text_115">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="49.587803" y="90.296312" transform="rotate(-55.371801 49.587803 90.296312)">,</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="49.587803" y="90.296312" transform="rotate(-55.371801 49.587803 90.296312)">,</text>
    </g>
    <g id="text_116">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="55.779774" y="82.282374" transform="rotate(-49.245248 55.779774 82.282374)">A</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="55.779774" y="82.282374" transform="rotate(-49.245248 55.779774 82.282374)">A</text>
    </g>
    <g id="text_117">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="60.757936" y="76.93715" transform="rotate(-44.827495 60.757936 76.93715)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="60.757936" y="76.93715" transform="rotate(-44.827495 60.757936 76.93715)">n</text>
    </g>
    <g id="text_118">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="65.227332" y="72.772259" transform="rotate(-41.132881 65.227332 72.772259)">n</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="65.227332" y="72.772259" transform="rotate(-41.132881 65.227332 72.772259)">n</text>
    </g>
    <g id="text_119">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="69.957934" y="68.902406" transform="rotate(-37.436657 69.957934 68.902406)">u</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="69.957934" y="68.902406" transform="rotate(-37.436657 69.957934 68.902406)">u</text>
    </g>
    <g id="text_120">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="74.672258" y="65.517104" transform="rotate(-33.92672 74.672258 65.517104)">a</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="74.672258" y="65.517104" transform="rotate(-33.92672 74.672258 65.517104)">a</text>
    </g>
    <g id="text_121">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="78.382835" y="63.144542" transform="rotate(-31.263398 78.382835 63.144542)">l</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="78.382835" y="63.144542" transform="rotate(-31.263398 78.382835 63.144542)">l</text>
    </g>
    <g id="text_122">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="81.113802" y="61.548246" transform="rotate(-29.350595 81.113802 61.548246)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="81.113802" y="61.548246" transform="rotate(-29.350595 81.113802 61.548246)">.</text>
    </g>
    <g id="text_123">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="88.753269" y="57.695469" transform="rotate(-24.175344 88.753269 57.695469)">3</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="88.753269" y="57.695469" transform="rotate(-24.175344 88.753269 57.695469)">3</text>
    </g>
    <g id="text_124">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="92.606503" y="56.066966" transform="rotate(-21.645698 92.606503 56.066966)">.</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="92.606503" y="56.066966" transform="rotate(-21.645698 92.606503 56.066966)">.</text>
    </g>
    <g id="text_125">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="96.546315" y="54.603722" transform="rotate(-19.104242 96.546315 54.603722)">8</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="96.546315" y="54.603722" transform="rotate(-19.104242 96.546315 54.603722)">8</text>
    </g>
    <g id="text_126">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="101.678491" y="52.987786" transform="rotate(-15.850384 101.678491 52.987786)">0</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="101.678491" y="52.987786" transform="rotate(-15.850384 101.678491 52.987786)">0</text>
    </g>
    <g id="text_127">
-    <text style="fill: #333333; font: 700 10.2px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle" x="109.293997" y="51.161987" transform="rotate(-11.11374 109.293997 51.161987)">%</text>
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: middle; fill: #333333" x="109.293997" y="51.161987" transform="rotate(-11.11374 109.293997 51.161987)">%</text>
    </g>
    <g id="line2d_10">
     <path d="M 25.537323 245.066457 
@@ -1510,12 +1510,12 @@ L 47.47748 238.484409
 " style="fill: none; stroke: #b7b7b7; stroke-opacity: 0.95; stroke-width: 2"/>
    </g>
    <g id="text_128">
-    <text style="fill: #333333; font: 700 10px 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="50.768504" y="244.016839" transform="rotate(-0 50.768504 244.016839)">5%</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Times New Roman', 'Arial', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #333333" x="50.768504" y="244.016839" transform="rotate(-0 50.768504 244.016839)">5%</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p2ac0a0de2c">
+  <clipPath id="pae5e33150f">
    <path d="M 237.259843 144.141732 
 C 237.259843 129.735957 234.422219 115.470259 228.909367 102.161058 
 C 223.396516 88.851857 215.315647 76.757983 205.129226 66.571562 

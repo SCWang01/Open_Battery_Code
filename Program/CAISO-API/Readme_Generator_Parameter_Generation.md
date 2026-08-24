@@ -230,8 +230,12 @@ $_per_mwh        = Mcf_per_MWh × monthly gas price ($/Mcf)             # $/MWh
 # 1. Extract (only when first processing 2023 / 2026)
 python extract_caiso_ng.py                          # -> Data/CAISO_NG_YYYY.xlsx
 
-# 2. Split into months
-python split_caiso_ng_monthly.py                    # -> Month_Agg/CAISO_NG_YYYY_MM.xlsx
+# 2. Split each annual source workbook into months. The no-argument form processes
+#    CAISO_NG_2023.xlsx; pass --source for every additional year.
+python split_caiso_ng_monthly.py                    # -> 2023 monthly files
+python split_caiso_ng_monthly.py --source Data/CAISO_NG_2024.xlsx
+python split_caiso_ng_monthly.py --source Data/CAISO_NG_2025.xlsx
+python split_caiso_ng_monthly.py --source Data/CAISO_NG_2026.xlsx
 
 # 3. Clean
 python clear_monthly_mmbtu.py                       # -> Month_Agg_Clear/CAISO_NG_YYYY_MM.xlsx

@@ -3,7 +3,7 @@
 The workbook contains two sheets:
 
 * ``Monthly Analysis``: monthly profit, cost, and carbon metrics.
-* ``Annual Summary``: calendar-year (or partial-year) aggregate rates.
+* ``Annual Summary``: complete calendar-year aggregate rates.
 """
 
 from __future__ import annotations
@@ -194,7 +194,13 @@ def select_complete_calendar_years(
 
 
 def annual_label(year: str, months: list[str]) -> str:
-    """Label a complete calendar year included in the analysis."""
+    """Return the display label for one calendar-year group.
+
+    A complete January–December year is labelled as ``YYYY-(YYYY+1)``
+    (e.g. ``"2023-2024"``).  This cross-year format is intentional and
+    matches the paper's annual reporting convention.  Incomplete years
+    fall back to the ``YYYY_M--YYYY_M`` range form.
+    """
     month_numbers = [int(month[4:]) for month in months]
     if month_numbers == list(range(1, 13)):
         return f"{year}-{int(year) + 1}"

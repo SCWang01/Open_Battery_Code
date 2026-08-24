@@ -64,7 +64,7 @@ The optimisation requires a valid Gurobi licence. Gurobi is not distributed or l
 python -m pip install matplotlib scipy xlrd scikit-learn
 ```
 
-`matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline, and `scikit-learn` is used by its standalone K-means utility.
+`matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline. `scikit-learn` is used by `Program/CAISO-API/kmeans_mmbtu_cluster.py`, a standalone K-means heat-content clustering utility; it is not required for the main simulation or analysis scripts.
 
 ## Quick start
 
@@ -156,6 +156,12 @@ The `eta95%` fragment in monthly CSV filenames is currently hard-coded. Changing
 4. combine the market-cleared controllable output with the historical passive fraction;
 5. calculate historical and counterfactual battery profit, natural-gas generation and cost, renewable-curtailment absorption, and modelled carbon reduction; and
 6. export hourly arrays, monthly tables, and summary metrics to `Results/`.
+
+If any hourly natural-gas observation is missing, the model fills that gas value
+with zero and records the date as a skipped gas date. To preserve calendar
+alignment, the historical battery series is left at zero for that entire date;
+its derived charge/discharge limits are therefore also zero, disabling
+controllable battery operation on that date.
 
 Natural-gas costs are evaluated consistently with the selected cost mode through `Program/cost_calculation.py`. The default `exact` mode constructs the cost and marginal-price functions from monthly plant-level merit-order workbooks.
 
