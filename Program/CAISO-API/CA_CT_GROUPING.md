@@ -65,10 +65,3 @@ retained for a diagnostic run with `--provenance-dir <directory>`.
 The adopted run contained 1,523 grouped plant-months, skipped 193 non-positive
 plant-month records, and had a maximum extensive-quantity conservation error
 of `2.328e-10`.
-
-The stack builder does not change saved optimization Results. When gas costs or
-carbon outputs must be refreshed, `../recalculate_gas_postprocess.py` applies
-the rebuilt stacks to the saved hourly generation series without invoking the
-optimizer/Gurobi. Only gas marginal prices, fuel costs, direct carbon
-emissions, and their totals are recomputed; battery dispatch, SOC, profit, gas
-generation, and renewable absorption remain unchanged.
