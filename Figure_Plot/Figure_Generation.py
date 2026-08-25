@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import platform
 import shutil
 import subprocess
 import sys
@@ -77,10 +78,13 @@ class GenerationReport:
     """Collected provenance and outputs written to the generation manifest."""
 
     started_at: str
+    schema_version: int = 2
     status: str = "running"
     figures: tuple[str, ...] = ()
     skip_analysis: bool = False
-    commands: list[list[str]] = field(default_factory=list)
+    python_version: str = field(default_factory=platform.python_version)
+    python_implementation: str = field(default_factory=platform.python_implementation)
+    commands: list[dict[str, object]] = field(default_factory=list)
     files: list[dict[str, object]] = field(default_factory=list)
     outputs: list[dict[str, object]] = field(default_factory=list)
     error: str | None = None
@@ -143,12 +147,12 @@ def file_record(path: Path, *, role: str, source: Path | None = None) -> dict[st
     stat = path.stat()
     record: dict[str, object] = {
         "role": role,
-        "path": str(path.relative_to(PROJECT_ROOT)),
+        "path": path.relative_to(PROJECT_ROOT).as_posix(),
         "size": stat.st_size,
         "sha256": sha256(path),
     }
     if source is not None:
-        record["source"] = str(source.relative_to(PROJECT_ROOT))
+        record["source"] = source.relative_to(PROJECT_ROOT).as_posix()
     return record
 
 
@@ -179,9 +183,23 @@ def run_script(
 ) -> None:
     """Run an existing repository script with a checked subprocess boundary."""
     script = require_file(script, "figure-generation script")
-    command = [sys.executable, str(script), *args]
-    report.commands.append(command)
-    subprocess.run(command, cwd=cwd or PROJECT_ROOT, check=True)
+    working_directory = (cwd or PROJECT_ROOT).resolve()
+    recorded_command = [
+        "python",
+        script.relative_to(working_directory).as_posix(),
+        *args,
+    ]
+    report.commands.append(
+        {
+            "argv": recorded_command,
+            "cwd": working_directory.relative_to(PROJECT_ROOT).as_posix() or ".",
+        }
+    )
+    subprocess.run(
+        [sys.executable, str(script), *args],
+        cwd=working_directory,
+        check=True,
+    )
 
 
 def prepare_may_workbook(report: GenerationReport) -> Path:

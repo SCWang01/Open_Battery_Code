@@ -1,5 +1,6 @@
 {
   "started_at": "2026-08-25T06:31:18.831867+00:00",
+  "schema_version": 2,
   "status": "success",
   "figures": [
     "4a",
@@ -9,47 +10,76 @@
     "4e"
   ],
   "skip_analysis": false,
+  "python_version": "3.10.17",
+  "python_implementation": "CPython",
   "commands": [
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\source_data\\classify_p_ess.py",
-      "--input",
-      "dsfunction_May2025_exact_V5_k20.xlsx"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\source_data\\add_dsfunction_state_array.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\plot_state_distribution_pies_May2025.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_c\\export_hourly_state_counts.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_c\\plot_hourly_state_counts_price_May2025.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Program\\analyze_summary.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_d\\plot_profit_increment_radial.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_d\\plot_reduction_rates_radial.py"
-    ],
-    [
-      "D:\\Deep_Learning_Env\\envs\\deep_learning_env\\python.exe",
-      "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_e\\Fig_4_e_plot.py",
-      "--date",
-      "2025-04-07"
-    ]
+    {
+      "argv": [
+        "python",
+        "classify_p_ess.py",
+        "--input",
+        "dsfunction_May2025_exact_V5_k20.xlsx"
+      ],
+      "cwd": "Figure_Plot/figure_plot_4_a_b/source_data"
+    },
+    {
+      "argv": [
+        "python",
+        "add_dsfunction_state_array.py"
+      ],
+      "cwd": "Figure_Plot/figure_plot_4_a_b/source_data"
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_a_b/state_distribution_pies_May2025/plot_state_distribution_pies_May2025.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_c/export_hourly_state_counts.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_c/plot_hourly_state_counts_price_May2025.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/analyze_summary.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_d/plot_profit_increment_radial.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_d/plot_reduction_rates_radial.py"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_e/Fig_4_e_plot.py",
+        "--date",
+        "2025-04-07"
+      ],
+      "cwd": "."
+    }
   ],
   "files": [
     {

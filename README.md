@@ -33,7 +33,11 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- Figure_Generation.py    # Figure 4 input synchronization and orchestration
 |   |-- Figure_Generation_manifest.json  # Latest Figure 4 provenance record
 |   `-- figure_*/               # Figure scripts, source snapshots, and rendered assets
+|-- CITATION.cff                # Software creator and citation metadata
+|-- DATA_AND_THIRD_PARTY_NOTICES.md  # Data rights and provider notices
 |-- LICENSE                     # MIT licence for original software code
+|-- RELEASE_CHECKLIST.md        # Internal pre-publication checklist
+|-- requirements.txt            # Pinned reference Python environment
 `-- README.md                   # Reproducibility-oriented project documentation
 ```
 
@@ -43,7 +47,7 @@ The default study and committed scenario manifest cover January 2023 through Dec
 
 ## Requirements
 
-Python 3.10 or later is required. The repository does not currently include a dependency lock file or `requirements.txt`; install the packages below into your chosen environment.
+Python 3.10 or later is required. The pinned reference environment in [`requirements.txt`](requirements.txt) corresponds to CPython 3.10.17, the interpreter recorded for the committed Figure 4 generation run.
 
 ### Core model and analysis
 
@@ -57,27 +61,17 @@ matplotlib
 scipy
 ```
 
-Install the open-source dependencies with:
+Install the pinned reference dependency set with:
 
 ```powershell
-python -m pip install numpy pandas openpyxl tqdm matplotlib scipy
+python -m pip install -r requirements.txt
 ```
 
-Install Gurobi's Python package separately:
-
-```powershell
-python -m pip install gurobipy
-```
-
-The optimisation requires a valid Gurobi licence. Gurobi is not distributed or licensed through this repository. See [Gurobi Licensing](https://www.gurobi.com/product/licensing) and the [Gurobi Academic Program](https://www.gurobi.com/academics).
+The requirements file includes `gurobipy`, but the optimisation still requires a separately obtained valid Gurobi licence. Gurobi is not distributed or licensed through this repository. See [Gurobi Licensing](https://www.gurobi.com/product/licensing) and the [Gurobi Academic Program](https://www.gurobi.com/academics).
 
 ### Figure and preprocessing dependencies
 
-```powershell
-python -m pip install matplotlib scipy xlrd scikit-learn
-```
-
-`matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline. `scikit-learn` is used by `Program/CAISO-API/kmeans_mmbtu_cluster.py`, a standalone K-means heat-content clustering utility; it is not required for the main simulation or analysis scripts.
+`requirements.txt` also includes the figure and preprocessing dependencies. `matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline. `scikit-learn` is used by `Program/CAISO-API/kmeans_mmbtu_cluster.py`, a standalone K-means heat-content clustering utility; it is not required for the main simulation or analysis scripts.
 
 ## Quick start
 
@@ -371,6 +365,8 @@ The repository includes the model inputs used in the case study, the default mod
 
 The monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived from these sources. Users should retain source names, dataset dates, and all notices required by the original providers. See [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) and [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use).
 
+The file-group rights boundary, provider acknowledgements, and known provenance limitations are documented in [`DATA_AND_THIRD_PARTY_NOTICES.md`](DATA_AND_THIRD_PARTY_NOTICES.md).
+
 ## Licence, data terms, and disclaimer
 
 The original software code in this repository is licensed under the [MIT License](LICENSE). The licence permits use, copying, modification, distribution, sublicensing, and sale, provided that its copyright and permission notices are retained. The software is provided without warranty, as stated in the licence.
@@ -384,3 +380,5 @@ This repository is provided for academic research and methodological reproductio
 Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). It currently identifies Shichao Wang (`SCWang01`) as the sole creator, following the public GitHub repository information. A release version, release date, Zenodo DOI, and final paper relation will be added when the corresponding software release or publication is prepared. Until then, cite the repository URL together with the commit hash used in the analysis so the referenced code state remains identifiable.
 
 Contributions are accepted subject to the repository's MIT License unless agreed otherwise with the repository maintainer.
+
+The remaining internal and publication-time tasks are listed in [`RELEASE_CHECKLIST.md`](RELEASE_CHECKLIST.md). That checklist does not authorize an upload, push, GitHub Release, or Zenodo publication.
