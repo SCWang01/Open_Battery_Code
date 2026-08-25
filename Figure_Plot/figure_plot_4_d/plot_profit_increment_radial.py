@@ -52,8 +52,10 @@ MONTH_LABEL_RADIUS = 280.0
 ANNULUS_OUTER_RADIUS = 380.0
 PLOT_LIMIT = 390.0
 ANNUAL_TEXT_SPAN_DEGREES = 104.0
-SCALE_LABEL_ANGLE_DEGREES = 240.0
+SCALE_LABEL_ANGLE_DEGREES = 120.0
 SCALE_LABEL_FONTSIZE = 9.4
+OVERALL_SUBTITLE_FONTSIZE = 13
+OVERALL_PERIOD_LABEL = "2023_1--2025_12"
 
 BLUE = "#4C8FD3"
 ANNULUS_BLUE = "#DCEAF7"
@@ -71,6 +73,7 @@ class ProfitIncrementData:
     months: tuple[str, ...]
     monthly_percent: np.ndarray
     annual_percent: dict[int, float]
+    overall_percent: float
 
 
 def configure_matplotlib() -> None:
@@ -154,13 +157,19 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
             )
 
         annual_values: dict[int, float] = {}
+        overall_value: float | None = None
         for row in annual_rows:
             period = str(row[annual_headers["annual"]]).strip()
+            raw_value = row[annual_headers["profit_increment_rate_k20"]]
+            if period == OVERALL_PERIOD_LABEL:
+                if raw_value is None:
+                    raise ValueError("Missing overall profit increment rate")
+                overall_value = float(raw_value) * 100.0
+                continue
             match = re.fullmatch(r"(202[3-5])-(\d{4})", period)
             if match is None:
                 continue
             year = int(match.group(1))
-            raw_value = row[annual_headers["profit_increment_rate_k20"]]
             if raw_value is None:
                 raise ValueError(f"Missing annual profit increment rate for {year}")
             annual_values[year] = float(raw_value) * 100.0
@@ -168,6 +177,10 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
         missing_years = [year for year in YEARS if year not in annual_values]
         if missing_years:
             raise ValueError(f"Missing annual summary values: {missing_years}")
+        if overall_value is None:
+            raise ValueError(
+                f"Missing overall summary row: {OVERALL_PERIOD_LABEL}"
+            )
 
         ordered_monthly = np.array(
             [monthly_values[code] for code in expected_months], dtype=float
@@ -183,6 +196,7 @@ def load_profit_increment_data(workbook_path: Path) -> ProfitIncrementData:
             months=expected_months,
             monthly_percent=ordered_monthly,
             annual_percent=annual_values,
+            overall_percent=overall_value,
         )
     finally:
         workbook.close()
@@ -283,9 +297,14 @@ def _draw_scale(ax: mpl.axes.Axes) -> None:
     """Draw reversed percentage rings: 0% outside and MAX_PERCENT inward."""
     theta = np.linspace(0.0, 2.0 * np.pi, 721)
     scale_values = (0, 50, 100, 150, 200)
-    # Align 100% with 2025 Jan and 150% with 2025 Feb; retain the established
-    # 200% position in the inner scale gap.
-    label_angles = {100: 245.0, 150: 255.0, 200: 185.0}
+    # Use the open annual-sector boundary near 4 o'clock as a common radial
+    # guide so the scale labels read as one aligned group.
+    label_angles = {
+        100: SCALE_LABEL_ANGLE_DEGREES,
+        150: SCALE_LABEL_ANGLE_DEGREES,
+        200: SCALE_LABEL_ANGLE_DEGREES,
+    }
+    label_radius_offsets = {100: 22.0, 150: 0.0, 200: -22.0}
 
     for value in scale_values:
         radius = BAR_OUTER_RADIUS - value
@@ -301,16 +320,13 @@ def _draw_scale(ax: mpl.axes.Axes) -> None:
             zorder=0,
         )
 
-        # The 240-degree ray follows the gap between annual sectors.  Values
-        # near the outer monthly bars are intentionally omitted when the
-        # horizontal label would overlap those bars or their month labels.
-        # Place each horizontal label in a different lower-half gap.  The
-        # chosen locations avoid the local monthly bars at the corresponding
-        # radius and form a clean outer-to-inner staircase.
+        # Values near the outer monthly bars remain omitted to protect the
+        # month ring; the visible labels share the same 4-o'clock ray.
         if value in label_angles:
+            label_radius = radius + label_radius_offsets[value]
             ax.text(
                 np.deg2rad(label_angles[value]),
-                radius,
+                label_radius,
                 f"{value:g}%",
                 ha="center",
                 va="center",
@@ -492,7 +508,19 @@ def draw_profit_increment_panel(
             fontsize=TITLE_FONTSIZE,
             fontweight="bold",
             color=TEXT_COLOR,
-            pad=8,
+            pad=16,
+        )
+        ax.text(
+            0.5,
+            1.003,
+            f"(Overall: {data.overall_percent:.2f}%)",
+            transform=ax.transAxes,
+            ha="center",
+            va="bottom",
+            fontsize=OVERALL_SUBTITLE_FONTSIZE,
+            fontweight="semibold",
+            color=TEXT_COLOR,
+            clip_on=False,
         )
 
 

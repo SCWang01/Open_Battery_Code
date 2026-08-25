@@ -156,7 +156,7 @@ def plot_fig_4_e(date=DEFAULT_DATE, output_path=OUTPUT_PATH):
         increment_charge,
         width=bar_width,
         color="#008000",
-        label="Increment of charging power",
+        label="Net shift toward charging",
     )
     curtailment_bars = ax_power.bar(
         hours + bar_width / 2,
@@ -192,7 +192,7 @@ def plot_fig_4_e(date=DEFAULT_DATE, output_path=OUTPUT_PATH):
 
     ax_power.legend(
         [curtailment_bars, increment_bars, price_line],
-        ["Actual curtailment", "Increment of charging power", "Price"],
+        ["Actual curtailment", "Net shift toward charging", "Price"],
         loc="upper center",
         bbox_to_anchor=(0.5, 0.99),
         ncol=3,

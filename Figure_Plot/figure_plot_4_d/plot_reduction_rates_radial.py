@@ -33,7 +33,8 @@ from plot_profit_increment_radial import (
     ANNUAL_TEXT_SPAN_DEGREES,
     GRID_COLOR,
     MONTHS,
-    SCALE_LABEL_FONTSIZE,
+    OVERALL_PERIOD_LABEL,
+    OVERALL_SUBTITLE_FONTSIZE,
     SOURCE_WORKBOOK,
     TEXT_COLOR,
     TITLE_FONTSIZE,
@@ -76,6 +77,7 @@ ANNULUS_INNER_RADIUS = 62.0
 ANNULUS_OUTER_RADIUS = 76.0
 PLOT_LIMIT = 78.0
 ANNUAL_LABEL_FONTSIZE = 10.2
+REDUCTION_SCALE_LABEL_FONTSIZE = 9.4
 
 
 @dataclass(frozen=True)
@@ -102,6 +104,7 @@ class MetricData:
     months: tuple[str, ...]
     monthly_percent: np.ndarray
     annual_percent: dict[int, float]
+    overall_percent: float
 
 
 METRICS = (
@@ -114,7 +117,7 @@ METRICS = (
         axis_max=8.0,
         ticks=(0.0, 2.0, 4.0, 6.0, 8.0),
         label_ticks=(2.0, 4.0, 6.0, 8.0),
-        label_tick_angles={2.0: 235.0, 4.0: 225.0, 6.0: 213.0, 8.0: 202.0},
+        label_tick_angles={2.0: 120.0, 4.0: 120.0, 6.0: 120.0, 8.0: 120.0},
         bar_color="#55A868",
         annulus_color="#DCEFE3",
     ),
@@ -127,7 +130,7 @@ METRICS = (
         axis_max=8.0,
         ticks=(0.0, 2.0, 4.0, 6.0, 8.0),
         label_ticks=(2.0, 4.0, 6.0, 8.0),
-        label_tick_angles={2.0: 235.0, 4.0: 225.0, 6.0: 213.0, 8.0: 202.0},
+        label_tick_angles={2.0: 120.0, 4.0: 120.0, 6.0: 120.0, 8.0: 120.0},
         bar_color="#E69F45",
         annulus_color="#F9E6CF",
     ),
@@ -213,13 +216,19 @@ def load_metric_data(workbook_path: Path, spec: MetricSpec) -> MetricData:
             )
 
         annual_values: dict[int, float] = {}
+        overall_value: float | None = None
         for row in annual_rows:
             period = str(row[annual_headers["annual"]]).strip()
+            raw_value = row[annual_headers[spec.annual_header]]
+            if period == OVERALL_PERIOD_LABEL:
+                if raw_value is None:
+                    raise ValueError(f"Missing overall {spec.key} rate")
+                overall_value = float(raw_value) * 100.0
+                continue
             match = re.fullmatch(r"(202[3-5])-(\d{4})", period)
             if match is None:
                 continue
             year = int(match.group(1))
-            raw_value = row[annual_headers[spec.annual_header]]
             if raw_value is None:
                 raise ValueError(f"Missing annual {spec.key} rate for {year}")
             annual_values[year] = float(raw_value) * 100.0
@@ -227,6 +236,10 @@ def load_metric_data(workbook_path: Path, spec: MetricSpec) -> MetricData:
         missing_years = [year for year in YEARS if year not in annual_values]
         if missing_years:
             raise ValueError(f"Missing annual summary values: {missing_years}")
+        if overall_value is None:
+            raise ValueError(
+                f"Missing overall summary row: {OVERALL_PERIOD_LABEL}"
+            )
 
         ordered_monthly = np.array(
             [monthly_values[code] for code in expected_months], dtype=float
@@ -246,6 +259,7 @@ def load_metric_data(workbook_path: Path, spec: MetricSpec) -> MetricData:
             months=expected_months,
             monthly_percent=ordered_monthly,
             annual_percent=annual_values,
+            overall_percent=overall_value,
         )
     finally:
         workbook.close()
@@ -287,7 +301,7 @@ def _draw_scale(ax: mpl.axes.Axes, spec: MetricSpec) -> None:
                 _format_tick(tick),
                 ha="center",
                 va="center",
-                fontsize=SCALE_LABEL_FONTSIZE,
+                fontsize=REDUCTION_SCALE_LABEL_FONTSIZE,
                 fontfamily="Times New Roman",
                 fontweight="semibold",
                 color=TEXT_COLOR,
@@ -445,7 +459,19 @@ def draw_metric_panel(
             fontsize=TITLE_FONTSIZE,
             fontweight="bold",
             color=TEXT_COLOR,
-            pad=8,
+            pad=16,
+        )
+        ax.text(
+            0.5,
+            1.003,
+            f"(Overall: {data.overall_percent:.2f}%)",
+            transform=ax.transAxes,
+            ha="center",
+            va="bottom",
+            fontsize=OVERALL_SUBTITLE_FONTSIZE,
+            fontweight="semibold",
+            color=TEXT_COLOR,
+            clip_on=False,
         )
 
 
