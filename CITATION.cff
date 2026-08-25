@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file."
+type: software
+title: "CAISO Battery Energy Storage Bidding Case Study"
+abstract: >-
+  Data, code, model outputs, and figure source files for an academic case study
+  of aggregated battery energy storage bidding in the California Independent
+  System Operator market.
+authors:
+  - family-names: "Wang"
+    given-names: "Shichao"
+    website: "https://github.com/SCWang01"
+repository-code: "https://github.com/SCWang01/Open_Battery_Code"
+license: MIT
+keywords:
+  - battery energy storage
+  - electricity market
+  - CAISO
+  - energy-system optimisation
+  - reproducible research

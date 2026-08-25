@@ -381,6 +381,6 @@ This repository is provided for academic research and methodological reproductio
 
 ## Citation and contributions
 
-The repository does not currently include a `CITATION.cff`, DOI, or final paper citation. These should be added when the associated publication or archived software release becomes available.
+Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). It currently identifies Shichao Wang (`SCWang01`) as the sole creator, following the public GitHub repository information. A release version, release date, Zenodo DOI, and final paper relation will be added when the corresponding software release or publication is prepared. Until then, cite the repository URL together with the commit hash used in the analysis so the referenced code state remains identifiable.
 
 Contributions are accepted subject to the repository's MIT License unless agreed otherwise with the repository maintainer.
