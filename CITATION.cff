@@ -1,11 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata in this file."
 type: software
-title: "CAISO Battery Energy Storage Bidding Case Study"
-abstract: >-
-  Data, code, model outputs, and figure source files for an academic case study
-  of aggregated battery energy storage bidding in the California Independent
-  System Operator market.
+title: "Battery Case Code"
+
 authors:
   - family-names: "Guo"
     given-names: "Ye"
