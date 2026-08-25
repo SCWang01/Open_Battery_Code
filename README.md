@@ -33,10 +33,9 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- Figure_Generation.py    # Figure 4 input synchronization and orchestration
 |   |-- Figure_Generation_manifest.json  # Latest Figure 4 provenance record
 |   `-- figure_*/               # Figure scripts, source snapshots, and rendered assets
-|-- CITATION.cff                # Software creator and citation metadata
+|-- CITATION.cff                # Software citation metadata
 |-- DATA_AND_THIRD_PARTY_NOTICES.md  # Data rights and provider notices
 |-- LICENSE                     # MIT licence for original software code
-|-- RELEASE_CHECKLIST.md        # Internal pre-publication checklist
 |-- requirements.txt            # Pinned reference Python environment
 `-- README.md                   # Reproducibility-oriented project documentation
 ```
@@ -377,8 +376,6 @@ This repository is provided for academic research and methodological reproductio
 
 ## Citation and contributions
 
-Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). It currently identifies Shichao Wang (`SCWang01`) as the sole creator, following the public GitHub repository information. A release version, release date, Zenodo DOI, and final paper relation will be added when the corresponding software release or publication is prepared. Until then, cite the repository URL together with the commit hash used in the analysis so the referenced code state remains identifiable.
+Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). It identifies Ye Guo (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China), Chenge Gao (Guangzhou Power Exchange Center, Guangzhou, China), and Shichao Wang (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China) as the software creators, in that order. A release version, release date, Zenodo DOI, and final paper relation will be added when the corresponding software release or publication is prepared. Until then, cite the repository URL together with the commit hash used in the analysis so the referenced code state remains identifiable.
 
 Contributions are accepted subject to the repository's MIT License unless agreed otherwise with the repository maintainer.
-
-The remaining internal and publication-time tasks are listed in [`RELEASE_CHECKLIST.md`](RELEASE_CHECKLIST.md). That checklist does not authorize an upload, push, GitHub Release, or Zenodo publication.
