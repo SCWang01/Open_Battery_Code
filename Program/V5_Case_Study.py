@@ -16,6 +16,7 @@ import csv
 import json
 import calendar
 import tempfile
+from dataclasses import dataclass
 from pathlib import Path
 from io import StringIO
 from scipy.optimize import minimize
@@ -46,14 +47,55 @@ k = 0.2 # fraction of the fleet treated as the controllable (optimised) unit; mu
 PROGRAM_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = PROGRAM_DIR.parent
 DATA_DIR = PROJECT_ROOT / 'data'
-RESULTS_DIR = PROJECT_ROOT / 'Results'
+RESULTS_ROOT = PROJECT_ROOT / 'Results'
+RESULTS_DIR = RESULTS_ROOT / 'Bidding'
+SELF_SCHEDULING_RESULTS_DIR = RESULTS_ROOT / 'Self-Scheduling'
 COST_MODE = 'exact' # gas cost model: 'exact' (piecewise merit order) or 'quadratic' (Fuel_Coe.xlsx fit)
 
 
 def ensure_results_dir():
-    """Create and return the project-level Results directory."""
+    """Create and return the isolated bidding results directory."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     return RESULTS_DIR
+
+
+def ensure_self_scheduling_results_dir():
+    """Create and return the isolated self-scheduling results directory."""
+    SELF_SCHEDULING_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    return SELF_SCHEDULING_RESULTS_DIR
+
+
+@dataclass(frozen=True)
+class SelfSchedulingDispatchResult:
+    """Hourly controlled-ESS results from rolling self-scheduling.
+
+    ``estimated_price`` drives the dispatch decision, while ``profit`` is
+    settled against the original LMP. ``price_error`` is the sampled relative
+    error before the estimated price is clipped to the monthly price range.
+    """
+
+    profit: np.ndarray
+    soc: np.ndarray
+    power: np.ndarray
+    end_value: float
+    estimated_price: np.ndarray
+    price_error: np.ndarray
+
+
+@dataclass(frozen=True)
+class SelfSchedulingMonthResult:
+    """Assembled hourly table and monthly metrics for one experiment month."""
+
+    hourly_data: pd.DataFrame
+    total_profit: float
+    total_profit_actual: float
+    total_cost: float
+    total_cost_actual: float
+    total_cost_without_ess: float
+    total_carbon: float
+    total_carbon_actual: float
+    total_carbon_without_ess: float
+    total_absorbed: float
 
 
 def load_monthly_price_error_data(year_value, month_value, n_day):
@@ -401,6 +443,148 @@ def clean_power(value, power_max, abs_tol=1e-3):
     return value
 
 
+def build_estimated_price_horizon(
+    price_horizon, price_error_z, meanstd, price_min, price_max,
+):
+    """Apply the confirmed relative-error model to one price horizon.
+
+    The current-price standard deviation is ``meanstd`` percent. Forecast
+    horizons 1..N-1 use the same base rate plus 0.1 percentage point for each
+    step after horizon 1. Returned prices are clipped to the supplied monthly
+    price range; returned errors are the sampled pre-clipping relative errors.
+    """
+    price_horizon = np.asarray(price_horizon, dtype=float)
+    price_error_z = np.asarray(price_error_z, dtype=float)
+    if (
+        price_horizon.ndim != 1
+        or price_error_z.ndim != 1
+        or price_horizon.shape != price_error_z.shape
+    ):
+        raise ValueError(
+            'price_horizon and price_error_z must have the same '
+            'one-dimensional shape'
+        )
+    if price_horizon.size == 0:
+        raise ValueError('price_horizon must not be empty')
+    if not np.isfinite(price_horizon).all():
+        raise ValueError('price_horizon contains non-finite values')
+    if not np.isfinite(price_error_z).all():
+        raise ValueError('price_error_z contains non-finite values')
+
+    meanstd = float(meanstd)
+    price_min = float(price_min)
+    price_max = float(price_max)
+    if not np.isfinite(meanstd) or meanstd < 0:
+        raise ValueError('meanstd must be a finite non-negative percentage')
+    if not np.isfinite(price_min) or not np.isfinite(price_max):
+        raise ValueError('price_min and price_max must be finite')
+    if price_min > price_max:
+        raise ValueError('price_min must not exceed price_max')
+
+    error_rates = np.full(price_horizon.size, meanstd / 100, dtype=float)
+    if price_horizon.size > 2:
+        error_rates[2:] += np.arange(1, price_horizon.size - 1) * 0.001
+    relative_error = price_error_z * error_rates
+    estimated_price = np.clip(
+        price_horizon * (1 + relative_error),
+        price_min,
+        price_max,
+    )
+    return estimated_price, relative_error
+
+
+def self_schedule_current_power(
+    N_t, eta, Cap, Smax, Smin, Pdmax, Pcmax, price, SOC_ini,
+):
+    """Optimize one 24-step ESS schedule and return its first net power.
+
+    Positive power is discharge and negative power is charge. The price vector
+    is treated as exogenous, and no terminal-SOC constraint or terminal value is
+    added so this model remains comparable with ``biddingNEW``.
+    """
+    price = np.asarray(price, dtype=float)
+    if price.shape != (N_t,):
+        raise ValueError(f'price has shape {price.shape}, expected {(N_t,)}')
+    if not np.isfinite(price).all():
+        raise ValueError('price contains non-finite values')
+
+    numeric_inputs = {
+        'eta': eta,
+        'Cap': Cap,
+        'Smax': Smax,
+        'Smin': Smin,
+        'Pdmax': Pdmax,
+        'Pcmax': Pcmax,
+        'SOC_ini': SOC_ini,
+    }
+    for name, value in numeric_inputs.items():
+        if not np.isfinite(value):
+            raise ValueError(f'{name} must be finite')
+    if N_t <= 0:
+        raise ValueError('N_t must be positive')
+    if eta <= 0 or Cap <= 0:
+        raise ValueError('eta and Cap must be positive')
+    if Smin > Smax or not Smin <= SOC_ini <= Smax:
+        raise ValueError('SOC_ini must lie within the ordered SOC bounds')
+    if Pdmax < 0 or Pcmax < 0:
+        raise ValueError('Pdmax and Pcmax must be non-negative')
+
+    time_step = 24 / N_t
+    model = gp.Model()
+    soc = model.addVars(
+        N_t + 1, vtype=GRB.CONTINUOUS, lb=Smin, ub=Smax, name='SOC'
+    )
+    charge = model.addVars(
+        N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pcmax, name='Pc'
+    )
+    discharge = model.addVars(
+        N_t, vtype=GRB.CONTINUOUS, lb=0, ub=Pdmax, name='Pd'
+    )
+    charging = model.addVars(N_t, vtype=GRB.BINARY, name='sc')
+    discharging = model.addVars(N_t, vtype=GRB.BINARY, name='sd')
+
+    model.addConstr(soc[0] == SOC_ini, 'SOC_initial')
+    model.addConstrs(
+        (
+            Cap * soc[t]
+            == Cap * soc[t - 1]
+            - (discharge[t - 1] / eta - eta * charge[t - 1]) * time_step
+            for t in range(1, N_t + 1)
+        ),
+        'SOC',
+    )
+    model.addConstrs(
+        (charge[t] <= Pcmax * charging[t] for t in range(N_t)),
+        'charge_state',
+    )
+    model.addConstrs(
+        (discharge[t] <= Pdmax * discharging[t] for t in range(N_t)),
+        'discharge_state',
+    )
+    model.addConstrs(
+        (charging[t] + discharging[t] <= 1 for t in range(N_t)),
+        'mutually_exclusive_state',
+    )
+    model.setObjective(
+        gp.quicksum(
+            price[t] * (discharge[t] - charge[t]) * time_step
+            for t in range(N_t)
+        ),
+        GRB.MAXIMIZE,
+    )
+    model.setParam('OutputFlag', 0)
+    model.optimize()
+    if model.Status != GRB.OPTIMAL:
+        raise RuntimeError(
+            f'self-scheduling optimization ended with Gurobi status '
+            f'{model.Status}'
+        )
+
+    discharge_now = clean_power(discharge[0].X, Pdmax)
+    charge_now = clean_power(charge[0].X, Pcmax)
+    return discharge_now - charge_now
+
+
 def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
     # get prices
     pri = price[1:N_t]
@@ -592,6 +776,121 @@ def calculate_profit(
         initial_value, following_value,
     )
 
+
+def calculate_profit_self_scheduling(
+    N_t, Nday, eta, CAP, Smax, Smin, Pdmax, Pcmax, price,
+    Sinitial, meanstd, price_error_z, progress_desc,
+):
+    """Run rolling self-scheduling for the controllable ESS share.
+
+    At each hour, all 24 estimated prices are supplied to a single schedule
+    optimization and only its first power is implemented. Dispatch therefore
+    uses the estimated current price, while hourly profit is settled against
+    the original current LMP.
+    """
+    if not isinstance(N_t, (int, np.integer)) or N_t <= 0:
+        raise ValueError('N_t must be a positive integer')
+    if not isinstance(Nday, (int, np.integer)) or Nday <= 0:
+        raise ValueError('Nday must be a positive integer')
+    N_t = int(N_t)
+    Nday = int(Nday)
+    n_hours = N_t * Nday
+
+    price = np.asarray(price, dtype=float)
+    price_error_z = np.asarray(price_error_z, dtype=float)
+    Pdmax = np.asarray(Pdmax, dtype=float)
+    Pcmax = np.asarray(Pcmax, dtype=float)
+    expected_noise_shape = (n_hours, N_t)
+    minimum_price_length = n_hours + N_t - 1
+    if price.ndim != 1 or len(price) < minimum_price_length:
+        raise ValueError(
+            f'price must be one-dimensional with at least '
+            f'{minimum_price_length} values'
+        )
+    if price_error_z.shape != expected_noise_shape:
+        raise ValueError(
+            f'price_error_z has shape {price_error_z.shape}, '
+            f'expected {expected_noise_shape}'
+        )
+    if Pdmax.shape != (Nday,) or Pcmax.shape != (Nday,):
+        raise ValueError(
+            f'Pdmax and Pcmax must each have shape {(Nday,)}'
+        )
+    if not np.isfinite(price).all():
+        raise ValueError('price contains non-finite values')
+    if not np.isfinite(price_error_z).all():
+        raise ValueError('price_error_z contains non-finite values')
+    if not np.isfinite(Pdmax).all() or not np.isfinite(Pcmax).all():
+        raise ValueError('Pdmax and Pcmax must contain only finite values')
+    if np.any(Pdmax < 0) or np.any(Pcmax < 0):
+        raise ValueError('Pdmax and Pcmax must be non-negative')
+    if not np.isfinite(CAP) or CAP <= 0:
+        raise ValueError('CAP must be a finite positive number')
+
+    soc = np.zeros(n_hours)
+    profit = np.zeros(n_hours)
+    power = np.zeros(n_hours)
+    estimated_price = np.zeros(n_hours)
+    price_error = np.zeros(n_hours)
+    price_min = float(np.min(price))
+    price_max = float(np.max(price))
+    time_step = 24 / N_t
+
+    iterator = tqdm(
+        range(n_hours),
+        desc=progress_desc,
+        unit='hour',
+        leave=False,
+        disable=progress_desc is None,
+    )
+    for t in iterator:
+        price_horizon = price[t:t + N_t]
+        estimated_horizon, relative_error = build_estimated_price_horizon(
+            price_horizon,
+            price_error_z[t],
+            meanstd,
+            price_min,
+            price_max,
+        )
+        estimated_price[t] = estimated_horizon[0]
+        price_error[t] = relative_error[0]
+
+        day = t // N_t
+        power[t] = self_schedule_current_power(
+            N_t=N_t,
+            eta=eta,
+            Cap=CAP,
+            Smax=Smax,
+            Smin=Smin,
+            Pdmax=Pdmax[day],
+            Pcmax=Pcmax[day],
+            price=estimated_horizon,
+            SOC_ini=Sinitial,
+        )
+        if power[t] >= 0:
+            Sinitial -= power[t] / eta / CAP * time_step
+        else:
+            Sinitial -= power[t] * eta / CAP * time_step
+        if Sinitial < Smin - 1e-6 or Sinitial > Smax + 1e-6:
+            raise RuntimeError(
+                f'self-scheduling SOC {Sinitial} is outside [{Smin}, {Smax}] '
+                f'after hour {t}'
+            )
+        Sinitial = float(np.clip(Sinitial, Smin, Smax))
+        soc[t] = Sinitial
+        profit[t] = price[t] * power[t] * time_step
+
+    average_price = float(np.mean(price[:n_hours]))
+    end_value = float(soc[-1] * CAP * average_price)
+    return SelfSchedulingDispatchResult(
+        profit=profit,
+        soc=soc,
+        power=power,
+        end_value=end_value,
+        estimated_price=estimated_price,
+        price_error=price_error,
+    )
+
 def calculate_profit_actual(eta,CAP,price, N_t,Nday, netoutput,Sinitial):
     # Initialize the battery
     ESSOC_status = np.zeros((N_t*Nday))
@@ -761,6 +1060,142 @@ def calculate_main(
     ]
 
 
+def calculate_main_self_scheduling(
+    meanstd, price, gas, battery, curtailment, Pdmax, Pcmax, Smax, Smin,
+    Cap, eta, SINI, price_error_z,
+):
+    """Compute one month with self-scheduling for the controllable ``k`` share.
+
+    The passive remainder, actual baseline, gas-cost model, carbon model, and
+    month-end energy valuation are identical to the bidding experiment.
+    """
+    controlled = calculate_profit_self_scheduling(
+        N_t=N_t,
+        Nday=N_day,
+        eta=eta,
+        CAP=Cap * k,
+        Smax=Smax,
+        Smin=Smin,
+        Pdmax=Pdmax * k,
+        Pcmax=Pcmax * k,
+        price=price,
+        Sinitial=SINI,
+        meanstd=meanstd,
+        price_error_z=price_error_z,
+        progress_desc=f'{year}-{monthnum} self-scheduling',
+    )
+
+    battery_passive = (1 - k) * battery
+    if (1 - k) > 0:
+        (
+            profit_passive,
+            _soc_passive,
+            _power_passive,
+            end_value_passive,
+        ) = calculate_profit_actual(
+            eta,
+            Cap * (1 - k),
+            price,
+            N_t,
+            N_day,
+            battery_passive,
+            SINI,
+        )
+    else:
+        profit_passive = np.zeros(N_t * N_day)
+        end_value_passive = 0.0
+
+    (
+        profit_actual,
+        _soc_actual,
+        power_actual,
+        end_value_actual,
+    ) = calculate_profit_actual(
+        eta,
+        Cap,
+        price,
+        N_t,
+        N_day,
+        battery,
+        SINI,
+    )
+
+    power = controlled.power + battery_passive
+    profit = controlled.profit + profit_passive
+    total_profit = float(
+        np.sum(controlled.profit)
+        + controlled.end_value
+        + np.sum(profit_passive)
+        + end_value_passive
+    )
+    total_profit_actual = float(np.sum(profit_actual) + end_value_actual)
+
+    Pgas, Cost, absorbed, _diff, MargPrice, Carbon = calculate_cost_and_carbon(
+        gas,
+        curtailment,
+        power,
+        power_actual,
+        N_t,
+        N_day,
+    )
+    total_cost = float(np.sum(Cost[:, 0]))
+    total_cost_actual = float(np.sum(Cost[:, 1]))
+    total_cost_without_ess = float(np.sum(Cost[:, 2]))
+    total_carbon = float(np.sum(Carbon[:, 0]))
+    total_carbon_actual = float(np.sum(Carbon[:, 1]))
+    total_carbon_without_ess = float(np.sum(Carbon[:, 2]))
+    total_absorbed = float(np.sum(absorbed))
+
+    n_hours = N_t * N_day
+    hourly_data = pd.DataFrame({
+        'price': price[:n_hours],
+        'estimated_price': controlled.estimated_price,
+        'price_error': controlled.price_error,
+        'profit': profit,
+        'profit_controlled': controlled.profit,
+        'profit_passive': profit_passive,
+        'profit_actual': profit_actual,
+        'P_ESS': power,
+        'P_ESS_controlled': controlled.power,
+        'P_ESS_passive': battery_passive,
+        'P_ESS_actual': power_actual,
+        'SOC_controlled': controlled.soc,
+        'P_natural_gas': Pgas[:, 0],
+        'P_natural_gas_actual': Pgas[:, 1],
+        'P_renewable_absorbed': absorbed,
+        'marginal_price_gas': MargPrice[:, 0],
+        'marginal_price_gas_actual': MargPrice[:, 1],
+        'marginal_price_gas_withoutESS': MargPrice[:, 2],
+        'cost': Cost[:, 0],
+        'cost_actual': Cost[:, 1],
+        'cost_withoutESS': Cost[:, 2],
+        'carbon': Carbon[:, 0],
+        'carbon_actual': Carbon[:, 1],
+        'carbon_withoutESS': Carbon[:, 2],
+        'total_profit': total_profit,
+        'total_profit_actual': total_profit_actual,
+        'total_cost': total_cost,
+        'total_cost_actual': total_cost_actual,
+        'total_cost_withoutESS': total_cost_without_ess,
+        'total_carbon': total_carbon,
+        'total_carbon_actual': total_carbon_actual,
+        'total_carbon_withoutESS': total_carbon_without_ess,
+        'total_absorb': total_absorbed,
+    })
+    return SelfSchedulingMonthResult(
+        hourly_data=hourly_data,
+        total_profit=total_profit,
+        total_profit_actual=total_profit_actual,
+        total_cost=total_cost,
+        total_cost_actual=total_cost_actual,
+        total_cost_without_ess=total_cost_without_ess,
+        total_carbon=total_carbon,
+        total_carbon_actual=total_carbon_actual,
+        total_carbon_without_ess=total_carbon_without_ess,
+        total_absorbed=total_absorbed,
+    )
+
+
 #%% main
 
 def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
@@ -871,6 +1306,91 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
     return summary
 
 
+def run_one_month_self_scheduling(num):
+    """Run and save one self-scheduling month by its zero-based study index."""
+    global year, month, monthnum, N_day
+
+    if not isinstance(num, (int, np.integer)):
+        raise TypeError(f'month index must be an integer, got {type(num).__name__}')
+    num = int(num)
+    if num < 0 or num >= len(year_month_list):
+        raise IndexError(
+            f'month index {num} is outside 0..{len(year_month_list) - 1}'
+        )
+
+    year_num, month_num = year_month_list[num]
+    year = str(year_num)
+    month = monthlist[num]
+    monthnum = monthnumlist[num]
+    N_day = calendar.monthrange(year_num, month_num)[1]
+    price_error_z = load_monthly_price_error_data(year_num, month_num, N_day)
+
+    (
+        price_glo,
+        gas_glo,
+        battery_glo,
+        Pdmax_glo,
+        Pcmax_glo,
+        Smax_glo,
+        Smin_glo,
+        Cap_glo,
+        eta_glo,
+        SINI_glo,
+        curtailment_glo,
+        skipped_gas_dates,
+    ) = readdata(N_t * 12, N_t, N_day)
+    result = calculate_main_self_scheduling(
+        meanstd,
+        price_glo,
+        gas_glo,
+        battery_glo,
+        curtailment_glo,
+        Pdmax_glo,
+        Pcmax_glo,
+        Smax_glo,
+        Smin_glo,
+        Cap_glo,
+        eta_glo,
+        SINI_glo,
+        price_error_z,
+    )
+
+    output_dir = ensure_self_scheduling_results_dir()
+    method_tag = f'{COST_MODE}_V5_self_scheduling_k{int(k * 100)}'
+    monthly_path = output_dir / (
+        f'{month}{year}_eta95%_std{int(meanstd)}_{method_tag}.csv'
+    )
+    result.hourly_data.to_csv(monthly_path, index=False)
+
+    total_gas = float(np.sum(gas_glo))
+    carbon_reduce = result.total_carbon_actual - result.total_carbon
+    summary = {
+        'year_month': f'{year}{monthnum}',
+        'method': 'self_scheduling',
+        'k': k,
+        'total_profit': result.total_profit,
+        'total_profit_actual': result.total_profit_actual,
+        'total_cost': result.total_cost,
+        'total_cost_actual': result.total_cost_actual,
+        'total_cost_withoutESS': result.total_cost_without_ess,
+        'total_carbon': result.total_carbon,
+        'total_carbon_actual': result.total_carbon_actual,
+        'total_carbon_withoutESS': result.total_carbon_without_ess,
+        'total_absorbed': result.total_absorbed,
+        'total_natural_gas': total_gas,
+        'rate_gas': result.total_absorbed / total_gas if total_gas else 0.0,
+        'carbon_reduce': carbon_reduce,
+        'rate_carbon': (
+            carbon_reduce / result.total_carbon_actual
+            if result.total_carbon_actual
+            else 0.0
+        ),
+        'skipped_gas_dates': ','.join(skipped_gas_dates),
+        'monthly_result': str(monthly_path),
+    }
+    return summary
+
+
 def write_detection_summary(detection_rows, summary_path):
     """Write monthly legacy detection placeholders beside a summary."""
     summary_name = summary_path.name
@@ -903,6 +1423,22 @@ def run_all_months():
     return summary_path
 
 
+def run_all_months_self_scheduling():
+    """Run self-scheduling for the complete configured study period."""
+    summaries = [
+        run_one_month_self_scheduling(num)
+        for num in tqdm(range(len(monthlist)), desc='All self-scheduling months', unit='month')
+    ]
+    start_period = f'{START_YEAR_MONTH[0]}{START_YEAR_MONTH[1]:02d}'
+    end_period = f'{END_YEAR_MONTH[0]}{END_YEAR_MONTH[1]:02d}'
+    summary_path = ensure_self_scheduling_results_dir() / (
+        f'summary_{start_period}_{end_period}_{COST_MODE}_'
+        f'V5_self_scheduling_k{int(k * 100)}.csv'
+    )
+    pd.DataFrame(summaries).to_csv(summary_path, index=False)
+    return summary_path
+
+
 def run_may_2025():
     """Run only May 2025 and export its NCD and hourly dsfunctions."""
     may_2025_index = year_month_list.index((2025, 5))
@@ -917,6 +1453,17 @@ def run_may_2025():
     )
     pd.DataFrame([summary]).to_csv(summary_path, index=False)
     write_detection_summary([detection_counts], summary_path)
+    return summary_path
+
+
+def run_may_2025_self_scheduling():
+    """Run the default May 2025 self-scheduling experiment."""
+    may_2025_index = year_month_list.index((2025, 5))
+    summary = run_one_month_self_scheduling(may_2025_index)
+    summary_path = ensure_self_scheduling_results_dir() / (
+        f'summary_202505_{COST_MODE}_V5_self_scheduling_k{int(k * 100)}.csv'
+    )
+    pd.DataFrame([summary]).to_csv(summary_path, index=False)
     return summary_path
 
 def run_april_2025():

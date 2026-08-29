@@ -87,7 +87,7 @@
       "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20.xlsx",
       "size": 101061,
       "sha256": "19a5d18e508ac2b2fdae11d17a7d20ad8646b3637aee5ab9522c5b1c45ee918b",
-      "source": "Results\\dsfunction_May2025_exact_V5_k20.xlsx",
+      "source": "Results\\Bidding\\dsfunction_May2025_exact_V5_k20.xlsx",
       "action": "unchanged"
     },
     {
@@ -117,7 +117,7 @@
       "path": "Figure_Plot\\figure_plot_4_d\\analysis_202301_202512.xlsx",
       "size": 9117,
       "sha256": "8784c329986f9e8f8f0fa4b1cf4006d4f1ec97758e10dcd76cfb3af70342952d",
-      "source": "Results\\analysis_202301_202512.xlsx",
+      "source": "Results\\Bidding\\analysis_202301_202512.xlsx",
       "action": "copied"
     },
     {
@@ -125,7 +125,7 @@
       "path": "Figure_Plot\\figure_plot_4_e\\input\\April2025_eta95%_std2_exact_V5_k20.csv",
       "size": 347358,
       "sha256": "a81ea90a02fc0ec848e3b9e4bf8129482e2671e8d420986a9742e9ce278c8ff2",
-      "source": "Results\\April2025_eta95%_std2_exact_V5_k20.csv",
+      "source": "Results\\Bidding\\April2025_eta95%_std2_exact_V5_k20.csv",
       "action": "copied"
     },
     {

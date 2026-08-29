@@ -12,6 +12,9 @@ This repository provides the data, code, model outputs, and figure source files 
 <repo-root>/
 |-- Program/
 |   |-- V5_Case_Study.py        # Main V5 simulation and export workflow
+|   |-- distributed_V5_case_study.py # Parallel bidding runner
+|   |-- distributed_V5_self_scheduling.py # Parallel self-scheduling runner
+|   |-- run_V5_self_scheduling.py # Independent self-scheduling entry point
 |   |-- cost_calculation.py     # Natural-gas cost, marginal-price, and carbon-emission models
 |   |-- analyze_summary.py      # Monthly and annual Excel analysis
 |   |-- Random_Generator.py     # Study period and fixed price-error scenarios
@@ -28,7 +31,9 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- lmp2023.npy             # Figure 2_q 2023 LMP source array
 |   |-- tep2023.npy             # Figure 2_q 2023 temperature source array
 |   `-- CAISO-historical-co2-20260720.csv  # Retained historical-emissions source
-|-- Results/                    # Monthly arrays/CSVs, summaries, and analysis workbook
+|-- Results/
+|   |-- Bidding/                # Bidding arrays, CSVs, dsfunctions, summaries
+|   `-- Self-Scheduling/        # Self-scheduling monthly CSVs and summaries
 |-- Figure_Plot/
 |   |-- Figure_Generation.py    # Figure 4 input synchronization and orchestration
 |   |-- Figure_Generation_manifest.json  # Latest Figure 4 provenance record
@@ -83,8 +88,8 @@ The repository already contains the complete default monthly outputs, summary CS
 Start with:
 
 ```text
-Results/summary_202301_202512_exact_V5_k20.csv
-Results/analysis_202301_202512.xlsx
+Results/Bidding/summary_202301_202512_exact_V5_k20.csv
+Results/Bidding/analysis_202301_202512.xlsx
 Figure_Plot/
 ```
 
@@ -97,15 +102,15 @@ python Program/analyze_summary.py
 The default input and output are:
 
 ```text
-Results/summary_202301_202512_exact_V5_k20.csv
-Results/analysis_202301_202512.xlsx
+Results/Bidding/summary_202301_202512_exact_V5_k20.csv
+Results/Bidding/analysis_202301_202512.xlsx
 ```
 
 Custom paths can be supplied explicitly:
 
 ```powershell
-python Program/analyze_summary.py Results/summary.csv `
-  --output Results/analysis_custom.xlsx
+python Program/analyze_summary.py Results/Bidding/summary.csv `
+  --output Results/Bidding/analysis_custom.xlsx
 ```
 
 The analyzer validates the required summary columns and includes only complete January–December calendar years; it fails if the input contains no complete year.
@@ -116,17 +121,17 @@ The analyzer validates the required summary columns and includes only complete J
 python Program/V5_Case_Study.py
 ```
 
-Running the file directly calls `run_may_2025()`. It writes the May 2025 result files, the single-month summary, and the hourly demand-supply function workbook to `Results/`.
+Running the file directly calls `run_may_2025()`. It writes the May 2025 result files, the single-month summary, and the hourly demand-supply function workbook to `Results/Bidding/`.
 
 The complete set written by this helper is:
 
 ```text
-Results/May2025_eta95%_std2_exact_V5_k20.csv
-Results/ncd_May2025_exact_V5_k20.npy
-Results/Pcleared_May2025_exact_V5_k20.npy
-Results/dsfunction_May2025_exact_V5_k20.xlsx
-Results/summary_202505_exact_V5_k20.csv
-Results/simultaneous_charge_discharge_counts_202505_exact_V5_k20.csv
+Results/Bidding/May2025_eta95%_std2_exact_V5_k20.csv
+Results/Bidding/ncd_May2025_exact_V5_k20.npy
+Results/Bidding/Pcleared_May2025_exact_V5_k20.npy
+Results/Bidding/dsfunction_May2025_exact_V5_k20.xlsx
+Results/Bidding/summary_202505_exact_V5_k20.csv
+Results/Bidding/simultaneous_charge_discharge_counts_202505_exact_V5_k20.csv
 ```
 
 The equivalent import-based command is:
@@ -147,11 +152,49 @@ python -c "from V5_Case_Study import run_all_months; print(run_all_months())"
 Pop-Location
 ```
 
-This is the full-study entry point. It produces one monthly CSV plus `ncd_*.npy` and `Pcleared_*.npy` for each month. It then writes `summary_202301_202512_exact_V5_k20.csv` and `simultaneous_charge_discharge_counts_202301_202512_exact_V5_k20.csv` to `Results/`. The full-study path does not export monthly `dsfunction_*.xlsx` workbooks.
+This is the full-study entry point. It produces one monthly CSV plus `ncd_*.npy`, `Pcleared_*.npy`, and `dsfunction_*.xlsx` for each month. It then writes `summary_202301_202512_exact_V5_k20.csv` and `simultaneous_charge_discharge_counts_202301_202512_exact_V5_k20.csv` to `Results/Bidding/`.
+
+The distributed bidding runner performs the same monthly work in parallel:
+
+```powershell
+python Program/distributed_V5_case_study.py
+python Program/distributed_V5_case_study.py --workers 6
+python Program/distributed_V5_case_study.py --months 0 1 2
+```
+
+### 5. Run the independent self-scheduling experiment
+
+```powershell
+python Program/run_V5_self_scheduling.py
+```
+
+The default run covers May 2025. It solves one 24-hour price-taking schedule at
+each binding hour, implements only the first power, and rolls the state of
+charge forward. The estimated price drives dispatch, while profit is settled
+against the original LMP. Results are isolated below
+`Results/Self-Scheduling/` and include both prices plus the sampled relative
+current-price error. The bidding outputs in `Results/Bidding/` are not changed.
+
+Run the complete configured period explicitly with:
+
+```powershell
+python Program/run_V5_self_scheduling.py --all-months
+```
+
+For the parallel full-period self-scheduling run, use:
+
+```powershell
+python Program/distributed_V5_self_scheduling.py
+python Program/distributed_V5_self_scheduling.py --workers 6
+python Program/distributed_V5_self_scheduling.py --months 0 1 2
+```
 
 ## Configuration
 
-The model currently has no command-line interface or external configuration file. The study period and interval count are defined in `Program/Random_Generator.py` and imported by `Program/V5_Case_Study.py`:
+The bidding model has no command-line options, while the independent
+self-scheduling entry point accepts `--all-months`. The study period and
+interval count are defined in `Program/Random_Generator.py` and imported by
+`Program/V5_Case_Study.py`:
 
 ```python
 START_YEAR_MONTH = (2023, 1)
@@ -184,7 +227,7 @@ The `eta95%` fragment in monthly CSV filenames is currently hard-coded. Changing
 3. optimise the controllable `k` fraction over rolling horizons and construct stair bidding functions — `calculate_profit` → `biddingNEW` (Gurobi MILP, one solve per candidate price) → `build_dsfunction`;
 4. combine the market-cleared controllable output with the historical passive fraction — `calculate_main` (`P_method = P_cleared_controlled + (1-k) * battery`);
 5. calculate historical and counterfactual battery profit, natural-gas generation and cost, renewable-curtailment absorption, and modelled carbon reduction — `calculate_profit_actual` for the baselines and `calculate_cost_and_carbon` for the gas/curtailment/carbon deltas, with cost, marginal price, and carbon from `Program/cost_calculation.py`; and
-6. export hourly arrays, monthly tables, and summary metrics to `Results/` — `run_one_month` writes the monthly CSV, `ncd_*.npy`, and `Pcleared_*.npy` (plus the optional `dsfunction_*.xlsx` enriched by `Marginal_Check`); the public single-month and full-study helpers also write `simultaneous_charge_discharge_counts_*.csv`, whose two count fields are retained compatibility placeholders and are currently zero; `run_all_months` writes the aggregated `summary_*.csv`; `Program/analyze_summary.py` builds the monthly/annual `analysis_*.xlsx` workbook from that summary.
+6. export hourly arrays, monthly tables, dsfunction workbooks, and summary metrics to `Results/Bidding/` — `run_one_month` writes the monthly CSV, `ncd_*.npy`, `Pcleared_*.npy`, and optional `dsfunction_*.xlsx` enriched by `Marginal_Check`; the distributed bidding runner enables that dsfunction export for every selected month; the public single-month and full-study helpers also write `simultaneous_charge_discharge_counts_*.csv`, whose two count fields are retained compatibility placeholders and are currently zero; `run_all_months` writes the aggregated `summary_*.csv`; `Program/analyze_summary.py` builds the monthly/annual `analysis_*.xlsx` workbook from that summary.
 
 If any hourly natural-gas observation is missing, the model fills that gas value
 with zero and records the date as a skipped gas date. To preserve calendar
@@ -215,7 +258,13 @@ Natural-gas costs are evaluated consistently with the selected cost mode through
 | Price-error scenarios | `data/random_data/` | Fixed standard-normal price-error innovations (`price_error_z_*.npy` + `manifest.json`) used by the model's forecast-error sampling |
 | Historical CAISO emissions | `data/CAISO-historical-co2-20260720.csv` | Retained source data for independent historical-emissions analysis |
 
-Each stored `price_error_z_YYYYMM.npy` array has 24 columns per binding interval. Column 0 is an unused placeholder for the exactly observed binding-interval price; columns 1--23 supply the standard-normal innovations for forecast horizons 2--24. Reproduction must therefore draw all 24 columns per binding interval and discard column 0 during simulation; generating only 23 values per interval would shift the seeded stream and produce different scenarios.
+Each stored `price_error_z_YYYYMM.npy` array has 24 columns per binding interval.
+The bidding workflow leaves column 0 unused because it observes the binding-
+interval price exactly; columns 1--23 supply its future-price innovations. The
+self-scheduling workflow uses column 0 for its uncertain current-price estimate
+and columns 1--23 for future-price estimates. Reproduction must draw all 24
+columns per binding interval; generating only 23 values would shift the seeded
+stream and produce different scenarios.
 
 Replacement monthly price files must include the additional rolling horizon required at the end of the month: `biddingNEW` reads `price[t:t+N_t]`, so the last in-month hour needs 23 subsequent hourly prices. The committed price files contain one full extra day beyond each month (288 five-minute observations, i.e. 24 hourly values), which covers that horizon.
 
@@ -226,16 +275,18 @@ Replacement monthly price files must include the additional rolling horizon requ
 | Monthly CSV | `January2023_eta95%_std2_exact_V5_k20.csv` | Hourly prices, profits, battery outputs, natural-gas outputs, and costs |
 | NCD array | `ncd_January2023_exact_V5_k20.npy` | NCD and state-of-charge status by interval and candidate price |
 | Cleared-output array | `Pcleared_January2023_exact_V5_k20.npy` | Combined controllable and passive battery output |
-| Summary CSV | `summary_202301_202512_exact_V5_k20.csv` | Monthly profit, cost, gas, curtailment, and carbon metrics |
-| Compatibility count CSV | `simultaneous_charge_discharge_counts_202301_202512_exact_V5_k20.csv` | Legacy `Initial_Value` and `following_value` fields; current implementation writes zero placeholders |
-| Demand-supply functions | `dsfunction_May2025_exact_V5_k20.xlsx` | Optional hourly stair-function export from the single-month helpers |
-| Analysis workbook | `analysis_202301_202512.xlsx` | Monthly and annual analysis sheets |
+| Summary CSV | `Bidding/summary_202301_202512_exact_V5_k20.csv` | Monthly profit, cost, gas, curtailment, and carbon metrics |
+| Compatibility count CSV | `Bidding/simultaneous_charge_discharge_counts_202301_202512_exact_V5_k20.csv` | Legacy `Initial_Value` and `following_value` fields; current implementation writes zero placeholders |
+| Demand-supply functions | `Bidding/dsfunction_May2025_exact_V5_k20.xlsx` | Hourly stair-function export; distributed bidding writes one workbook per selected month |
+| Self-scheduling monthly CSV | `Self-Scheduling/May2025_eta95%_std2_exact_V5_self_scheduling_k20.csv` | Original and estimated prices, sampled errors, profits, SOC, and combined/controlled/passive ESS outputs |
+| Self-scheduling summary | `Self-Scheduling/summary_202505_exact_V5_self_scheduling_k20.csv` | Monthly self-scheduling profit, cost, gas, curtailment, and carbon metrics |
+| Analysis workbook | `Bidding/analysis_202301_202512.xlsx` | Monthly and annual analysis sheets |
 
 Repeated runs overwrite files with identical parameter-derived names.
 
 ## Figure source data and reproduction
 
-`Figure_Plot/` contains the source data, plotting or numerical scripts, and committed outputs associated with the main and supplementary figures. In line with research-data reporting practice, the table below identifies the source-data location and the output that the current code produces.
+`Figure_Plot/` contains the source data, plotting or numerical scripts, and committed outputs associated with the main and supplementary figures. The Figure 4 orchestration reads canonical bidding inputs from `Results/Bidding/` and keeps generated snapshots in the figure directories. In line with research-data reporting practice, the table below identifies the source-data location and the output that the current code produces.
 
 | Figure | Directory | Source data | Current reproducible output |
 |---|---|---|---|
@@ -247,7 +298,7 @@ Repeated runs overwrite files with identical parameter-derived names.
 | Figure 4d | `Figure_Plot/figure_plot_4_d/` | `analysis_202301_202512.xlsx` | Reproduces the standalone profit, carbon-reduction, and gas-cost-reduction radial plots plus the combined three-panel figure in `outputs/` |
 | Figure 4e | `Figure_Plot/figure_plot_4_e/` | April 2025 model result, curtailment, and CAISO price CSVs in `input/` | Exports `Fig_4_e` as PNG, SVG, and PDF |
 
-The copies stored inside each figure directory are the figure source-data snapshots. They are not automatically updated when files in `data/` or `Results/` are regenerated.
+The copies stored inside each figure directory are the figure source-data snapshots. They are not automatically updated when files in `data/` or `Results/Bidding/` are regenerated.
 
 ### Figures 1 and S1
 
@@ -281,7 +332,7 @@ Three auxiliary scripts in the same directory are not called by `journalcasestud
 
 ### Figure 4 — automated generation
 
-`Figure_Plot/Figure_Generation.py` is the orchestration entry point for all Figure 4 panels. It resolves canonical inputs from `Results/` and `data/`, copies fresh snapshots into each figure directory, runs the classification and plotting scripts in dependency order, and writes a provenance manifest to `Figure_Plot/Figure_Generation_manifest.json`.
+`Figure_Plot/Figure_Generation.py` is the orchestration entry point for all Figure 4 panels. It resolves canonical bidding inputs from `Results/Bidding/` and other inputs from `data/`, copies fresh snapshots into each figure directory, runs the classification and plotting scripts in dependency order, and writes a provenance manifest to `Figure_Plot/Figure_Generation_manifest.json`.
 
 ```powershell
 # Regenerate all Figure 4 panels

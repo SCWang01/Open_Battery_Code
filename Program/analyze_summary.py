@@ -21,7 +21,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RESULTS_DIR = PROJECT_ROOT / "Results"
+RESULTS_DIR = PROJECT_ROOT / "Results" / "Bidding"
 DEFAULT_INPUT = RESULTS_DIR / "summary_202301_202512_exact_V5_k20.csv"
 
 REQUIRED_COLUMNS = {
@@ -423,7 +423,7 @@ def build_parser() -> argparse.ArgumentParser:
         "-o",
         "--output",
         type=Path,
-        help="Output .xlsx; default is analysis_<start>_<end>.xlsx in Results.",
+        help="Output .xlsx; default is analysis_<start>_<end>.xlsx in Results/Bidding.",
     )
     return parser
 

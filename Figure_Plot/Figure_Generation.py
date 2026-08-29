@@ -30,7 +30,8 @@ from typing import Iterable, Sequence
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RESULTS_DIR = PROJECT_ROOT / "Results"
+RESULTS_ROOT = PROJECT_ROOT / "Results"
+RESULTS_DIR = RESULTS_ROOT / "Bidding"
 DATA_DIR = PROJECT_ROOT / "data"
 FIGURE_DIR = PROJECT_ROOT / "Figure_Plot"
 PROGRAM_DIR = PROJECT_ROOT / "Program"
@@ -106,7 +107,7 @@ def parse_args(argv: Sequence[str] | None = None) -> GenerationConfig:
     parser.add_argument(
         "--skip-analysis",
         action="store_true",
-        help="Use the existing Results analysis workbook instead of rebuilding it.",
+        help="Use the existing Results/Bidding analysis workbook instead of rebuilding it.",
     )
     args = parser.parse_args(argv)
     figures = tuple(dict.fromkeys(args.figures))
