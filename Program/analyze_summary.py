@@ -1,4 +1,15 @@
-"""Create monthly and annual battery-study analysis in an Excel workbook.
+r"""Create monthly and annual battery-study analysis in an Excel workbook.
+
+Run rule (PowerShell)
+---------------------
+Run the following command from the ``Program`` directory to analyze the
+``Results\Self-scheduling`` summary file and save the generated workbook in
+the same results directory::
+
+    python .\analyze_summary.py "..\Results\Self-scheduling\summary_202301_202512_exact_V5_self_scheduling_k20.csv" -o "..\Results\Self-scheduling\analysis_202301_202512.xlsx"
+
+The first path is the input summary CSV. The path after ``-o`` is the output
+Excel workbook. Both paths may be changed when analyzing another data set.
 
 The workbook contains two sheets:
 

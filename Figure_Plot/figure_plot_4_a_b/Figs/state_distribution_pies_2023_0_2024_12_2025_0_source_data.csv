@@ -1,0 +1,9 @@
+state,legend_label,color_hex,dsfunction_vertical_width_sum,included_in_left_pie,dsfunction_left_normalized_percent,p_ess_count,p_ess_percent,included_in_shared_legend
+MC,Max-rate charge,#C90000,,false,,3511,40.52400739,true
+CC,Charge-for-charge,#FF6B6B,17392.496426109290,true,24.73685799,198,2.28531856,true
+CD,Charge-for-discharge,#F6B4B4,4838.439555781290,true,6.88157636,118,1.36195753,true
+NU,Null segment,#A6A6A6,35217.160784362553,true,50.08837626,1688,19.48291782,true
+DC,Discharge-for-charge,#9CC5E5,2963.159292127696,true,4.21441803,40,0.46168052,true
+DD,Discharge-for-discharge,#4F95D5,9898.790735375571,true,14.07877137,317,3.65881810,true
+MD,Max-rate discharge,#1D4B73,,false,,2792,32.22530009,true
+NC,not classified,,,false,,0,0.00000000,false

@@ -27,6 +27,7 @@ Notes:
 
 import argparse
 import calendar
+import math
 import multiprocessing as mp
 from pathlib import Path
 
@@ -49,8 +50,8 @@ import V5_Case_Study as v5
 OUTPUT_DIR = v5.RESULTS_DIR
 
 
-def _initialize_worker(output_dir):
-    """Configure one worker once with the parent's output directory."""
+def _initialize_worker(output_dir, meanstd):
+    """Configure one worker with the parent's explicit experiment settings."""
     _orig_tqdm = v5.tqdm
 
     def _quiet(*args, **kwargs):
@@ -59,6 +60,7 @@ def _initialize_worker(output_dir):
 
     v5.tqdm = _quiet
     v5.RESULTS_DIR = Path(output_dir)
+    v5.meanstd = meanstd
 
 
 def run_single_month(num):
@@ -75,7 +77,8 @@ def run_single_month(num):
     return num, summary, detection_counts
 
 
-def main():
+def parse_args(argv=None):
+    """Parse the distributed bidding runner options."""
     parser = argparse.ArgumentParser(description='Distributed V5 case study.')
     parser.add_argument(
         '--workers', type=int, default=min(12, mp.cpu_count()),
@@ -85,20 +88,51 @@ def main():
         '--months', type=int, nargs='+', default=list(range(len(v5.monthlist))),
         help='0-based month indices to run (default: all configured months)',
     )
-    args = parser.parse_args()
+    parser.add_argument(
+        '--meanstd', type=float, default=v5.meanstd,
+        help=f'price prediction error percentage (default: {v5.meanstd:g})',
+    )
+    parser.add_argument(
+        '--output-dir', type=Path, default=OUTPUT_DIR,
+        help=f'output directory (default: {OUTPUT_DIR})',
+    )
+    return parser.parse_args(argv)
 
-    months = sorted(set(args.months))
-    if args.workers < 1:
-        parser.error('--workers must be at least 1')
+
+def validate_run_options(months, workers, meanstd):
+    """Validate and normalize the bidding run boundary values."""
+    if workers < 1:
+        raise ValueError('--workers must be at least 1')
+
+    months = sorted(set(months))
     invalid_months = [
         num for num in months
         if num < 0 or num >= len(v5.year_month_list)
     ]
     if invalid_months:
-        parser.error(
+        raise ValueError(
             '--months contains out-of-range indices '
             f'{invalid_months}; valid indices are 0..{len(v5.year_month_list) - 1}'
         )
+    if not months:
+        raise ValueError('--months must contain at least one month')
+
+    meanstd = float(meanstd)
+    if not math.isfinite(meanstd) or meanstd < 0:
+        raise ValueError('--meanstd must be a finite non-negative number')
+    return months, meanstd
+
+
+def run_months(months, workers, meanstd=None, output_dir=None):
+    """Run selected bidding months and write an ordered aggregate summary."""
+    months, meanstd = validate_run_options(
+        months,
+        workers,
+        v5.meanstd if meanstd is None else meanstd,
+    )
+    output_dir = Path(OUTPUT_DIR if output_dir is None else output_dir)
+    v5.meanstd = meanstd
+    v5.RESULTS_DIR = output_dir
 
     # Validate every requested random-data file before starting expensive
     # solver workers, so missing or corrupt inputs fail once in the parent.
@@ -107,9 +141,7 @@ def main():
         n_day = calendar.monthrange(year, month)[1]
         v5.load_monthly_price_error_data(year, month, n_day)
 
-    workers = min(args.workers, len(months))
-    v5.RESULTS_DIR = OUTPUT_DIR
-    output_dir = OUTPUT_DIR
+    workers = min(workers, len(months))
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f'Running {len(months)} month(s) across {workers} worker(s) at k={v5.k}...')
@@ -118,12 +150,14 @@ def main():
     with mp.Pool(
         processes=workers,
         initializer=_initialize_worker,
-        initargs=(str(output_dir),),
+        initargs=(str(output_dir), meanstd),
     ) as pool:
         for num, summary, detection_counts in tqdm(
             pool.imap_unordered(run_single_month, months),
             total=len(months), desc='Months completed', unit='month',
         ):
+            summary = dict(summary)
+            summary['meanstd'] = meanstd
             results[num] = (summary, detection_counts)
 
     # Preserve the original month ordering in the summary file.
@@ -140,6 +174,20 @@ def main():
     v5.write_detection_summary(detection_rows, summary_path)
     print(f'Wrote summary: {summary_path}')
     return summary_path
+
+
+def main(argv=None):
+    """Run the selected bidding months."""
+    args = parse_args(argv)
+    try:
+        return run_months(
+            args.months,
+            args.workers,
+            meanstd=args.meanstd,
+            output_dir=args.output_dir,
+        )
+    except ValueError as exc:
+        raise SystemExit(f'error: {exc}') from exc
 
 
 if __name__ == '__main__':

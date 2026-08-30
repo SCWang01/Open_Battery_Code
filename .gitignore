@@ -9,3 +9,7 @@ __pycache__/
 # Common operating-system metadata
 .DS_Store
 Thumbs.db
+
+# Project-generated outputs and distributed program variants
+/Uncertainties_Comparison/
+/Program/distributed_*

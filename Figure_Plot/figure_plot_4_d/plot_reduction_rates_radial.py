@@ -35,7 +35,7 @@ from plot_profit_increment_radial import (
     MONTHS,
     OVERALL_PERIOD_LABEL,
     OVERALL_SUBTITLE_FONTSIZE,
-    SOURCE_WORKBOOK,
+    SCENARIO_WORKBOOKS,
     TEXT_COLOR,
     TITLE_FONTSIZE,
     YEARS,
@@ -46,6 +46,7 @@ from plot_profit_increment_radial import (
     _upright_tangent_rotation,
     draw_profit_increment_panel,
     load_profit_increment_data,
+    print_input_workbook_info,
 )
 
 
@@ -541,20 +542,30 @@ def export_figure(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """Build a backward-compatible CLI with explicit sensitivity paths."""
+    """Build a CLI that defaults to both study scenarios."""
     parser = argparse.ArgumentParser(
         description="Plot combined and standalone Figure 4d radial rates."
     )
-    parser.add_argument("--input", type=Path, default=SOURCE_WORKBOOK)
-    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument(
+        "--input",
+        type=Path,
+        help="Process one custom workbook instead of both default scenarios.",
+    )
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        help="Output root for --input (defaults to the legacy output root).",
+    )
     return parser
 
 
-def main(
-    workbook_path: Path = SOURCE_WORKBOOK,
-    output_root: Path = OUTPUT_ROOT,
+def _process_workbook(
+    scenario: str,
+    workbook_path: Path,
+    output_root: Path,
 ) -> None:
-    configure_matplotlib()
+    """Create the combined figure and two reduction figures for one scenario."""
+    print_input_workbook_info(scenario, workbook_path)
     profit_data = load_profit_increment_data(workbook_path)
     metric_data = {
         spec.key: load_metric_data(workbook_path, spec) for spec in METRICS
@@ -573,28 +584,59 @@ def main(
         plt.close(figure)
 
     print(
-        f"Profit increment rate: {len(profit_data.monthly_percent)} months, "
+        f"Profit increment rate [{scenario}]: "
+        f"{len(profit_data.monthly_percent)} months, "
         f"range {profit_data.monthly_percent.min():.2f}% to "
         f"{profit_data.monthly_percent.max():.2f}%"
     )
     for spec in METRICS:
         data = metric_data[spec.key]
         print(
-            f"{spec.title}: {len(data.monthly_percent)} months, "
+            f"{spec.title} [{scenario}]: {len(data.monthly_percent)} months, "
             f"range {data.monthly_percent.min():.2f}% to "
             f"{data.monthly_percent.max():.2f}%"
         )
         print(
-            "Annual rates: "
+            f"Annual rates [{scenario}]: "
             + ", ".join(
                 f"{year}={data.annual_percent[year]:.2f}%" for year in YEARS
             )
         )
-    print(f"Created combined figures in: {output_dir}")
+    print(f"Created combined figures [{scenario}] in: {output_dir}")
     print(
-        "Created standalone figures in: "
+        f"Created standalone figures [{scenario}] in: "
         + ", ".join(str(path) for path in standalone_dirs)
     )
+
+
+def main(
+    workbook_path: Path | None = None,
+    output_root: Path | None = None,
+) -> None:
+    configure_matplotlib()
+    if workbook_path is not None:
+        if not workbook_path.is_file():
+            print(f"Warning [Custom]: input workbook not found; skipped: {workbook_path}")
+            return
+        _process_workbook(
+            "Custom",
+            workbook_path,
+            output_root if output_root is not None else OUTPUT_ROOT,
+        )
+        return
+
+    for scenario, scenario_workbook in SCENARIO_WORKBOOKS.items():
+        if not scenario_workbook.is_file():
+            print(
+                f"Warning [{scenario}]: input workbook not found; skipped: "
+                f"{scenario_workbook}"
+            )
+            continue
+        _process_workbook(
+            scenario,
+            scenario_workbook,
+            OUTPUT_ROOT / scenario,
+        )
 
 
 if __name__ == "__main__":

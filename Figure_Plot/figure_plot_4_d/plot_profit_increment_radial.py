@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 import re
 
@@ -31,8 +32,16 @@ import numpy as np
 from openpyxl import load_workbook
 
 
-SOURCE_WORKBOOK = Path(__file__).with_name("analysis_202301_202512.xlsx")
-OUTPUT_DIR = Path(__file__).with_name("outputs") / "profit_increment_radial"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+WORKBOOK_NAME = "analysis_202301_202512.xlsx"
+SCENARIO_WORKBOOKS = {
+    scenario: PROJECT_ROOT / "Results" / scenario / WORKBOOK_NAME
+    for scenario in ("Bidding", "Self-Scheduling")
+}
+SOURCE_WORKBOOK = SCENARIO_WORKBOOKS["Bidding"]
+OUTPUT_ROOT = Path(__file__).with_name("outputs")
+OUTPUT_DIRECTORY = "profit_increment_radial"
+OUTPUT_DIR = OUTPUT_ROOT / OUTPUT_DIRECTORY
 OUTPUT_STEM = "profit_increment_rate_radial_2023_2025"
 
 YEARS = (2023, 2024, 2025)
@@ -552,38 +561,88 @@ def export_figure(fig: mpl.figure.Figure, output_dir: Path) -> None:
         print(f"Warning: PDF is open and could not be replaced: {stem.with_suffix('.pdf')}")
 
 
-def build_parser() -> argparse.ArgumentParser:
-    """Build a backward-compatible CLI with explicit sensitivity paths."""
-    parser = argparse.ArgumentParser(
-        description="Plot Figure 4d profit-increment radial rates."
+def print_input_workbook_info(scenario: str, workbook_path: Path) -> None:
+    """Print the selected input and its local modification time."""
+    modified_time = datetime.fromtimestamp(workbook_path.stat().st_mtime)
+    print(f"Input workbook [{scenario}]: {workbook_path.resolve()}")
+    print(
+        f"Input modified time [{scenario}]: "
+        f"{modified_time:%Y-%m-%d %H:%M:%S} (local time)"
     )
-    parser.add_argument("--input", type=Path, default=SOURCE_WORKBOOK)
-    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
-    return parser
 
 
-def main(
-    workbook_path: Path = SOURCE_WORKBOOK,
-    output_dir: Path = OUTPUT_DIR,
+def _process_workbook(
+    scenario: str,
+    workbook_path: Path,
+    output_dir: Path,
 ) -> None:
-    configure_matplotlib()
+    """Create the standalone profit figure for one scenario workbook."""
+    print_input_workbook_info(scenario, workbook_path)
     data = load_profit_increment_data(workbook_path)
     figure = create_figure(data)
     export_figure(figure, output_dir)
     plt.close(figure)
 
-    print(f"Monthly observations: {len(data.monthly_percent)}")
+    print(f"Monthly observations [{scenario}]: {len(data.monthly_percent)}")
     print(
-        "Monthly range: "
+        f"Monthly range [{scenario}]: "
         f"{data.monthly_percent.min():.2f}% to {data.monthly_percent.max():.2f}%"
     )
     print(
-        "Annual rates: "
+        f"Annual rates [{scenario}]: "
         + ", ".join(
             f"{year}={data.annual_percent[year]:.2f}%" for year in YEARS
         )
     )
-    print(f"Created figures in: {output_dir}")
+    print(f"Created figures [{scenario}] in: {output_dir}")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    """Build a CLI that defaults to both study scenarios."""
+    parser = argparse.ArgumentParser(
+        description="Plot Figure 4d profit-increment radial rates."
+    )
+    parser.add_argument(
+        "--input",
+        type=Path,
+        help="Process one custom workbook instead of both default scenarios.",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        help="Output directory for --input (defaults to the legacy output path).",
+    )
+    return parser
+
+
+def main(
+    workbook_path: Path | None = None,
+    output_dir: Path | None = None,
+) -> None:
+    configure_matplotlib()
+    if workbook_path is not None:
+        if not workbook_path.is_file():
+            print(f"Warning [Custom]: input workbook not found; skipped: {workbook_path}")
+            return
+        _process_workbook(
+            "Custom",
+            workbook_path,
+            output_dir if output_dir is not None else OUTPUT_DIR,
+        )
+        return
+
+    for scenario, scenario_workbook in SCENARIO_WORKBOOKS.items():
+        if not scenario_workbook.is_file():
+            print(
+                f"Warning [{scenario}]: input workbook not found; skipped: "
+                f"{scenario_workbook}"
+            )
+            continue
+        _process_workbook(
+            scenario,
+            scenario_workbook,
+            OUTPUT_ROOT / scenario / OUTPUT_DIRECTORY,
+        )
 
 
 if __name__ == "__main__":

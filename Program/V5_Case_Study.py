@@ -673,8 +673,22 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
         else:
             ilow[K] = lower_limit_hits[0] + 1
         Tb[K]=min(iup[K],ilow[K]) # the index of interval when the battery first reach the maximum/minimum energy limit
-        numncd0[0,K] = np.sum(ResPc[:int(Tb[K]),K]==-Pcmax) # the number of min-rate power before the battery first reach the maximum/mimium energy limit
-        numncd0[1,K] = np.sum(ResPd[:int(Tb[K]),K]==Pdmax) # the number of max-rate power before the battery first reach the maximum/mimium energy limit
+        numncd0[0,K] = np.count_nonzero(
+            np.isclose(
+                ResPc[:int(Tb[K]), K],
+                -Pcmax,
+                rtol=1e-9,
+                atol=1e-3,
+            )
+        ) # the number of min-rate power before the battery first reach the maximum/mimium energy limit
+        numncd0[1,K] = np.count_nonzero(
+            np.isclose(
+                ResPd[:int(Tb[K]), K],
+                Pdmax,
+                rtol=1e-9,
+                atol=1e-3,
+            )
+        ) # the number of max-rate power before the battery first reach the maximum/mimium energy limit
         numncd0[2,K] = np.sum((ResPc[:int(Tb[K]), K] + ResPd[:int(Tb[K]), K] >= -1e-3) &
                        (ResPc[:int(Tb[K]), K] + ResPd[:int(Tb[K]), K] <= 1e-3)) # the number of the null stair before the battery first reach the maximum/mimium energy limit
         if iup[K] < ilow[K]:
@@ -1256,6 +1270,10 @@ def run_one_month(num, export_dsfunctions=False, return_detection_counts=False):
             ],
             'P_ESS': P_cleared_ctrl,
             'SOC': ESSOC_status_ctrl,
+            # The exported dsfunction belongs to the controllable k-unit.
+            # Keep charge negative and discharge positive to match P_ESS.
+            'Pcmax': -np.repeat(np.asarray(Pcmax_glo, dtype=float) * k, N_t),
+            'Pdmax': np.repeat(np.asarray(Pdmax_glo, dtype=float) * k, N_t),
         })
         dsfunction_path = (
             output_dir

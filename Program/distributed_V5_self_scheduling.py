@@ -13,6 +13,7 @@ Usage::
 
 import argparse
 import calendar
+import math
 import multiprocessing as mp
 from pathlib import Path
 
@@ -25,8 +26,8 @@ import V5_Case_Study as v5
 OUTPUT_DIR = v5.SELF_SCHEDULING_RESULTS_DIR
 
 
-def _initialize_worker(output_dir):
-    """Configure one worker with an isolated output directory and quiet tqdm."""
+def _initialize_worker(output_dir, meanstd):
+    """Configure one worker with explicit experiment parameters and quiet tqdm."""
     original_tqdm = v5.tqdm
 
     def quiet_tqdm(*args, **kwargs):
@@ -35,6 +36,7 @@ def _initialize_worker(output_dir):
 
     v5.tqdm = quiet_tqdm
     v5.SELF_SCHEDULING_RESULTS_DIR = Path(output_dir)
+    v5.meanstd = meanstd
 
 
 def run_single_month(num):
@@ -53,6 +55,14 @@ def parse_args(argv=None):
         '--months', type=int, nargs='+',
         default=list(range(len(v5.monthlist))),
         help='0-based month indices to run (default: all configured months)',
+    )
+    parser.add_argument(
+        '--meanstd', type=float, default=v5.meanstd,
+        help=f'price prediction error percentage (default: {v5.meanstd:g})',
+    )
+    parser.add_argument(
+        '--output-dir', type=Path, default=OUTPUT_DIR,
+        help=f'output directory (default: {OUTPUT_DIR})',
     )
     return parser.parse_args(argv)
 
@@ -76,15 +86,26 @@ def validate_months(months, workers):
     return normalized
 
 
-def run_months(months, workers):
+def validate_meanstd(value):
+    """Return a finite non-negative price-error percentage."""
+    value = float(value)
+    if not math.isfinite(value) or value < 0:
+        raise ValueError('--meanstd must be a finite non-negative number')
+    return value
+
+
+def run_months(months, workers, meanstd=None, output_dir=None):
     """Run selected months and write an ordered aggregate summary."""
     months = validate_months(months, workers)
+    meanstd = validate_meanstd(v5.meanstd if meanstd is None else meanstd)
+    output_dir = Path(OUTPUT_DIR if output_dir is None else output_dir)
+    v5.meanstd = meanstd
+    v5.SELF_SCHEDULING_RESULTS_DIR = output_dir
     for num in months:
         year, month = v5.year_month_list[num]
         n_day = calendar.monthrange(year, month)[1]
         v5.load_monthly_price_error_data(year, month, n_day)
 
-    output_dir = OUTPUT_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
     worker_count = min(workers, len(months))
     print(
@@ -96,13 +117,15 @@ def run_months(months, workers):
     with mp.Pool(
         processes=worker_count,
         initializer=_initialize_worker,
-        initargs=(str(output_dir),),
+        initargs=(str(output_dir), meanstd),
     ) as pool:
         for num, summary in tqdm(
             pool.imap_unordered(run_single_month, months),
             total=len(months), desc='Self-scheduling months completed',
             unit='month',
         ):
+            summary = dict(summary)
+            summary['meanstd'] = meanstd
             results[num] = summary
 
     summaries = [results[num] for num in months]
@@ -123,7 +146,12 @@ def main(argv=None):
     """Run the selected self-scheduling months."""
     args = parse_args(argv)
     try:
-        return run_months(args.months, args.workers)
+        return run_months(
+            args.months,
+            args.workers,
+            meanstd=args.meanstd,
+            output_dir=args.output_dir,
+        )
     except ValueError as exc:
         raise SystemExit(f'error: {exc}') from exc
 
