@@ -1,0 +1,16 @@
+{
+  "interval_minutes": 60,
+  "schema_version": 3,
+  "member": "STADIUM_ESR1",
+  "seed": 916243779,
+  "shape": [
+    744,
+    36
+  ],
+  "dtype": "float64",
+  "generator": "numpy.random.Generator(MT19937)",
+  "origin_date": "2026-03-01",
+  "layout": "elapsed_hour_by_lookahead_lead",
+  "numpy_version": "1.26.4",
+  "sha256": "4153e1c45cc150f1ff6013113d064264e057dee4520d2196b97988e0d24d4194"
+}

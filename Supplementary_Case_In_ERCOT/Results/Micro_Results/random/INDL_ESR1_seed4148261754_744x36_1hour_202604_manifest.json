@@ -1,0 +1,16 @@
+{
+  "interval_minutes": 60,
+  "schema_version": 3,
+  "member": "INDL_ESR1",
+  "seed": 4148261754,
+  "shape": [
+    744,
+    36
+  ],
+  "dtype": "float64",
+  "generator": "numpy.random.Generator(MT19937)",
+  "origin_date": "2026-04-01",
+  "layout": "elapsed_hour_by_lookahead_lead",
+  "numpy_version": "1.26.4",
+  "sha256": "2d2eee7f0bbc127b556ad8a6a2cdca6741e6a0c8dda363ccf71d158fee888dcd"
+}

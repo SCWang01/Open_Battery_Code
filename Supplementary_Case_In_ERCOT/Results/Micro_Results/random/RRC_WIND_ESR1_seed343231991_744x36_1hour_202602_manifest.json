@@ -1,0 +1,16 @@
+{
+  "interval_minutes": 60,
+  "schema_version": 3,
+  "member": "RRC_WIND_ESR1",
+  "seed": 343231991,
+  "shape": [
+    744,
+    36
+  ],
+  "dtype": "float64",
+  "generator": "numpy.random.Generator(MT19937)",
+  "origin_date": "2026-02-01",
+  "layout": "elapsed_hour_by_lookahead_lead",
+  "numpy_version": "1.26.4",
+  "sha256": "e38165091f8bd796e97da18abf5d3d94654c1e7919e3c6858397c3baac320972"
+}

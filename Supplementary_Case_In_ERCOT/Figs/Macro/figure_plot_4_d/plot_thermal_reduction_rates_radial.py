@@ -1,0 +1,18 @@
+"""Export thermal Figure 4d from the six 2026 pooled gas/coal system summaries.
+
+Run this script from the project root. --results-dir and --output-root override
+the thermal defaults directly. Output is one transparent 300 x 110 mm, 720 dpi PNG.
+"""
+
+from pathlib import Path
+
+from plot_reduction_rates_radial import main as _main, run_cli
+
+
+def main(results_dir: Path | None = None, output_root: Path | None = None) -> Path:
+    """Export the thermal figure using the pooled-stack Actual baseline."""
+    return _main(results_dir, output_root, basis="thermal")
+
+
+if __name__ == "__main__":
+    run_cli("thermal", description=__doc__)

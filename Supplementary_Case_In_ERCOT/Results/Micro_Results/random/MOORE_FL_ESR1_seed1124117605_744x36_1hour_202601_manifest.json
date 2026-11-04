@@ -1,0 +1,16 @@
+{
+  "interval_minutes": 60,
+  "schema_version": 3,
+  "member": "MOORE_FL_ESR1",
+  "seed": 1124117605,
+  "shape": [
+    744,
+    36
+  ],
+  "dtype": "float64",
+  "generator": "numpy.random.Generator(MT19937)",
+  "origin_date": "2026-01-01",
+  "layout": "elapsed_hour_by_lookahead_lead",
+  "numpy_version": "1.26.4",
+  "sha256": "7ebbb1e1935892d00f41872da3c0815daa2c2d33db23a307a0acb123a9c34752"
+}

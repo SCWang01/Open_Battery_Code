@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db
+~$*.xlsx
+gurobi.log
+*.lic
+.env
+.env.*
+Results/smoke/
+Results/validation/

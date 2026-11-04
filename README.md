@@ -1,10 +1,19 @@
-# CAISO Battery Energy Storage Bidding Case Study
+# CAISO and ERCOT Battery Energy Storage Case Studies
 
-This repository provides the data, code, model outputs, and figure source files for an academic case study of aggregated battery energy storage bidding in the California Independent System Operator (CAISO) market. The study compares historical fleet operation with a bidding-based operating strategy and evaluates battery profit, natural-gas generation cost, renewable-curtailment absorption, and modelled carbon-emission reduction.
+This repository provides data, code, model outputs, and figure source files for academic battery energy storage case studies in the California Independent System Operator (CAISO) and Electric Reliability Council of Texas (ERCOT) markets. The CAISO study compares historical fleet operation with a bidding-based operating strategy and evaluates battery profit, natural-gas generation cost, renewable-curtailment absorption, and modelled carbon-emission reduction. The ERCOT study backtests individual storage resources against historical operation and estimates system impacts under gas, coal, and combined thermal displacement assumptions.
 
 > **Licence:** the original software code in this repository is available under the [MIT License](LICENSE). External data, third-party software, and their associated materials remain subject to their respective terms. See [Licence, data terms, and disclaimer](#licence-data-terms-and-disclaimer).
 
 > **Documentation note:** this README reflects the authors' good-faith but necessarily subjective description of the repository. The experiments, data-processing workflows, and code have undergone multiple rounds of revision and adjustment. Although the README is updated after experiments, some descriptions may still differ from the current implementation or files. If any inconsistency is found, the actual code and repository contents take precedence.
+
+## Case study guide
+
+| Case study | Configured scope | Entry point |
+|---|---|---|
+| CAISO | Aggregated battery fleet, January 2023–December 2025 | Root-level `Program/`, `data/`, `Results/`, and `Figure_Plot/`; see [CAISO quick start](#caiso-quick-start) |
+| ERCOT | 13 Energy Storage Resources (ESRs), January–June 2026; prepared inputs cover 24 ESRs | Self-contained [`Supplementary_Case_In_ERCOT/`](Supplementary_Case_In_ERCOT/); see [ERCOT case study](#ercot-case-study) and its [detailed README](Supplementary_Case_In_ERCOT/README.md) |
+
+The two cases use separate configurations, dependency files, data, results, and figure workflows. The root `requirements.txt` and the CAISO commands below apply to the original CAISO workflow. ERCOT commands and environment requirements are documented separately in the [ERCOT section](#ercot-case-study).
 
 ## Repository contents
 
@@ -38,6 +47,14 @@ This repository provides the data, code, model outputs, and figure source files 
 |   |-- Figure_Generation.py    # Figure 4 input synchronization and orchestration
 |   |-- Figure_Generation_manifest.json  # Latest Figure 4 provenance record
 |   `-- figure_*/               # Figure scripts, source snapshots, and rendered assets
+|-- Supplementary_Case_In_ERCOT/        # Independent January–June 2026 ERCOT case study
+|   |-- Data/                  # Prepared resource and system inputs
+|   |-- Program/               # Micro optimisation, Macro accounting, and validation
+|   |-- Results/               # Supplied resource and system results
+|   |-- Figs/                  # ERCOT figure scripts and current exports
+|   |-- requirements.txt       # ERCOT environment, including Gurobi
+|   |-- requirements-core.txt  # ERCOT post-processing and plotting dependencies
+|   `-- README.md              # Detailed ERCOT setup, commands, and interpretation
 |-- CITATION.cff                # Software citation metadata
 |-- DATA_AND_THIRD_PARTY_NOTICES.md  # Data rights and provider notices
 |-- LICENSE                     # MIT licence for original software code
@@ -45,11 +62,11 @@ This repository provides the data, code, model outputs, and figure source files 
 `-- README.md                   # Reproducibility-oriented project documentation
 ```
 
-The core scripts resolve their data and result paths relative to the repository rather than the shell's current directory. Some legacy figure scripts use working-directory-relative paths; their commands are provided in [Figure source data and reproduction](#figure-source-data-and-reproduction).
+The CAISO core scripts resolve their data and result paths relative to the repository rather than the shell's current directory. Some legacy figure scripts use working-directory-relative paths; their commands are provided in [CAISO figure source data and reproduction](#caiso-figure-source-data-and-reproduction). The ERCOT package resolves its default paths within `Supplementary_Case_In_ERCOT/`; its internal guides use that directory as their command working directory.
 
-The default study and committed scenario manifest cover January 2023 through December 2025. The data and preprocessing directories also retain some 2026 source files, but those later files are not included in the default model period or committed summary workbook.
+The default CAISO study and committed scenario manifest cover January 2023 through December 2025. The CAISO data and preprocessing directories also retain some 2026 source files, but those later files are not included in the default CAISO model period or committed summary workbook. The ERCOT experiment independently covers January–June 2026.
 
-## Requirements
+## CAISO requirements
 
 Python 3.10 or later is required. The pinned reference environment in [`requirements.txt`](requirements.txt) corresponds to CPython 3.10.17, the interpreter recorded for the committed Figure 4 generation run.
 
@@ -77,9 +94,9 @@ The requirements file includes `gurobipy`, but the optimisation still requires a
 
 `requirements.txt` also includes the figure and preprocessing dependencies. `matplotlib` and `scipy` support the figure workflows. `xlrd` is used by the gas-unit preprocessing pipeline. `scikit-learn` is used by `Program/CAISO-API/kmeans_mmbtu_cluster.py`, a standalone K-means heat-content clustering utility; it is not required for the main simulation or analysis scripts.
 
-## Quick start
+## CAISO quick start
 
-All commands below assume PowerShell and a current directory at `<repo-root>`.
+The CAISO commands below assume PowerShell and a current directory at `<repo-root>`.
 
 ### 1. Inspect the committed results
 
@@ -189,7 +206,7 @@ python Program/distributed_V5_self_scheduling.py --workers 6
 python Program/distributed_V5_self_scheduling.py --months 0 1 2
 ```
 
-## Configuration
+## CAISO configuration
 
 The bidding model has no command-line options, while the independent
 self-scheduling entry point accepts `--all-months`. The study period and
@@ -218,7 +235,7 @@ The arrays and `manifest.json` in `data/random_data/` are strictly validated aga
 
 The `eta95%` fragment in monthly CSV filenames is currently hard-coded. Changing `eta` without also changing the naming logic can overwrite an existing file whose name still contains `eta95%`. Preserve required outputs before changing model parameters or file-naming code.
 
-## Model workflow
+## CAISO model workflow
 
 `Program/V5_Case_Study.py` performs the following steps for each selected month (entry point `run_one_month`, batched by `run_all_months`):
 
@@ -244,7 +261,7 @@ limits when the binding interval enters the next valid day.
 
 Natural-gas costs are evaluated consistently with the selected cost mode through `Program/cost_calculation.py`. The default `exact` mode constructs the cost and marginal-price functions from monthly plant-level merit-order workbooks.
 
-## Inputs and outputs
+## CAISO inputs and outputs
 
 ### Principal input data
 
@@ -284,7 +301,7 @@ Replacement monthly price files must include the additional rolling horizon requ
 
 Repeated runs overwrite files with identical parameter-derived names.
 
-## Figure source data and reproduction
+## CAISO figure source data and reproduction
 
 `Figure_Plot/` contains the source data, plotting or numerical scripts, and committed outputs associated with the main and supplementary figures. The Figure 4 orchestration reads canonical bidding inputs from `Results/Bidding/` and keeps generated snapshots in the figure directories. In line with research-data reporting practice, the table below identifies the source-data location and the output that the current code produces.
 
@@ -383,15 +400,15 @@ python Figure_Plot/figure_plot_4_e/Fig_4_e_plot.py
 
 An April 2025 date and custom PNG path may be supplied with `--date YYYY-MM-DD --output <path>`.
 
-## Natural-gas parameter preprocessing
+## CAISO natural-gas parameter preprocessing
 
 `Program/CAISO-API/` contains the preprocessing workflow used to derive monthly natural-gas generator parameters from EIA-923 and EIA-860/EIA-860M data. The workflow covers source extraction, monthly splitting, heat-content checks, fuel-consumption calculations, generator-capacity matching, and marginal-fuel-cost generation.
 
 See `Program/CAISO-API/Readme_Generator_Parameter_Generation.md` for its data flow, formulas, and commands.
 
-## Tests
+## CAISO tests
 
-The repository contains two `unittest` suites. Run them from the directories that contain the tested modules:
+The CAISO workflow contains two `unittest` suites. Run them from the directories that contain the tested modules:
 
 ```powershell
 Push-Location Program/CAISO-API
@@ -405,23 +422,94 @@ Pop-Location
 
 These tests cover CA/CT grouped-stack construction and demand-supply-function classification. They do not run the Gurobi optimisation or reproduce all figures.
 
+## ERCOT case study
+
+[`Supplementary_Case_In_ERCOT/`](Supplementary_Case_In_ERCOT/) contains hourly rolling-horizon backtests for **13 ESRs from January through June 2026**, together with historical-operation comparisons, system-level post-processing, and figure scripts. The prepared Micro inputs cover 24 ESRs; the [experiment configuration](Supplementary_Case_In_ERCOT/Program/Micro/experiment_config_1hour.json) selects the 13 resources used in the supplied results. Five-minute resource observations support hourly dispatch with a 24-hour horizon including the current hour.
+
+### Data, results, and documentation
+
+The supplied results include 78 resource-month dispatch workbooks, corresponding classification and historical-revenue comparisons, fixed random innovations, a monthly revenue-comparison workbook, and gas, coal, and combined thermal system results. They can be inspected without rerunning optimisation.
+
+| Location | Contents and guide |
+|---|---|
+| [`Data/`](Supplementary_Case_In_ERCOT/Data/README.md) | Prepared monthly resource workbooks, nodal prices, hourly system inputs, and fuel cost/emissions stacks |
+| [`Program/Micro/`](Supplementary_Case_In_ERCOT/Program/Micro/README.md) | Resource data loading, rolling optimisation, classification, realised revenue, matching, and comparison; see the [run order](Supplementary_Case_In_ERCOT/Program/Micro/RUN_ORDER.md) |
+| [`Program/Macro/`](Supplementary_Case_In_ERCOT/Program/Macro/README.md) | Aggregate the selected ESRs and estimate generation, fuel-cost, carbon, and curtailment-proxy changes |
+| [`Results/`](Supplementary_Case_In_ERCOT/Results/README.md) | Saved resource outputs in `Micro_Results/` and system outputs in `Macro_Results/` |
+| [`Figs/`](Supplementary_Case_In_ERCOT/Figs/README.md) | ERCOT plotting commands, source tables, regression tests, and current figure exports |
+| [Validation notes](Supplementary_Case_In_ERCOT/Program/VALIDATION.md) | Checks performed during preparation and their limits |
+| [Data provenance](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md) | Recorded source products, preparation assumptions, and upstream reproduction limits |
+
+### Environment and file validation
+
+Use a separate environment with **Python 3.12** and the ERCOT package's own [requirements.txt](Supplementary_Case_In_ERCOT/requirements.txt); its source requires at least Python 3.11 and was validated on Windows with Python 3.12.7. For post-processing and figure generation from supplied results, [requirements-core.txt](Supplementary_Case_In_ERCOT/requirements-core.txt) is sufficient. Optimisation additionally requires `gurobipy` and a suitable Gurobi licence. The Rolling entry point imports `gurobipy` even with `--validate-only`. See the [ERCOT setup guide](Supplementary_Case_In_ERCOT/README.md#1-install-the-environment) for installation commands.
+
+The following PowerShell examples start at `<repo-root>` and explicitly enter the ERCOT directory. The file-integrity check needs only the Python standard library:
+
+```powershell
+Push-Location Supplementary_Case_In_ERCOT
+python -B Program/tools/validate_release.py
+Pop-Location
+```
+
+Run this check before regenerating outputs: it compares files against the packaged release manifest. After intentional changes, use `--skip-manifest` to run the remaining checks. File-integrity validation does not rerun or establish the optimality of the saved optimisation results.
+
+### Reproduce analysis from supplied results
+
+With the ERCOT environment installed, regenerate classification, historical-operation matching, monthly comparisons, aggregate resource output, and the default gas-basis system results:
+
+```powershell
+Push-Location Supplementary_Case_In_ERCOT
+python -B Program/Micro/classify_p_ess.py
+python -B Program/Micro/Realized_Match.py
+python -B Program/Micro/Compare_Month.py
+python -B Program/Micro/Bridge.py --output-dir Results/Macro_Results/ESR_Output_Rolling
+python -B Program/Macro/System_Rolling_Result.py
+Pop-Location
+```
+
+These stages use the supplied dispatch and historical-revenue workbooks and require no solver licence. `Reality_Profit.py` separately regenerates the historical hourly power and revenue workbooks when needed. Macro post-processing also supports `--basis coal` and `--basis thermal`; each mode represents a different displaced-generation assumption. Use the exact commands in the [ERCOT figure guide](Supplementary_Case_In_ERCOT/Figs/README.md) to reproduce the figures. After recomputing Micro results, refresh all three Macro modes before plotting all three system Figure 4d variants.
+
+### Rerun the Micro experiment
+
+For the complete configured Micro workflow:
+
+```powershell
+Push-Location Supplementary_Case_In_ERCOT
+python -u -B Program/Micro/run_pipeline.py --workers 4
+Pop-Location
+```
+
+This runner covers the Micro computation and its classification, comparison, and example plots. Macro post-processing and the additional Figure 4 plotting commands are separate steps. Adjust worker count to available memory, CPU capacity, and Gurobi licence limits. For a single-resource execution check before a full run, follow the [ERCOT optimisation examples](Supplementary_Case_In_ERCOT/README.md#4-rerun-optimization). Repeated runs replace their corresponding outputs; the Micro guide explains separate dispatch directories and configuration-level output isolation.
+
+### Interpretation and reproduction limits
+
+- Resource dispatch and revenue use individual nodal LMPs; Hub Average prices provide Macro reference fields and selected figure inputs.
+- The experiment is a retrospective backtest using perturbed historical future prices, historical availability, reconstructed monthly capacity, and full-month price bounds. Revenue excludes ancillary services, degradation, and capital costs.
+- Macro outputs are static counterfactual estimates for the selected 13 ESRs under the named fuel basis. They do not represent removal of all ERCOT storage or a network-constrained unit-commitment model. The renewable-curtailment input is a derived proxy.
+- Local calendars use `America/Chicago`, with physical intervals identified in UTC. March 2026 has 743 modelled hours; appended next-day observations support forecasts and are excluded from monthly executed totals.
+- Prepared inputs and saved random arrays are included. Upstream acquisition/export programs and complete fuel-stack construction provenance are outside the distribution; see [data provenance and reproduction boundaries](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md).
+
 ## Data availability and attribution
 
-The repository includes the model inputs used in the case study, the default model outputs, the analysis workbook, and figure-specific source-data snapshots. Principal external sources are:
+The repository includes model inputs, supplied model outputs, analysis workbooks, and figure-specific source data for both case studies. Principal external sources are:
 
 - California Independent System Operator (CAISO) market prices, battery output, renewable curtailment, and related power-system data;
+- Electric Reliability Council of Texas (ERCOT) resource disclosures, nodal and Hub prices, generation data, and wind/solar reports used to prepare the ERCOT inputs;
 - U.S. Energy Information Administration (EIA) EIA-923 generation and fuel data; and
 - EIA-860 and EIA-860M generator-capacity data.
 
-The monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived from these sources. Users should retain source names, dataset dates, and all notices required by the original providers. See [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) and [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use).
+The CAISO monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived from the CAISO/EIA sources. Users should retain source names, dataset dates, and all notices required by the original providers. See [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) and [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use).
 
-The file-group rights boundary, provider acknowledgements, and known provenance limitations are documented in [`DATA_AND_THIRD_PARTY_NOTICES.md`](DATA_AND_THIRD_PARTY_NOTICES.md).
+The existing file-group rights boundary, CAISO/EIA acknowledgements, and provenance limitations are documented in [`DATA_AND_THIRD_PARTY_NOTICES.md`](DATA_AND_THIRD_PARTY_NOTICES.md). ERCOT product identifiers, recorded snapshots, derived curtailment-proxy definitions, and missing upstream acquisition and fuel-stack construction steps are documented separately in [`Supplementary_Case_In_ERCOT/Data/PROVENANCE.md`](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md). That provenance record does not grant a licence for third-party data.
 
 ## Licence, data terms, and disclaimer
 
 The original software code in this repository is licensed under the [MIT License](LICENSE). The licence permits use, copying, modification, distribution, sublicensing, and sale, provided that its copyright and permission notices are retained. The software is provided without warranty, as stated in the licence.
 
-The MIT License applies only to original software code and its associated documentation. CAISO and EIA source materials are not relicensed by this repository and remain subject to their providers' terms. Gurobi and all Python dependencies are separately licensed by their respective owners. Data, derived data, results, and figures may be subject to both project copyright and the terms of their source data unless a file-specific notice states otherwise.
+The imported ERCOT package retains a [reuse-status notice](Supplementary_Case_In_ERCOT/README.md#reuse-status) stating that no code licence was selected for that prepared distribution. That statement is not yet aligned with the repository-level MIT notice above.
+
+The MIT License applies only to original software code and its associated documentation. CAISO, ERCOT, and EIA source materials are not relicensed by this repository and remain subject to their providers' terms. Gurobi and all Python dependencies are separately licensed by their respective owners. Data, derived data, results, and figures may be subject to both project copyright and the terms of their source data unless a file-specific notice states otherwise.
 
 This repository is provided for academic research and methodological reproduction. It does not constitute electricity-market trading, system-operation, investment, legal, or compliance advice. Users are responsible for validating the model, data, assumptions, licence conditions, and fitness for their intended use.
 

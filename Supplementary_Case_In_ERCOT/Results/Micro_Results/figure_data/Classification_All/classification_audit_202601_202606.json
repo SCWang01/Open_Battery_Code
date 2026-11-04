@@ -1,0 +1,2337 @@
+{
+  "resources": [
+    "BIG_STAR_ESR1",
+    "BLSUMMIT_ESR1",
+    "BR_ARROW_ESR2",
+    "INDL_ESR1",
+    "INRT_W_ESR1",
+    "LANTANA_ESR1",
+    "MESQUITE_ESR1",
+    "MOORE_FL_ESR1",
+    "RRC_WIND_ESR1",
+    "RRC_WIND_ESR2",
+    "SHAMROCK_ESR1",
+    "STADIUM_ESR1",
+    "STRG_SLR_ESR1"
+  ],
+  "months": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06"
+  ],
+  "resource_count": 13,
+  "resource_month_pairs": 78,
+  "aggregation": "Pool resource-hours; no capacity or equal-resource weighting",
+  "threshold": 0.03,
+  "threshold_rule": "abs(gap) < threshold",
+  "tie_rule": "Tolerance 1e-9; NU, then power-sign family, then canonical category order",
+  "categories": [
+    "MD",
+    "DD",
+    "DC",
+    "NU",
+    "CD",
+    "CC",
+    "MC"
+  ],
+  "deviation_axis_limits": [
+    -0.5,
+    0.5
+  ],
+  "distance_basis": "Existing clipped-power signed normalized gaps; nearest available category",
+  "sampling": "All eligible observations; none subsampled",
+  "profiles": "Telemetry total: sum of nonnegative hit and outside-threshold PCHIP count profiles; not MW density or KDE",
+  "profile_display": "Category gradient; endpoints aligned to MD/MC Rolling bar edges; unscaled count widths",
+  "bars": "Overlapping leftward category counts: Rolling (Model Hours) and telemetry hits (Telemetry Hit Hours)",
+  "individual_count_ticks": [
+    0.0,
+    1000.0,
+    2000.0,
+    3000.0,
+    4000.0,
+    5000.0
+  ],
+  "aggregate_count_ticks": [
+    0.0,
+    10000.0,
+    20000.0,
+    30000.0,
+    40000.0,
+    50000.0,
+    60000.0
+  ],
+  "aggregate": {
+    "model_rows": 56459,
+    "model_classified_hours": 55163,
+    "model_unclassified_hours": 1296,
+    "telemetry_rows": 56459,
+    "tied_hours": 5,
+    "beyond_display_range": 0,
+    "telemetry_status": {
+      "Hit": 41355,
+      "Outside threshold": 13808,
+      "Excluded": 1296
+    },
+    "excluded_reasons": {
+      "Zero effective power range": 1296
+    }
+  },
+  "individual": [
+    {
+      "resource": "BIG_STAR_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "559ae1708f98825660a0a42869846e7523d8092e3827f9804f8b42085007a2ef",
+          "matched_sha256": "9f36aeb12707350185a06c9dc98e22d0a29f7fecab107a798410b7b917d7ef16"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "6ba5718067b6e516735994de54ed4281246da2cf4fa05e0aede8071064432983",
+          "matched_sha256": "0979e537bf92f4fb8c072ac9cb8cbaa67e7f7979abed360d2ee5d625a656d579"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "0d1afe3189fa2a9a2d40b1a001ee606cc3ff819c9125df7999eee5c2ff0e45b3",
+          "matched_sha256": "559c4ececfa57ab21912140dc6a49ef94ea175f33b0c596a5569a0d0b90c1bf8"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "5be8112b16ebe15e6303afeb8fc1d0d3ddb26c0dfffe52f5b7e5265d941adcc3",
+          "matched_sha256": "67da808a1af7b4094b121b4571f6696a9475f34e8d08836a389ca8af5fcf6953"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "c2792426ee7811c742bb596e14f467a8f054423a8ade029f7285f4d3448810e7",
+          "matched_sha256": "155767fcbafe9986eb76ccdcdd5fe7d7f12f87c30f13816030cace25e3813118"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BIG_STAR_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "42a33eb4a908534803bf53edf4f1b875432fc34d9b2e90929721cf783122dc64",
+          "matched_sha256": "46d41db2b3d225e1e20b259dd987411571d22a10d41df0ef7d0244a575a217e3"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 639,
+            "Outside threshold": 105,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 668,
+          "model_unclassified_hours": 4,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 569,
+            "Outside threshold": 99,
+            "Excluded": 4
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 4
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 737,
+          "model_unclassified_hours": 6,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 603,
+            "Outside threshold": 134,
+            "Excluded": 6
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 6
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 586,
+            "Outside threshold": 134,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 649,
+            "Outside threshold": 95,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 715,
+          "model_unclassified_hours": 5,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 594,
+            "Outside threshold": 121,
+            "Excluded": 5
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 5
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4328,
+      "model_unclassified_hours": 15,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3640,
+        "Outside threshold": 688,
+        "Excluded": 15
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 15
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "BLSUMMIT_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "2951107dfc7a3a1c585a4ea13740163a482880bb849b5cfbfcf643f18043ebeb",
+          "matched_sha256": "0cf81565400db5edc7f54e7dc61585888eadc3550dabe6fcc2df3e5bd235115e"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "152d845d891a5fa9e9adc328881611d7b2ec66a3e49eaab21a67c23991fe2f8f",
+          "matched_sha256": "553161b2b4129a104398500f3671ffa5c0107b092df0b275b1dfae9994a45a1c"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "c927a9f63f1fb52b08436fca37b71837ca0bc575948a75e74c558088ea372d84",
+          "matched_sha256": "aa289dd3b829ba9b3915c6058534d072941b621eab7cdba2d15fd5722d1f2430"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "54afcd67c62406f2c83d9880c21ab2ac688815b9a5098fd067549a3c4b7e778a",
+          "matched_sha256": "9ceb3282ec1545e721ed9041ae25cbbb98d2b1ff0d2196b6da442613816299c0"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "4b39f9c36a5095f9669eaedf978cbcc6967e86a65f65f0705fa1255122e51d4f",
+          "matched_sha256": "ad3562e5e3b26ca417988b47089d9ccd815964fc1dfa9f75480672821d81ccbb"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BLSUMMIT_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "a3341eeed3458113f099770ad2ddd9ec84b8ebd19ede74fd6df6be9d912dc361",
+          "matched_sha256": "ce49c697f783c5596d69a3f37bd015589f34dc1db4ea76f67e24e9e4362fe4d2"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 591,
+            "Outside threshold": 153,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 651,
+          "model_unclassified_hours": 21,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 514,
+            "Outside threshold": 137,
+            "Excluded": 21
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 21
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 545,
+            "Outside threshold": 198,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 688,
+          "model_unclassified_hours": 32,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 497,
+            "Outside threshold": 191,
+            "Excluded": 32
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 32
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 623,
+            "Outside threshold": 121,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 703,
+          "model_unclassified_hours": 17,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 597,
+            "Outside threshold": 106,
+            "Excluded": 17
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 17
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4273,
+      "model_unclassified_hours": 70,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3367,
+        "Outside threshold": 906,
+        "Excluded": 70
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 70
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "BR_ARROW_ESR2",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202601.xlsx",
+          "classified_sha256": "d0c26ee8a32e928d255e5a5562fe5ece1a259b45836d79f0aeb53477374863be",
+          "matched_sha256": "a333930bb0bbdc5aa7bff3b4140144b7a3c277cf01081f8b5f5caba7d538e88e"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202602.xlsx",
+          "classified_sha256": "9814b1f53a72ab74623067b5a1fe5e151ee1d0ad5ac3eca7e8053def9e185608",
+          "matched_sha256": "2728a62cff2f5d13b6592016054e1b35892289f923191f649a1beb9d76cd5c54"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202603.xlsx",
+          "classified_sha256": "9c1c0c2c426612107f61f1b42a53ea34be86337a2471caaa672033afa7e36041",
+          "matched_sha256": "3a7d577c22999b9a71d054b2a85e1cb835882145d71d54bb83bfc53572b6b5a9"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202604.xlsx",
+          "classified_sha256": "989cc988c5889585a522b75db364ba93d7d34007724c705b8ac18d64e581fd5f",
+          "matched_sha256": "93be6be9766300011f5236ce5f24b8d5d581660fbe13cf94c1d8fa7c85ffe130"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202605.xlsx",
+          "classified_sha256": "721570fc8df688a269f6c574c33ef77238be8b5532bd5bdc9866c1538af19953",
+          "matched_sha256": "6fbab220c5803fc1d33a35da595342c7c3ab1ea7e14d4fc71477ae95aadc4dc6"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_BR_ARROW_ESR2_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202606.xlsx",
+          "classified_sha256": "e144a573d5f578beac184e778e43607b5c3bbb009f3426b5aa270d67a111b939",
+          "matched_sha256": "8d187fdaa4cbc0c549075ad9c06e426c8d1a225a03453609eb215a1b974c88e7"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 590,
+            "Outside threshold": 154,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 512,
+            "Outside threshold": 160,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 1,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 535,
+            "Outside threshold": 208,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 2,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 514,
+            "Outside threshold": 206,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 2,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 592,
+            "Outside threshold": 152,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 551,
+            "Outside threshold": 169,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4343,
+      "model_unclassified_hours": 0,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3294,
+        "Outside threshold": 1049,
+        "Excluded": 0
+      },
+      "excluded_reasons": {},
+      "tied_hours": 5,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "INDL_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_INDL_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "7b1f7a1a99d7e108b1f50de9a68b3280c43def3a6f2982e6bd83571821744315",
+          "matched_sha256": "d4a921633d030b064c034dcdd5dd9b8885bad3ff52809578dfed5649dffbc534"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_INDL_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "784c28a36c709e36a1083804a44db5b88bb64dc133034995a0417d643964e565",
+          "matched_sha256": "f6b7c72058481a369a373dbfb37a0b2e7adbd8a33497053f747d0572bc0433ef"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_INDL_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "89c506dbdc21fdcd961d47b39c62731084a56b1f048bd31da82cc1f7f1f3582e",
+          "matched_sha256": "de7b905a578691bac4ef71d9a811f896532cb8d19ca8d43ffec1852086b21148"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_INDL_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "bc204c27000e6b47badc6d230a58180f1373dbfc93748746f0cfa674715c6aa9",
+          "matched_sha256": "7efafb4d19a591e550b08fae4c0c3cbbcf690d3fe4927b50da5b2039013ff6e5"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_INDL_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "76916297306cd05e21babfe2603cd56fc921eb047ad8b7b4729d1782e2caec10",
+          "matched_sha256": "9c48832996c0e5177f2702f86bd65d94a5f11484e1ea4db3bfdfa5f37bb0b63a"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_INDL_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_INDL_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "ac587ea7664a69d9eff398b90034b109f5692bf7d76910a6b009e29b31f9f200",
+          "matched_sha256": "222d4a87d5e3a1b0951621f6878401e089bce77d7428e88dc885270cac4ddbbf"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 726,
+          "model_unclassified_hours": 18,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 642,
+            "Outside threshold": 84,
+            "Excluded": 18
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 18
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 566,
+            "Outside threshold": 106,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 725,
+          "model_unclassified_hours": 18,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 568,
+            "Outside threshold": 157,
+            "Excluded": 18
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 18
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 719,
+          "model_unclassified_hours": 1,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 556,
+            "Outside threshold": 163,
+            "Excluded": 1
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 1
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 634,
+            "Outside threshold": 110,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 618,
+            "Outside threshold": 102,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4306,
+      "model_unclassified_hours": 37,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3584,
+        "Outside threshold": 722,
+        "Excluded": 37
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 37
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "INRT_W_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "0ace4ad69431a98661d1cb17fcb0df65fbdaf61a944ae346c518bb34485560a3",
+          "matched_sha256": "a282d25d61283c13baff99dab34824d592b27224057595498fcef7d93a842995"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "ba63366958c4962270bf463e0dd210d031a300921b08d499837b2af6cbedbbd2",
+          "matched_sha256": "6793118c0c7d13a98bb94c244189e1618dbc246dcbeba41ac2d559e47fdccb53"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "a9c5033618e078e1c008d5912a5d1430c0dd2a48961669aeea1695c17b9c2f0e",
+          "matched_sha256": "74b325a3a96e4c0536f370762f029388bc6ce404d71399b1500eb23ebfba4e78"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "f997b34f99f26bd67fa4803a2cf78c6e5ec6a97bd876cb9464e9c4849cfcfb87",
+          "matched_sha256": "aad26d73abed621f6839821d05adf1f47b0b8330fed252d8866ebc2da4a9f7a7"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "c37037bb0c623aa11eac8bcc23bbcfd91af432583f27638ec55a6826433af8ea",
+          "matched_sha256": "39883a4b5ca28f0a7ba3f3457f0f9f0f53f5c529d32fd764d858c10cdab3c6f3"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_INRT_W_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "4a88b15d629bfc1dd2ef0981173293b7d4cf14c483a19f7092a000d9a0c10df0",
+          "matched_sha256": "f81c36464ed31eea08ac36e70b2e76a20a80ed9ad22480adc809da4f3e12bd30"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 463,
+            "Outside threshold": 281,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 669,
+          "model_unclassified_hours": 3,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 378,
+            "Outside threshold": 291,
+            "Excluded": 3
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 3
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 372,
+            "Outside threshold": 371,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 718,
+          "model_unclassified_hours": 2,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 395,
+            "Outside threshold": 323,
+            "Excluded": 2
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 2
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 477,
+            "Outside threshold": 267,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 708,
+          "model_unclassified_hours": 12,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 518,
+            "Outside threshold": 190,
+            "Excluded": 12
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 12
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4326,
+      "model_unclassified_hours": 17,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 2603,
+        "Outside threshold": 1723,
+        "Excluded": 17
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 17
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "LANTANA_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "ad5a3206e9bcba3cd31dfb357ae58da74b5f7bffcd7f4bd1614ad0eb218594dd",
+          "matched_sha256": "9dfe2bd6f0304615e644a6ba91fec60d4124e0ea94f7b0769eb412074298d8ec"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "363d0d9d054ab5d884f09c4f0d590a842225100600f7e80e02d9abba97e65917",
+          "matched_sha256": "12567816512aa8f2a7483a80e17e32bc33c2525302365493a02f5d8d1119ceec"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "7c99e5034718742cba99a506bfed57060faf9e9c308eb6bf7a58f087aa7b3d8b",
+          "matched_sha256": "34fc5b7d9d8ee08a5ee90ce3e31449ab039db570494cee2c896b7178cb22f173"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "a15a5526fe2c0702e148067ae942d5c9a299f3ebd2f6160af8e5e233d398d5db",
+          "matched_sha256": "2eea3f26e2bb468001325be137949900a4496dae735c89a0b054287dad3ddb65"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "b5c4a4a9931aff2279384103a522d6766f9d678bb5a3c68cbd756248266ffb14",
+          "matched_sha256": "3ac5dff433cb228c64dbd75ce5d0b06688d09463d502bb64aadbd3c6abff2c37"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_LANTANA_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "7d8ed0acb4dd64aa29519a75ee385f7a4ede4642a9203b8b37462e8c7724948c",
+          "matched_sha256": "7a11f8d8bd7d32b7066729e9a6a5ad831d2e7d716070a3a6f7f141f795f50742"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 96,
+          "model_unclassified_hours": 648,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 95,
+            "Outside threshold": 1,
+            "Excluded": 648
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 648
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 480,
+          "model_unclassified_hours": 192,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 459,
+            "Outside threshold": 21,
+            "Excluded": 192
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 192
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 723,
+            "Outside threshold": 20,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 696,
+          "model_unclassified_hours": 24,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 505,
+            "Outside threshold": 191,
+            "Excluded": 24
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 24
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 404,
+            "Outside threshold": 340,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 717,
+          "model_unclassified_hours": 3,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 422,
+            "Outside threshold": 295,
+            "Excluded": 3
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 3
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 3476,
+      "model_unclassified_hours": 867,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 2608,
+        "Outside threshold": 868,
+        "Excluded": 867
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 867
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "MESQUITE_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "c8b77ece507daf7c9ac6e83182fdbdfcf5860c7e914812cc971ef4ff4a587a25",
+          "matched_sha256": "a795899ab687bb36f32e8d504a29aa584cc3f7d4ef8b015a789524caf92d8b06"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "3b3be1cd601a71b6e260ed2a3cf54e412da925dbaac4948b1574ffa891836f03",
+          "matched_sha256": "4601695dd91864e0b63efcebde945cfbb8d5d0c8a1c1d3237c0c94d472809be0"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "5667ab1707f248937f7c0b049feaedca165125ea58bca6be21d7da2e17cc44b7",
+          "matched_sha256": "a387d3ecd017bd53a3316c7a2ea556ea19e5a253d0787c23ceec3a24d91a479d"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "e2eeefd93f42a05f141b65ea4799ba44fc6f17e9c8b76041ff495bbe722c3cc8",
+          "matched_sha256": "58be233027dcb0ea032ab98b919dd631e54e42f8721b00cc89229b37b13e7e46"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "448f9c3b0c9a85aa1e027088ddcd08553b1864fc1ec8f9042e73b4790305023d",
+          "matched_sha256": "c090c2a96a20e755ac28753f8b896e454b177882c93fb0ace313c85805dc7ca6"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_MESQUITE_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "605bcdd9eab4cfc3121cd036c414568d4feceb6461fdcddff515df09514bf713",
+          "matched_sha256": "a59ca684456822e0588fd0e8068c21d973f8dfbbfcadf668e7cf1b55935bb471"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 712,
+            "Outside threshold": 32,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 613,
+            "Outside threshold": 59,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 591,
+            "Outside threshold": 152,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 703,
+          "model_unclassified_hours": 17,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 537,
+            "Outside threshold": 166,
+            "Excluded": 17
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 17
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 712,
+          "model_unclassified_hours": 32,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 552,
+            "Outside threshold": 160,
+            "Excluded": 32
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 32
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 709,
+          "model_unclassified_hours": 11,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 515,
+            "Outside threshold": 194,
+            "Excluded": 11
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 11
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4283,
+      "model_unclassified_hours": 60,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3520,
+        "Outside threshold": 763,
+        "Excluded": 60
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 60
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "MOORE_FL_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "80c770ddacaf59e938d4c6db1ab02071b9e7dd249e667782f3b2b198398cd125",
+          "matched_sha256": "24fcceb15b020ecf6af44f36072773883d3655fb8daa7702a04ae63a52d00001"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "48f4eee9ed57ef1dc51b0e8796852a4c3b9c6f3f3556a2f338c32d6bfbc3df6c",
+          "matched_sha256": "d45fbac271dc9b54164052aeee6f2d39799c34e8dae190dc68903b350fdaa48c"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "82f0c1384f6ce4c4ce09481753b5bdac98e4544247549e19f99766b853fd70ff",
+          "matched_sha256": "dad68961dd097ae61ce3708154eb204e660024732c5e5d02618f963f0b2124c2"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "b1ff212c7e89f5763d7352ec0e0de05a8f1dd3b9b33d8b2fe569c96ccea36b91",
+          "matched_sha256": "9f01d0c967a22815d6c88a4e048afaf58c012615314d06891d6030a0fefa0633"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "8408130161ed406477d962f3f176f07fbbc6a3f741f44875885c611bd5eb0f9d",
+          "matched_sha256": "63d7b49dcd6774b6dc14cb8ad82cb3167604b905fe1aa0f7e9eccd86dede8fdf"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_MOORE_FL_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "9d7da5dea06fb89a1a342793f25379fd9be2cc1693c3a0d4f39b64034c6a0e12",
+          "matched_sha256": "37c9ae5bd45d2eab19912f591c3f500acab7130807f6867c92ba041379223994"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 482,
+            "Outside threshold": 262,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 397,
+            "Outside threshold": 275,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 555,
+            "Outside threshold": 188,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 706,
+          "model_unclassified_hours": 14,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 528,
+            "Outside threshold": 178,
+            "Excluded": 14
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 14
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 733,
+          "model_unclassified_hours": 11,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 584,
+            "Outside threshold": 149,
+            "Excluded": 11
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 11
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 548,
+            "Outside threshold": 172,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4318,
+      "model_unclassified_hours": 25,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3094,
+        "Outside threshold": 1224,
+        "Excluded": 25
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 25
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "RRC_WIND_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "81c894f472c1277b10ab8e223f50e30eccc86b26ab3be467d0b0dc241c29dcc4",
+          "matched_sha256": "c80c209cfa67eebc75c9abc10ff2bc890fcc2e9488005c2f2ce1df0d4c8195d4"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "2bf0f6155b536b128257f2f5c78def39f51780c1db7e524e385650a72a551405",
+          "matched_sha256": "de320fb814a01cff30af6fcba66a6d809021b6b0ff072e1453e6cfa1af0a70a3"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "c0b863eda1de244f9d41baee4bdaee5391926592be70579c74aeb39d6323ec83",
+          "matched_sha256": "503b8533f0ff31e3cdb9eee76034c955fc9c379637bdc3a1babd31c95af69a16"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "3419a36d2e17a4a39926026d1cb28f9080c89b5e2cf00350b88caf6a32ec1776",
+          "matched_sha256": "31eb0f8a75c84210b323b89fa8d53c4086d03c00912dae59a755933f2096758f"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "1468b32471192663ad03126730f962414e1e07439561a1997cac85f6dcbbd5ca",
+          "matched_sha256": "41ac4acada23511dafafb8736a769d98d6d523ad76c2ca1d4c8ce64dcedf69d4"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_RRC_WIND_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "d55e68db24b3092fc34ee0776aaa729d6eacfa7d1e026d58145ae917e3f7d573",
+          "matched_sha256": "f3b33c5ce7465e5de40c37e1c1f61e9718c79639d0c105cde978d3ee7540db58"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 545,
+            "Outside threshold": 199,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 454,
+            "Outside threshold": 218,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 735,
+          "model_unclassified_hours": 8,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 526,
+            "Outside threshold": 209,
+            "Excluded": 8
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 8
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 711,
+          "model_unclassified_hours": 9,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 414,
+            "Outside threshold": 297,
+            "Excluded": 9
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 9
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 511,
+            "Outside threshold": 233,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 702,
+          "model_unclassified_hours": 18,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 488,
+            "Outside threshold": 214,
+            "Excluded": 18
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 18
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4308,
+      "model_unclassified_hours": 35,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 2938,
+        "Outside threshold": 1370,
+        "Excluded": 35
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 35
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "RRC_WIND_ESR2",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202601.xlsx",
+          "classified_sha256": "d7e53cd9beec70df4944dd9da8f8744060be31a55ecb6c35f0f3ef509bec2d5e",
+          "matched_sha256": "15f2a76463784b6c51565a4f0c5b717cc94381aa69fadc1c53d6a408fc73e135"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202602.xlsx",
+          "classified_sha256": "9b7ce7457c618cfcd617996df745a5f7032daac1f99faf7bd6482c13dbccc7e0",
+          "matched_sha256": "d57b2e0ff860b7cc1a241bf9e9448f5c785e199ad202fb7345b049a9a6b2fcb8"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202603.xlsx",
+          "classified_sha256": "323458084bc333918eae748bd3b1f3b71ee42a2ca6f02277f3f9d8798ce31227",
+          "matched_sha256": "46f2f6fd9999758ec54e36244e2eebc06ada5c65f1f9f33fc6a46177c8b10c33"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202604.xlsx",
+          "classified_sha256": "4f4dde031a7ac6048073a8f6ff7676634ad3884024563cc82b756e06ace7070b",
+          "matched_sha256": "3e394d30c0069474662b537390c80cfaf2faeba84e7818df0fc5991a9cb6e93a"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202605.xlsx",
+          "classified_sha256": "30a4edac02aacc30a152e659f7ef8c2dc8a907792c16e19a6692f54f79969ed2",
+          "matched_sha256": "f2d0454f3ece66a50ab275fd1c3c8213d9d7ba2e2994ce5eedbeea48c9b42fc1"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_RRC_WIND_ESR2_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202606.xlsx",
+          "classified_sha256": "6512765cfdbc3054c5e8dafeec5eee3b1b5847a5ea4c366e18b2805ca9b4f9e0",
+          "matched_sha256": "81e7fc96021672e2312f03de2d9411a1dcf1199a867d2dc8a5ee1dba734da7f1"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 535,
+            "Outside threshold": 209,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 659,
+          "model_unclassified_hours": 13,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 441,
+            "Outside threshold": 218,
+            "Excluded": 13
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 13
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 735,
+          "model_unclassified_hours": 8,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 525,
+            "Outside threshold": 210,
+            "Excluded": 8
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 8
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 712,
+          "model_unclassified_hours": 8,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 425,
+            "Outside threshold": 287,
+            "Excluded": 8
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 8
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 526,
+            "Outside threshold": 218,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 702,
+          "model_unclassified_hours": 18,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 503,
+            "Outside threshold": 199,
+            "Excluded": 18
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 18
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4296,
+      "model_unclassified_hours": 47,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 2955,
+        "Outside threshold": 1341,
+        "Excluded": 47
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 47
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "SHAMROCK_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "1ea642032a39aeba344768f71d63a427557349388b35484dc9fab3cd0da68a5d",
+          "matched_sha256": "1d7ac8c7d4a25daf04bf16ae693fa1d18d57326fda32f782626ee901a41f916a"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "6dd5c3d69236911c6633cf2a2c96486128651c7e0290ea8f6e3266978391ca30",
+          "matched_sha256": "92ea45efaeb680157b5e0f142f1d6f22140e7561b4a034872e8d435fb1eba45c"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "31beb605a6ff4258ee0b8befe71615c8c9d5097d8e11b404ace59bf17c0ebeb3",
+          "matched_sha256": "24d9278248d71d89c293e0caf4dde2739bcc380675262b5db0c439a92230c860"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "6858e19f13705d8041419de60834848a1f74d86aad09a05e872a1f6655a272f5",
+          "matched_sha256": "be61b222558371be8300b2ebb6d4373291c04f1fc5569eccafaed54cde27f041"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "9bd13976a847b1bd049737a34c7e3c18d14151a42f014e9a7eeeefaf3f197eb4",
+          "matched_sha256": "0d502ac5c0df74e4ecef2fcef1dba9d729614de3121d97b40501657734625a40"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_SHAMROCK_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "ead6ca405a21ed05ab3fd39d9d9a0c710532bf04b3ba0df75439b9b3100eeb9c",
+          "matched_sha256": "ef582ee5f888417361efb6fbae35810a37804450a1a3baad9f1a7648f3251835"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 525,
+            "Outside threshold": 219,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 671,
+          "model_unclassified_hours": 1,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 444,
+            "Outside threshold": 227,
+            "Excluded": 1
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 1
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 739,
+          "model_unclassified_hours": 4,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 391,
+            "Outside threshold": 348,
+            "Excluded": 4
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 4
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 468,
+            "Outside threshold": 252,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 733,
+          "model_unclassified_hours": 11,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 482,
+            "Outside threshold": 251,
+            "Excluded": 11
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 11
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 712,
+          "model_unclassified_hours": 8,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 482,
+            "Outside threshold": 230,
+            "Excluded": 8
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 8
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4319,
+      "model_unclassified_hours": 24,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 2792,
+        "Outside threshold": 1527,
+        "Excluded": 24
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 24
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "STADIUM_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "a537ba7de8021cf56b9a012240e109883aee7724c576821382e7dadfd0c2ed25",
+          "matched_sha256": "97dde3a245a8cfdb0f9196426ade60f4c91104f63e48c87de78c5a69a7475e66"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "dfd8608f2dd6103562c72db99d86bc28caf5a37a4146ef5ad3ecdcc781f42a87",
+          "matched_sha256": "258ef8c99746c532955e1da38805c1398cfe0eaeda336480f87db72a7f018997"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "2fd34a6dad73f1ad23546baae851eac594527dc1de324290556e88416b217694",
+          "matched_sha256": "7dbbd2e260ef0a4d0293de1f37a6a4e8f58c842490fa4ac100c539d433714c5f"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "4030cd4d0576dfc830b7a172a6766a6fc7aa0a39707742156a5a23119a8b4664",
+          "matched_sha256": "03ed0d94ea4042e1da898193dd5acbe3557fe2ec0ad6873904f29a956a4b4c52"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "e66b541c09960c4294e5397d90683342e40adc529fde677a4be45b527abf51e3",
+          "matched_sha256": "6a8c9b548a8a0551bc04a10da78364f583456452a3536ee2563784e005af336e"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_STADIUM_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "6e1a5d80ea3655b67ce58d1777a33fb33482d5cd0dfd17d56971497b851fd99d",
+          "matched_sha256": "47324b238aa6d1c9b554c40b6e2fb9c62f122db6606829a2e209553bc3085eb8"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 717,
+            "Outside threshold": 27,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 672,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 543,
+            "Outside threshold": 129,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 694,
+          "model_unclassified_hours": 49,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 518,
+            "Outside threshold": 176,
+            "Excluded": 49
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 49
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 530,
+            "Outside threshold": 190,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 1,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 561,
+            "Outside threshold": 182,
+            "Excluded": 1
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 1
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 718,
+          "model_unclassified_hours": 2,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 547,
+            "Outside threshold": 171,
+            "Excluded": 2
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 2
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4291,
+      "model_unclassified_hours": 52,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3416,
+        "Outside threshold": 875,
+        "Excluded": 52
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 52
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    },
+    {
+      "resource": "STRG_SLR_ESR1",
+      "inputs": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202601.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202601.xlsx",
+          "classified_sha256": "d2933e7fb9fffaa23113993f4eb9c13a730eec10aabde2f95be01163383172e0",
+          "matched_sha256": "d5ce175cf9ec9695742576b8642d7cb9b00251b4c73c5af13d1307e83ccbede8"
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "telemetry_rows": 672,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202602.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202602.xlsx",
+          "classified_sha256": "646bd6996607539c47f0d8425be9183242b42945c6daa0f59b7afd2af7f11d2c",
+          "matched_sha256": "d1cc385bb8ab83a7fb88bad9fb0e9b651ce122eabd568cf0a7f7edd21fd8a99a"
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "telemetry_rows": 743,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202603.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202603.xlsx",
+          "classified_sha256": "90a3cd9c11510807dbc559d19f8bf068efb4e5d287de78716d9087a929be3553",
+          "matched_sha256": "cbabf305b6e8d2917685c9ceb86805a0e3ee7f9faa452340d97c6caf4613ab5c"
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202604.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202604.xlsx",
+          "classified_sha256": "4a8dfe531e5ae480ad47bcb5fcedca7b2c520425074149387d5c844b15cbf954",
+          "matched_sha256": "b571e23c5c36883586220af12e1e19b3d7bbd37f7057c5e33717c7da1823d20b"
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "telemetry_rows": 744,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202605.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202605.xlsx",
+          "classified_sha256": "4de15a217b41a025fa33eb3f4dc1295a9568fef2c80d371d01518909bf9bfbc1",
+          "matched_sha256": "35c6c8b5aef0f76084bc1b06bfa3765f3b9bec9ce6e04797535b59e387e22cf9"
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "telemetry_rows": 720,
+          "classified_file": "classified_STRG_SLR_ESR1_1hour_202606.xlsx",
+          "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202606.xlsx",
+          "classified_sha256": "1e5acc0297dd3b3e17ff9fad1eee1dbd9c49a551e82643e47aed4e9075639003",
+          "matched_sha256": "7e69676f4a5ec76c7ad444b638e8af050e9a545cf7638a72801921d48914f76a"
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2026-01",
+          "model_rows": 744,
+          "model_classified_hours": 744,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 613,
+            "Outside threshold": 131,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-02",
+          "model_rows": 672,
+          "model_classified_hours": 648,
+          "model_unclassified_hours": 24,
+          "telemetry_rows": 672,
+          "telemetry_status": {
+            "Hit": 527,
+            "Outside threshold": 121,
+            "Excluded": 24
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 24
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-03",
+          "model_rows": 743,
+          "model_classified_hours": 743,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 743,
+          "telemetry_status": {
+            "Hit": 602,
+            "Outside threshold": 141,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-04",
+          "model_rows": 720,
+          "model_classified_hours": 716,
+          "model_unclassified_hours": 4,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 581,
+            "Outside threshold": 135,
+            "Excluded": 4
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 4
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-05",
+          "model_rows": 744,
+          "model_classified_hours": 725,
+          "model_unclassified_hours": 19,
+          "telemetry_rows": 744,
+          "telemetry_status": {
+            "Hit": 607,
+            "Outside threshold": 118,
+            "Excluded": 19
+          },
+          "excluded_reasons": {
+            "Zero effective power range": 19
+          },
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        },
+        {
+          "month": "2026-06",
+          "model_rows": 720,
+          "model_classified_hours": 720,
+          "model_unclassified_hours": 0,
+          "telemetry_rows": 720,
+          "telemetry_status": {
+            "Hit": 614,
+            "Outside threshold": 106,
+            "Excluded": 0
+          },
+          "excluded_reasons": {},
+          "tied_hours": 0,
+          "beyond_display_range": 0
+        }
+      ],
+      "model_rows": 4343,
+      "model_classified_hours": 4296,
+      "model_unclassified_hours": 47,
+      "telemetry_rows": 4343,
+      "telemetry_status": {
+        "Hit": 3544,
+        "Outside threshold": 752,
+        "Excluded": 47
+      },
+      "excluded_reasons": {
+        "Zero effective power range": 47
+      },
+      "tied_hours": 0,
+      "beyond_display_range": 0
+    }
+  ],
+  "outputs": [
+    "Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.png",
+    "Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_BLSUMMIT_ESR1_202601_202606.png",
+    "Classification_SharedCategory_BLSUMMIT_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_BR_ARROW_ESR2_202601_202606.png",
+    "Classification_SharedCategory_BR_ARROW_ESR2_202601_202606.pdf",
+    "Classification_SharedCategory_INDL_ESR1_202601_202606.png",
+    "Classification_SharedCategory_INDL_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_INRT_W_ESR1_202601_202606.png",
+    "Classification_SharedCategory_INRT_W_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_LANTANA_ESR1_202601_202606.png",
+    "Classification_SharedCategory_LANTANA_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_MESQUITE_ESR1_202601_202606.png",
+    "Classification_SharedCategory_MESQUITE_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_MOORE_FL_ESR1_202601_202606.png",
+    "Classification_SharedCategory_MOORE_FL_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_RRC_WIND_ESR1_202601_202606.png",
+    "Classification_SharedCategory_RRC_WIND_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_RRC_WIND_ESR2_202601_202606.png",
+    "Classification_SharedCategory_RRC_WIND_ESR2_202601_202606.pdf",
+    "Classification_SharedCategory_SHAMROCK_ESR1_202601_202606.png",
+    "Classification_SharedCategory_SHAMROCK_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_STADIUM_ESR1_202601_202606.png",
+    "Classification_SharedCategory_STADIUM_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_STRG_SLR_ESR1_202601_202606.png",
+    "Classification_SharedCategory_STRG_SLR_ESR1_202601_202606.pdf",
+    "Classification_SharedCategory_ALL_ESR_202601_202606.png",
+    "Classification_SharedCategory_ALL_ESR_202601_202606.pdf"
+  ],
+  "directory_path_rule": "Relative to the release root for in-release paths; absolute for external output overrides",
+  "figure_directory": "Figs/Micro/Classification_All",
+  "data_directory": "Results/Micro_Results/figure_data/Classification_All",
+  "count_reconciliation": "passed"
+}
