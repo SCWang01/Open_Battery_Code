@@ -15,6 +15,8 @@ The default command verifies each entry in `RELEASE_MANIFEST.csv` against its si
 - The 13 configured resources across six months: 78 source workbooks and 312 Rolling, Classified, realized-profit, and matching workbooks.
 - All 78 persisted random matrices against their companion hash manifests and expected `744 x 36` float64 NPY headers.
 
+The package's `.gitattributes` keeps text files in LF format in Git checkouts and source archives, including GitHub releases archived by Zenodo. The manifest hashes use those exact bytes. Editors must preserve LF when editing release text; binary workbooks, arrays, and figures are not converted. After an intentional file change, update its manifest size and SHA-256 before publishing a new version.
+
 Standard OOXML theme font names are excluded from the language scan because they list fonts for multiple writing systems. The script does not inspect text embedded in PDF or raster images, verify external URLs or Markdown heading anchors, reproduce numerical calculations, or establish upstream data provenance.
 
 The complete scan reads all workbook XML and may take several minutes. Failures produce specific file diagnostics and exit status 1; success returns 0. An absent release manifest is a failure with a restoration hint. `--root PATH` selects a different release copy.

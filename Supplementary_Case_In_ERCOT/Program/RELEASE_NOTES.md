@@ -1,14 +1,14 @@
 # Release Preparation Notes
 
-Prepared on November 4, 2026 (Asia/Singapore).
+Initial package prepared on November 4, 2026 (Asia/Singapore). Publication documentation updated on November 5, 2026 for the planned repository release `v1.1.0`; this preparation date does not establish that the release or a Zenodo record has been published.
 
 ## Scope
 
-This distribution is a standalone copy of the active ERCOT analysis with four main directories: `Data`, `Figs`, `Results`, and `Program`. It also contains the root README, Python requirement files, ignore rules, and the SHA-256 inventory. The original research workspace and its Git metadata were not modified by preparation.
+This package is included as `Supplementary_Case_In_ERCOT/` in the CAISO and ERCOT Battery Energy Storage Case Studies repository. Its four main directories are `Data`, `Figs`, `Results`, and `Program`. It also contains its own README, Python requirement files, MIT license copy, ignore rules, and SHA-256 inventory. The ERCOT environment and execution paths remain independent of the CAISO workflow. Initial package preparation did not modify the original research workspace or its Git metadata.
 
 Included data comprise all 24-resource monthly inputs, the 13-resource configured result set, and the gas/coal/thermal inputs and outputs. The active study remains January-June 2026. The additional source resources do not silently expand the modeled population.
 
-Excluded content:
+Content excluded from the ERCOT package:
 
 - `Writting`, manuscript source/PDFs, deliverable ZIPs, and review packets.
 - Historical `Archive` trees, the old five-minute implementation, legacy June configuration, and migration/maintenance snapshots.
@@ -18,7 +18,7 @@ Excluded content:
 
 ## Source changes
 
-The numerical model and optimization objective were preserved. The release makes these operational and language changes:
+Initial package preparation preserved the numerical model and optimization objective and made these operational and language changes:
 
 1. Matching exports use the English `Notes` header; both classification figure consumers use the same name. All 78 matching workbooks were regenerated and compared against the original values after header normalization.
 2. `run_pipeline.py --workers N` forwards the selected process count to validation and distributed Rolling. Its default remains 12, with one solver thread per process.
@@ -32,9 +32,11 @@ Historical run-manifest and CSV path metadata are made relative to the release r
 
 ## Packaging and publication
 
-Publish this directory's contents as the repository root. Do not publish the surrounding working project, which also contains manuscript and historical material. A ZIP can contain this directory without Git metadata. Repository initialization, cloning, and Git metadata changes were deliberately left to the repository owner in their normal account.
+Publish the parent CAISO/ERCOT repository as release `v1.1.0`, retaining this package under `Supplementary_Case_In_ERCOT/`. The GitHub and Zenodo source archive should contain both case studies and their documentation. A separate copy of this ERCOT directory can still be used with its own environment and documented commands. Manuscript sources, historical working-project material, and local Git metadata are outside this package. Repository initialization, cloning, and Git metadata changes remain the repository owner's responsibility in their normal account.
 
-No `LICENSE` file was invented during preparation. The owner still needs to select the code license and confirm applicable data redistribution terms. The [provenance note](../Data/PROVENANCE.md) records known data origins and explicit gaps. This distribution is prepared for that publication decision; it has not been pushed to a remote repository.
+The original ERCOT code and associated documentation use the repository's MIT License. The [included copy](../LICENSE) preserves its copyright and permission notices for users working with this package separately. Third-party data and software retain their applicable terms; the MIT License does not apply to data, derived data, results, or figures merely because they accompany the code. No separate CC0 or Creative Commons license is assigned to those materials here. The [provenance note](../Data/PROVENANCE.md) records known data origins and explicit gaps, without asserting third-party redistribution permission.
+
+The November 5 publication updates align the license and packaging descriptions, normalize text line endings to LF, and refresh the affected file checksums in `RELEASE_MANIFEST.csv`. The package's `.gitattributes` preserves LF in cross-platform Git checkouts so the manifest also verifies GitHub and Zenodo source archives. The normalization restores the text bytes already stored in Git; it does not change numerical values, binary data, or historical source/configuration provenance hash fields. The edited publication documents have their own updated release checksums.
 
 ## Integrity and language coverage
 

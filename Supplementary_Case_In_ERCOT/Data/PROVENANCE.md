@@ -63,4 +63,4 @@ The code validates stack ordering/fields, fuel membership, and carbon intensity 
 
 ## Third-party data and licensing
 
-Source organizations and product identifiers describe provenance. The release does not create a license grant for third-party data. The project owner must confirm redistribution terms and select a code license before publishing this prepared distribution.
+Source organizations and product identifiers describe provenance. The original ERCOT software code and associated documentation use the [MIT License](../LICENSE). That license does not grant rights to third-party data, derived data, results, or figures. Retain source attribution and any supplied notices, and follow the applicable provider terms when redistributing or reusing those materials. No separate CC0 or Creative Commons license is assigned to the data and outputs here. The recorded provenance does not establish redistribution permission for third-party material.

@@ -4,6 +4,8 @@ This repository provides data, code, model outputs, and figure source files for 
 
 > **Licence:** the original software code in this repository is available under the [MIT License](LICENSE). External data, third-party software, and their associated materials remain subject to their respective terms. See [Licence, data terms, and disclaimer](#licence-data-terms-and-disclaimer).
 
+> **Version:** this snapshot is prepared as `v1.1.0`, covering both case studies. See the [release notes and Zenodo publication steps](RELEASE_NOTES.md).
+
 > **Documentation note:** this README reflects the authors' good-faith but necessarily subjective description of the repository. The experiments, data-processing workflows, and code have undergone multiple rounds of revision and adjustment. Although the README is updated after experiments, some descriptions may still differ from the current implementation or files. If any inconsistency is found, the actual code and repository contents take precedence.
 
 ## Case study guide
@@ -54,8 +56,10 @@ The two cases use separate configurations, dependency files, data, results, and 
 |   |-- Figs/                  # ERCOT figure scripts and current exports
 |   |-- requirements.txt       # ERCOT environment, including Gurobi
 |   |-- requirements-core.txt  # ERCOT post-processing and plotting dependencies
+|   |-- LICENSE                # Copy of the repository MIT licence for original code
 |   `-- README.md              # Detailed ERCOT setup, commands, and interpretation
 |-- CITATION.cff                # Software citation metadata
+|-- RELEASE_NOTES.md            # v1.1.0 changes and GitHub/Zenodo publication steps
 |-- DATA_AND_THIRD_PARTY_NOTICES.md  # Data rights and provider notices
 |-- LICENSE                     # MIT licence for original software code
 |-- requirements.txt            # Pinned reference Python environment
@@ -501,13 +505,13 @@ The repository includes model inputs, supplied model outputs, analysis workbooks
 
 The CAISO monthly natural-gas capacity, fuel-consumption rate, marginal fuel cost, and merit-order stacks are project-derived from the CAISO/EIA sources. Users should retain source names, dataset dates, and all notices required by the original providers. See [EIA Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) and [CAISO Privacy and Terms of Use](https://www.caiso.com/privacy-terms-of-use).
 
-The existing file-group rights boundary, CAISO/EIA acknowledgements, and provenance limitations are documented in [`DATA_AND_THIRD_PARTY_NOTICES.md`](DATA_AND_THIRD_PARTY_NOTICES.md). ERCOT product identifiers, recorded snapshots, derived curtailment-proxy definitions, and missing upstream acquisition and fuel-stack construction steps are documented separately in [`Supplementary_Case_In_ERCOT/Data/PROVENANCE.md`](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md). That provenance record does not grant a licence for third-party data.
+The file-group rights boundary, CAISO/ERCOT/EIA source notices, and provenance limitations are documented in [`DATA_AND_THIRD_PARTY_NOTICES.md`](DATA_AND_THIRD_PARTY_NOTICES.md). ERCOT product identifiers, recorded snapshots, derived curtailment-proxy definitions, and missing upstream acquisition and fuel-stack construction steps are documented separately in [`Supplementary_Case_In_ERCOT/Data/PROVENANCE.md`](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md). That provenance record does not grant a licence for third-party data.
 
 ## Licence, data terms, and disclaimer
 
 The original software code in this repository is licensed under the [MIT License](LICENSE). The licence permits use, copying, modification, distribution, sublicensing, and sale, provided that its copyright and permission notices are retained. The software is provided without warranty, as stated in the licence.
 
-The imported ERCOT package retains a [reuse-status notice](Supplementary_Case_In_ERCOT/README.md#reuse-status) stating that no code licence was selected for that prepared distribution. That statement is not yet aligned with the repository-level MIT notice above.
+This licence covers the original software code and associated documentation for both the CAISO and ERCOT case studies. The ERCOT package includes an identical [licence copy](Supplementary_Case_In_ERCOT/LICENSE) for users who obtain that directory separately; see its [reuse-status notice](Supplementary_Case_In_ERCOT/README.md#reuse-status).
 
 The MIT License applies only to original software code and its associated documentation. CAISO, ERCOT, and EIA source materials are not relicensed by this repository and remain subject to their providers' terms. Gurobi and all Python dependencies are separately licensed by their respective owners. Data, derived data, results, and figures may be subject to both project copyright and the terms of their source data unless a file-specific notice states otherwise.
 
@@ -515,6 +519,8 @@ This repository is provided for academic research and methodological reproductio
 
 ## Citation and contributions
 
-Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). It identifies Ye Guo (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China), Chenge Gao (Guangzhou Power Exchange Center, Guangzhou, China), and Shichao Wang (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China) as the software creators, in that order. A release version, release date, Zenodo DOI, and final paper relation will be added when the corresponding software release or publication is prepared. Until then, cite the repository URL together with the commit hash used in the analysis so the referenced code state remains identifiable.
+Software citation metadata for version `1.1.0` is provided in [`CITATION.cff`](CITATION.cff), under the title *CAISO and ERCOT Battery Energy Storage Case Studies*. It identifies Ye Guo (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China), Chenge Gao (Guangzhou Power Exchange Center, Guangzhou, China), and Shichao Wang (Department of Building Environment and Energy Engineering, The Hong Kong Polytechnic University, Hong Kong SAR, China) as the software creators, in that order.
+
+A Zenodo DOI and related paper identifier are not yet recorded here. After archiving the release, cite its **version-specific DOI** in papers so readers can retrieve the exact software snapshot used. Export the reference from the Zenodo record and verify its authors, title, and version. Until that record is available, cite the repository URL and the commit hash used in the analysis. The [publication steps](RELEASE_NOTES.md#github-and-zenodo-publication) explain how to add the assigned DOI without moving the release tag.
 
 Contributions are accepted subject to the repository's MIT License unless agreed otherwise with the repository maintainer.

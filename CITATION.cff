@@ -1,7 +1,22 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata in this file."
 type: software
-title: "Battery Case Code"
+title: "CAISO and ERCOT Battery Energy Storage Case Studies"
+version: "1.1.0"
+date-released: "2026-11-05"
+abstract: >-
+  Code, prepared inputs, supplied model outputs, and figure workflows for battery
+  energy storage case studies in the CAISO and ERCOT electricity markets. The
+  CAISO case covers January 2023 through December 2025 and compares historical
+  fleet operation with bidding and self-scheduling strategies. The ERCOT case
+  covers January through June 2026, with 13 configured storage resources and
+  system-impact estimates under gas, coal, and combined thermal displacement
+  assumptions. The cases use separate Python environments; optimization requires
+  a separately licensed Gurobi installation. ERCOT upstream acquisition and
+  complete fuel-stack construction are outside the distributed workflow. The
+  MIT License applies to original software and its documentation only; data,
+  results, figures, and third-party materials are subject to the rights boundaries
+  in DATA_AND_THIRD_PARTY_NOTICES.md and the ERCOT provenance note.
 
 authors:
   - family-names: "Guo"
@@ -20,4 +35,5 @@ keywords:
   - battery energy storage
   - electricity market
   - CAISO
+  - ERCOT
   - energy-system optimization

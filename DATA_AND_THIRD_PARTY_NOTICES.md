@@ -6,7 +6,9 @@ of this repository. It should be read together with `LICENSE` and `README.md`.
 ## Original software and documentation
 
 The MIT License in `LICENSE` applies to original software code and its
-associated documentation in this repository. It does not relicense third-party
+associated documentation for both the CAISO and ERCOT case studies in this
+repository. The ERCOT directory includes an identical copy of that licence.
+The licence does not relicense third-party
 software, source data, or other material owned by external providers.
 
 ## U.S. Energy Information Administration material
@@ -51,23 +53,48 @@ not the repository's MIT License, govern the underlying CAISO material.
 This repository does not grant permission to use CAISO trademarks or any
 third-party material beyond permission provided by the applicable rights holder.
 
+## Electric Reliability Council of Texas material
+
+ERCOT resource disclosures, nodal and Hub prices, generation data, and wind/solar
+reports are used in the prepared inputs under `Supplementary_Case_In_ERCOT/Data/`
+and in the associated results and figure sources. The recorded product
+identifiers, snapshots, transformations, and upstream limitations are documented
+in the [ERCOT provenance note](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md).
+
+- Provider: Electric Reliability Council of Texas (ERCOT)
+- Recorded products include `np3-965-er/60d_sced_esr_data`,
+  `np6-788-cd/lmp_node_zone_hub`, `NP6-785-ER`, `NP4-732-CD`, and `NP4-737-CD`.
+- The provenance note links the corresponding source products and generation
+  data and records the preparation of the wind/solar curtailment proxy.
+
+ERCOT source materials remain subject to their provider's applicable terms.
+Retain source names, product identifiers, snapshot dates, and any notices supplied
+with the original materials. Neither this notice nor the MIT licence grants
+additional rights to redistribute ERCOT or other third-party material. The
+derived curtailment proxy and fuel-cost stacks must not be described as direct
+observations of system curtailment or hourly system costs.
+
 ## Project-generated data, results, and figures
 
 `data/random_data/`, `Results/`, and the derived tables and rendered assets in
-`Figure_Plot/` include original project outputs as well as transformations of
-the source material described above. Unless a file-specific notice states
-otherwise:
+`Figure_Plot/`, together with the prepared and derived data, results, and figures
+under `Supplementary_Case_In_ERCOT/Data/`, `Supplementary_Case_In_ERCOT/Results/`,
+and `Supplementary_Case_In_ERCOT/Figs/`, include original project outputs as well
+as transformations of the source material described above. Unless a file-specific
+notice states otherwise:
 
 - they are not covered by the MIT License merely because they are stored in the
   same repository;
 - no separate CC0 or Creative Commons licence has been declared for them; and
-- their reuse must preserve the EIA and California ISO attributions and comply
+- their reuse must preserve the applicable EIA, California ISO, and ERCOT attributions and comply
   with any applicable source-data terms.
 
-Before a Zenodo record is published, the depositor must either retain this as a
-custom rights statement or deliberately select and document an additional data
-licence for the original project-generated portions. The latter is a rights
-holder decision and is not inferred by this repository.
+For the Zenodo software record, retain this rights statement in the archive and
+state in the record description that MIT covers original software and associated
+documentation only. Do not describe the entire mixed software-and-data archive
+as MIT-licensed. No additional data licence is assigned by this release; any
+later licence grant for original project-generated portions must be explicitly
+documented by their rights holders.
 
 ## Dependency and solver notices
 
@@ -83,3 +110,9 @@ URLs and retrieval dates were not preserved for every historical CAISO file.
 Filename dates therefore must not be interpreted as complete acquisition
 metadata. The README's documentation note applies: when descriptions and files
 differ, the actual retained files and code take precedence.
+
+The ERCOT provenance note records available product identifiers and acquisition
+snapshots, but upstream downloader/exporter programs, historical resource-to-node
+mapping verification, and the complete raw inputs and construction programs for
+the fuel-cost stacks are not included. The distributed workflow starts from the
+prepared inputs and does not establish complete raw-to-result reproducibility.

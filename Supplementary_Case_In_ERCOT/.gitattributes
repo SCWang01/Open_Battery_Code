@@ -1,0 +1,3 @@
+# Keep text bytes identical in source archives and cross-platform checkouts so
+# RELEASE_MANIFEST.csv SHA-256 hashes remain valid. Binary files stay unchanged.
+* text=auto eol=lf

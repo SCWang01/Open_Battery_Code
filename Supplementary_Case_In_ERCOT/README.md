@@ -114,4 +114,6 @@ For individual stages, configuration options, output fields, and the optional Be
 
 ## Reuse status
 
-No code license has been selected in this working project, so this prepared distribution does not assign one. Before public release, the owner must choose the code license and confirm redistribution terms for the included third-party data. Dataset provenance is documented without asserting ownership or inventing a license grant. See [release preparation notes](Program/RELEASE_NOTES.md).
+The original ERCOT software code and associated documentation are licensed under the [MIT License](LICENSE), matching the repository-level code license. The included license copy retains the repository's copyright and permission notices.
+
+The MIT License does not relicense third-party data or software. Data, derived data, results, and figures are not covered by MIT merely because they are included in this package; no separate CC0 or Creative Commons license is assigned to them here. Their reuse remains subject to applicable source-data terms and any file-specific notices. Source organizations and product identifiers are recorded in [data provenance](Data/PROVENANCE.md). See [release preparation notes](Program/RELEASE_NOTES.md) for packaging and version information.
