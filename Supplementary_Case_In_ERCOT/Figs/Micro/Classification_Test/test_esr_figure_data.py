@@ -38,7 +38,7 @@ class SegmentWidthTests(unittest.TestCase):
         self.assertAlmostEqual(sum(widths.values()), expected_span, places=11)
         self.assertEqual(set(widths), set(WIDTH_STATES))
 
-    def test_lower_and_upper_energy_boundaries_precede_equality_override(self):
+    def test_lower_and_upper_energy_boundaries_are_excluded(self):
         widths = fixture_widths(
             [
                 [0.0, 2.0, -10.0, 3.0, 3.0, 0.0, 0.0, 0.0],
@@ -62,16 +62,45 @@ class SegmentWidthTests(unittest.TestCase):
         self.assertEqual(widths["NU"], 10.0)
         self.assertEqual(sum(widths.values()), 10.0)
 
-    def test_equal_mode_counts_override_max_rate_categories(self):
-        # Legacy panel (a) uses CC/DD here even though executed power is MC/MD.
+    def test_equal_mode_counts_preserve_max_rate_exclusion(self):
+        # Equal counts must not add maximum-rate segments to panel (a).
         widths = fixture_widths(
             [
                 [0.0, 2.5, -10.0, 3.0, 3.0, 0.0, 0.0, 50.0],
                 [2.5, 6.5, 10.0, 3.0, 3.0, 0.0, 0.0, 50.0],
             ]
         )
+        self.assertEqual(widths, dict.fromkeys(WIDTH_STATES, 0.0))
+
+    def test_rounded_max_rate_segments_remain_excluded(self):
+        widths = fixture_widths(
+            [
+                [0.0, 2.5, -9.9999, 3.0, 3.0, 0.0, 0.0, 50.0],
+                [2.5, 6.5, 9.9999, 3.0, 3.0, 0.0, 0.0, 50.0],
+            ]
+        )
+        self.assertEqual(widths, dict.fromkeys(WIDTH_STATES, 0.0))
+
+    def test_equal_mode_counts_still_include_non_max_rate_segments(self):
+        widths = fixture_widths(
+            [
+                [0.0, 2.5, -5.0, 3.0, 3.0, 0.0, 0.0, 50.0],
+                [2.5, 6.5, 5.0, 3.0, 3.0, 0.0, 0.0, 50.0],
+            ]
+        )
         self.assertEqual(
             widths, {"CC": 2.5, "CD": 0.0, "NU": 0.0, "DC": 0.0, "DD": 4.0}
+        )
+
+    def test_near_zero_power_retains_null_classification_and_width(self):
+        widths = fixture_widths(
+            [
+                [0.0, 2.5, -5e-7, 3.0, 3.0, 0.0, 0.0, 50.0],
+                [2.5, 6.5, 5e-7, 3.0, 3.0, 0.0, 0.0, 50.0],
+            ]
+        )
+        self.assertEqual(
+            widths, {"CC": 0.0, "CD": 0.0, "NU": 6.5, "DC": 0.0, "DD": 0.0}
         )
 
     def test_first_zero_width_sample_preserves_remaining_hour_segments(self):

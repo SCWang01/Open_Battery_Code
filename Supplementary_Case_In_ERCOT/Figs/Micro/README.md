@@ -64,8 +64,10 @@ The unified entry writes two transparent 720 dpi PNGs, each with a source-data C
 
 The a+b canvas is 180 by 70 mm. Panel a reconstructs the five price spans
 CC/CD/NU/DC/DD from `dsfunction`, normalizes the eighth-column energy by each
-row's `Applied Maximum SOC`, and applies the classifier's mB boundary exclusions
-and equality reassignment. Zero spans contribute zero area; negative spans fail
+row's `Applied Maximum SOC`, and excludes SOC-boundary and maximum-rate segments.
+Other segments use the state returned by `classify_p_ess` directly, including its
+zero-power tolerance and no-first-boundary rules; the width calculation does not
+reassign those states. Zero spans contribute zero area; negative spans fail
 validation. It sums the retained spans across all ESRs before calculating shares.
 Panel b pools the seven hourly `P_ESS_state` categories MC/CC/CD/NU/DC/DD/MD and
 then calculates shares, excluding zero-power-limit rows under the existing

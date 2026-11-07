@@ -1,0 +1,28 @@
+{
+  "selected_months": [
+    [
+      2025,
+      5
+    ]
+  ],
+  "pre_existing_files_preserved": 32,
+  "basename": "state_distribution_pies_2023_0_2024_0_2025_1_May2025",
+  "records": 744,
+  "panel_a_percent": {
+    "CC": 18.133355654978548,
+    "CD": 6.3126311205942915,
+    "NU": 54.44930673029474,
+    "DC": 4.110272293203305,
+    "DD": 16.994434200929124
+  },
+  "panel_b_counts": {
+    "NU": 110,
+    "DD": 28,
+    "MC": 342,
+    "MD": 244,
+    "DC": 4,
+    "CC": 13,
+    "CD": 3
+  },
+  "visual_qa": "Passed: no label overlaps or clipping; PDF minimum 8 pt."
+}

@@ -32,11 +32,12 @@ the counts do not record *which* months were selected, two different matrices
 that yield the same A/B/C produce the same basename and the later run
 overwrites the earlier -- this is intentional for the "edit matrix, re-run"
 workflow.  Recognized seasonal selections receive an additional suffix such
-as ``_Winter`` or ``_Spring``.  Rename by hand if you need to keep two
-otherwise-identical selections.
+as ``_Winter`` or ``_Spring``.  Single-month selections append the month and
+year, such as ``_May2025``.  Rename other otherwise-identical selections by
+hand if both need to be retained.
 
 Usage:
-    python plot_state_distribution_pies_May2025.py
+    python plot_state_distribution_pies.py
 """
 
 from __future__ import annotations
@@ -68,20 +69,20 @@ SELECTION_YEARS = (2023, 2024, 2025)
 # 12 rows (January..December) x 3 columns (2023, 2024, 2025).
 # Set a cell to 1 to include that (month, year) in the aggregation, 0 to skip.
 # To plot, e.g., Q1 of all three years, set rows 0-2 to all ones and the rest
-# to zeros.  The default matrix below selects all 36 months.
+# to zeros.  The default matrix below selects May 2025 only.
 SELECTION_MATRIX: list[list[int]] = [
-    [0, 0, 1],  # January
-    [0, 0, 1],  # February
-    [0, 0, 1],  # March
-    [0, 0, 1],  # April
+    [0, 0, 0],  # January
+    [0, 0, 0],  # February
+    [0, 0, 0],  # March
+    [0, 0, 0],  # April
     [0, 0, 1],  # May
-    [0, 0, 1],  # June
-    [0, 0, 1],  # July
-    [0, 0, 1],  # August
-    [0, 0, 1],  # September
-    [0, 0, 1],  # October
-    [0, 0, 1],  # November
-    [0, 0, 1],  # December
+    [0, 0, 0],  # June
+    [0, 0, 0],  # July
+    [0, 0, 0],  # August
+    [0, 0, 0],  # September
+    [0, 0, 0],  # October
+    [0, 0, 0],  # November
+    [0, 0, 0],  # December
 ]
 
 # Month sets used for automatic filename labels.  A season is recognized when
@@ -95,8 +96,7 @@ SEASON_MONTHS = {
 }
 
 # When True, one run creates all four seasonal figures.  Set to False to use
-# the full SELECTION_MATRIX.  With the default all-one matrix, this creates
-# one figure pooled across all 36 months from 2023 through 2025.
+# SELECTION_MATRIX.  The default selection creates the May 2025 figure.
 PLOT_SEASONS = False
 
 P_ESS_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD", "NC")
@@ -199,9 +199,11 @@ def hours_in_month(year: int, month: int) -> int:
 def period_basename_suffix(
     months: list[tuple[int, int]], years: tuple[int, ...] = SELECTION_YEARS
 ) -> str:
-    """Filename-safe suffix from per-year selection counts and season label."""
+    """Filename-safe counts with a season or explicit single-month label."""
     counts = per_year_counts(months, years)
     suffix = "_".join(f"{year}_{counts[year]}" for year in years)
+    if len(months) == 1:
+        return f"{suffix}_{month_name(*months[0])}"
     season = season_label(months, years)
     return f"{suffix}_{season}" if season is not None else suffix
 
@@ -453,8 +455,9 @@ def draw_left_pie(ax: plt.Axes, width_sums: dict[str, float]) -> None:
         counterclock=False,
         radius=0.88,
         autopct=percent_text,
-        pctdistance=0.68,
-        textprops={"fontsize": 9, "color": "#222222"},
+        # Keep adjacent small-category labels separated and inside the pie.
+        pctdistance=0.72,
+        textprops={"fontsize": 8, "color": "#222222"},
         wedgeprops={"linewidth": 0, "edgecolor": "none"},
         normalize=True,
     )
@@ -541,27 +544,6 @@ def draw_right_pie(
     ax.set_axis_off()
 
 
-def add_aligned_panel_labels(
-    fig: plt.Figure, left_ax: plt.Axes, right_ax: plt.Axes
-) -> None:
-    """Add panel labels aligned to the horizontal centres of both pie axes."""
-    inverse_figure = fig.transFigure.inverted()
-    left_center_x = inverse_figure.transform(left_ax.transData.transform((0, 0)))[0]
-    right_center_x = inverse_figure.transform(right_ax.transData.transform((0, 0)))[0]
-    panel_y = 0.055
-
-    for label, center_x in (("(a)", left_center_x), ("(b)", right_center_x)):
-        fig.text(
-            center_x,
-            panel_y,
-            label,
-            ha="center",
-            va="center",
-            fontsize=9,
-            color="#222222",
-        )
-
-
 def draw_legend(ax: plt.Axes) -> None:
     handles = [
         Line2D(
@@ -616,7 +598,6 @@ def build_figure(
     draw_left_pie(left_ax, width_sums)
     draw_legend(legend_ax)
     draw_right_pie(right_ax, p_ess_counts, record_count)
-    add_aligned_panel_labels(fig, left_ax, right_ax)
     return fig
 
 

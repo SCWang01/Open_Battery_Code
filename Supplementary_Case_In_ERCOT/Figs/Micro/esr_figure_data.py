@@ -214,9 +214,9 @@ def segment_widths(
     maximum_soc: float,
     context: str = "dsfunction",
 ) -> dict[str, float]:
-    """Reconstruct five price-width totals using the legacy segment rules.
+    """Reconstruct five price-width totals, excluding max-rate and SOC boundaries.
 
-    Maximum-rate states may be overridden by the legacy equal-mode rule.
+    Segment categories and their priority are delegated to classify_p_ess.
     Zero-width sampled first segments carry no area but do not remove an hour.
     The current energy contract has minimum SOC zero and capacity maximum_soc.
     """
@@ -241,7 +241,8 @@ def segment_widths(
             _number(value, f"{segment_context}, column {column}")
             for column, value in enumerate(segment, start=1)
         ]
-        lower, upper, power, fourth, fifth, _, seventh, energy = values
+        lower, upper, power = values[:3]
+        energy = values[7]
         width = upper - lower
         if width < 0:
             raise ValueError(
@@ -260,11 +261,6 @@ def segment_widths(
         if abs(soc) < MB_TOLERANCE or abs(soc - 1) < MB_TOLERANCE:
             continue
         state = classify_p_ess(power, values, 0, pcmax=pcmax, pdmax=pdmax)
-        if values_match(seventh, 0.0) and values_match(fourth - fifth, 0.0):
-            if power > 0:
-                state = "DD"
-            elif power < 0:
-                state = "CC"
         if state == "NC":
             raise ValueError(f"{segment_context}: segment is not classified.")
         if state in widths:

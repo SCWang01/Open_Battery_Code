@@ -1,0 +1,879 @@
+{
+  "backend": "python",
+  "workbook_count": 36,
+  "hourly_rows": 26304,
+  "changed_width_rows": 403,
+  "raw_optimization_inputs_unchanged": true,
+  "all_non_width_workbook_cells_unchanged": true,
+  "non_width_summary_unchanged": true,
+  "panel_c_hourly_tally_unchanged": true,
+  "workbook_changes": [
+    {
+      "workbook": "dsfunction_January2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        127,
+        150,
+        168,
+        174,
+        175,
+        177,
+        178,
+        179,
+        180,
+        227,
+        369,
+        370,
+        387,
+        388,
+        394,
+        416,
+        507,
+        508,
+        511,
+        538,
+        584,
+        632,
+        706
+      ]
+    },
+    {
+      "workbook": "dsfunction_February2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        301
+      ]
+    },
+    {
+      "workbook": "dsfunction_March2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        241,
+        301,
+        432,
+        433,
+        434,
+        469
+      ]
+    },
+    {
+      "workbook": "dsfunction_April2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        28,
+        29,
+        30,
+        31,
+        79,
+        102,
+        177,
+        389,
+        391,
+        412,
+        413,
+        414,
+        582,
+        583,
+        720,
+        721
+      ]
+    },
+    {
+      "workbook": "dsfunction_May2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        243,
+        247,
+        267,
+        338,
+        360,
+        367,
+        455,
+        461,
+        483,
+        504
+      ]
+    },
+    {
+      "workbook": "dsfunction_June2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        31,
+        50,
+        51,
+        54,
+        81,
+        216,
+        346,
+        463,
+        486,
+        509,
+        626,
+        673,
+        697
+      ]
+    },
+    {
+      "workbook": "dsfunction_July2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        221,
+        223,
+        242,
+        243,
+        266,
+        267,
+        268,
+        288,
+        289,
+        311,
+        335,
+        381,
+        382,
+        407,
+        408,
+        431,
+        578,
+        600,
+        601,
+        603,
+        705,
+        743,
+        744
+      ]
+    },
+    {
+      "workbook": "dsfunction_August2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        73,
+        74,
+        75,
+        76,
+        121,
+        128,
+        129,
+        144,
+        145,
+        153,
+        191,
+        313,
+        314,
+        316,
+        317,
+        357,
+        358,
+        416,
+        443,
+        487,
+        488,
+        512,
+        530,
+        582,
+        605,
+        626,
+        648,
+        649,
+        702,
+        703
+      ]
+    },
+    {
+      "workbook": "dsfunction_September2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        97,
+        105,
+        142,
+        143,
+        167,
+        190,
+        213,
+        215,
+        312,
+        313,
+        314,
+        315,
+        321,
+        336,
+        435,
+        437,
+        607,
+        676,
+        678,
+        684,
+        696,
+        697
+      ]
+    },
+    {
+      "workbook": "dsfunction_October2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        360
+      ]
+    },
+    {
+      "workbook": "dsfunction_November2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": []
+    },
+    {
+      "workbook": "dsfunction_December2023_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        73,
+        105,
+        241,
+        488
+      ]
+    },
+    {
+      "workbook": "dsfunction_January2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        95,
+        123,
+        542
+      ]
+    },
+    {
+      "workbook": "dsfunction_February2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        154,
+        346,
+        389,
+        417,
+        441,
+        489
+      ]
+    },
+    {
+      "workbook": "dsfunction_March2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        251,
+        323,
+        653,
+        657,
+        659
+      ]
+    },
+    {
+      "workbook": "dsfunction_April2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        559,
+        583
+      ]
+    },
+    {
+      "workbook": "dsfunction_May2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        217,
+        218,
+        315,
+        627
+      ]
+    },
+    {
+      "workbook": "dsfunction_June2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        550
+      ]
+    },
+    {
+      "workbook": "dsfunction_July2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        216,
+        265,
+        335,
+        336,
+        341,
+        389,
+        390,
+        676,
+        704,
+        722
+      ]
+    },
+    {
+      "workbook": "dsfunction_August2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        98,
+        216,
+        338,
+        344,
+        364,
+        481,
+        603,
+        722,
+        723,
+        744,
+        745
+      ]
+    },
+    {
+      "workbook": "dsfunction_September2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        73,
+        74,
+        121,
+        124,
+        296,
+        531,
+        584,
+        626,
+        629,
+        699
+      ]
+    },
+    {
+      "workbook": "dsfunction_October2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        49,
+        50,
+        72,
+        144,
+        145,
+        146,
+        201,
+        217,
+        218,
+        219,
+        272,
+        316,
+        345,
+        367,
+        369,
+        392,
+        393,
+        442,
+        484,
+        489,
+        507,
+        508,
+        512,
+        537,
+        555,
+        635,
+        682,
+        704,
+        705
+      ]
+    },
+    {
+      "workbook": "dsfunction_November2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        321,
+        322,
+        562,
+        624,
+        697
+      ]
+    },
+    {
+      "workbook": "dsfunction_December2024_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        7,
+        10,
+        49,
+        57,
+        58,
+        105,
+        125,
+        172,
+        175,
+        226,
+        227,
+        297,
+        299,
+        432,
+        433,
+        434,
+        442,
+        489,
+        533,
+        535,
+        578,
+        579,
+        580,
+        611,
+        680
+      ]
+    },
+    {
+      "workbook": "dsfunction_January2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        130,
+        346,
+        370,
+        538
+      ]
+    },
+    {
+      "workbook": "dsfunction_February2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        197,
+        201,
+        369,
+        370,
+        386,
+        387,
+        440,
+        441,
+        650
+      ]
+    },
+    {
+      "workbook": "dsfunction_March2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        29,
+        129,
+        227,
+        299,
+        414,
+        489,
+        510,
+        586,
+        730
+      ]
+    },
+    {
+      "workbook": "dsfunction_April2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        316,
+        415,
+        564
+      ]
+    },
+    {
+      "workbook": "dsfunction_May2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        79,
+        98,
+        698
+      ]
+    },
+    {
+      "workbook": "dsfunction_June2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        216,
+        673,
+        674
+      ]
+    },
+    {
+      "workbook": "dsfunction_July2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        53,
+        245,
+        366,
+        385,
+        386,
+        392,
+        486,
+        653,
+        654,
+        723
+      ]
+    },
+    {
+      "workbook": "dsfunction_August2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        58,
+        75,
+        76,
+        79,
+        80,
+        81,
+        99,
+        100,
+        101,
+        122,
+        123,
+        224,
+        225,
+        267,
+        341,
+        388,
+        389,
+        391,
+        392,
+        393,
+        411,
+        457,
+        458,
+        459,
+        460,
+        504,
+        528,
+        561,
+        576,
+        647,
+        648,
+        721,
+        722
+      ]
+    },
+    {
+      "workbook": "dsfunction_September2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        25,
+        220,
+        396,
+        436,
+        508,
+        513,
+        541
+      ]
+    },
+    {
+      "workbook": "dsfunction_October2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        9,
+        76,
+        127,
+        267,
+        290,
+        291,
+        343,
+        393,
+        417,
+        464,
+        465,
+        466,
+        490,
+        511,
+        513,
+        561,
+        584,
+        609,
+        610,
+        652,
+        656,
+        679,
+        680,
+        728
+      ]
+    },
+    {
+      "workbook": "dsfunction_November2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        52,
+        127,
+        129,
+        175,
+        177,
+        224,
+        291,
+        292,
+        293,
+        294,
+        335,
+        360,
+        442,
+        481,
+        607,
+        608,
+        609,
+        651,
+        652,
+        653,
+        657
+      ]
+    },
+    {
+      "workbook": "dsfunction_December2025_exact_V5_k20_classified_width.xlsx",
+      "changed_width_rows": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        58,
+        250,
+        297,
+        321,
+        322,
+        394,
+        433,
+        434,
+        457,
+        458,
+        460
+      ]
+    }
+  ],
+  "figures": [
+    {
+      "period": "2023",
+      "records": 8736,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 21.06267533,
+        "CD": 6.50440819,
+        "NU": 50.5733248,
+        "DC": 3.10598526,
+        "DD": 18.75360642
+      },
+      "new_percent": {
+        "CC": 10.8594004304416,
+        "CD": 8.148303059052909,
+        "NU": 63.354999472660616,
+        "DC": 3.8909780049841287,
+        "DD": 13.74631903286075
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.png"
+      ]
+    },
+    {
+      "period": "2024",
+      "records": 8664,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 24.73685799,
+        "CD": 6.88157636,
+        "NU": 50.08837626,
+        "DC": 4.21441803,
+        "DD": 14.07877137
+      },
+      "new_percent": {
+        "CC": 17.540155518285463,
+        "CD": 7.915591413646205,
+        "NU": 57.61457848214958,
+        "DC": 4.847669993522223,
+        "DD": 12.082004592396528
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.png"
+      ]
+    },
+    {
+      "period": "2025",
+      "records": 8736,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 18.57329814,
+        "CD": 7.81128408,
+        "NU": 53.33131505,
+        "DC": 3.25817089,
+        "DD": 17.02593185
+      },
+      "new_percent": {
+        "CC": 9.910039576937363,
+        "CD": 9.486324003528964,
+        "NU": 64.7676014895431,
+        "DC": 3.956848118051669,
+        "DD": 11.8791868119389
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.png"
+      ]
+    },
+    {
+      "period": "2023-2025",
+      "records": 26136,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 21.4525641,
+        "CD": 6.97138232,
+        "NU": 51.18573401,
+        "DC": 3.47041393,
+        "DD": 16.91990564
+      },
+      "new_percent": {
+        "CC": 12.649123397581867,
+        "CD": 8.441511032906215,
+        "NU": 61.97980809907182,
+        "DC": 4.202256620864248,
+        "DD": 12.72730084957585
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.png"
+      ]
+    },
+    {
+      "period": "Winter",
+      "records": 6480,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 19.94394442,
+        "CD": 7.71902309,
+        "NU": 57.07285826,
+        "DC": 3.18832359,
+        "DD": 12.07585064
+      },
+      "new_percent": {
+        "CC": 9.308276701573257,
+        "CD": 9.135082521680593,
+        "NU": 67.54290842050499,
+        "DC": 3.7732234693215183,
+        "DD": 10.240508886919647
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.png"
+      ]
+    },
+    {
+      "period": "Spring",
+      "records": 6552,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 23.24145509,
+        "CD": 7.57492885,
+        "NU": 44.86341343,
+        "DC": 3.97378667,
+        "DD": 20.34641596
+      },
+      "new_percent": {
+        "CC": 18.840838945046293,
+        "CD": 8.860374334740166,
+        "NU": 52.476616563623,
+        "DC": 4.6481278004317135,
+        "DD": 15.174042356158832
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.png"
+      ]
+    },
+    {
+      "period": "Summer",
+      "records": 6576,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 20.79844483,
+        "CD": 5.65025851,
+        "NU": 51.37466418,
+        "DC": 2.14257544,
+        "DD": 20.03405704
+      },
+      "new_percent": {
+        "CC": 7.688475753822592,
+        "CD": 7.513738668553866,
+        "NU": 68.31825484766779,
+        "DC": 2.8492062627023267,
+        "DD": 13.630324467253418
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.png"
+      ]
+    },
+    {
+      "period": "Autumn",
+      "records": 6528,
+      "panel_b_unchanged": true,
+      "old_percent": {
+        "CC": 21.78798975,
+        "CD": 6.59399956,
+        "NU": 51.1581513,
+        "DC": 4.36519561,
+        "DD": 16.09466379
+      },
+      "new_percent": {
+        "CC": 13.430108983132746,
+        "CD": 7.894719070539907,
+        "NU": 61.24950858685742,
+        "DC": 5.226265592420974,
+        "DD": 12.199397767048955
+      },
+      "files": [
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn_source_data.csv",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.svg",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.pdf",
+        "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.png"
+      ]
+    }
+  ],
+  "written_files": [
+    "Results\\Bidding\\dsfunction_state_summary_202301_202512.xlsx",
+    "Results\\Bidding\\dsfunction_January2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_February2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_March2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_April2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_May2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_June2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_July2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_August2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_September2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_October2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_November2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_December2023_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_January2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_February2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_March2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_April2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_May2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_June2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_July2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_August2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_September2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_October2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_November2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_December2024_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_January2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_February2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_March2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_April2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_May2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_June2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_July2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_August2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_September2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_October2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_November2025_exact_V5_k20_classified_width.xlsx",
+    "Results\\Bidding\\dsfunction_December2025_exact_V5_k20_classified_width.xlsx",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.png",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn_source_data.csv",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.svg",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.pdf",
+    "Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.png"
+  ],
+  "left_label_layout": {
+    "font_size_pt": 8,
+    "pctdistance": 0.72,
+    "reason": "Separate small-category labels while keeping all text inside the pie."
+  },
+  "visual_qa_file": "caiso_visual_qa.json",
+  "source_preflight": {
+    "passes": 19,
+    "warnings": 1,
+    "failures": 0,
+    "warning_reviewed": "Original PNG preview plus SVG/PDF export retained; no TIFF requested."
+  }
+}

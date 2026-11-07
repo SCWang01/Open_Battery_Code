@@ -21,7 +21,6 @@ try:
         classify_p_ess,
         find_column,
         row_has_zero_power_limit,
-        values_match,
     )
 except ImportError:
     from classify_p_ess import (
@@ -32,7 +31,6 @@ except ImportError:
         classify_p_ess,
         find_column,
         row_has_zero_power_limit,
-        values_match,
     )
 
 
@@ -83,7 +81,10 @@ def state_width_array(
     pcmax: float,
     pdmax: float,
 ) -> tuple[str, list[str], list[float]]:
-    """Classify segments and sum widths, excluding internally tagged mB segments."""
+    """Sum five-category widths, excluding max-rate and SOC-boundary segments.
+
+    Non-boundary segments retain the state returned by classify_p_ess.
+    """
     dsfunction = parse_dsfunction(dsfunction_value, excel_row)
     states: list[str] = []
     widths = Counter({state: 0.0 for state in STATE_ORDER})
@@ -96,8 +97,8 @@ def state_width_array(
             )
             for column_number, value in enumerate(segment, start=1)
         ]
-        lower, upper, p_ess, fourth, fifth, _sixth, seventh, eighth = values
-        if is_marginal_boundary(eighth):
+        lower, upper, p_ess = values[:3]
+        if is_marginal_boundary(values[7]):
             state = "mB"
         else:
             state = classify_p_ess(
@@ -107,11 +108,6 @@ def state_width_array(
                 pcmax=pcmax,
                 pdmax=pdmax,
             )
-            if values_match(seventh, 0.0) and values_match(fourth - fifth, 0.0):
-                if p_ess > 0:
-                    state = "DD"
-                elif p_ess < 0:
-                    state = "CC"
         width = upper - lower
         if width <= 0:
             raise ValueError(

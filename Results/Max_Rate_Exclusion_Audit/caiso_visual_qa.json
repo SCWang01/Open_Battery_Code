@@ -1,0 +1,299 @@
+{
+  "figures": [
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_12.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_0_2025_12.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 2959,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8015801536211484,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_12_2025_0.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_0_2024_12_2025_0.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 2444,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8071423478580966,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_0_2025_0.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_0_2025_0.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 4174,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.804040933575002,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_12_2025_12.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": true,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_12_2024_12_2025_12.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 0,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8061371066522726,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Autumn.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Autumn.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 3480,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8068111404703788,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Spring.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Spring.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 3438,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8069509762885179,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Summer.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Summer.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 6479,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.8025997188671838,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    },
+    {
+      "file": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Winter.png",
+      "size": [
+        4251,
+        1653
+      ],
+      "panel_b_crop_bounds": [
+        2465,
+        0,
+        4251,
+        1653
+      ],
+      "panel_b_pixels_equal": false,
+      "pdf_audit_exit_code": 0,
+      "pdf_audit": {
+        "pdf": "D:\\Research\\Release_Open\\Figure_Plot\\figure_plot_4_a_b\\Figs\\state_distribution_pies_2023_3_2024_3_2025_3_Winter.pdf",
+        "auditable": true,
+        "minimum_required_pt": 5.0,
+        "minimum_found_pt": 8.0,
+        "text_run_count": 21,
+        "below_minimum_count": 0,
+        "below_minimum": [],
+        "warnings": []
+      },
+      "panel_b_differing_pixel_count": 3287,
+      "panel_b_visual": "Percentages and pie geometry visually unchanged; no clipping or label collisions. Seven outputs have minor text-edge raster differences versus archived HEAD.",
+      "panel_a_visual": "Final 8pt/.72 labels are readable, separated, and inside the pie; no clipping.",
+      "left_pctdistance": 0.72,
+      "left_fontsize_pt": 8,
+      "label_bbox_expanded_1px_no_overlap": true,
+      "label_bbox_all_corners_inside_pie": true,
+      "label_bbox_max_radius": 0.799365767613985,
+      "pie_radius": 0.88,
+      "shared_legend_visual": "Seven labels legible with clear spacing from both pies.",
+      "visual_qa_pass": true
+    }
+  ],
+  "visual_inspection": "All eight final figures inspected panel by panel; all percentage labels clear after setting left annotations to 8pt and pctdistance=.72. No canvas clipping, all left text bboxes inside circles; right panels and shared legends readable.",
+  "all_pdf_glyph_floors_pass": true,
+  "all_visual_qa_pass": true,
+  "final_left_label_settings": {
+    "fontsize_pt": 8,
+    "pctdistance": 0.72
+  }
+}

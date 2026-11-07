@@ -1,0 +1,182 @@
+{
+  "scope": "ERCOT existing aggregate April and May 2026 a+b figures",
+  "months": {
+    "202604": {
+      "resource_count": 13,
+      "raw_rows": 9360,
+      "valid_rows": 9249,
+      "excluded_zero_limit": 111,
+      "panel_a": {
+        "CC": {
+          "width_before": 9426.318299156466,
+          "width_after": 8353.317633600569,
+          "percent_before": 9.653413568090984,
+          "percent_after": 8.761289707844632
+        },
+        "CD": {
+          "width_before": 5543.394741599998,
+          "width_after": 5543.394741599998,
+          "percent_before": 5.676944095621547,
+          "percent_after": 5.814131513536848
+        },
+        "NU": {
+          "width_before": 37072.33539539754,
+          "width_after": 37072.33539539754,
+          "percent_before": 37.96546797478454,
+          "percent_after": 38.88293068600338
+        },
+        "DC": {
+          "width_before": 22499.976030108894,
+          "width_after": 22499.976030108894,
+          "percent_before": 23.042036879893164,
+          "percent_after": 23.59886419575483
+        },
+        "DD": {
+          "width_before": 23105.488847730256,
+          "width_after": 21874.44630645342,
+          "percent_before": 23.66213748160976,
+          "percent_after": 22.942783896860306
+        }
+      },
+      "width_total_before": 97647.51331399316,
+      "width_total_after": 95343.47010716042,
+      "panel_b_fields_equal": true,
+      "panel_c_fields_equal": true,
+      "panel_b_pixel_hash_equal": true,
+      "png_before": {
+        "size": [
+          5102,
+          1984
+        ],
+        "image_sha256": "d07154b61f92d7b7f21476493c52318003ec24f04fbde43e73775075405fd4a2",
+        "panel_b_pixels_sha256": "af71598a16454d58f5aa17d093f5b0866cddd63896ffe11d940370928b72978a"
+      },
+      "png_after": {
+        "size": [
+          5102,
+          1984
+        ],
+        "image_sha256": "aedcdeb56d580a64713156c10ccf32364cae025e1f8820a4ee7f2bc6641a83b0",
+        "panel_b_pixels_sha256": "af71598a16454d58f5aa17d093f5b0866cddd63896ffe11d940370928b72978a"
+      },
+      "panel_c_compared_rows": 24,
+      "output_png": "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202604.png",
+      "output_csv": "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202604_source_data.csv",
+      "panel_b_exact_string_fields_equal": true,
+      "panel_c_exact_string_fields_equal": true,
+      "png_dpi": [
+        719.9884,
+        719.9884
+      ],
+      "visual_qa": {
+        "panel_a": "All five updated percentages readable; no clipping or label collisions. April CD is outside with a clear leader; May labels fit inside.",
+        "panel_b": "Seven executed-state percentages and geometry unchanged; right-region pixel hash identical.",
+        "legend": "Seven shared labels readable and clear of both pies.",
+        "dimensions_mm": [
+          180,
+          70
+        ],
+        "fonts_min_pt": 9,
+        "pass": true
+      }
+    },
+    "202605": {
+      "resource_count": 13,
+      "raw_rows": 9672,
+      "valid_rows": 9598,
+      "excluded_zero_limit": 74,
+      "panel_a": {
+        "CC": {
+          "width_before": 7300.1743961023885,
+          "width_after": 4693.148409633141,
+          "percent_before": 12.612434767174829,
+          "percent_after": 8.785657314594534
+        },
+        "CD": {
+          "width_before": 4843.914748509495,
+          "width_after": 4843.914748509495,
+          "percent_before": 8.368780726108453,
+          "percent_after": 9.067894583125156
+        },
+        "NU": {
+          "width_before": 24816.612681572107,
+          "width_after": 24816.612681572107,
+          "percent_before": 42.875401545979976,
+          "percent_after": 46.45714043088544
+        },
+        "DC": {
+          "width_before": 9188.850923229342,
+          "width_after": 9188.850923229342,
+          "percent_before": 15.875481401704695,
+          "percent_after": 17.201692399218036
+        },
+        "DD": {
+          "width_before": 11731.217544850944,
+          "width_after": 9875.769006878272,
+          "percent_before": 20.26790155903204,
+          "percent_after": 18.48761527217684
+        }
+      },
+      "width_total_before": 57880.77029426428,
+      "width_total_after": 53418.295769822354,
+      "panel_b_fields_equal": true,
+      "panel_c_fields_equal": true,
+      "panel_b_pixel_hash_equal": true,
+      "png_before": {
+        "size": [
+          5102,
+          1984
+        ],
+        "image_sha256": "30878b0805e75b8309b9bbed61d890b00ba24a87047d4c9eaf2e432aaa64ebf4",
+        "panel_b_pixels_sha256": "b3c8503b3cb8bc900bc65e6079d87067e75ec001792f5c819644a1e4a8367b18"
+      },
+      "png_after": {
+        "size": [
+          5102,
+          1984
+        ],
+        "image_sha256": "81ad5f51242decfc79c7f133c872d3630b2eb82ee44c1ff6ba7a3dadfac2073d",
+        "panel_b_pixels_sha256": "b3c8503b3cb8bc900bc65e6079d87067e75ec001792f5c819644a1e4a8367b18"
+      },
+      "panel_c_compared_rows": 24,
+      "output_png": "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202605.png",
+      "output_csv": "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202605_source_data.csv",
+      "panel_b_exact_string_fields_equal": true,
+      "panel_c_exact_string_fields_equal": true,
+      "png_dpi": [
+        719.9884,
+        719.9884
+      ],
+      "visual_qa": {
+        "panel_a": "All five updated percentages readable; no clipping or label collisions. April CD is outside with a clear leader; May labels fit inside.",
+        "panel_b": "Seven executed-state percentages and geometry unchanged; right-region pixel hash identical.",
+        "legend": "Seven shared labels readable and clear of both pies.",
+        "dimensions_mm": [
+          180,
+          70
+        ],
+        "fonts_min_pt": 9,
+        "pass": true
+      }
+    }
+  },
+  "changed_files": [
+    "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202604.png",
+    "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202604_source_data.csv",
+    "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202605.png",
+    "Supplementary_Case_In_ERCOT\\Figs\\Micro\\figure_plot_4_a_b\\Figs\\Fig_4_a_b_ALL_ESR_202605_source_data.csv"
+  ],
+  "other_width_figure_consumers": "Only figure_plot_4_a_b consumes width_sums; plot_esr_abc invokes the same aggregate a+b and c workflows. No existing per-resource ESR_ABC outputs found.",
+  "source_preflight": {
+    "passes": 17,
+    "warnings": 2,
+    "failures": 1,
+    "existing_format_contract": "Original workflow exports 720-dpi PNG plus source CSV only. No vector output was requested or added.",
+    "format_only_failure": "EXPORT-VECTOR: source validator expects SVG/PDF; this existing script intentionally only exports PNG.",
+    "warnings_reviewed": [
+      "No TIFF: original PNG-only regeneration retained.",
+      "DPI not statically visible: save_png helper uses 720 DPI; actual PNG metadata is 719.9884 DPI (PNG unit rounding)."
+    ],
+    "pdf_text_audit": "Not applicable; original ERCOT workflow produces no PDF."
+  }
+}
