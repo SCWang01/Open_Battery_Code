@@ -38,7 +38,7 @@ The two cases use separate configurations, dependency files, data, results, and 
 |   |-- price/                  # CAISO market-price inputs
 |   |-- random_data/            # Fixed price-error scenarios (manifest + .npy)
 |   |-- settings.xlsx           # Figure 2/3 price-sequence source data
-|   |-- settings_sequence.xlsx  # Figure 1/S1 price-sequence source data
+|   |-- settings_sequence.xlsx  # Figure 1 and Extended Data Figure 1 price-sequence source data
 |   |-- lmp2023.npy             # Figure 2_q 2023 LMP source array
 |   |-- tep2023.npy             # Figure 2_q 2023 temperature source array
 |   `-- CAISO-historical-co2-20260720.csv  # Retained historical-emissions source
@@ -305,6 +305,16 @@ Replacement monthly price files must include the additional rolling horizon requ
 
 Repeated runs overwrite files with identical parameter-derived names.
 
+## Manuscript figure index
+
+| Manuscript figure | What it shows | Repository location |
+|---|---|---|
+| Extended Data Figure 1 | Non-ideal battery response at negative prices | [Numerical script and settings](Figure_Plot/figure_plot_S1/) |
+| Figure 5 | ERCOT benchmark for 13 batteries | [Panels (a)–(c): bid and dispatch classifications](Supplementary_Case_In_ERCOT/Figs/Micro/) · [Panels (d)–(e): aggregate outcomes](Supplementary_Case_In_ERCOT/Figs/Macro/) |
+| Supplementary Figure S1 | ERCOT resource-level classification and telemetry comparison | [Six-month classification figure (PDF)](Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_ALL_ESR_202601_202606.pdf) |
+
+The paths and commands below retain their original names.
+
 ## CAISO figure source data and reproduction
 
 `Figure_Plot/` contains the source data, plotting or numerical scripts, and committed outputs associated with the main and supplementary figures. The Figure 4 orchestration reads canonical bidding inputs from `Results/Bidding/` and keeps generated snapshots in the figure directories. In line with research-data reporting practice, the table below identifies the source-data location and the output that the current code produces.
@@ -312,7 +322,7 @@ Repeated runs overwrite files with identical parameter-derived names.
 | Figure | Directory | Source data | Current reproducible output |
 |---|---|---|---|
 | Figure 1 | `Figure_Plot/figure_1/` | `settings_sequence.xlsx` | `journalcasestudyFig1.py` solves the six stair examples with the ideal-battery (M1-equivalent, eta=1, no binary modes) formulation, computes `Res_pos` and `ResE_pos`, and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
-| Supplementary Figure S1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFigS1_binary.py` solves the six stair examples with the two-status (binary mutual-exclusion, eta=0.9) M2 formulation, computes `Res_neg` and `ResE_neg`, and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
+| Extended Data Figure 1 | `Figure_Plot/figure_plot_S1/` | `settings_sequence.xlsx` | `journalcasestudyFigS1_binary.py` solves the six stair examples with the two-status (binary mutual-exclusion, eta=0.9) M2 formulation, computes `Res_neg` and `ResE_neg`, and writes the Power and SOC arrays back to `settings_sequence.xlsx`; it does not export a rendered figure file |
 | Figures 2 and 3 | `Figure_Plot/figure_plot_2_3/` | `settings.xlsx`, `tep2023.npy`, and `lmp2023.npy` | Generates the individual Figure 2 and Figure 3 PNG panels in `Figs/` and the seeded EV-fleet table `ev_fleet_seed42.csv`; final composite assembly is not scripted |
 | Figure 4a–b | `Figure_Plot/figure_plot_4_a_b/` | Classified May 2025 demand-supply workbook in `source_data/` | Exports the state-distribution source CSV and composite PNG, SVG, and PDF |
 | Figure 4c | `Figure_Plot/figure_plot_4_c/` | May 2025 classified demand-supply workbook and CAISO price CSV in `input/` | Exports an auditable source CSV and PNG, SVG, and PDF; see the directory's `README.md` |
@@ -321,7 +331,7 @@ Repeated runs overwrite files with identical parameter-derived names.
 
 The copies stored inside each figure directory are the figure source-data snapshots. They are not automatically updated when files in `data/` or `Results/Bidding/` are regenerated.
 
-### Figures 1 and S1
+### Figure 1 and Extended Data Figure 1
 
 ```powershell
 Push-Location Figure_Plot/figure_1
@@ -333,7 +343,7 @@ python journalcasestudyFigS1_binary.py
 Pop-Location
 ```
 
-Each script solves the six stair-example optimisations and writes the resulting Power and SOC arrays back into `settings_sequence.xlsx`. Figure 1 uses the ideal-battery (M1-equivalent) formulation with eta=1 and no binary mode variables; Supplementary Figure S1 uses the two-status M2 formulation with binary mutual exclusion and eta=0.9. Each script reads its price table by worksheet name (`positive price case` for Fig 1, `negative price case` for Fig S1). Neither script exports a rendered figure file.
+Each script solves the six stair-example optimizations and writes the resulting Power and SOC arrays back into `settings_sequence.xlsx`. Figure 1 uses the ideal-battery (M1-equivalent) formulation with eta=1 and no binary mode variables; Extended Data Figure 1 uses the two-status M2 formulation with binary mutual exclusion and eta=0.9. Each script reads its price table by worksheet name (`positive price case` for Figure 1, `negative price case` for Extended Data Figure 1). Neither script exports a rendered figure file.
 
 ### Figures 2 and 3
 
