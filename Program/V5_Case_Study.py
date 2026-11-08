@@ -41,6 +41,10 @@ monthnumlist = np.array([f'{month:02d}' for _, month in year_month_list])
 eta = 0.95 # Set the efficiency of the equivalent battery
 Smax = 1 # Set the maximum SOC of the equivalent battery
 Smin = 0 # Set the minimum SOC of the equivalent battery
+# First-hit classification band in normalized SOC, not MWh. Never snap energy.
+SOC_BOUNDARY_TOLERANCE = 1e-3
+# A boundary hit requires a net action toward it exceeding this MW tolerance.
+BOUNDARY_POWER_TOLERANCE = 1e-3
 N_price = 300 # the number of traversed prices
 meanstd = 2 # prediction error variable
 k = 0.2 # fraction of the fleet treated as the controllable (optimised) unit; must be in (0, 1]
@@ -421,11 +425,14 @@ def build_dsfunction(pri0, Res0, numncd0):
         max_count = np.max(counts)
         mode_candidates = np.flatnonzero(counts == max_count)
         mode_index = mode_candidates[np.argmin(first_indices[mode_candidates])]
+        representative = start + first_indices[mode_index]
 
         dsfunction[i, 0] = previous_price_high
         dsfunction[i, 1] = pri0[end - 1]
-        dsfunction[i, 2] = Res0_rounded[start]
-        dsfunction[i, 3:7] = unique_vectors[mode_index]
+        # Rounding identifies a group; dispatch and metadata must describe
+        # the same physical candidate, including its exact boundary power.
+        dsfunction[i, 2] = Res0[representative]
+        dsfunction[i, 3:7] = numncd0[:, representative]
         previous_price_high = pri0[end - 1]
 
     return dsfunction
@@ -441,6 +448,77 @@ def clean_power(value, power_max, abs_tol=1e-3):
     if power_max <= 0 or abs(value) <= abs_tol:
         return 0.0
     return value
+
+
+def feasible_power_trajectory(
+    raw_charge, raw_discharge, *, eta, Cap, Smin, Smax, SOC_ini,
+    Pcmax, Pdmax, time_step, power_tolerance=1e-3,
+):
+    """Return one feasible net-power/SOC trajectory from a solver solution.
+
+    Small legitimate actions are preserved. Only solver-scale corrections to
+    the physical power window are allowed; all classifications must use the
+    resulting trajectory rather than the solver SOC before normalization.
+    Energy is accumulated in MWh so the bounds and the update share units.
+    """
+    raw_charge = np.asarray(raw_charge, dtype=float)
+    raw_discharge = np.asarray(raw_discharge, dtype=float)
+    if (
+        raw_charge.ndim != 1
+        or raw_charge.size == 0
+        or raw_discharge.shape != raw_charge.shape
+        or not np.isfinite(raw_charge).all()
+        or not np.isfinite(raw_discharge).all()
+    ):
+        raise ValueError('raw charge and discharge must be finite matching vectors')
+    parameters = np.asarray(
+        [eta, Cap, Smin, Smax, SOC_ini, Pcmax, Pdmax, time_step, power_tolerance],
+        dtype=float,
+    )
+    if not np.isfinite(parameters).all():
+        raise ValueError('trajectory parameters must be finite')
+    if (
+        eta <= 0 or Cap <= 0 or time_step <= 0 or Smin > Smax
+        or Pcmax < 0 or Pdmax < 0 or power_tolerance <= 0
+    ):
+        raise ValueError('invalid physical trajectory bounds or scales')
+    if np.any(raw_charge < -power_tolerance) or np.any(raw_discharge < -power_tolerance):
+        raise RuntimeError('solver returned materially negative charge/discharge')
+    if np.any(np.minimum(raw_charge, raw_discharge) > power_tolerance):
+        raise RuntimeError('solver returned material simultaneous charge/discharge')
+
+    energy_min, energy_max = Cap * Smin, Cap * Smax
+    energy_now = Cap * SOC_ini
+    energy_roundoff = 128 * np.finfo(float).eps * max(
+        1.0, abs(energy_min), abs(energy_max), abs(energy_now)
+    )
+    if energy_now < energy_min - energy_roundoff or energy_now > energy_max + energy_roundoff:
+        raise RuntimeError('initial energy is outside the physical bounds')
+    energy_now = float(np.clip(energy_now, energy_min, energy_max))
+    net_power = np.empty(raw_charge.size, dtype=float)
+    soc_after = np.empty(raw_charge.size, dtype=float)
+    for step, raw_net in enumerate(raw_discharge - raw_charge):
+        feasible_low = max(-Pcmax, -(energy_max - energy_now) / eta / time_step)
+        feasible_high = min(Pdmax, (energy_now - energy_min) * eta / time_step)
+        power = float(np.clip(raw_net, feasible_low, feasible_high))
+        power_roundoff = 128 * np.finfo(float).eps * max(1.0, abs(raw_net), abs(power))
+        if abs(power - raw_net) > power_tolerance + power_roundoff:
+            raise RuntimeError(
+                f'trajectory step {step} needs a material power correction: '
+                f'{raw_net} -> {power}'
+            )
+        delta_energy = (-power / eta if power >= 0 else -power * eta) * time_step
+        energy_next = energy_now + delta_energy
+        energy_roundoff = 128 * np.finfo(float).eps * max(
+            1.0, abs(energy_min), abs(energy_max), abs(energy_now), abs(delta_energy)
+        )
+        if energy_next < energy_min - energy_roundoff or energy_next > energy_max + energy_roundoff:
+            raise RuntimeError(f'trajectory step {step} violates the energy bounds')
+        # Clip only outward floating-point residue; preserve interior states.
+        energy_now = float(np.clip(energy_next, energy_min, energy_max))
+        net_power[step] = power
+        soc_after[step] = float(np.clip(energy_now / Cap, Smin, Smax))
+    return net_power, np.minimum(net_power, 0.0), np.maximum(net_power, 0.0), soc_after
 
 
 def build_estimated_price_horizon(
@@ -641,45 +719,44 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
         # solve the model
         model.setParam('OutputFlag', 0)
         model.optimize()
-        # Normalize solver-scale residuals before recording the net power.
-        pd0_clean = clean_power(Pd[0].X, Pdmax)
-        pc0_clean = clean_power(Pc[0].X, Pcmax)
-        Res0[K] = pd0_clean-pc0_clean
-
-        # stair recognization
-        for t in range(N_t):
-            pd_clean = clean_power(Pd[t].X, Pdmax)
-            pc_clean = clean_power(Pc[t].X, Pcmax)
-            if pd_clean>pc_clean:
-                ResPd[t,K] = pd_clean
-                ResPc[t,K] = 0
-                Res[t,K] = pd_clean
-            else:
-                ResPc[t,K] = -pc_clean
-                ResPd[t,K] = 0
-                Res[t,K] = -pc_clean
-        for t in range(N_t):
-            ResE[t,K] = SOC[t+1].X
+        if model.Status != GRB.OPTIMAL:
+            raise RuntimeError(
+                f'bidding candidate {K} ended with Gurobi status {model.Status}'
+            )
+        trajectory = feasible_power_trajectory(
+            [Pc[t].X for t in range(N_t)],
+            [Pd[t].X for t in range(N_t)],
+            eta=eta, Cap=Cap, Smin=Smin, Smax=Smax, SOC_ini=SOC_ini,
+            Pcmax=Pcmax, Pdmax=Pdmax, time_step=24 / N_t,
+        )
+        Res[:, K], ResPc[:, K], ResPd[:, K], ResE[:, K] = trajectory
+        Res0[K] = Res[0, K]
         # the index of interval when the battery first reach the maximum energy limit
-        upper_limit_hits = np.flatnonzero(np.isclose(ResE[:, K], Smax, rtol=0, atol=1e-6))
+        upper_limit_hits = np.flatnonzero(
+            (ResE[:, K] >= Smax - SOC_BOUNDARY_TOLERANCE)
+            & (Res[:, K] < -BOUNDARY_POWER_TOLERANCE)
+        )
         if len(upper_limit_hits) == 0:
-            iup[K] = 24
+            iup[K] = N_t + 1  # Keep never-hit distinct from a final-step hit.
         else:
             iup[K] = upper_limit_hits[0] + 1
         # the index of interval when the battery first reach the minimum energy limit
-        lower_limit_hits = np.flatnonzero(np.isclose(ResE[:, K], Smin, rtol=0, atol=1e-6))
+        lower_limit_hits = np.flatnonzero(
+            (ResE[:, K] <= Smin + SOC_BOUNDARY_TOLERANCE)
+            & (Res[:, K] > BOUNDARY_POWER_TOLERANCE)
+        )
         if len(lower_limit_hits) == 0:
-            ilow[K] = 24
+            ilow[K] = N_t + 1
         else:
             ilow[K] = lower_limit_hits[0] + 1
-        Tb[K]=min(iup[K],ilow[K]) # the index of interval when the battery first reach the maximum/minimum energy limit
+        Tb[K]=min(iup[K],ilow[K],N_t) # Count only the window when neither bound is hit.
         numncd0[0,K] = np.count_nonzero(
             np.isclose(
                 ResPc[:int(Tb[K]), K],
                 -Pcmax,
                 rtol=1e-9,
                 atol=1e-3,
-            )
+            ) & (Pcmax > 1e-3)
         ) # the number of min-rate power before the battery first reach the maximum/mimium energy limit
         numncd0[1,K] = np.count_nonzero(
             np.isclose(
@@ -687,7 +764,7 @@ def biddingNEW(N_t, N_price, eta,Cap,Smax,Smin,Pdmax,Pcmax,price,SOC_ini):
                 Pdmax,
                 rtol=1e-9,
                 atol=1e-3,
-            )
+            ) & (Pdmax > 1e-3)
         ) # the number of max-rate power before the battery first reach the maximum/mimium energy limit
         numncd0[2,K] = np.sum((ResPc[:int(Tb[K]), K] + ResPd[:int(Tb[K]), K] >= -1e-3) &
                        (ResPc[:int(Tb[K]), K] + ResPd[:int(Tb[K]), K] <= 1e-3)) # the number of the null stair before the battery first reach the maximum/mimium energy limit
@@ -779,6 +856,10 @@ def calculate_profit(
             Sinitial = Sinitial - P_cleared[t]/eta/CAP*(24/N_t)
         else:
             Sinitial = Sinitial - P_cleared[t]*eta/CAP*(24/N_t)
+        soc_roundoff = 128 * np.finfo(float).eps * max(1.0, abs(Smin), abs(Smax))
+        if Sinitial < Smin - soc_roundoff or Sinitial > Smax + soc_roundoff:
+            raise RuntimeError(f'bidding SOC {Sinitial} is outside [{Smin}, {Smax}] after hour {t}')
+        Sinitial = float(np.clip(Sinitial, Smin, Smax))
         ESSOC_status[t] = Sinitial
         profit[t] = price_cleared*P_cleared[t]*(24/N_t) # calculate the profit for each time interval
         ncd[t,:,:] = numncd0

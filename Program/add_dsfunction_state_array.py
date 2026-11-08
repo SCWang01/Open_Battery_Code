@@ -37,7 +37,8 @@ except ImportError:
 STATE_ORDER = ("CC", "CD", "NU", "DC", "DD")
 OUTPUT_HEADER = "dsfunction_state_width"
 LEGACY_OUTPUT_HEADERS = ("dsfunction_state_share", "dsfunction_state_array")
-MB_TOLERANCE = 1e-5
+# Width classification uses SOC boundary membership, including idle segments.
+MB_TOLERANCE = 1e-3
 DSFUNCTION_COLUMN_COUNT = 8
 
 
@@ -70,8 +71,12 @@ def format_width(value: float) -> str:
 
 
 def is_marginal_boundary(soc_value: float) -> bool:
-    """Return whether the post-action SOC is at either marginal boundary."""
-    return abs(soc_value) < MB_TOLERANCE or abs(soc_value - 1.0) < MB_TOLERANCE
+    """Identify post-action SOC at either boundary, regardless of power."""
+    return (
+        -MB_TOLERANCE <= soc_value <= MB_TOLERANCE
+    ) or (
+        1.0 - MB_TOLERANCE <= soc_value <= 1.0 + MB_TOLERANCE
+    )
 
 
 def state_width_array(
@@ -83,6 +88,7 @@ def state_width_array(
 ) -> tuple[str, list[str], list[float]]:
     """Sum five-category widths, excluding max-rate and SOC-boundary segments.
 
+    Boundary membership takes priority over NU and all other power states.
     Non-boundary segments retain the state returned by classify_p_ess.
     """
     dsfunction = parse_dsfunction(dsfunction_value, excel_row)
@@ -109,9 +115,11 @@ def state_width_array(
                 pdmax=pdmax,
             )
         width = upper - lower
-        if width <= 0:
+        # A single-candidate first stair has zero width; retain its state and
+        # contribute zero here. The stair still serves low-price clearing.
+        if width < 0:
             raise ValueError(
-                f"Row {excel_row}: dsfunction segment {segment_number} must have a positive interval width."
+                f"Row {excel_row}: dsfunction segment {segment_number} must have a nonnegative interval width."
             )
         states.append(state)
         if state in STATE_ORDER:

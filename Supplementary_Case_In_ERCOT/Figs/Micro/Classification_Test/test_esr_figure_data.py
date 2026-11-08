@@ -41,8 +41,8 @@ class SegmentWidthTests(unittest.TestCase):
     def test_lower_and_upper_energy_boundaries_are_excluded(self):
         widths = fixture_widths(
             [
-                [0.0, 2.0, -10.0, 3.0, 3.0, 0.0, 0.0, 0.0],
-                [2.0, 5.0, 10.0, 3.0, 3.0, 0.0, 0.0, 100.0],
+                [0.0, 2.0, 5.0, 3.0, 3.0, 0.0, 0.0, 0.0],
+                [2.0, 5.0, -5.0, 3.0, 3.0, 0.0, 0.0, 100.0],
                 [5.0, 9.0, 0.0, 3.0, 3.0, 0.0, 0.0, 50.0],
             ]
         )
@@ -50,17 +50,37 @@ class SegmentWidthTests(unittest.TestCase):
             widths, {"CC": 0.0, "CD": 0.0, "NU": 4.0, "DC": 0.0, "DD": 0.0}
         )
 
-    def test_marginal_boundary_tolerance_is_applied_to_normalized_energy(self):
+    def test_marginal_boundary_tolerance_remains_absolute_mwh(self):
         widths = fixture_widths(
             [
-                [0.0, 1.0, 0.0, 3.0, 3.0, 0.0, 0.0, 0.0005],
-                [1.0, 3.0, 0.0, 3.0, 3.0, 0.0, 0.0, 0.0015],
-                [3.0, 7.0, 0.0, 3.0, 3.0, 0.0, 0.0, 99.9995],
-                [7.0, 15.0, 0.0, 3.0, 3.0, 0.0, 0.0, 99.9985],
+                [0.0, 1.0, 5.0, 3.0, 3.0, 0.0, 0.0, 0.0005],
+                [1.0, 3.0, 5.0, 3.0, 3.0, 0.0, 0.0, 0.0015],
+                [3.0, 7.0, -5.0, 3.0, 3.0, 0.0, 0.0, 99.9995],
+                [7.0, 15.0, -5.0, 3.0, 3.0, 0.0, 0.0, 99.9985],
             ]
         )
-        self.assertEqual(widths["NU"], 10.0)
+        self.assertEqual(widths["CC"], 8.0)
+        self.assertEqual(widths["DD"], 2.0)
         self.assertEqual(sum(widths.values()), 10.0)
+
+    def test_boundary_occupancy_excludes_zero_and_inward_power(self):
+        for energy in (0.0, 0.001, 99.999, 100.0):
+            for power in (-5.0, -0.001, 0.0, 0.001, 5.0):
+                with self.subTest(energy=energy, power=power):
+                    widths = fixture_widths(
+                        [[0.0, 4.0, power, 3.0, 3.0, 0.0, 0.0, energy]]
+                    )
+                    self.assertEqual(widths, dict.fromkeys(WIDTH_STATES, 0.0))
+
+    def test_boundary_exclusion_precedes_idle_and_max_rate_classification(self):
+        widths = fixture_widths(
+            [
+                [0.0, 2.0, 0.0, 3.0, 3.0, 0.0, 0.0, 0.0],
+                [2.0, 5.0, 10.0, 3.0, 3.0, 0.0, 0.0, 100.0],
+                [5.0, 9.0, 0.001, 3.0, 3.0, 0.0, 0.0, 50.0],
+            ]
+        )
+        self.assertEqual(widths, {"CC": 0.0, "CD": 0.0, "NU": 4.0, "DC": 0.0, "DD": 0.0})
 
     def test_equal_mode_counts_preserve_max_rate_exclusion(self):
         # Equal counts must not add maximum-rate segments to panel (a).

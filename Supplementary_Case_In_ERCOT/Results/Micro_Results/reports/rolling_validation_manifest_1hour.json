@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "months": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06"
+  ],
+  "checked_member_months": 78,
+  "valid_member_months": 78,
+  "excluded_coverage": 0,
+  "invalid_inputs": [],
+  "config_sha256": "24fced8f258750559b5503d11953128d04aaf90d5ec6c3495fd010c28605b8f9",
+  "code_sha256": {
+    "project_paths.py": "36c58901d300f002f79b4e2dcb9a221797bb37f190f6983070338e61d2af030a",
+    "Experiment_Data_1hour.py": "f3218eef178166e9d4603f24b95102bf1102878d1fcdb6a2843eb0ad9352f30f",
+    "Monthly_Data_1hour.py": "b0a93174c42d2e679cb2429e20a0afeab6619f949f4af61b38c8079d9ee5d3ac",
+    "Benchmark_1hour.py": "a0548dd617063a7d2201e98b37543b0c6eb3ec8bdfa9f9e38879bf15401dd2ab",
+    "Rolling_Window_1hour.py": "f5200b041dc7fbdda2c019faf1fdc930d53adde5ce14940489868c3c022d065a",
+    "distributed_Rolling_Window_1hour.py": "77d458c07633de4c5e339826cb30c837c65229d8c34585ec22574febbbf640c4"
+  },
+  "simulation_performed": true
+}

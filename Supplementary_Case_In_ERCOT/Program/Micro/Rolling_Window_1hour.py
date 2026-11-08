@@ -154,7 +154,8 @@ class RollingConfig:
     meanstd_percent: float = 2.0
     forecast_error_increment: float = 0.001
     power_tolerance: float = 1e-3
-    soc_tolerance: float = 1e-5
+    # MWh boundary-classification band; never used to snap physical energy.
+    soc_tolerance: float = 1e-3
     experiment_path: Path | None = DEFAULT_EXPERIMENT_PATH
     solver_threads: int = 1
     month: str | None = None
@@ -494,10 +495,88 @@ def build_estimated_price_horizon(
     return estimated
 
 
-def _clean_power(value: float, power_max: float, tolerance: float) -> float:
-    if power_max <= 0.0 or abs(value) <= tolerance:
-        return 0.0
-    return float(value)
+def _clip_soc_roundoff(
+    energy: float, minimum_soc: float, maximum_soc: float, *, scale: float = 1.0
+) -> float:
+    """Clip only floating-point overshoot; retain every interior energy value."""
+    allowance = 128 * np.finfo(float).eps * max(
+        1.0, abs(energy), abs(minimum_soc), abs(maximum_soc), abs(scale)
+    )
+    if not math.isfinite(energy) or not (
+        minimum_soc - allowance <= energy <= maximum_soc + allowance
+    ):
+        raise ValueError(
+            f"energy {energy} exceeds [{minimum_soc}, {maximum_soc}] "
+            f"beyond floating-point allowance {allowance}"
+        )
+    return float(np.clip(energy, minimum_soc, maximum_soc))
+
+
+def _canonical_dispatch_trajectory(
+    *,
+    raw_charge: np.ndarray,
+    raw_discharge: np.ndarray,
+    charge_limits: np.ndarray,
+    discharge_limits: np.ndarray,
+    initial_soc: float,
+    minimum_soc: float,
+    maximum_soc: float,
+    config: RollingConfig,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Derive one feasible net-power/MWh trajectory for dispatch and metadata.
+
+    Solver integrality tolerance can leave a tiny flow in the inactive direction.
+    Preserve its contribution to net power, then project only numerical excess
+    onto the sequential power/energy feasible interval. The power tolerance bounds
+    that correction; it never deletes an otherwise feasible small action.
+    """
+    arrays = tuple(
+        np.asarray(values, dtype=float)
+        for values in (raw_charge, raw_discharge, charge_limits, discharge_limits)
+    )
+    pc, pd, pcmax, pdmax = arrays
+    if pc.ndim != 1 or not pc.size or any(a.shape != pc.shape for a in arrays):
+        raise ValueError("dispatch powers and limits must be equal nonempty vectors")
+    if not all(np.isfinite(a).all() for a in arrays):
+        raise ValueError("dispatch powers and limits must be finite")
+    if np.any(pcmax < 0) or np.any(pdmax < 0):
+        raise ValueError("dispatch power limits must be nonnegative")
+    if np.any(pc < -config.power_tolerance) or np.any(pd < -config.power_tolerance):
+        raise ValueError("negative solver charge/discharge exceeds power tolerance")
+    if np.any(np.minimum(pc, pd) > config.power_tolerance):
+        raise ValueError("simultaneous charge/discharge exceeds power tolerance")
+    if not (
+        math.isfinite(minimum_soc)
+        and math.isfinite(maximum_soc)
+        and minimum_soc <= maximum_soc
+    ):
+        raise ValueError("invalid energy bounds for dispatch trajectory")
+
+    net = np.empty_like(pc)
+    energy = np.empty_like(pc)
+    before = _clip_soc_roundoff(initial_soc, minimum_soc, maximum_soc)
+    for step, raw_net in enumerate(pd - pc):
+        lower = max(
+            -pcmax[step],
+            -(maximum_soc - before) / config.efficiency / config.interval_hours,
+        )
+        upper = min(
+            pdmax[step],
+            (before - minimum_soc) * config.efficiency / config.interval_hours,
+        )
+        power = float(np.clip(raw_net, lower, upper))
+        if abs(power - raw_net) > config.power_tolerance:
+            raise ValueError(
+                f"step {step}: feasible power projection changes {raw_net} to "
+                f"{power}, exceeding tolerance {config.power_tolerance}"
+            )
+        after = _soc_after_power(before, power, config)
+        net[step] = power
+        energy[step] = _clip_soc_roundoff(
+            after, minimum_soc, maximum_soc, scale=max(abs(before), abs(after - before))
+        )
+        before = energy[step]
+    return net, energy
 
 
 def _build_dsfunction(
@@ -505,7 +584,7 @@ def _build_dsfunction(
     current_power: np.ndarray,
     ncd: np.ndarray,
 ) -> np.ndarray:
-    """Compress V5 candidate solutions into enriched price/power stairs."""
+    """Group nearby powers while retaining one coherent exact candidate per stair."""
 
     rounded_power = np.round(current_power, 4)
     sign_state = np.sign(ncd[0] - ncd[1]).astype(int)
@@ -538,7 +617,8 @@ def _build_dsfunction(
         mode_index = mode_candidates[np.argmin(first_indices[mode_candidates])]
         dsfunction[stair_index, 0] = previous_high
         dsfunction[stair_index, 1] = candidate_prices[end - 1]
-        dsfunction[stair_index, 2] = rounded_power[start]
+        representative = start + int(first_indices[mode_index])
+        dsfunction[stair_index, 2] = current_power[representative]
         dsfunction[stair_index, 3:7] = unique[mode_index]
         previous_high = candidate_prices[end - 1]
     return dsfunction
@@ -671,42 +751,35 @@ def solve_bidding_function(
                     f"{model.Status}"
                 )
 
-            for step in range(horizon):
-                pd_clean = _clean_power(
-                    discharge[step].X,
-                    pdmax[step],
-                    config.power_tolerance,
-                )
-                pc_clean = _clean_power(
-                    charge[step].X,
-                    pcmax[step],
-                    config.power_tolerance,
-                )
-                discharge_power[step, candidate_index] = pd_clean
-                charge_power[step, candidate_index] = -pc_clean
-                energy[step, candidate_index] = soc[step + 1].X
-                if step == 0:
-                    current_power[candidate_index] = pd_clean - pc_clean
+            net_power, candidate_energy = _canonical_dispatch_trajectory(
+                raw_charge=np.array([charge[step].X for step in range(horizon)]),
+                raw_discharge=np.array([discharge[step].X for step in range(horizon)]),
+                charge_limits=pcmax,
+                discharge_limits=pdmax,
+                initial_soc=initial_soc,
+                minimum_soc=minimum_soc,
+                maximum_soc=maximum_soc,
+                config=config,
+            )
+            discharge_power[:, candidate_index] = np.maximum(net_power, 0.0)
+            charge_power[:, candidate_index] = np.minimum(net_power, 0.0)
+            energy[:, candidate_index] = candidate_energy
+            current_power[candidate_index] = net_power[0]
 
             upper_hits = np.flatnonzero(
-                np.isclose(
-                    energy[:, candidate_index],
-                    maximum_soc,
-                    rtol=0.0,
-                    atol=1e-6,
-                )
+                (energy[:, candidate_index] >= maximum_soc - config.soc_tolerance)
+                & ((charge_power[:, candidate_index] + discharge_power[:, candidate_index])
+                   < -config.power_tolerance)
             )
             lower_hits = np.flatnonzero(
-                np.isclose(
-                    energy[:, candidate_index],
-                    minimum_soc,
-                    rtol=0.0,
-                    atol=1e-6,
-                )
+                (energy[:, candidate_index] <= minimum_soc + config.soc_tolerance)
+                & ((charge_power[:, candidate_index] + discharge_power[:, candidate_index])
+                   > config.power_tolerance)
             )
-            first_upper = int(upper_hits[0] + 1) if len(upper_hits) else horizon
-            first_lower = int(lower_hits[0] + 1) if len(lower_hits) else horizon
-            boundary_step = min(first_upper, first_lower)
+            # A final-step hit is real; never-hit must sort after the window.
+            first_upper = int(upper_hits[0] + 1) if len(upper_hits) else horizon + 1
+            first_lower = int(lower_hits[0] + 1) if len(lower_hits) else horizon + 1
+            boundary_step = min(first_upper, first_lower, horizon)
             active_slice = slice(0, boundary_step)
 
             charging_at_max = np.isclose(
@@ -737,20 +810,7 @@ def solve_bidding_function(
     finally:
         model.dispose()
 
-    stairs = _build_dsfunction(candidate_prices, current_power, ncd)
-    # Four-decimal price-stair compression can round a feasible boundary
-    # dispatch outward. Project only that numerical residue back to the exact
-    # one-hour energy bounds, including every candidate exported for audit.
-    feasible_low = max(
-        -pcmax[0],
-        -(maximum_soc - initial_soc) / config.efficiency / config.interval_hours,
-    )
-    feasible_high = min(
-        pdmax[0],
-        (initial_soc - minimum_soc) * config.efficiency / config.interval_hours,
-    )
-    stairs[:, 2] = np.clip(stairs[:, 2], feasible_low, feasible_high)
-    return BidResult(dsfunction=stairs)
+    return BidResult(dsfunction=_build_dsfunction(candidate_prices, current_power, ncd))
 
 
 def _soc_after_power(
@@ -910,33 +970,27 @@ def _run_resource_with_environment(
         cleared_stair, cleared_power = _clear_dsfunction(bid.dsfunction, lmp)
         soc_before = modeled_soc
         soc_after = _soc_after_power(soc_before, cleared_power, config)
-        if not (
-            resource.minimum_soc - config.soc_tolerance
-            <= soc_after
-            <= resource.maximum_soc + config.soc_tolerance
-        ):
+        try:
+            soc_after = _clip_soc_roundoff(
+                soc_after,
+                resource.minimum_soc,
+                resource.maximum_soc,
+                scale=max(abs(soc_before), abs(soc_after - soc_before)),
+            )
+        except ValueError as exc:
             raise RuntimeError(
                 f"{resource.name} at {timestamp}: cleared power {cleared_power} "
                 f"moves SOC from {soc_before} to {soc_after}, outside "
                 f"[{resource.minimum_soc}, {resource.maximum_soc}]"
-            )
-        if cleared_power != 0 and math.isclose(
-            soc_after,
-            resource.minimum_soc,
-            rel_tol=0.0,
-            abs_tol=config.soc_tolerance,
-        ):
-            soc_after = resource.minimum_soc
-        elif cleared_power != 0 and math.isclose(
-            soc_after,
-            resource.maximum_soc,
-            rel_tol=0.0,
-            abs_tol=config.soc_tolerance,
-        ):
-            soc_after = resource.maximum_soc
+            ) from exc
         candidate_soc = np.array(
             [
-                _soc_after_power(soc_before, float(power), config)
+                _clip_soc_roundoff(
+                    _soc_after_power(soc_before, float(power), config),
+                    resource.minimum_soc,
+                    resource.maximum_soc,
+                    scale=abs(soc_before),
+                )
                 for power in bid.dsfunction[:, 2]
             ],
             dtype=float,
@@ -963,16 +1017,12 @@ def _run_resource_with_environment(
                 abs_tol=config.power_tolerance,
             )
         )
-        soc_boundary_reached = math.isclose(
-            soc_after,
-            resource.minimum_soc,
-            rel_tol=0.0,
-            abs_tol=config.soc_tolerance,
-        ) or math.isclose(
-            soc_after,
-            resource.maximum_soc,
-            rel_tol=0.0,
-            abs_tol=config.soc_tolerance,
+        soc_boundary_reached = (
+            cleared_power > config.power_tolerance
+            and soc_after <= resource.minimum_soc + config.soc_tolerance
+        ) or (
+            cleared_power < -config.power_tolerance
+            and soc_after >= resource.maximum_soc - config.soc_tolerance
         )
         record = {
             "Time": timestamp.tz_localize(None) if timestamp.tzinfo else timestamp,

@@ -63,8 +63,12 @@ The unified entry writes two transparent 720 dpi PNGs, each with a source-data C
 * `figure_plot_4_c/Figs/Fig_4_c_ALL_ESR_<YYYYMM>.png`
 
 The a+b canvas is 180 by 70 mm. Panel a reconstructs the five price spans
-CC/CD/NU/DC/DD from `dsfunction`, normalizes the eighth-column energy by each
+CC/CD/NU/DC/DD from `dsfunction`, validates the eighth-column energy against each
 row's `Applied Maximum SOC`, and excludes SOC-boundary and maximum-rate segments.
+Boundary membership takes priority even for zero power or power directed into
+the battery's interior: energy within the existing 0.001 MWh boundary band is
+mB and contributes no area to the five retained categories. This energy band is
+distinct from the power classification tolerance below.
 Other segments use the state returned by `classify_p_ess` directly, including its
 zero-power tolerance and no-first-boundary rules; the width calculation does not
 reassign those states. Zero spans contribute zero area; negative spans fail
@@ -73,10 +77,15 @@ Panel b pools the seven hourly `P_ESS_state` categories MC/CC/CD/NU/DC/DD/MD and
 then calculates shares, excluding zero-power-limit rows under the existing
 classifier rules. Neither panel averages percentages from individual resources.
 
-For May, 9,672 input rows contain 74 excluded rows and 9,598 valid state records.
-The seven counts in the order above are 3457, 333, 121, 2695, 144, 428, and 2420.
-MC accounts for approximately 36.02% and MD for 25.21%. Each other month uses its
-own validated rows and denominators.
+Power classification uses a fixed inclusive 0.001 MW tolerance for both idle
+and maximum-rate states, with idle checked first. Stair matching and metadata
+comparisons retain their 1e-6 absolute tolerance. `Realized_Match.py` keeps its
+separate 0.0005 MW input-bound validation and the telemetry hit criterion remains
+strictly below 3% of the effective power span.
+
+Each month's source-data CSV records the current raw rows, excluded rows, valid
+state denominator, state counts and percentages. Refresh these figures after
+classification; counts from an older dispatch snapshot must not be reused.
 
 Panel c uses a 180 by 64 mm canvas. For each local clock hour and state it sums
 counts across resources, then divides by the fixed configured resource count,

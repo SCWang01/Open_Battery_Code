@@ -13,3 +13,13 @@ Thumbs.db
 # Project-generated outputs and distributed program variants
 /Uncertainties_Comparison/
 /Program/distributed_*
+
+# Local diagnostics, recovery backups, and audit evidence
+/tmp/
+/Results/First_Boundary_Repair/
+/Results/Logic_Audit_20261108/
+
+# Local one-off recovery tools and their regression checks
+/Program/repair_first_boundary_archives.py
+/Program/tests/test_boundary_archive_repair.py
+/Program/tests/test_first_boundary.py

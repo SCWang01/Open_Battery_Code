@@ -61,11 +61,10 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 
 from classify_p_ess import (
-    MAX_RATE_ABS_TOL,
+    REL_TOL,
     as_float,
     classify_p_ess,
     find_column,
-    max_rate_values_match,
     parse_dsfunction,
     save_workbook_atomically,
     validate_resource_name,
@@ -97,6 +96,8 @@ REALIZED_FILENAME = re.compile(
 ROLLING_FIELDS = ("Pcmax", "Pdmax")
 EFFECTIVE_LSL_HEADER = "Effective LSL"
 EFFECTIVE_HSL_HEADER = "Effective HSL"
+# Input-bound validation is distinct from the classifier's 1 kW label band.
+INPUT_POWER_BOUND_ABS_TOL = 5e-4
 
 
 @dataclass(frozen=True)
@@ -226,8 +227,12 @@ def _power_points(
     points = []
     for segment in segments:
         power = _number(segment[2], "dsfunction power", excel_row)
-        if (power < lsl and not max_rate_values_match(power, lsl)) or (
-            power > hsl and not max_rate_values_match(power, hsl)
+        if (
+            power < lsl
+            and not math.isclose(power, lsl, rel_tol=REL_TOL, abs_tol=INPUT_POWER_BOUND_ABS_TOL)
+        ) or (
+            power > hsl
+            and not math.isclose(power, hsl, rel_tol=REL_TOL, abs_tol=INPUT_POWER_BOUND_ABS_TOL)
         ):
             raise ValueError(
                 f"DS_POWER_OUT_OF_BOUNDS: {power:g} is outside [{lsl:g}, {hsl:g}]"
@@ -294,8 +299,8 @@ def calculate_relative_distances(
         if (
             charge > 0
             or discharge < 0
-            or charge < lower - MAX_RATE_ABS_TOL
-            or discharge > upper + MAX_RATE_ABS_TOL
+            or charge < lower - INPUT_POWER_BOUND_ABS_TOL
+            or discharge > upper + INPUT_POWER_BOUND_ABS_TOL
         ):
             raise ValueError("INVALID_RATE_LIMITS: requires Effective LSL<=Pcmax<=0<=Pdmax<=Effective HSL")
         if values_match(charge, 0) or values_match(discharge, 0):

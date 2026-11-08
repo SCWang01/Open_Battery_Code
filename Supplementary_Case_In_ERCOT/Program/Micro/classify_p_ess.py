@@ -35,7 +35,9 @@ PCMAX_HEADER = "Pcmax"
 PDMAX_HEADER = "Pdmax"
 REL_TOL = 1e-9
 ABS_TOL = 1e-6
-MAX_RATE_ABS_TOL = 5e-4
+# Power-state labels share the 1 kW band; metadata and stair matching stay precise.
+POWER_CLASSIFICATION_ABS_TOL = 1e-3
+MAX_RATE_ABS_TOL = POWER_CLASSIFICATION_ABS_TOL
 SUMMARY_ORDER = ("MC", "MD", "NU", "DC", "DD", "CC", "CD", "NC")
 SKIPPED_ZERO_LIMIT_ROWS = "skipped_zero_limit_rows"
 INVALID_FILENAME_CHARACTERS = frozenset('<>:"/\\|?*')
@@ -71,13 +73,19 @@ def values_match(left: float, right: float) -> bool:
 
 
 def max_rate_values_match(left: float, right: float) -> bool:
-    """Compare power values after the upstream four-decimal rounding."""
-    return math.isclose(
-        left,
-        right,
-        rel_tol=REL_TOL,
-        abs_tol=MAX_RATE_ABS_TOL,
-    )
+    """Compare power against the inclusive absolute 1 kW maximum-rate band."""
+    return right - MAX_RATE_ABS_TOL <= left <= right + MAX_RATE_ABS_TOL
+
+
+def _power_state(p_ess: float, *, pcmax: float, pdmax: float) -> str | None:
+    """Classify idle and maximum-rate power before reading segment metadata."""
+    if abs(p_ess) <= POWER_CLASSIFICATION_ABS_TOL:
+        return "NU"
+    if p_ess < 0 and max_rate_values_match(p_ess, pcmax):
+        return "MC"
+    if p_ess > 0 and max_rate_values_match(p_ess, pdmax):
+        return "MD"
+    return None
 
 
 def as_float(value: Any, *, name: str, excel_row: int) -> float:
@@ -201,12 +209,9 @@ def classify_p_ess(
 ) -> str:
     """Classify one segment using signed row-level Pcmax/Pdmax values."""
     p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
-    if max_rate_values_match(p_ess, pcmax):
-        return "MC"
-    if max_rate_values_match(p_ess, pdmax):
-        return "MD"
-    if values_match(p_ess, 0.0):
-        return "NU"
+    power_state = _power_state(p_ess, pcmax=pcmax, pdmax=pdmax)
+    if power_state is not None:
+        return power_state
 
     seventh = as_float(ds_row[6], name="dsfunction segment column 7", excel_row=excel_row)
     if values_match(seventh, 1.0):
@@ -234,12 +239,9 @@ def classify_p_ess_from_dsfunction(
 ) -> str:
     """Match P_ESS to its unique dsfunction segment and classify it."""
     p_ess = as_float(p_ess_value, name="P_ESS", excel_row=excel_row)
-    if (
-        max_rate_values_match(p_ess, pcmax)
-        or max_rate_values_match(p_ess, pdmax)
-        or values_match(p_ess, 0.0)
-    ):
-        return classify_p_ess(p_ess, (), excel_row, pcmax=pcmax, pdmax=pdmax)
+    power_state = _power_state(p_ess, pcmax=pcmax, pdmax=pdmax)
+    if power_state is not None:
+        return power_state
 
     dsfunction = parse_dsfunction(dsfunction_value, excel_row)
     matches: list[Sequence[Any]] = []

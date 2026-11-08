@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-08-25T06:31:18.831867+00:00",
+  "started_at": "2026-11-08T04:34:23.113597+00:00",
   "schema_version": 2,
   "status": "success",
   "figures": [
@@ -9,30 +9,806 @@
     "4d",
     "4e"
   ],
-  "skip_analysis": false,
-  "python_version": "3.10.17",
+  "skip_analysis": true,
+  "python_version": "3.12.7",
   "python_implementation": "CPython",
   "commands": [
     {
       "argv": [
         "python",
-        "classify_p_ess.py",
+        "Program/classify_p_ess.py",
         "--input",
-        "dsfunction_May2025_exact_V5_k20.xlsx"
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_January2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2023_exact_V5_k20_classified_width.classified.s5mfo9jm.xlsx"
       ],
-      "cwd": "Figure_Plot/figure_plot_4_a_b/source_data"
+      "cwd": "."
     },
     {
       "argv": [
         "python",
-        "add_dsfunction_state_array.py"
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2023_exact_V5_k20_classified_width.classified.s5mfo9jm.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2023_exact_V5_k20_classified_width.widths.2yd4gy7s.xlsx"
       ],
-      "cwd": "Figure_Plot/figure_plot_4_a_b/source_data"
+      "cwd": "."
     },
     {
       "argv": [
         "python",
-        "Figure_Plot/figure_plot_4_a_b/state_distribution_pies_May2025/plot_state_distribution_pies_May2025.py"
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_February2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2023_exact_V5_k20_classified_width.classified.ubnfugyf.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2023_exact_V5_k20_classified_width.classified.ubnfugyf.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2023_exact_V5_k20_classified_width.widths.ut3_pmbl.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_March2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2023_exact_V5_k20_classified_width.classified.jbxck_no.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2023_exact_V5_k20_classified_width.classified.jbxck_no.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2023_exact_V5_k20_classified_width.widths.cxlt2dae.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_April2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2023_exact_V5_k20_classified_width.classified.cqvqx62g.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2023_exact_V5_k20_classified_width.classified.cqvqx62g.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2023_exact_V5_k20_classified_width.widths._jqe62ly.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_May2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2023_exact_V5_k20_classified_width.classified.ovta82o2.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2023_exact_V5_k20_classified_width.classified.ovta82o2.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2023_exact_V5_k20_classified_width.widths.qwi5z3tg.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_June2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2023_exact_V5_k20_classified_width.classified.qvrcq1xg.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2023_exact_V5_k20_classified_width.classified.qvrcq1xg.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2023_exact_V5_k20_classified_width.widths.jyjk9pyl.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_July2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2023_exact_V5_k20_classified_width.classified.iz1rhjx6.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2023_exact_V5_k20_classified_width.classified.iz1rhjx6.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2023_exact_V5_k20_classified_width.widths.qci7aks_.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_August2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2023_exact_V5_k20_classified_width.classified.2g83eryh.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2023_exact_V5_k20_classified_width.classified.2g83eryh.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2023_exact_V5_k20_classified_width.widths.iwx60ryw.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_September2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2023_exact_V5_k20_classified_width.classified.4ixwz3o4.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2023_exact_V5_k20_classified_width.classified.4ixwz3o4.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2023_exact_V5_k20_classified_width.widths.jepzfl5t.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_October2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2023_exact_V5_k20_classified_width.classified.d6r7t1qh.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2023_exact_V5_k20_classified_width.classified.d6r7t1qh.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2023_exact_V5_k20_classified_width.widths.qsto2i28.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_November2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2023_exact_V5_k20_classified_width.classified.43x32wsl.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2023_exact_V5_k20_classified_width.classified.43x32wsl.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2023_exact_V5_k20_classified_width.widths.k0pks_v8.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_December2023_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2023_exact_V5_k20_classified_width.classified.9e4oiuj5.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2023_exact_V5_k20_classified_width.classified.9e4oiuj5.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2023_exact_V5_k20_classified_width.widths.o0f3yjhg.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_January2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2024_exact_V5_k20_classified_width.classified.m7tqx949.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2024_exact_V5_k20_classified_width.classified.m7tqx949.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2024_exact_V5_k20_classified_width.widths.xmutwi47.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_February2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2024_exact_V5_k20_classified_width.classified.ntoy8h0g.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2024_exact_V5_k20_classified_width.classified.ntoy8h0g.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2024_exact_V5_k20_classified_width.widths.nbvi0lxr.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_March2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2024_exact_V5_k20_classified_width.classified.h84thanj.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2024_exact_V5_k20_classified_width.classified.h84thanj.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2024_exact_V5_k20_classified_width.widths.wn0yxvj7.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_April2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2024_exact_V5_k20_classified_width.classified.2l8b2ydl.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2024_exact_V5_k20_classified_width.classified.2l8b2ydl.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2024_exact_V5_k20_classified_width.widths.v3pn6vta.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_May2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2024_exact_V5_k20_classified_width.classified.cuwt56d7.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2024_exact_V5_k20_classified_width.classified.cuwt56d7.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2024_exact_V5_k20_classified_width.widths.i9y65dzh.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_June2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2024_exact_V5_k20_classified_width.classified._6g7ybzj.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2024_exact_V5_k20_classified_width.classified._6g7ybzj.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2024_exact_V5_k20_classified_width.widths.gxohfq70.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_July2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2024_exact_V5_k20_classified_width.classified.fcu289vu.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2024_exact_V5_k20_classified_width.classified.fcu289vu.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2024_exact_V5_k20_classified_width.widths.92rldq2b.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_August2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2024_exact_V5_k20_classified_width.classified.4yykssa9.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2024_exact_V5_k20_classified_width.classified.4yykssa9.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2024_exact_V5_k20_classified_width.widths.bynsctbg.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_September2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2024_exact_V5_k20_classified_width.classified.wahp_16b.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2024_exact_V5_k20_classified_width.classified.wahp_16b.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2024_exact_V5_k20_classified_width.widths.47dx2hgi.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_October2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2024_exact_V5_k20_classified_width.classified.dn7g0s97.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2024_exact_V5_k20_classified_width.classified.dn7g0s97.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2024_exact_V5_k20_classified_width.widths.u7pxuyzk.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_November2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2024_exact_V5_k20_classified_width.classified.pq0j1u5i.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2024_exact_V5_k20_classified_width.classified.pq0j1u5i.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2024_exact_V5_k20_classified_width.widths.8m_bcf5x.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_December2024_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2024_exact_V5_k20_classified_width.classified.edfgja20.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2024_exact_V5_k20_classified_width.classified.edfgja20.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2024_exact_V5_k20_classified_width.widths.4l4m16yf.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_January2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2025_exact_V5_k20_classified_width.classified.0dyowgwg.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2025_exact_V5_k20_classified_width.classified.0dyowgwg.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_January2025_exact_V5_k20_classified_width.widths.0vbkl2cd.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_February2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2025_exact_V5_k20_classified_width.classified.xieybq1o.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2025_exact_V5_k20_classified_width.classified.xieybq1o.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_February2025_exact_V5_k20_classified_width.widths.7hrqgg4d.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_March2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2025_exact_V5_k20_classified_width.classified.r7ejug8g.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2025_exact_V5_k20_classified_width.classified.r7ejug8g.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_March2025_exact_V5_k20_classified_width.widths.hcdqkn8l.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_April2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2025_exact_V5_k20_classified_width.classified.ytvg_nmx.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2025_exact_V5_k20_classified_width.classified.ytvg_nmx.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_April2025_exact_V5_k20_classified_width.widths.g1vvyb4m.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_May2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2025_exact_V5_k20_classified_width.classified.565huckb.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2025_exact_V5_k20_classified_width.classified.565huckb.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_May2025_exact_V5_k20_classified_width.widths.n2xtyde4.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_June2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2025_exact_V5_k20_classified_width.classified.n4b1iziq.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2025_exact_V5_k20_classified_width.classified.n4b1iziq.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_June2025_exact_V5_k20_classified_width.widths.h3vwzhih.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_July2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2025_exact_V5_k20_classified_width.classified.xk6g7xcr.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2025_exact_V5_k20_classified_width.classified.xk6g7xcr.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_July2025_exact_V5_k20_classified_width.widths.kfiig12m.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_August2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2025_exact_V5_k20_classified_width.classified.qctgfjff.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2025_exact_V5_k20_classified_width.classified.qctgfjff.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_August2025_exact_V5_k20_classified_width.widths.yy31_k1e.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_September2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2025_exact_V5_k20_classified_width.classified.0trekoiy.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2025_exact_V5_k20_classified_width.classified.0trekoiy.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_September2025_exact_V5_k20_classified_width.widths.izsqbt3_.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_October2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2025_exact_V5_k20_classified_width.classified.fugm7aho.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2025_exact_V5_k20_classified_width.classified.fugm7aho.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_October2025_exact_V5_k20_classified_width.widths.o22ksd25.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_November2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2025_exact_V5_k20_classified_width.classified.u_31iks_.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2025_exact_V5_k20_classified_width.classified.u_31iks_.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_November2025_exact_V5_k20_classified_width.widths.ul1m1x3k.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/classify_p_ess.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\dsfunction_December2025_exact_V5_k20_classified_width.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2025_exact_V5_k20_classified_width.classified.azztd8dt.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Program/add_dsfunction_state_array.py",
+        "--input",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2025_exact_V5_k20_classified_width.classified.azztd8dt.xlsx",
+        "--output",
+        "D:\\Research\\Release_Open\\Results\\Bidding\\.dsfunction_December2025_exact_V5_k20_classified_width.widths.rrc2_8yf.xlsx"
+      ],
+      "cwd": "."
+    },
+    {
+      "argv": [
+        "python",
+        "Figure_Plot/figure_plot_4_a_b/plot_state_distribution_pies.py"
       ],
       "cwd": "."
     },
@@ -46,14 +822,7 @@
     {
       "argv": [
         "python",
-        "Figure_Plot/figure_plot_4_c/plot_hourly_state_counts_price_May2025.py"
-      ],
-      "cwd": "."
-    },
-    {
-      "argv": [
-        "python",
-        "Program/analyze_summary.py"
+        "Figure_Plot/figure_plot_4_c/plot_hourly_state_counts_price.py"
       ],
       "cwd": "."
     },
@@ -83,238 +852,992 @@
   ],
   "files": [
     {
-      "role": "May dsfunction source workbook",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20.xlsx",
-      "size": 101061,
-      "sha256": "19a5d18e508ac2b2fdae11d17a7d20ad8646b3637aee5ab9522c5b1c45ee918b",
-      "source": "Results\\Bidding\\dsfunction_May2025_exact_V5_k20.xlsx",
-      "action": "unchanged"
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_January2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123222,
+      "sha256": "eedae977819538bcf9ddfb526612f4eace8914affbd5e21987bb26fb18151940"
     },
     {
-      "role": "classified May dsfunction workbook",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120271,
-      "sha256": "626fc2bd189dba0caaf67af8bdd5585e2de7d08673312ab457ef24d91ddaf042"
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_January2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123222,
+      "sha256": "538f67b2f9a66555f4980317eb65056d469183d727ec748a45657450706dc986",
+      "source": "Results/Bidding/dsfunction_January2023_exact_V5_k20_classified_width.xlsx"
     },
     {
-      "role": "Figure 4c classified dsfunction workbook",
-      "path": "Figure_Plot\\figure_plot_4_c\\input\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "size": 120271,
-      "sha256": "626fc2bd189dba0caaf67af8bdd5585e2de7d08673312ab457ef24d91ddaf042",
-      "source": "Figure_Plot\\figure_plot_4_a_b\\source_data\\dsfunction_May2025_exact_V5_k20_classified.xlsx",
-      "action": "copied"
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_February2023_exact_V5_k20_classified_width.xlsx",
+      "size": 108612,
+      "sha256": "3dc029f7b0feb3cfb23b5e0503e887fd1a3c464f3f925edad8e56a640f7a4014"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_February2023_exact_V5_k20_classified_width.xlsx",
+      "size": 108612,
+      "sha256": "943ac3c2db5b8c4352f102805649c4e5318b681769c19ad007faa47b1f220fd7",
+      "source": "Results/Bidding/dsfunction_February2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_March2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123827,
+      "sha256": "33b001d409d0801a8f97d5d1a2b1d3345468dc51f7040c468367782550abbe73"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_March2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123827,
+      "sha256": "4a4c38b782ab0564f6c87ae840035ab2096d34e636af1ff70b9fc6855983890d",
+      "source": "Results/Bidding/dsfunction_March2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_April2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123037,
+      "sha256": "21a6a7b25f46daf124bb165526e952641e0b9e013b69d5b7cb461d58063c2063"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_April2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123037,
+      "sha256": "bf3a9d237c963f27c9f7b612e033ccc28bc8c657b96336923f4d3f87e1b1c878",
+      "source": "Results/Bidding/dsfunction_April2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_May2023_exact_V5_k20_classified_width.xlsx",
+      "size": 120240,
+      "sha256": "85df597c714c7db6c1f4c612fe4b99103e3f94d4ac534003fe9cd8879ff25a48"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_May2023_exact_V5_k20_classified_width.xlsx",
+      "size": 120240,
+      "sha256": "f826127bfedcc71e8df6a07595bbdfcf7894853fb1fc7efe54345aa99b6e1f59",
+      "source": "Results/Bidding/dsfunction_May2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_June2023_exact_V5_k20_classified_width.xlsx",
+      "size": 118549,
+      "sha256": "563859093a85b7bfd4afe44c0297153d778c8b6915ecfc12c5e6d00b8fd87725"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_June2023_exact_V5_k20_classified_width.xlsx",
+      "size": 118548,
+      "sha256": "8a46ff0bd2f47905ec0e46b18a635c4d6f69fb998c59672919b5c94c4275c737",
+      "source": "Results/Bidding/dsfunction_June2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_July2023_exact_V5_k20_classified_width.xlsx",
+      "size": 117755,
+      "sha256": "e0c30eac227322382541f979665054953f0dac9750360fd699eb076e2be8c3fd"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_July2023_exact_V5_k20_classified_width.xlsx",
+      "size": 117755,
+      "sha256": "9f93324c265b0af88a8830a21bba7e57722ca1522584eeaa8ee928ca574b9c94",
+      "source": "Results/Bidding/dsfunction_July2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_August2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123968,
+      "sha256": "d5109db27ad625ea307eeec5f40bd7e36b6e0dde67157a0b07a65a359f2ab862"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_August2023_exact_V5_k20_classified_width.xlsx",
+      "size": 123968,
+      "sha256": "bfea8b04a718ba7fa58d53e42ca5c83b5fb59f0afab33446b2b2394826d98eba",
+      "source": "Results/Bidding/dsfunction_August2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_September2023_exact_V5_k20_classified_width.xlsx",
+      "size": 117750,
+      "sha256": "dda6b0465de2ac4f834916a35eb4c3542a6dd8faab5f1299273c308929610b94"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_September2023_exact_V5_k20_classified_width.xlsx",
+      "size": 117751,
+      "sha256": "7727cc9bc760d2ebbb261c3fec37891dea809c7621d6536cec129aef4db8ad10",
+      "source": "Results/Bidding/dsfunction_September2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_October2023_exact_V5_k20_classified_width.xlsx",
+      "size": 126314,
+      "sha256": "9a536dd3d2172f88c771be5a5268f4c1eb345db98164ccd5f46d1b8dd8a08b96"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_October2023_exact_V5_k20_classified_width.xlsx",
+      "size": 126314,
+      "sha256": "48b2fa6d8ba901e583ad48a0b934896ff7e453c25fa903c9e9521304d8a95ed3",
+      "source": "Results/Bidding/dsfunction_October2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_November2023_exact_V5_k20_classified_width.xlsx",
+      "size": 109158,
+      "sha256": "c5006155b88c93fd2b2d70090d65aadc09daff9fb6536163b88065db970b046e"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_November2023_exact_V5_k20_classified_width.xlsx",
+      "size": 109158,
+      "sha256": "90b951a4bff306dd034f4a6e1ba40be7a4af2c2d38dcd31c46bedf436b842dbb",
+      "source": "Results/Bidding/dsfunction_November2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_December2023_exact_V5_k20_classified_width.xlsx",
+      "size": 127221,
+      "sha256": "374c361ad9f1ad55b15f815fa262317d7051d3a4a2e479c60915c8522f1c08ea"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_December2023_exact_V5_k20_classified_width.xlsx",
+      "size": 127221,
+      "sha256": "b428bc89482b8fa0bd690f3c6fc42715b7e16e03d19abf4ee1c226b73a059178",
+      "source": "Results/Bidding/dsfunction_December2023_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_January2024_exact_V5_k20_classified_width.xlsx",
+      "size": 116140,
+      "sha256": "c629c346360be16b9abc383df741f2c7e70b834acc58241e085c8659229a9276"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_January2024_exact_V5_k20_classified_width.xlsx",
+      "size": 116138,
+      "sha256": "cd74ec0a08aab90a5a17132eaaabc75f5a5b922b8a0ecee31a219b7e9bc74b28",
+      "source": "Results/Bidding/dsfunction_January2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_February2024_exact_V5_k20_classified_width.xlsx",
+      "size": 114324,
+      "sha256": "a13311c40083c5fd961bd0d219317d0b7a1c211781e1606a90f24da74f031467"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_February2024_exact_V5_k20_classified_width.xlsx",
+      "size": 114323,
+      "sha256": "1ece5b9be7aa20c8cb63c83a293f4eedeed8c2d6ea5a595786388dff0d861c4d",
+      "source": "Results/Bidding/dsfunction_February2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_March2024_exact_V5_k20_classified_width.xlsx",
+      "size": 125563,
+      "sha256": "b15fa70b501bd2fa2c8ff98b23007c5d201e357b45dfc20158f0b8a3f072cbe6"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_March2024_exact_V5_k20_classified_width.xlsx",
+      "size": 125561,
+      "sha256": "c0819f99ec0dd30e5467fcbf0939b08b60bb205c06d10b3789a3e0ef9858bdbf",
+      "source": "Results/Bidding/dsfunction_March2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_April2024_exact_V5_k20_classified_width.xlsx",
+      "size": 121820,
+      "sha256": "21c77ff9baa04417c41f479bdb71c82615dd9aa73de0fd4bc21346d21d5d876b"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_April2024_exact_V5_k20_classified_width.xlsx",
+      "size": 121820,
+      "sha256": "54b493b8bc109f4b1540c29ae68e75873b23d258f41cb1fba6a486eca798b4d7",
+      "source": "Results/Bidding/dsfunction_April2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_May2024_exact_V5_k20_classified_width.xlsx",
+      "size": 124116,
+      "sha256": "f9b74278f3c7a768e1ff17c670a2113c9417e0bae552f78da515a494d9e8ae44"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_May2024_exact_V5_k20_classified_width.xlsx",
+      "size": 124115,
+      "sha256": "23ea2aad7ae3d0e18cc68aedf9b4e3fe6835a98045ec73bdaad7fbe9ed22f2bd",
+      "source": "Results/Bidding/dsfunction_May2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_June2024_exact_V5_k20_classified_width.xlsx",
+      "size": 120070,
+      "sha256": "ac1bd95e083ac201d400c243b307850d7546c7e2201a2219518b9a9b2120ebdc"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_June2024_exact_V5_k20_classified_width.xlsx",
+      "size": 120069,
+      "sha256": "1ffd089c6bd4cdee47ddff9477a35145d071e6d456890f1226c0d00343af8c32",
+      "source": "Results/Bidding/dsfunction_June2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_July2024_exact_V5_k20_classified_width.xlsx",
+      "size": 119737,
+      "sha256": "0b1df3a30ae5979f1af67889c01e321873b06c51e9c64ac1a69dcf5165355ee3"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_July2024_exact_V5_k20_classified_width.xlsx",
+      "size": 119738,
+      "sha256": "6231b178c18e8a102ba0f53be24ff38004c56e67392f796916bebf08a39d92bf",
+      "source": "Results/Bidding/dsfunction_July2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_August2024_exact_V5_k20_classified_width.xlsx",
+      "size": 129421,
+      "sha256": "d2e7fb95f9df3f0163f65a6e14ac71ec23d734a6e9514e988cf368247f9f90b6"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_August2024_exact_V5_k20_classified_width.xlsx",
+      "size": 129421,
+      "sha256": "69337dc851c6ef05898f7dda2c8549e8e1994673a6dc1afed545eb3931ada60b",
+      "source": "Results/Bidding/dsfunction_August2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_September2024_exact_V5_k20_classified_width.xlsx",
+      "size": 119809,
+      "sha256": "107fa407ef9c0c07e3490c47f83024ec7bf47cd3f9b03b1b70c7c5b83be8ea90"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_September2024_exact_V5_k20_classified_width.xlsx",
+      "size": 119808,
+      "sha256": "80195e37533ebd929f8f9adc97d9e878ba1baf23398498aa2ad044b3a4dbabcd",
+      "source": "Results/Bidding/dsfunction_September2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_October2024_exact_V5_k20_classified_width.xlsx",
+      "size": 122732,
+      "sha256": "53d058729357c10579b0a275d00d022b3afafc5f5217095da62e92397159bbab"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_October2024_exact_V5_k20_classified_width.xlsx",
+      "size": 122732,
+      "sha256": "4e61514468f827047ebed2815a831074a4f85ab4313e27a4f73002b03055cadc",
+      "source": "Results/Bidding/dsfunction_October2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_November2024_exact_V5_k20_classified_width.xlsx",
+      "size": 120463,
+      "sha256": "94ebf09b4c448247c471874ed71b4af648a67c8c16be6837667b298dfa8beeaf"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_November2024_exact_V5_k20_classified_width.xlsx",
+      "size": 120463,
+      "sha256": "7f3fd337114e660132f63d6cce6b20111ab2d9fb779f88b2dcd148890f65f68c",
+      "source": "Results/Bidding/dsfunction_November2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_December2024_exact_V5_k20_classified_width.xlsx",
+      "size": 122123,
+      "sha256": "3b62e6ff010dad93a8eefbd63e4d7dddb0293c5c554861b7407ce4ce5cec96bb"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_December2024_exact_V5_k20_classified_width.xlsx",
+      "size": 122122,
+      "sha256": "0b759b065f0ddcf03979a29aa9d3e34f2b5602ecc624da77e84546a6d3092629",
+      "source": "Results/Bidding/dsfunction_December2024_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_January2025_exact_V5_k20_classified_width.xlsx",
+      "size": 129683,
+      "sha256": "2ecfc5c21cb0920e57d9a67e33bfdfec9b2faa2ac37063d4056d4673d51b3dc0"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_January2025_exact_V5_k20_classified_width.xlsx",
+      "size": 129683,
+      "sha256": "ae043e12ae8ce0be206900537ec62e28558c1022861333caffa77245b7fc6647",
+      "source": "Results/Bidding/dsfunction_January2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_February2025_exact_V5_k20_classified_width.xlsx",
+      "size": 112066,
+      "sha256": "367f2afaec0343e7955f8f9a990d94bfda938646759461137aa71c4ed6ecd54b"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_February2025_exact_V5_k20_classified_width.xlsx",
+      "size": 112067,
+      "sha256": "c9000d49dd3062773e3f803de5cadc8048e3257f4801a88a6955501971684146",
+      "source": "Results/Bidding/dsfunction_February2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_March2025_exact_V5_k20_classified_width.xlsx",
+      "size": 119039,
+      "sha256": "b5434a5f213ab53a3af89a8f0a94b2d3a823e934d36430e46557714479ec11dc"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_March2025_exact_V5_k20_classified_width.xlsx",
+      "size": 119038,
+      "sha256": "b5302eff9b381665f764433f01530f08dc2bbfbce13d2508bdefe29b72bb1b40",
+      "source": "Results/Bidding/dsfunction_March2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_April2025_exact_V5_k20_classified_width.xlsx",
+      "size": 114050,
+      "sha256": "d66aa846dbd9c82b8f3fa17ae4ac0333f2089e8ec5c92ce336f924990527df15"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_April2025_exact_V5_k20_classified_width.xlsx",
+      "size": 114050,
+      "sha256": "dd2b3d9d0f6fa38e12d79c45f4b511a6f54707d414ff05fb0884cbd3c519e1b9",
+      "source": "Results/Bidding/dsfunction_April2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_May2025_exact_V5_k20_classified_width.xlsx",
+      "size": 125943,
+      "sha256": "5452c63e48ee86c83293014ea5965cb7a8395e8f36c6b29f28b36bdc2e9f5319"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_May2025_exact_V5_k20_classified_width.xlsx",
+      "size": 125943,
+      "sha256": "4596edb8ebfd89f6eb80da4af89cf3231f0920ad498e506194a4eff0fa43eec9",
+      "source": "Results/Bidding/dsfunction_May2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_June2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121018,
+      "sha256": "94a038c8aa5da0f54343eea54155db53d43ee5410edc3554e1bc5daef588b174"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_June2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121019,
+      "sha256": "ee5585cada5f95018fe44733bb7d6b6f42d1f099bce5447d659ac2ce6730b0c7",
+      "source": "Results/Bidding/dsfunction_June2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_July2025_exact_V5_k20_classified_width.xlsx",
+      "size": 122470,
+      "sha256": "c2b2895b19031158c5dd223c662d54cc0a9b43cc1c4da0da2783504fc19e8f94"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_July2025_exact_V5_k20_classified_width.xlsx",
+      "size": 122470,
+      "sha256": "e855eef19bdc8abbd144a0f79ff529320dc2518a7693c40e4ba1d957bdde4e7d",
+      "source": "Results/Bidding/dsfunction_July2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_August2025_exact_V5_k20_classified_width.xlsx",
+      "size": 126029,
+      "sha256": "ca4a9fd029f10c21dfa183ebe7b9b50a451bba65e1551060eaeb350b19098cc9"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_August2025_exact_V5_k20_classified_width.xlsx",
+      "size": 126029,
+      "sha256": "6dd05e8193853bd3d5f1411d1aff5131e7a4482377999d8f8afbd12cae33bb32",
+      "source": "Results/Bidding/dsfunction_August2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_September2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121409,
+      "sha256": "e680a2ee851d17aea30add9a0d2e0a7cd0aff88f5d2fd4eb22df35eb2d1d0726"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_September2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121410,
+      "sha256": "2b9fe517e9ed5c81e05dbdfaf1026f9db1daf0a007fa7f5e859feff7d2bff87a",
+      "source": "Results/Bidding/dsfunction_September2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_October2025_exact_V5_k20_classified_width.xlsx",
+      "size": 123465,
+      "sha256": "6a9c1c328a48ba2dac06ca751bc446a0bcb84b65bdb730f1a63d3e1c3493875f"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_October2025_exact_V5_k20_classified_width.xlsx",
+      "size": 123465,
+      "sha256": "d5b29c7f0fd23baa4797a8a5b67e438afa535880c2e5c418f15d202fe56d5474",
+      "source": "Results/Bidding/dsfunction_October2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_November2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121026,
+      "sha256": "7de09c9d2b8ae3ad42b02465c757f2623f5320718a579817c6509ffaaa324c94"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_November2025_exact_V5_k20_classified_width.xlsx",
+      "size": 121026,
+      "sha256": "4a6a7778b3dc9ce63325ef2956a0b73b3deaafabf6572c22c50ef5a498f86e67",
+      "source": "Results/Bidding/dsfunction_November2025_exact_V5_k20_classified_width.xlsx"
+    },
+    {
+      "role": "source dsfunction snapshot",
+      "path": "Results/Bidding/dsfunction_December2025_exact_V5_k20_classified_width.xlsx",
+      "size": 126896,
+      "sha256": "f2f5f5e4198ac5c4421a843da96a449a5b04e1119a186b782b6d517127b6af33"
+    },
+    {
+      "role": "classified-width dsfunction workbook",
+      "path": "Results/Bidding/dsfunction_December2025_exact_V5_k20_classified_width.xlsx",
+      "size": 126897,
+      "sha256": "25f5d0a8d356cc599566ed9e5f99b5e2469fd51d72a618344d9e8320ef062d60",
+      "source": "Results/Bidding/dsfunction_December2025_exact_V5_k20_classified_width.xlsx"
     },
     {
       "role": "Figure 4c price input",
-      "path": "Figure_Plot\\figure_plot_4_c\\input\\202505 CAISO Average Price.csv",
-      "size": 284587,
-      "sha256": "0dfc6482c43a96cddca28888a719de0807884c8aff9ecb5964bb193f4f293643",
-      "source": "data\\price\\202505 CAISO Average Price.csv",
-      "action": "unchanged"
+      "path": "data/price/202301 CAISO Average Price.csv",
+      "size": 292114,
+      "sha256": "4ca415a8723290a00a523631abdb6036337193c1bcd9708339a43970662ff9ad"
     },
     {
-      "role": "Figure 4d analysis workbook",
-      "path": "Figure_Plot\\figure_plot_4_d\\analysis_202301_202512.xlsx",
-      "size": 9117,
-      "sha256": "8784c329986f9e8f8f0fa4b1cf4006d4f1ec97758e10dcd76cfb3af70342952d",
-      "source": "Results\\Bidding\\analysis_202301_202512.xlsx",
-      "action": "copied"
+      "role": "Figure 4c price input",
+      "path": "data/price/202302 CAISO Average Price.csv",
+      "size": 259129,
+      "sha256": "0de197d77db05e87cc2e52fe9df3aca5b147830d4da0fc2fe64faf11c3292349"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202303 CAISO Average Price.csv",
+      "size": 286198,
+      "sha256": "e616e0c280adfc9ba338e16840b0ffdcc3487d490bc0b25917faef4324843c22"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202304 CAISO Average Price.csv",
+      "size": 276219,
+      "sha256": "c98df8798985741f3406adf5a471393a6a7061cc61ba969504504d53f58e82dc"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202305 CAISO Average Price.csv",
+      "size": 284671,
+      "sha256": "603056824943cf1d55ec442d8adec0f292879cb781ca4b870d32f63fdebdc470"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202306 CAISO Average Price.csv",
+      "size": 275801,
+      "sha256": "8e7188031fe3a1e33deb31abf288b043f844932db2365df55d4eb0d3c62a4ece"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202307 CAISO Average Price.csv",
+      "size": 285394,
+      "sha256": "c2aee4514cd88edf4b93b3aab00f22b03253af740814ca6896466dd2797ed73e"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202308 CAISO Average Price.csv",
+      "size": 285325,
+      "sha256": "8eb4ed20e7ddbfa727ae4144ce091ed95fe84818450ac55078784ddc148e876f"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202309 CAISO Average Price.csv",
+      "size": 276238,
+      "sha256": "ebd6266515c6bd05d8c819730453e6309d27ffb57a89914a9f4768c1bf559a79"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202310 CAISO Average Price.csv",
+      "size": 294357,
+      "sha256": "30cca9693c1e431d43b52ee4e81142a0637a6d80c3093e8d29d4c4a7c0e26c0f"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202311 CAISO Average Price.csv",
+      "size": 285173,
+      "sha256": "7068d1d8f46a0df1ce0a0bbae006d2fc062031d6acd67e0ca82d568317c44ef0"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202312 CAISO Average Price.csv",
+      "size": 293963,
+      "sha256": "8c9d71136b92b57d6db3f71463a897dea4adcce632e42ffea8f902c111ea6b30"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202401 CAISO Average Price.csv",
+      "size": 286257,
+      "sha256": "f879665e2e6cca519dc520f0db616f147a34e22861c64459086494aa12be6e14"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202402 CAISO Average Price.csv",
+      "size": 267398,
+      "sha256": "b1005ea90502aa41bfd8a56efd284625933bcedd1fab08f20b943d9e937d91f7"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202403 CAISO Average Price.csv",
+      "size": 286518,
+      "sha256": "c4687472374b42e42c89b45dc5627db338f0cd6b14d5cfcbe07d595ebc2533f8"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202404 CAISO Average Price.csv",
+      "size": 277603,
+      "sha256": "9b90df69bfb4fb0904b9542bdbd29523591bcc8cb297fa7af39eeaa033d03b37"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202405 CAISO Average Price.csv",
+      "size": 285911,
+      "sha256": "d980242e0290f07e72c02e2842ce303ae74703f40417dcb40a911b619648148c"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202406 CAISO Average Price.csv",
+      "size": 276200,
+      "sha256": "600d4972c7cf1d5737f9d5d83204a200905012d1b65310c28bdd5ff6b9dfabba"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202407 CAISO Average Price.csv",
+      "size": 285151,
+      "sha256": "279f9ab511cd7868c336d8db2d1172e699d3aacac59accf879568f36a342fa6a"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202408 CAISO Average Price.csv",
+      "size": 284812,
+      "sha256": "ed205beb9b6ea95e52b4253fd5f4f243c28e50aeb746b905ddeaed5cda05d426"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202409 CAISO Average Price.csv",
+      "size": 275883,
+      "sha256": "8466ac7607712a364a245c9863b89f20bd5e889821c461f448f3c80da7eaaa3c"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202410 CAISO Average Price.csv",
+      "size": 294259,
+      "sha256": "c9bc09dc68f35a7ff53174aa30510c59adf5424fff74aa5c9034ba3af1aa3b34"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202411 CAISO Average Price.csv",
+      "size": 284654,
+      "sha256": "028e79cea654b86b88d273ee1e3cdf13bcb10e53548806d252337ec2ebdf5952"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202412 CAISO Average Price.csv",
+      "size": 293998,
+      "sha256": "8c1ec7a74ab5c39c02f31b2958d7091a0805468a6a14a095c66239f1f705d00a"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202501 CAISO Average Price.csv",
+      "size": 284877,
+      "sha256": "f32af6ddc18ee954c8061faf3451710a151d2cc140996c2ba2dc3c685f05a77c"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202502 CAISO Average Price.csv",
+      "size": 258230,
+      "sha256": "0cbf65532a98124f1ee905012304917226b7990232926deb8101f4f7fd5a9bc7"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202503 CAISO Average Price.csv",
+      "size": 285930,
+      "sha256": "0be655cd6f49a661720f029069c13516969bc4557ed4b746685cb92208f8a17e"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202504 CAISO Average Price.csv",
+      "size": 276337,
+      "sha256": "32b57b03b28abb5a3599c314f1bae21d0a42c1c293ecd1fa6f6a4da77cc8964e"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202505 CAISO Average Price.csv",
+      "size": 284587,
+      "sha256": "0dfc6482c43a96cddca28888a719de0807884c8aff9ecb5964bb193f4f293643"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202506 CAISO Average Price.csv",
+      "size": 275755,
+      "sha256": "2e5effe53a333c7228f821ed6cf91494c28d382c9014b3168b6a5647066223f9"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202507 CAISO Average Price.csv",
+      "size": 284904,
+      "sha256": "08263518fba78e8c21d98b669e46e614af32370b41dd0055f14b69044090da23"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202508 CAISO Average Price.csv",
+      "size": 285087,
+      "sha256": "0f67d90d3b0efcaef727ebe069210607e6e5e04b61a1a94018fe676f6d82a864"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202509 CAISO Average Price.csv",
+      "size": 276225,
+      "sha256": "174c3ec4720c2c197db78de07aea3f38d958b65ebc6aa2cc3548eb43f3f61f7e"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202510 CAISO Average Price.csv",
+      "size": 293753,
+      "sha256": "66ae7d28deaa3f458cccfc68d1ba3cc1e4d0a0fadee7672fa46724c5a92a3b73"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202511 CAISO Average Price.csv",
+      "size": 284935,
+      "sha256": "c9335df1135f2d0bc8b771b833291c1d6eac674df7c6a340b8d51e0d70c15b47"
+    },
+    {
+      "role": "Figure 4c price input",
+      "path": "data/price/202512 CAISO Average Price.csv",
+      "size": 293887,
+      "sha256": "3386d8276bba807d4e58e8f2886659da226e41362bb01e0a37bcf8444d321530"
+    },
+    {
+      "role": "Figure 4d Bidding analysis workbook",
+      "path": "Results/Bidding/analysis_202301_202512.xlsx",
+      "size": 9104,
+      "sha256": "b24f822f9a51117680b1b2b70effb254990f48334f325b36d3628faaf39aeae0"
+    },
+    {
+      "role": "Figure 4d Self-Scheduling analysis workbook",
+      "path": "Results/Self-Scheduling/analysis_202301_202512.xlsx",
+      "size": 9119,
+      "sha256": "126c61bceb6aa245899c23d4b386610aa4fa64543bf3e5e64a829bbf96d889f8"
     },
     {
       "role": "Figure 4e April result CSV",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "size": 347358,
-      "sha256": "a81ea90a02fc0ec848e3b9e4bf8129482e2671e8d420986a9742e9ce278c8ff2",
-      "source": "Results\\Bidding\\April2025_eta95%_std2_exact_V5_k20.csv",
-      "action": "copied"
+      "path": "Figure_Plot/figure_plot_4_e/input/April2025_eta95%_std2_exact_V5_k20.csv",
+      "size": 347664,
+      "sha256": "d8a6f314b27244829671486241a548d22be02d0adacab5d3ab4ed479e6d73b37",
+      "source": "Results/Bidding/April2025_eta95%_std2_exact_V5_k20.csv",
+      "action": "unchanged"
     },
     {
       "role": "Figure 4e price input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\202504 CAISO Average Price.csv",
+      "path": "Figure_Plot/figure_plot_4_e/input/202504 CAISO Average Price.csv",
       "size": 276337,
       "sha256": "32b57b03b28abb5a3599c314f1bae21d0a42c1c293ecd1fa6f6a4da77cc8964e",
-      "source": "data\\price\\202504 CAISO Average Price.csv",
+      "source": "data/price/202504 CAISO Average Price.csv",
       "action": "unchanged"
     },
     {
       "role": "Figure 4e curtailment input",
-      "path": "Figure_Plot\\figure_plot_4_e\\input\\curtailment_202504.csv",
+      "path": "Figure_Plot/figure_plot_4_e/input/curtailment_202504.csv",
       "size": 17591,
       "sha256": "95b8d627bf745e453fe181f0461319ea917b4dc778d9deaea7256b8113763b52",
-      "source": "data\\curtailment\\curtailment_202504.csv",
+      "source": "data/curtailment/curtailment_202504.csv",
       "action": "unchanged"
     }
   ],
   "outputs": [
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.png",
-      "size": 295628,
-      "sha256": "6788612963ab321dfde97bbbac307914aac5cc50a3e7718ca1b06aece9b0219d"
+      "path": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.png",
+      "size": 275163,
+      "sha256": "8e24bce083dd4d5e9db5563efce3dd40bbd9c33c6f28a0aa5921f31cf6ecb2ef"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.svg",
-      "size": 13707,
-      "sha256": "a1a2948f6a0d9a31da88e51256d561c7a0e11ce3c432d6c1e380d9d5a71c5131"
+      "path": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.svg",
+      "size": 12951,
+      "sha256": "b2c5b667c80a21e8137cad7a19596920470f909a2fb667d123720e218f9260ff"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025.pdf",
-      "size": 33393,
-      "sha256": "2e5ee6a788c2eb5d4e6b434bbfdf39cfeb14688645581d66b6767fb4aa21f081"
+      "path": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.pdf",
+      "size": 32797,
+      "sha256": "092cf90c0611efea56917dc338c38bdb4f91c26b0196b402f6d4100867a2ad90"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_a_b\\state_distribution_pies_May2025\\state_distribution_pies_May2025_source_data.csv",
+      "path": "Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025_source_data.csv",
       "size": 753,
-      "sha256": "726bad8fc94329bd314a2b55aeaadc23b5022f12c47f2b65207e5cb90d6c68f3"
+      "sha256": "5ec2409c87bc7af615eeb7bf8197cd721d391e5ffebefa60c1cef6bc84048955"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\P_ESS_state_hourly_counts_May2025.xlsx",
-      "size": 6784,
-      "sha256": "43404a1ee943bdc9298a0b991f11c701aab549a277673275b7f61ab449878c09"
+      "path": "Figure_Plot/figure_plot_4_c/output/P_ESS_state_hourly_counts_selected.xlsx",
+      "size": 8422,
+      "sha256": "ac80110d53f2fbbe6007259d8a7dbf0822a2425766096a1e73dc77a0e6db68d6"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\output\\hourly_state_counts_and_price_May2025_source_data.csv",
-      "size": 1923,
-      "sha256": "fa89086338667c18e76f59b1bb70ca4bf072e11a0cb6e5e6f59c1a69436c5199"
+      "path": "Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_12_2024_12_2025_12_source_data.csv",
+      "size": 9678,
+      "sha256": "a792c93d5a3d5c40ac2533cf0d0e6da4a6bc7464dfdd622b8c610b5ead0a2cda"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.png",
-      "size": 287096,
-      "sha256": "39cb9e11441290c67c80c2f4b74cbe88b7de8d418a6f17e5e6cc996d8002cab2"
+      "path": "Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.png",
+      "size": 282689,
+      "sha256": "fee9ded22ae5f4889bfb77e77ffe170193e39c46b9867979377f2cc5c588e9c7"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.svg",
-      "size": 64000,
-      "sha256": "3fec28c8423458f86a4c48aba7aa47722fbf9694c82d06f6179fbf085a9627fd"
+      "path": "Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.svg",
+      "size": 61754,
+      "sha256": "ce4602ae9e4b97935de2bf73f5c71737564691d9316935952bf4f398097d478e"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_c\\figures\\hourly_state_counts_and_price_May2025.pdf",
-      "size": 39654,
-      "sha256": "8db2b87424fb927ace67025386550f03decf7ba4694172f3c6ff23465c36b84b"
+      "path": "Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.pdf",
+      "size": 40939,
+      "sha256": "2018db71e5255ecc66daf8c93648a76c905b46e121b3caead87273cd698cda8c"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.png",
-      "size": 1467088,
-      "sha256": "1126ea9d59fffedabc22f451ac0c89a6cfde0ed5715d1940178a3c57b37824ff"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/profit_increment_radial/profit_increment_rate_radial_2023_2025.png",
+      "size": 1447296,
+      "sha256": "b75e725d1cc3fe46d2cbad1effb8a18b0fb4da8b7fd24f465689760ee516a221"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.svg",
-      "size": 87052,
-      "sha256": "36b0a09ee54fa0ea1458d17eda71e8f66d6b99fd465f27e01d3b8cec2ee52217"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/profit_increment_radial/profit_increment_rate_radial_2023_2025.svg",
+      "size": 82694,
+      "sha256": "bdb3c371aeff6558254984009405737b91541f3db90ee1c55d98d33c3a9bdb90"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.pdf",
-      "size": 47442,
-      "sha256": "33195585f695cc54724d72b19924657dad377fd434cf013ce2d2bfeeb953c7ca"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/profit_increment_radial/profit_increment_rate_radial_2023_2025.pdf",
+      "size": 48200,
+      "sha256": "e662477b7c527563bc5f5748f5ebd857509327a0a0ed89605c0f67f9a9adbf2f"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\profit_increment_radial\\profit_increment_rate_radial_2023_2025.tiff",
-      "size": 1874772,
-      "sha256": "e59ce144f377734e0e5558ba9322ac135e542e0576a76ae5c524a09dcb076d06"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/profit_increment_radial/profit_increment_rate_radial_2023_2025.tiff",
+      "size": 1894910,
+      "sha256": "dfc4dc0a88a19070988e84b9f0f2c9ba810a64cc308454de0d19a74adbaa9f16"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.png",
-      "size": 3543142,
-      "sha256": "f4ae9700e37683abb6247689beacee827cb49a21f22bd609e439d98d1ddb8a81"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/combined_radial/profit_carbon_cost_radial_2023_2025.png",
+      "size": 3543427,
+      "sha256": "e7d7da39d750bfe89c42a465b9ccc90bddcf78450b4c22f668f288f97c775345"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.svg",
-      "size": 250619,
-      "sha256": "3800abb22880374633a677a6f7a3e0c6b25c7fe52cc0dc954a63171ee03a0a03"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/combined_radial/profit_carbon_cost_radial_2023_2025.svg",
+      "size": 238459,
+      "sha256": "84a1a4c877d9724026b1a91c4732f0fb9e2354e090edc4d0c310d3474f3aa63a"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.pdf",
-      "size": 87883,
-      "sha256": "fc4d241ded0020c6bd4c741b381e42c6542ea6d820ac554b4dfabbc803149956"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/combined_radial/profit_carbon_cost_radial_2023_2025.pdf",
+      "size": 88726,
+      "sha256": "1e32532a72ad789d55d94ff25710448b5bd75c26e0bf4e411167d0b802e711aa"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\combined_radial\\profit_carbon_cost_radial_2023_2025.tiff",
-      "size": 6058836,
-      "sha256": "fd8857012486781dc13cc078891bf454ceecee5df9ecd3c7e15079266e762f40"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/combined_radial/profit_carbon_cost_radial_2023_2025.tiff",
+      "size": 6104134,
+      "sha256": "4f4b15c53bf4dde3f0b39cdc272d2c47f51b49f80fad20757de53e0e83c5f61d"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.png",
-      "size": 1239357,
-      "sha256": "73052457e3489bf592a8ef77353b2735d25ed22bb914bda41ab163d795f2438d"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.png",
+      "size": 1223043,
+      "sha256": "efee3f0323c236bbf429ab82cf6d0bb791b7ed0e05bc2408e814b021fcbfd4b1"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.svg",
-      "size": 82308,
-      "sha256": "eeb64f277cfb08f23158f97489e608c42a27dd6c205f05e386b2c7f99eaebb99"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.svg",
+      "size": 78412,
+      "sha256": "f585da14863dacd95aaff377074c9253bc3f985506aee17ce18e58932bb47917"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.pdf",
-      "size": 46945,
-      "sha256": "233933935d50db422e268890badd189e1aa29d60f79a709703f623c5e9353ecc"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.pdf",
+      "size": 47676,
+      "sha256": "c91e372cabba7aa3f179d58481471149fc58f7a0a8786d28df43070d131092e1"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\carbon_reduction_radial\\carbon_reduction_rate_radial_2023_2025.tiff",
-      "size": 1636698,
-      "sha256": "8dfffe8a6b78783700eab9e6c5d49afb63583045ada18817b56aa08d60b35530"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.tiff",
+      "size": 1652176,
+      "sha256": "a9f847dc893672fa4a1adcca36b36756c158403998d42b5d2a6d47de37c313d5"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.png",
-      "size": 1233358,
-      "sha256": "f1e0990971fe0973e0fdd0af45984e34765749d3fbc50d5bf463804f80a96d33"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.png",
+      "size": 1217867,
+      "sha256": "ee10d26fac0e0e907ccf3ef288fb840e5616de9be784fbcb5e47db8c03442f94"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.svg",
-      "size": 82312,
-      "sha256": "af1c3ed3d57d6c4f4a0b983e34f223a0520edeb44c1e14b5304de35bcb4e56a8"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.svg",
+      "size": 78416,
+      "sha256": "8e9e056a8cf0a72ba4b42f7d87ea5f2af5699272f7d7d882c248b6b59a185558"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.pdf",
-      "size": 47223,
-      "sha256": "5ef9e826b7b80869e867afe8aca8a48c4ec7ebd968b2ecca89f0385c466667c7"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.pdf",
+      "size": 47951,
+      "sha256": "b7f26ba18558063e274b96fb1969c26d0639160ac6d69cbe676755d0473c132b"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_d\\outputs\\cost_reduction_radial\\cost_reduction_rate_radial_2023_2025.tiff",
-      "size": 1619044,
-      "sha256": "dc3256825f923245fb6b3238d90e6da45d42a2ac329a885562f20aa6265a5bcb"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Bidding/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.tiff",
+      "size": 1634896,
+      "sha256": "b12fd3c2bfc888078c02abe8a6386eb18fc5496484f9b479eb183ab7e7f2fe8d"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.png",
-      "size": 216353,
-      "sha256": "d8345ce347dd8a6f714adfcd0c36e42163e4b3554ea77d1a958e98bc62ffb644"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/profit_increment_radial/profit_increment_rate_radial_2023_2025.png",
+      "size": 1449966,
+      "sha256": "6d9db287415c14332cb5a2f1106a73d1febe1cd6de507f5e02cfb16bf392b06c"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.svg",
-      "size": 27955,
-      "sha256": "e045fa9e33ecb7b9efa4ddcb30707680461de9370347fc89c1f78d498ff6c214"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/profit_increment_radial/profit_increment_rate_radial_2023_2025.svg",
+      "size": 82684,
+      "sha256": "81148e42a63d1853c8c741b5acfc8c58b4748b77e212069f84d220a00edc1661"
     },
     {
       "role": "generated figure output",
-      "path": "Figure_Plot\\figure_plot_4_e\\Figs\\Fig_4_e.pdf",
-      "size": 35056,
-      "sha256": "555f708727859ed637bbc07bce585346b6b809455372032a94f3e9ef2cb30ce5"
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/profit_increment_radial/profit_increment_rate_radial_2023_2025.pdf",
+      "size": 48230,
+      "sha256": "bec237f7f7157058fa2c0a4cb61bc512ef9d68e829b68563427e7a9d4050b1cd"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/profit_increment_radial/profit_increment_rate_radial_2023_2025.tiff",
+      "size": 1895840,
+      "sha256": "674f5912dad23c841ed506383d7145696fc31905acd24c17182c313a51a1adfa"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/combined_radial/profit_carbon_cost_radial_2023_2025.png",
+      "size": 3547133,
+      "sha256": "8f0c1afa8a103c210ae0a7c2407163b029c5eb2d93dab82176378b468d56a296"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/combined_radial/profit_carbon_cost_radial_2023_2025.svg",
+      "size": 238438,
+      "sha256": "8c24b0e322b49c26c674239beb4d5b80daeb293866a311830380771aa7432856"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/combined_radial/profit_carbon_cost_radial_2023_2025.pdf",
+      "size": 88732,
+      "sha256": "5b4f7974b30397232ca79b19cc9dc92c2ae77d464a4d4cf9bae032ea932f27f1"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/combined_radial/profit_carbon_cost_radial_2023_2025.tiff",
+      "size": 6102858,
+      "sha256": "619921967c3edbcc7a6c994000f56e57c89cb460ce7b896aa72151e331f08a5d"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.png",
+      "size": 1225485,
+      "sha256": "ee2556d02d24cd1a8c2781b3a389edce4e2231b5a97b9502d3a10d2ff43fbded"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.svg",
+      "size": 78387,
+      "sha256": "6edf06511c906bd55d5ade8da7f3da2475960de0f4a6e07947bf3cf3cfb954d0"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.pdf",
+      "size": 47678,
+      "sha256": "2341450b741287b06340196b6bbb7fdbd1cde02e88f29fcf6a174b5865fca1f9"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/carbon_reduction_radial/carbon_reduction_rate_radial_2023_2025.tiff",
+      "size": 1652296,
+      "sha256": "63f2d5d203409f6d5ce1f327841a6a82af5549d4b69a2e186e24330302c2d86f"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.png",
+      "size": 1218520,
+      "sha256": "7665db9b9dbb87f949b58d2ea46cb265b27c4163fd0bae902e810361a181b488"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.svg",
+      "size": 78419,
+      "sha256": "b3265a472163f669d2d7e721625400e9058064ef62afaa9ad3c1a7e6afba1b29"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.pdf",
+      "size": 47988,
+      "sha256": "fa9903692c57b5875bbac286b95892873a44694b6cb0c4b23b2b4cc5ac355147"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_d/outputs/Self-Scheduling/cost_reduction_radial/cost_reduction_rate_radial_2023_2025.tiff",
+      "size": 1633838,
+      "sha256": "628d36c563f8dd236c14009a9d0b786ecc2d71958e231862b648bf24eeb33271"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_e/Figs/Fig_4_e.png",
+      "size": 208924,
+      "sha256": "acf93889690a2f33110e57bc17085ac57d9438d5c49b41bad8d4282a5e130aeb"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_e/Figs/Fig_4_e.svg",
+      "size": 27553,
+      "sha256": "8a4d708776e781992e9fb96d56b6c52e989c2e5340968fc2751b2ef16fd76247"
+    },
+    {
+      "role": "generated figure output",
+      "path": "Figure_Plot/figure_plot_4_e/Figs/Fig_4_e.pdf",
+      "size": 35262,
+      "sha256": "598175ef23eabca59dd6b0f096b7fc60e9930e2fbb541a0e0921b377b8d28171"
     }
   ],
   "error": null,
-  "finished_at": "2026-08-25T06:31:40.400676+00:00"
+  "finished_at": "2026-11-08T04:35:06.462073+00:00"
 }

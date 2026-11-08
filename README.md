@@ -353,7 +353,9 @@ Three auxiliary scripts in the same directory are not called by `journalcasestud
 
 ### Figure 4 — automated generation
 
-`Figure_Plot/Figure_Generation.py` is the orchestration entry point for all Figure 4 panels. It resolves canonical bidding inputs from `Results/Bidding/` and other inputs from `data/`, copies fresh snapshots into each figure directory, runs the classification and plotting scripts in dependency order, and writes a provenance manifest to `Figure_Plot/Figure_Generation_manifest.json`.
+`Figure_Plot/Figure_Generation.py` is the orchestration entry point for all Figure 4 panels. It refreshes the selected monthly `*_classified_width.xlsx` inputs in `Results/Bidding/`, runs the current classification and plotting scripts in dependency order, and writes a provenance manifest to `Figure_Plot/Figure_Generation_manifest.json`. It follows each plotting module's own month selection: the current Figure 4a/b default is May 2025, while Figure 4c pools all 36 months. Figure 4d uses the available Bidding and Self-Scheduling analysis workbooks; Figure 4e retains its local input snapshots.
+
+When a classified-width workbook already exists, regeneration preserves its dispatch and stair snapshot and refreshes only its classification columns. The raw monthly workbook is used only when that classified-width input is absent. Classification is staged in temporary files before replacing the selected input, so a failed preprocessing step leaves the existing workbook intact.
 
 ```powershell
 # Regenerate all Figure 4 panels
@@ -366,22 +368,24 @@ python Figure_Plot/Figure_Generation.py --figures 4d 4e
 python Figure_Plot/Figure_Generation.py --skip-analysis
 ```
 
-The individual scripts described below can still be run directly against pre-existing figure-directory inputs.
+The individual scripts described below can still be run directly against their existing canonical inputs.
 
 ### Figure 4a–b
 
-The committed classified workbook can be plotted directly:
+The selected classified-width workbooks can be plotted directly:
 
 ```powershell
-python Figure_Plot/figure_plot_4_a_b/state_distribution_pies_May2025/plot_state_distribution_pies_May2025.py
+python Figure_Plot/figure_plot_4_a_b/plot_state_distribution_pies.py
 ```
+
+Power-state classification uses an inclusive absolute 0.001 MW band for idle and maximum-rate power. This changes labels only; physical power and SOC are retained, and stair matching keeps its separate 1e-6 absolute tolerance. For width statistics, post-action SOC within 0.001 of either boundary is classified as mB before power-state classification, including zero-power segments; those widths are excluded from the five-category pie.
 
 ### Figure 4c
 
 ```powershell
 Push-Location Figure_Plot/figure_plot_4_c
 python export_hourly_state_counts.py
-python plot_hourly_state_counts_price_May2025.py
+python plot_hourly_state_counts_price.py
 Pop-Location
 ```
 

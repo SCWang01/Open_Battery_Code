@@ -1,8 +1,7 @@
 """Synchronize Results and regenerate the reproducible Figure 4 assets.
 
-The existing Figure 4 scripts intentionally keep their figure-specific paths.
-This module is the small orchestration layer around them: it resolves canonical
-inputs, copies fresh snapshots into those paths, runs the existing processors in
+The existing Figure 4 scripts retain their own selections and output paths.
+This module prepares their canonical inputs, runs the existing processors in
 dependency order, and records the resulting inputs and outputs in a manifest.
 
 Usage from the repository root::
@@ -17,12 +16,16 @@ existing plotting scripts.
 from __future__ import annotations
 
 import argparse
+import calendar
 import hashlib
 import json
+import os
 import platform
+import runpy
 import shutil
 import subprocess
 import sys
+import tempfile
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,8 +41,6 @@ PROGRAM_DIR = PROJECT_ROOT / "Program"
 MANIFEST_PATH = FIGURE_DIR / "Figure_Generation_manifest.json"
 
 FIGURE_CHOICES = ("4a", "4b", "4c", "4d", "4e")
-MAY_DSFUNCTION_NAME = "dsfunction_May2025_exact_V5_k20.xlsx"
-MAY_PRICE_NAME = "202505 CAISO Average Price.csv"
 APRIL_RESULT_NAME = "April2025_eta95%_std2_exact_V5_k20.csv"
 APRIL_PRICE_NAME = "202504 CAISO Average Price.csv"
 APRIL_CURTAILMENT_NAME = "curtailment_202504.csv"
@@ -185,9 +186,10 @@ def run_script(
     """Run an existing repository script with a checked subprocess boundary."""
     script = require_file(script, "figure-generation script")
     working_directory = (cwd or PROJECT_ROOT).resolve()
+    args = tuple(args)
     recorded_command = [
         "python",
-        script.relative_to(working_directory).as_posix(),
+        Path(os.path.relpath(script, working_directory)).as_posix(),
         *args,
     ]
     report.commands.append(
@@ -203,79 +205,127 @@ def run_script(
     )
 
 
-def prepare_may_workbook(report: GenerationReport) -> Path:
-    """Refresh, classify, and return the May workbook used by Figures 4a-c."""
-    source = resolve_source(
-        MAY_DSFUNCTION_NAME,
-        "May 2025 dsfunction workbook",
-        RESULTS_DIR,
-    )
-    source_dir = FIGURE_DIR / "figure_plot_4_a_b" / "source_data"
-    workbook = sync_file(
-        source,
-        source_dir / MAY_DSFUNCTION_NAME,
-        report,
-        "May dsfunction source workbook",
-    )
-    run_script(
-        source_dir / "classify_p_ess.py",
-        report,
-        cwd=source_dir,
-        args=("--input", workbook.name),
-    )
-    classified = source_dir / f"{Path(MAY_DSFUNCTION_NAME).stem}_classified.xlsx"
-    # Figure 4a-b consumes the derived interval-width column; this existing
-    # preprocessing step must run after classification and before plotting.
-    run_script(source_dir / "add_dsfunction_state_array.py", report, cwd=source_dir)
-    report.files.append(file_record(classified, role="classified May dsfunction workbook"))
-    return require_file(classified, "classified May dsfunction workbook")
+def plotting_settings(relative_script: str) -> dict:
+    """Load a plotting module's definitions without executing its main routine."""
+    script = require_file(FIGURE_DIR / relative_script, "figure-generation script")
+    return runpy.run_path(str(script))
+
+
+def selected_state_periods(config: GenerationConfig) -> dict[str, list[tuple[str, tuple[tuple[int, int], ...]]]]:
+    """Use each current plot's selection and naming rules as the source of truth."""
+    periods = {}
+    if config.wants_4ab:
+        settings = plotting_settings("figure_plot_4_a_b/plot_state_distribution_pies.py")
+        if settings["PLOT_SEASONS"]:
+            month_sets = [
+                settings["select_months"](settings["season_selection_matrix"](season))
+                for season in settings["SEASON_MONTHS"]
+            ]
+        else:
+            month_sets = [settings["select_months"]()]
+        periods["4ab"] = [
+            (settings["period_basename_suffix"](months), tuple(months))
+            for months in month_sets
+        ]
+    if config.wants_4c:
+        settings = plotting_settings("figure_plot_4_c/export_hourly_state_counts.py")
+        periods["4c"] = [
+            (period.output_suffix, period.months)
+            for period in settings["selected_periods"]()
+        ]
+    return periods
+
+
+def prepare_state_workbooks(config: GenerationConfig, report: GenerationReport) -> None:
+    """Refresh labels/widths while retaining each saved dispatch/staircase snapshot."""
+    periods = selected_state_periods(config)
+    months = sorted({month for groups in periods.values() for _, selected in groups for month in selected})
+    for year, month in months:
+        filename = f"dsfunction_{calendar.month_name[month]}{year}_exact_V5_k20.xlsx"
+        raw_source = RESULTS_DIR / filename
+        output = raw_source.with_name(f"{raw_source.stem}_classified_width.xlsx")
+        # Raw and classified archives can represent different simulation runs.
+        # Repainting must preserve the snapshot already used by the figures.
+        source = require_file(output if output.is_file() else raw_source, "monthly dsfunction snapshot")
+        report.files.append(file_record(source, role="source dsfunction snapshot"))
+        staging_paths: list[Path] = []
+        try:
+            for step in ("classified", "widths"):
+                with tempfile.NamedTemporaryFile(
+                    prefix=f".{output.stem}.{step}.", suffix=".xlsx", dir=RESULTS_DIR, delete=False
+                ) as temporary:
+                    staging_paths.append(Path(temporary.name))
+            classified, widths = staging_paths
+            run_script(
+                PROGRAM_DIR / "classify_p_ess.py",
+                report,
+                args=("--input", str(source), "--output", str(classified)),
+            )
+            run_script(
+                PROGRAM_DIR / "add_dsfunction_state_array.py",
+                report,
+                args=("--input", str(classified), "--output", str(widths)),
+            )
+            widths.replace(output)
+        finally:
+            for staged in staging_paths:
+                staged.unlink(missing_ok=True)
+        report.files.append(file_record(output, role="classified-width dsfunction workbook", source=source))
+    if config.wants_4c:
+        price_months = sorted({month for _, selected in periods["4c"] for month in selected})
+        for year, month in price_months:
+            price = DATA_DIR / "price" / f"{year}{month:02d} CAISO Average Price.csv"
+            report.files.append(file_record(price, role="Figure 4c price input"))
+
+
+def available_analysis_workbooks() -> list[tuple[str, Path]]:
+    """Follow the radial scripts' default scenarios and missing-input policy."""
+    settings = plotting_settings("figure_plot_4_d/plot_profit_increment_radial.py")
+    return [
+        (scenario, path)
+        for scenario, path in settings["SCENARIO_WORKBOOKS"].items()
+        if path.is_file()
+    ]
 
 
 def prepare_analysis_workbook(config: GenerationConfig, report: GenerationReport) -> Path:
-    """Refresh and synchronize the Figure 4d analysis workbook."""
+    """Refresh Bidding analysis and record the actual Figure 4d inputs."""
     if not config.skip_analysis:
         run_script(PROGRAM_DIR / "analyze_summary.py", report)
     source = require_file(RESULTS_DIR / ANALYSIS_NAME, "analysis workbook")
-    destination = FIGURE_DIR / "figure_plot_4_d" / ANALYSIS_NAME
-    return sync_file(source, destination, report, "Figure 4d analysis workbook")
+    for scenario, workbook in available_analysis_workbooks():
+        report.files.append(file_record(workbook, role=f"Figure 4d {scenario} analysis workbook"))
+    return source
 
 
 def expected_outputs(config: GenerationConfig) -> list[Path]:
     """Return the canonical output paths for the selected panels."""
     paths: list[Path] = []
+    periods = selected_state_periods(config)
     if config.wants_4ab:
-        base = FIGURE_DIR / "figure_plot_4_a_b" / "state_distribution_pies_May2025"
-        paths.extend(
-            base / f"state_distribution_pies_May2025{suffix}"
-            for suffix in (".png", ".svg", ".pdf", "_source_data.csv")
-        )
+        base = FIGURE_DIR / "figure_plot_4_a_b" / "Figs"
+        for period_suffix, _ in periods["4ab"]:
+            paths.extend(
+                base / f"state_distribution_pies_{period_suffix}{suffix}"
+                for suffix in (".png", ".svg", ".pdf", "_source_data.csv")
+            )
     if config.wants_4c:
         base = FIGURE_DIR / "figure_plot_4_c"
-        paths.extend(
-            [
-                base / "output" / "P_ESS_state_hourly_counts_May2025.xlsx",
-                base / "output" / "hourly_state_counts_and_price_May2025_source_data.csv",
-                *(base / "figures" / f"hourly_state_counts_and_price_May2025{suffix}" for suffix in (".png", ".svg", ".pdf")),
-            ]
-        )
+        paths.append(base / "output" / "P_ESS_state_hourly_counts_selected.xlsx")
+        for period_suffix, _ in periods["4c"]:
+            stem = f"hourly_state_counts_and_price_{period_suffix}"
+            paths.append(base / "output" / f"{stem}_source_data.csv")
+            paths.extend(base / "figures" / f"{stem}{suffix}" for suffix in (".png", ".svg", ".pdf"))
     if config.wants_4d:
-        base = FIGURE_DIR / "figure_plot_4_d" / "outputs"
-        paths.extend(
-            base / "profit_increment_radial" / f"profit_increment_rate_radial_2023_2025{suffix}"
-            for suffix in (".png", ".svg", ".pdf", ".tiff")
-        )
-        paths.extend(
-            base / "combined_radial" / f"profit_carbon_cost_radial_2023_2025{suffix}"
-            for suffix in (".png", ".svg", ".pdf", ".tiff")
-        )
-        paths.extend(
-            base / "carbon_reduction_radial" / f"carbon_reduction_rate_radial_2023_2025{suffix}"
-            for suffix in (".png", ".svg", ".pdf", ".tiff")
-        )
-        paths.extend(
-            base / "cost_reduction_radial" / f"cost_reduction_rate_radial_2023_2025{suffix}"
-            for suffix in (".png", ".svg", ".pdf", ".tiff")
-        )
+        for scenario, _ in available_analysis_workbooks():
+            base = FIGURE_DIR / "figure_plot_4_d" / "outputs" / scenario
+            for directory, stem in (
+                ("profit_increment_radial", "profit_increment_rate_radial_2023_2025"),
+                ("combined_radial", "profit_carbon_cost_radial_2023_2025"),
+                ("carbon_reduction_radial", "carbon_reduction_rate_radial_2023_2025"),
+                ("cost_reduction_radial", "cost_reduction_rate_radial_2023_2025"),
+            ):
+                paths.extend(base / directory / f"{stem}{suffix}" for suffix in (".png", ".svg", ".pdf", ".tiff"))
     if config.wants_4e:
         base = FIGURE_DIR / "figure_plot_4_e" / "Figs"
         paths.extend(base / f"Fig_4_e{suffix}" for suffix in (".png", ".svg", ".pdf"))
@@ -302,45 +352,21 @@ def generate(config: GenerationConfig) -> GenerationReport:
         skip_analysis=config.skip_analysis,
     )
     try:
-        classified_workbook: Path | None = None
         if config.wants_4ab or config.wants_4c:
-            classified_workbook = prepare_may_workbook(report)
+            prepare_state_workbooks(config, report)
 
         if config.wants_4ab:
             run_script(
                 FIGURE_DIR
                 / "figure_plot_4_a_b"
-                / "state_distribution_pies_May2025"
-                / "plot_state_distribution_pies_May2025.py",
+                / "plot_state_distribution_pies.py",
                 report,
             )
 
         if config.wants_4c:
-            if classified_workbook is None:
-                raise FigureGenerationError(
-                    "Figure 4c requires the classified May dsfunction workbook."
-                )
             figure_dir = FIGURE_DIR / "figure_plot_4_c"
-            sync_file(
-                classified_workbook,
-                figure_dir / "input" / f"{Path(MAY_DSFUNCTION_NAME).stem}_classified.xlsx",
-                report,
-                "Figure 4c classified dsfunction workbook",
-            )
-            may_price = resolve_source(
-                MAY_PRICE_NAME,
-                "May 2025 price CSV",
-                RESULTS_DIR,
-                DATA_DIR / "price",
-            )
-            sync_file(
-                may_price,
-                figure_dir / "input" / MAY_PRICE_NAME,
-                report,
-                "Figure 4c price input",
-            )
             run_script(figure_dir / "export_hourly_state_counts.py", report)
-            run_script(figure_dir / "plot_hourly_state_counts_price_May2025.py", report)
+            run_script(figure_dir / "plot_hourly_state_counts_price.py", report)
 
         if config.wants_4d:
             prepare_analysis_workbook(config, report)
@@ -388,7 +414,7 @@ def generate(config: GenerationConfig) -> GenerationReport:
 
         report.outputs = collect_outputs(config)
         report.status = "success"
-    except (FigureGenerationError, OSError, subprocess.CalledProcessError) as exc:
+    except (FigureGenerationError, OSError, ValueError, subprocess.CalledProcessError) as exc:
         report.status = "failed"
         report.error = str(exc)
         raise FigureGenerationError(str(exc)) from exc

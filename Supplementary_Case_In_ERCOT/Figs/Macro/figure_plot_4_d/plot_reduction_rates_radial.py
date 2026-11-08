@@ -76,7 +76,7 @@ class FigureSpec:
     output_stem: str
     panels: tuple[PanelSpec, ...]
     bar_width_fraction: float = 0.78
-    label_span_degrees: float = 20.0
+    label_span_degrees: float = 43.0
     annulus_width_fraction: float = 1.0
     annulus_gap: float = ANNULUS_INNER_RADIUS - ZERO_RADIUS
     annulus_thickness: float = ANNULUS_OUTER_RADIUS - ANNULUS_INNER_RADIUS

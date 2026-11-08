@@ -3,7 +3,7 @@
 Inputs are classified Rolling worksheets, with explicit UTC and local hours.
 State counts use the existing classifier's zero-limit policy. Prices retain
 every physical hour. Widths reproduce the legacy price-span calculation,
-normalizing the current segment energies in MWh before testing SOC boundaries.
+testing current segment energies against a boundary band in MWh.
 """
 
 from __future__ import annotations
@@ -43,7 +43,9 @@ DEFAULT_MONTH = "202605"
 TIMEZONE = "America/Chicago"
 PNG_DPI = 720
 CONFIDENCE_LEVEL = 0.90
-MB_TOLERANCE = 1e-5
+# Keep the archive range check separate from the MWh classification band.
+SOC_RANGE_TOLERANCE = 1e-5
+MB_ENERGY_TOLERANCE_MWH = 1e-3
 STATE_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD")
 WIDTH_STATE_ORDER = ("CC", "CD", "NU", "DC", "DD")
 COLORS = {
@@ -254,11 +256,15 @@ def segment_widths(
             raise ValueError(f"{segment_context}: price intervals are not contiguous.")
         previous_upper = upper
         soc = energy / capacity
-        if soc < -MB_TOLERANCE or soc > 1 + MB_TOLERANCE:
+        if soc < -SOC_RANGE_TOLERANCE or soc > 1 + SOC_RANGE_TOLERANCE:
             raise ValueError(
                 f"{segment_context}: normalized energy {soc} is outside [0, 1]."
             )
-        if abs(soc) < MB_TOLERANCE or abs(soc - 1) < MB_TOLERANCE:
+        # Boundary occupancy takes priority even when dispatch is zero or inward.
+        if (
+            energy <= MB_ENERGY_TOLERANCE_MWH
+            or energy >= capacity - MB_ENERGY_TOLERANCE_MWH
+        ):
             continue
         state = classify_p_ess(power, values, 0, pcmax=pcmax, pdmax=pdmax)
         if state == "NC":

@@ -2,8 +2,8 @@
 
 This directory contains the plotting source, regression tests, and current ERCOT
 figure exports. All scripts read the sibling `Data/`, `Results/`, and `Program/`
-directories. Run the commands below from the **release root** (`Open_Source/`
-in the original workspace). No manuscript files are required.
+directories. Run the commands below from the **ERCOT release root**, the directory
+containing `Data`, `Program`, `Results`, and `Figs`. No manuscript files are required.
 
 Install the release requirements first. Plotting uses NumPy, pandas, openpyxl,
 Matplotlib, SciPy, and pytz. The scripts use Matplotlib's noninteractive `Agg`
@@ -42,6 +42,35 @@ reproducing Figure 4d from newly computed Micro results. Figure 4e uses the gas
 system hourly results. See [Program](../Program/README.md) for the computation
 order. Figure 4e lives in `Figs/Macro/figure_plot_4_e/`.
 
+## Refresh after a completed Rolling run
+
+Old classified and system workbooks are snapshots, not live views of the new
+dispatch. Refresh the dependent tables before plotting. The following commands
+use completed Rolling results and do not run optimization; existing realized
+profit files may be reused when their source telemetry has not changed.
+
+```powershell
+python -B Program/Micro/classify_p_ess.py
+python -B Program/Micro/Realized_Match.py
+python -B Program/Micro/Compare_Month.py
+python -B Program/Micro/Bridge.py --output-dir Results/Macro_Results/ESR_Output_Rolling
+python -B Program/Macro/System_Rolling_Result.py --basis gas
+python -B Program/Macro/System_Rolling_Result.py --basis coal
+python -B Program/Macro/System_Rolling_Result.py --basis thermal
+```
+
+Then run the figure commands above. To export a+b/c for every configured month:
+
+```powershell
+foreach ($month in '202601','202602','202603','202604','202605','202606') {
+    python -B Figs/Micro/plot_esr_abc.py --month $month
+    if ($LASTEXITCODE -ne 0) { throw "Figure generation failed for $month" }
+}
+```
+
+The optional `Basis_Comparison_202601_202606.csv` is a separate summary snapshot;
+it is not an input to these plots and is not refreshed by the system CLI.
+
 ## Regression tests
 
 The suites check category boundaries, exclusions, aggregation denominators, Hub
@@ -57,7 +86,7 @@ python -B -m unittest discover -s Figs/Macro/figure_plot_4_e/tests -p "test_*.py
 ## Release selection
 
 The release includes the current 13-resource January-June 2026 classification
-and profit figures, April/May aggregate a+b/c figures, the three canonical 4d
+and profit figures, January-June aggregate a+b/c figures, the three canonical 4d
 exports, and the dated ERCOT 4e export. It excludes historical archives, old
 2023-2025 and CAISO assets, unused local input copies, single-resource a+b/c
 montages, redundant layout revisions, caches, and editor/agent/repository
