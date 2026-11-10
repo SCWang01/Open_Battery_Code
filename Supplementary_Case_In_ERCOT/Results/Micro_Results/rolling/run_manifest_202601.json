@@ -1,12 +1,12 @@
 {
   "schema_version": 3,
   "status": "complete",
-  "started_at_utc": "2026-11-08T03:34:41.081281+00:00",
-  "completed_at_utc": "2026-11-08T03:42:09.100667+00:00",
-  "elapsed_seconds": 448.019386,
+  "started_at_utc": "2026-11-09T09:07:45.977399+00:00",
+  "completed_at_utc": "2026-11-09T09:14:56.249117+00:00",
+  "elapsed_seconds": 430.271718,
   "configuration": {
-    "data_dir": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data",
-    "results_dir": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling",
+    "data_dir": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data",
+    "results_dir": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling",
     "implementation_steps": 744,
     "horizon_steps": 24,
     "study_start_date": "2026-01-01",
@@ -20,7 +20,7 @@
     "forecast_error_increment": 0.001,
     "power_tolerance": 0.001,
     "soc_tolerance": 0.001,
-    "experiment_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\experiment_config_1hour.json",
+    "experiment_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Program\\Micro\\experiment_config_1hour.json",
     "solver_threads": 1,
     "month": "2026-01",
     "physical_month_steps": 744,
@@ -34,7 +34,7 @@
       "ON",
       "ONTEST"
     ],
-    "soc_policy": "telemetry_reconstructed",
+    "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
     "power_limit_policy": "monthly_raw_submitted_HSL_max_LSL_min_hourly_any_ON_ONTEST_nonzero_day"
   },
   "horizon_policy": "fixed_full_horizon",
@@ -43,85 +43,137 @@
     "ON",
     "ONTEST"
   ],
-  "soc_policy": "telemetry_reconstructed",
+  "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
   "input_power_limits": {
     "BIG_STAR_ESR1": {
-      "rated_charge_mw": 78.6,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 114.3263,
+      "capacity_mwh": 114.3263,
+      "usable_capacity_mwh": 114.3263,
+      "initial_energy_mwh": 8.0165,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 78.8,
-      "capacity_mwh": 289.1,
-      "initial_energy_mwh": 0.35360598086124406
+      "rated_charge_mw": 78.6
     },
     "BLSUMMIT_ESR1": {
-      "rated_charge_mw": 30.4,
+      "minimum_energy_mwh": 0.808,
+      "maximum_energy_mwh": 13.5,
+      "capacity_mwh": 13.5,
+      "usable_capacity_mwh": 12.692,
+      "initial_energy_mwh": 1.489,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 30.0,
-      "capacity_mwh": 145.5,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 30.4
     },
     "BR_ARROW_ESR2": {
-      "rated_charge_mw": 51.7,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 107.3845,
+      "capacity_mwh": 107.3845,
+      "usable_capacity_mwh": 107.3845,
+      "initial_energy_mwh": 0.783,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 51.7,
-      "capacity_mwh": 244.7,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 51.7
     },
     "INDL_ESR1": {
-      "rated_charge_mw": 9.9,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 4.56,
+      "capacity_mwh": 4.56,
+      "usable_capacity_mwh": 4.56,
+      "initial_energy_mwh": 0.01,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 9.9,
-      "capacity_mwh": 29.9,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 9.9
     },
     "INRT_W_ESR1": {
-      "rated_charge_mw": 13.0,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 49.4,
+      "capacity_mwh": 49.4,
+      "usable_capacity_mwh": 49.4,
+      "initial_energy_mwh": 3.565,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 13.0,
-      "capacity_mwh": 175.6,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 13.0
     },
     "LANTANA_ESR1": {
-      "rated_charge_mw": 6.2,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 0.0,
+      "capacity_mwh": 0.0,
+      "usable_capacity_mwh": 0.0,
+      "initial_energy_mwh": 0.0,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 12.0,
-      "capacity_mwh": 974.8,
-      "initial_energy_mwh": 974.736842105264
+      "rated_charge_mw": 6.2
     },
     "MESQUITE_ESR1": {
-      "rated_charge_mw": 6.5,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 19.8,
+      "capacity_mwh": 19.8,
+      "usable_capacity_mwh": 19.8,
+      "initial_energy_mwh": 0.0,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 9.9,
-      "capacity_mwh": 13.6,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 6.5
     },
     "MOORE_FL_ESR1": {
-      "rated_charge_mw": 2.5,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 12.7706,
+      "capacity_mwh": 12.7706,
+      "usable_capacity_mwh": 12.7706,
+      "initial_energy_mwh": 2.3615,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 9.9,
-      "capacity_mwh": 26.9,
-      "initial_energy_mwh": 0.45107930263158114
+      "rated_charge_mw": 2.5
     },
     "RRC_WIND_ESR1": {
-      "rated_charge_mw": 75.4,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 225.0,
+      "capacity_mwh": 225.0,
+      "usable_capacity_mwh": 225.0,
+      "initial_energy_mwh": 0.0,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 75.1,
-      "capacity_mwh": 655.2,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 75.4
     },
     "RRC_WIND_ESR2": {
-      "rated_charge_mw": 75.3,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 225.0,
+      "capacity_mwh": 225.0,
+      "usable_capacity_mwh": 225.0,
+      "initial_energy_mwh": 2.881,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 75.2,
-      "capacity_mwh": 607.0,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 75.3
     },
     "SHAMROCK_ESR1": {
-      "rated_charge_mw": 99.8,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 325.0,
+      "capacity_mwh": 325.0,
+      "usable_capacity_mwh": 325.0,
+      "initial_energy_mwh": 23.353,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 99.5,
-      "capacity_mwh": 994.9,
-      "initial_energy_mwh": 24.69196999541466
+      "rated_charge_mw": 99.8
     },
     "STADIUM_ESR1": {
-      "rated_charge_mw": 9.5,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 19.8,
+      "capacity_mwh": 19.8,
+      "usable_capacity_mwh": 19.8,
+      "initial_energy_mwh": 0.0,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 10.0,
-      "capacity_mwh": 29.7,
-      "initial_energy_mwh": 0.7890586267942585
+      "rated_charge_mw": 9.5
     },
     "STRG_SLR_ESR1": {
-      "rated_charge_mw": 100.1,
+      "minimum_energy_mwh": 0.0,
+      "maximum_energy_mwh": 214.6679,
+      "capacity_mwh": 214.6679,
+      "usable_capacity_mwh": 214.6679,
+      "initial_energy_mwh": 15.0,
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "rated_discharge_mw": 101.9,
-      "capacity_mwh": 463.5,
-      "initial_energy_mwh": 0.0
+      "rated_charge_mw": 100.1
     }
   },
   "processed_resources": [
@@ -142,129 +194,129 @@
   "skipped_no_lmp": [],
   "skipped_coverage": [],
   "source_files": [
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BIG_STAR_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BLSUMMIT_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BR_ARROW_ESR2_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\INDL_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\INRT_W_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\LANTANA_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\MESQUITE_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\MOORE_FL_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR2_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\SHAMROCK_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\STADIUM_ESR1_Usage_202601.xlsx",
-    "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\STRG_SLR_ESR1_Usage_202601.xlsx"
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BIG_STAR_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BLSUMMIT_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BR_ARROW_ESR2_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\INDL_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\INRT_W_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\LANTANA_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\MESQUITE_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\MOORE_FL_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR2_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\SHAMROCK_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\STADIUM_ESR1_Usage_202601.xlsx",
+    "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\STRG_SLR_ESR1_Usage_202601.xlsx"
   ],
   "random_sequence": null,
   "outputs": {
-    "summary": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\Rolling_Window_Summary_1hour_202601.csv",
+    "summary": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\Rolling_Window_Summary_1hour_202601.csv",
     "details": [
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\BIG_STAR_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\BLSUMMIT_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\BR_ARROW_ESR2_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\INDL_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\INRT_W_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\LANTANA_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\MESQUITE_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\MOORE_FL_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\RRC_WIND_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\RRC_WIND_ESR2_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\SHAMROCK_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\STADIUM_ESR1_Rolling_Window_1hour_202601.xlsx",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\rolling\\STRG_SLR_ESR1_Rolling_Window_1hour_202601.xlsx"
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\BIG_STAR_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\BLSUMMIT_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\BR_ARROW_ESR2_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\INDL_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\INRT_W_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\LANTANA_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\MESQUITE_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\MOORE_FL_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\RRC_WIND_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\RRC_WIND_ESR2_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\SHAMROCK_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\STADIUM_ESR1_Rolling_Window_1hour_202601.xlsx",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\rolling\\STRG_SLR_ESR1_Rolling_Window_1hour_202601.xlsx"
     ]
   },
   "random_sequences": {
     "BIG_STAR_ESR1": {
       "member": "BIG_STAR_ESR1",
       "seed": 1356469323,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BIG_STAR_ESR1_seed1356469323_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BIG_STAR_ESR1_seed1356469323_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BIG_STAR_ESR1_seed1356469323_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BIG_STAR_ESR1_seed1356469323_744x36_1hour_202601_manifest.json",
       "sha256": "9889721d689e707188c8e11a30898ba0514f43c1289ca1c2f6b59cc33fcf0fd9"
     },
     "BLSUMMIT_ESR1": {
       "member": "BLSUMMIT_ESR1",
       "seed": 2250165702,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BLSUMMIT_ESR1_seed2250165702_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BLSUMMIT_ESR1_seed2250165702_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BLSUMMIT_ESR1_seed2250165702_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BLSUMMIT_ESR1_seed2250165702_744x36_1hour_202601_manifest.json",
       "sha256": "ffa3adb43c16c48f4c77b73b03109245ae13a57a13e72d35df9c65d5d15fb02a"
     },
     "BR_ARROW_ESR2": {
       "member": "BR_ARROW_ESR2",
       "seed": 2600001126,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BR_ARROW_ESR2_seed2600001126_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\BR_ARROW_ESR2_seed2600001126_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BR_ARROW_ESR2_seed2600001126_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\BR_ARROW_ESR2_seed2600001126_744x36_1hour_202601_manifest.json",
       "sha256": "330215c1a4826cafad0d9f8bdbed6143b2693b098b9908a6880c196dc390c2a9"
     },
     "INDL_ESR1": {
       "member": "INDL_ESR1",
       "seed": 1453023547,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\INDL_ESR1_seed1453023547_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\INDL_ESR1_seed1453023547_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\INDL_ESR1_seed1453023547_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\INDL_ESR1_seed1453023547_744x36_1hour_202601_manifest.json",
       "sha256": "b2076502ced6743bc79d17446c1d3a96d8bf5693b1b26d838727428e0ea66de6"
     },
     "INRT_W_ESR1": {
       "member": "INRT_W_ESR1",
       "seed": 554515947,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\INRT_W_ESR1_seed554515947_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\INRT_W_ESR1_seed554515947_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\INRT_W_ESR1_seed554515947_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\INRT_W_ESR1_seed554515947_744x36_1hour_202601_manifest.json",
       "sha256": "25f60b906e799f6435206662fb75fd32a8c2f52eb09cf9df22b4cce797d56507"
     },
     "LANTANA_ESR1": {
       "member": "LANTANA_ESR1",
       "seed": 3142978450,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\LANTANA_ESR1_seed3142978450_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\LANTANA_ESR1_seed3142978450_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\LANTANA_ESR1_seed3142978450_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\LANTANA_ESR1_seed3142978450_744x36_1hour_202601_manifest.json",
       "sha256": "323f77fdd09b491f7037cb3d2b5e7f92eaf7dde7b6aef4505fd9f9887b8a5ee3"
     },
     "MESQUITE_ESR1": {
       "member": "MESQUITE_ESR1",
       "seed": 3196298695,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\MESQUITE_ESR1_seed3196298695_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\MESQUITE_ESR1_seed3196298695_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\MESQUITE_ESR1_seed3196298695_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\MESQUITE_ESR1_seed3196298695_744x36_1hour_202601_manifest.json",
       "sha256": "653cedcb2aab033035767c354d113e9529a02a064eb44e113b97cb08e151908e"
     },
     "MOORE_FL_ESR1": {
       "member": "MOORE_FL_ESR1",
       "seed": 1124117605,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\MOORE_FL_ESR1_seed1124117605_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\MOORE_FL_ESR1_seed1124117605_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\MOORE_FL_ESR1_seed1124117605_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\MOORE_FL_ESR1_seed1124117605_744x36_1hour_202601_manifest.json",
       "sha256": "7ebbb1e1935892d00f41872da3c0815daa2c2d33db23a307a0acb123a9c34752"
     },
     "RRC_WIND_ESR1": {
       "member": "RRC_WIND_ESR1",
       "seed": 3212708994,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\RRC_WIND_ESR1_seed3212708994_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\RRC_WIND_ESR1_seed3212708994_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\RRC_WIND_ESR1_seed3212708994_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\RRC_WIND_ESR1_seed3212708994_744x36_1hour_202601_manifest.json",
       "sha256": "40958bb7d27afa74003ed2cf801f6bb32f898238e72d7781bb207584a0023cb2"
     },
     "RRC_WIND_ESR2": {
       "member": "RRC_WIND_ESR2",
       "seed": 1308948222,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\RRC_WIND_ESR2_seed1308948222_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\RRC_WIND_ESR2_seed1308948222_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\RRC_WIND_ESR2_seed1308948222_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\RRC_WIND_ESR2_seed1308948222_744x36_1hour_202601_manifest.json",
       "sha256": "5a5f00510dff22243e1eec2f6b19ed702ffd7a76b93ea37f784ecfa6b3c929ba"
     },
     "SHAMROCK_ESR1": {
       "member": "SHAMROCK_ESR1",
       "seed": 3298796274,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\SHAMROCK_ESR1_seed3298796274_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\SHAMROCK_ESR1_seed3298796274_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\SHAMROCK_ESR1_seed3298796274_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\SHAMROCK_ESR1_seed3298796274_744x36_1hour_202601_manifest.json",
       "sha256": "c9a4998c9b95eb0624f608f09b1ff5db5dc71b16ab4efda5425ea12a366d4e2c"
     },
     "STADIUM_ESR1": {
       "member": "STADIUM_ESR1",
       "seed": 4264669455,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\STADIUM_ESR1_seed4264669455_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\STADIUM_ESR1_seed4264669455_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\STADIUM_ESR1_seed4264669455_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\STADIUM_ESR1_seed4264669455_744x36_1hour_202601_manifest.json",
       "sha256": "0aed2fb0cb7baf3a59e7b5cafc361f66047e2e57044d10dcc9aeae8c1ad23ac9"
     },
     "STRG_SLR_ESR1": {
       "member": "STRG_SLR_ESR1",
       "seed": 2820401796,
-      "path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\STRG_SLR_ESR1_seed2820401796_744x36_1hour_202601.npy",
-      "manifest_path": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Micro_Results\\random\\STRG_SLR_ESR1_seed2820401796_744x36_1hour_202601_manifest.json",
+      "path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\STRG_SLR_ESR1_seed2820401796_744x36_1hour_202601.npy",
+      "manifest_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\random\\STRG_SLR_ESR1_seed2820401796_744x36_1hour_202601_manifest.json",
       "sha256": "da427a77c01deca4218d757d518d733abe36e8df6a5d3570bc5b5fb7dca204cd"
     }
   },
@@ -275,7 +327,7 @@
       "data_dir": "../../Data/Micro/Six_Month_Data",
       "output_root": "../../Results/Micro_Results",
       "available_status": "hourly_any_ON_ONTEST",
-      "soc_policy": "telemetry_reconstructed",
+      "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
       "horizon_steps": 24,
       "price_samples": 300,
       "efficiency": 0.95,
@@ -318,35 +370,35 @@
       "study_end_date": "2026-01-31",
       "innovation_origin_date": "2026-01-01"
     },
-    "config_sha256": "24fced8f258750559b5503d11953128d04aaf90d5ec6c3495fd010c28605b8f9",
+    "config_sha256": "6d0558f4663f78911ac7e85d7da106bd1f20cde5cec0d3a308fdd94949bc1526",
     "python_version": "3.12.7",
     "numpy_version": "1.26.4",
     "pandas_version": "2.2.2",
-    "git_head": "b4784d613b788132698daf8e89edca45e9c2abef",
-    "git_diff_sha256": "e90d6aa3bd670aab07003c309fac83a9f415b685e45bff8b1e84d8662a6e4bfc",
-    "git_status": " M .gitignore\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_12.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_12.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_12.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_12_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_0_2025_1_May2025_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_12_2025_0.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_12_2025_0.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_12_2025_0.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_0_2024_12_2025_0_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_0_2025_0.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_0_2025_0.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_0_2025_0.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_0_2025_0_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_12_2025_12.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_12_2025_12.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_12_2025_12.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_12_2024_12_2025_12_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Autumn.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Autumn.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Autumn.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Autumn_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Spring.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Spring.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Spring.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Spring_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Summer.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Summer.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Summer.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Summer_source_data.csv\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Winter.pdf\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Winter.png\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Winter.svg\n M Figure_Plot/figure_plot_4_a_b/Figs/state_distribution_pies_2023_3_2024_3_2025_3_Winter_source_data.csv\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_0_2025_12.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_0_2025_12.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_0_2025_12.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_12_2025_0.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_12_2025_0.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_0_2024_12_2025_0.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_0_2025_0.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_0_2025_0.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_0_2025_0.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_12_2024_12_2025_12.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Autumn.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Autumn.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Autumn.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Spring.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Spring.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Spring.svg\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Summer.pdf\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Summer.png\n M Figure_Plot/figure_plot_4_c/figures/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Summer.svg\n M Figure_Plot/figure_plot_4_c/output/P_ESS_state_hourly_counts_selected.xlsx\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_0_2024_0_2025_12_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_0_2024_12_2025_0_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_12_2024_0_2025_0_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_12_2024_12_2025_12_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Autumn_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Spring_source_data.csv\n M Figure_Plot/figure_plot_4_c/output/hourly_state_counts_and_price_2023_3_2024_3_2025_3_Summer_source_data.csv\n M Program/V5_Case_Study.py\n M Program/add_dsfunction_state_array.py\n M Program/tests/test_state_widths.py\n M Results/Bidding/April2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/April2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/April2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/August2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/August2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/August2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/December2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/December2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/December2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/February2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/February2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/February2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/January2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/January2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/January2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/July2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/July2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/July2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/June2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/June2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/June2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/March2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/March2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/March2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/May2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/May2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/May2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/November2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/November2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/November2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/October2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/October2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/October2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/Pcleared_April2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_April2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_April2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_August2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_August2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_August2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_December2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_December2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_December2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_February2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_February2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_February2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_January2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_January2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_January2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_July2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_July2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_July2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_June2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_June2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_June2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_March2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_March2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_March2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_May2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_May2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_May2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_November2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_November2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_November2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_October2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_October2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_October2025_exact_V5_k20.npy\n M Results/Bidding/Pcleared_September2023_exact_V5_k20.npy\n M Results/Bidding/Pcleared_September2024_exact_V5_k20.npy\n M Results/Bidding/Pcleared_September2025_exact_V5_k20.npy\n M Results/Bidding/September2023_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/September2024_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/September2025_eta95%_std2_exact_V5_k20.csv\n M Results/Bidding/dsfunction_April2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_April2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_April2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_April2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_April2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_April2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_August2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_August2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_August2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_August2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_August2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_August2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_December2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_December2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_December2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_December2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_December2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_December2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_February2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_February2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_February2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_February2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_February2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_February2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_January2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_January2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_January2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_January2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_January2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_January2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_July2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_July2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_July2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_July2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_July2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_July2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_June2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_June2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_June2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_June2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_June2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_June2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_March2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_March2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_March2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_March2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_March2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_March2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_May2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_May2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_May2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_May2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_May2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_May2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_November2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_November2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_November2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_November2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_November2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_October2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_October2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_October2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_October2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_October2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_October2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_September2023_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_September2023_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_September2024_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_September2024_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_September2025_exact_V5_k20.xlsx\n M Results/Bidding/dsfunction_September2025_exact_V5_k20_classified_width.xlsx\n M Results/Bidding/dsfunction_state_summary_202301_202512.xlsx\n M Results/Bidding/ncd_April2023_exact_V5_k20.npy\n M Results/Bidding/ncd_April2024_exact_V5_k20.npy\n M Results/Bidding/ncd_April2025_exact_V5_k20.npy\n M Results/Bidding/ncd_August2023_exact_V5_k20.npy\n M Results/Bidding/ncd_August2024_exact_V5_k20.npy\n M Results/Bidding/ncd_August2025_exact_V5_k20.npy\n M Results/Bidding/ncd_December2023_exact_V5_k20.npy\n M Results/Bidding/ncd_December2024_exact_V5_k20.npy\n M Results/Bidding/ncd_December2025_exact_V5_k20.npy\n M Results/Bidding/ncd_February2023_exact_V5_k20.npy\n M Results/Bidding/ncd_February2024_exact_V5_k20.npy\n M Results/Bidding/ncd_February2025_exact_V5_k20.npy\n M Results/Bidding/ncd_January2023_exact_V5_k20.npy\n M Results/Bidding/ncd_January2024_exact_V5_k20.npy\n M Results/Bidding/ncd_January2025_exact_V5_k20.npy\n M Results/Bidding/ncd_July2023_exact_V5_k20.npy\n M Results/Bidding/ncd_July2024_exact_V5_k20.npy\n M Results/Bidding/ncd_July2025_exact_V5_k20.npy\n M Results/Bidding/ncd_June2023_exact_V5_k20.npy\n M Results/Bidding/ncd_June2024_exact_V5_k20.npy\n M Results/Bidding/ncd_June2025_exact_V5_k20.npy\n M Results/Bidding/ncd_March2023_exact_V5_k20.npy\n M Results/Bidding/ncd_March2024_exact_V5_k20.npy\n M Results/Bidding/ncd_March2025_exact_V5_k20.npy\n M Results/Bidding/ncd_May2023_exact_V5_k20.npy\n M Results/Bidding/ncd_May2024_exact_V5_k20.npy\n M Results/Bidding/ncd_May2025_exact_V5_k20.npy\n M Results/Bidding/ncd_November2023_exact_V5_k20.npy\n M Results/Bidding/ncd_November2024_exact_V5_k20.npy\n M Results/Bidding/ncd_November2025_exact_V5_k20.npy\n M Results/Bidding/ncd_October2023_exact_V5_k20.npy\n M Results/Bidding/ncd_October2024_exact_V5_k20.npy\n M Results/Bidding/ncd_October2025_exact_V5_k20.npy\n M Results/Bidding/ncd_September2023_exact_V5_k20.npy\n M Results/Bidding/ncd_September2024_exact_V5_k20.npy\n M Results/Bidding/ncd_September2025_exact_V5_k20.npy\n M Results/Bidding/summary_202301_202512_exact_V5_k20.csv\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_ALL_ESR_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_ALL_ESR_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BLSUMMIT_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BLSUMMIT_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BR_ARROW_ESR2_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_BR_ARROW_ESR2_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_INDL_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_INDL_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_INRT_W_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_INRT_W_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_LANTANA_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_LANTANA_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_MESQUITE_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_MESQUITE_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_MOORE_FL_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_MOORE_FL_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_RRC_WIND_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_RRC_WIND_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_RRC_WIND_ESR2_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_RRC_WIND_ESR2_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_SHAMROCK_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_SHAMROCK_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_STADIUM_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_STADIUM_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_STRG_SLR_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_All/Classification_SharedCategory_STRG_SLR_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_Test/Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.pdf\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_Test/Classification_SharedCategory_BIG_STAR_ESR1_202601_202606.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/Classification_Test/test_esr_figure_data.py\n M Supplementary_Case_In_ERCOT/Figs/Micro/esr_figure_data.py\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_a_b/Figs/Fig_4_a_b_ALL_ESR_202604.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_a_b/Figs/Fig_4_a_b_ALL_ESR_202604_source_data.csv\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_a_b/Figs/Fig_4_a_b_ALL_ESR_202605.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_a_b/Figs/Fig_4_a_b_ALL_ESR_202605_source_data.csv\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_c/Figs/Fig_4_c_ALL_ESR_202604.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_c/Figs/Fig_4_c_ALL_ESR_202604_source_data.csv\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_c/Figs/Fig_4_c_ALL_ESR_202605.png\n M Supplementary_Case_In_ERCOT/Figs/Micro/figure_plot_4_c/Figs/Fig_4_c_ALL_ESR_202605_source_data.csv\n M Supplementary_Case_In_ERCOT/Program/Micro/Rolling_Window_1hour.py\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BIG_STAR_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BLSUMMIT_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_BR_ARROW_ESR2_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INDL_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_INRT_W_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_LANTANA_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MESQUITE_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_MOORE_FL_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_RRC_WIND_ESR2_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_SHAMROCK_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STADIUM_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/Classified/classified_STRG_SLR_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/figure_data/Classification_All/classification_audit_202601_202606.json\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/figure_data/Classification_All/classification_counts_aggregate_202601_202606.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/figure_data/Classification_All/classification_counts_by_resource_202601_202606.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/figure_data/Classification_All/classification_counts_by_resource_month_202601_202606.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/figure_data/Classification_All/classification_telemetry_hours_202601_202606.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_INRT_W_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_LANTANA_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_LANTANA_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MESQUITE_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MESQUITE_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MESQUITE_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MOORE_FL_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MOORE_FL_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MOORE_FL_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MOORE_FL_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_MOORE_FL_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR2_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR2_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR2_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR2_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_RRC_WIND_ESR2_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_SHAMROCK_ESR1_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/realized_match/Realized_Match_STRG_SLR_ESR1_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/BLSUMMIT_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/BLSUMMIT_ESR1_Rolling_Window_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/BR_ARROW_ESR2_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/BR_ARROW_ESR2_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INDL_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/INRT_W_ESR1_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/LANTANA_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/LANTANA_ESR1_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/LANTANA_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MESQUITE_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MESQUITE_ESR1_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MESQUITE_ESR1_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MOORE_FL_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MOORE_FL_ESR1_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MOORE_FL_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MOORE_FL_ESR1_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/MOORE_FL_ESR1_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR1_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/RRC_WIND_ESR2_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202601.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202602.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202603.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202604.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202605.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/Rolling_Window_Summary_1hour_202606.csv\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202601.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202602.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202603.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202605.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/SHAMROCK_ESR1_Rolling_Window_1hour_202606.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/STRG_SLR_ESR1_Rolling_Window_1hour_202604.xlsx\n M Supplementary_Case_In_ERCOT/Results/Micro_Results/rolling/STRG_SLR_ESR1_Rolling_Window_1hour_202605.xlsx\n?? Supplementary_Case_In_ERCOT/Results/Micro_Results/reports/\n",
+    "git_head": "unavailable",
+    "git_diff_sha256": "ba691ba042bcedd9a61a36f5969026bc95859dccdc7e47f24e6bce35673baf2f",
+    "git_status": "unavailable",
     "code_sha256": {
       "project_paths.py": "36c58901d300f002f79b4e2dcb9a221797bb37f190f6983070338e61d2af030a",
-      "Experiment_Data_1hour.py": "f3218eef178166e9d4603f24b95102bf1102878d1fcdb6a2843eb0ad9352f30f",
-      "Rolling_Window_1hour.py": "f5200b041dc7fbdda2c019faf1fdc930d53adde5ce14940489868c3c022d065a",
+      "Experiment_Data_1hour.py": "5a873ca934e6931b901ef58b705d9d6e2392b71d4085bf43ea739fd41ed3bc58",
+      "Rolling_Window_1hour.py": "9ec3d63bbf83a8208c9ee7c79c607244060645b42f9cca50827cfa7195723972",
       "Benchmark_1hour.py": "a0548dd617063a7d2201e98b37543b0c6eb3ec8bdfa9f9e38879bf15401dd2ab",
-      "distributed_Rolling_Window_1hour.py": "77d458c07633de4c5e339826cb30c837c65229d8c34585ec22574febbbf640c4",
-      "Monthly_Data_1hour.py": "b0a93174c42d2e679cb2429e20a0afeab6619f949f4af61b38c8079d9ee5d3ac"
+      "distributed_Rolling_Window_1hour.py": "0a0dbc11139dbfec85c2976298a97e27594ce4ac2f81cd4cc987714f6a3bea2d",
+      "Monthly_Data_1hour.py": "91b623206016f26a4feccc11f08414672a2c50a2603403eb9246d60cc6869f1f"
     },
     "input_sha256": {
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BIG_STAR_ESR1_Usage_202601.xlsx": "ae03694ffdae66d1cacfd64af75a1f0eeea3e10aa277c0046ee2fded71db534b",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BLSUMMIT_ESR1_Usage_202601.xlsx": "9b3b202ae105e865cb1b95091041cf0285899089add41f6649f07c01ae6db274",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\BR_ARROW_ESR2_Usage_202601.xlsx": "9ab2d15fbda9162567800f88f71af709cfde4be0ed2efe10f73de3a964b0d278",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\INDL_ESR1_Usage_202601.xlsx": "846e6455371e63d78c2c09282a48bcbdf9dd1d99f6156d29892891978e39cae9",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\INRT_W_ESR1_Usage_202601.xlsx": "f7f5ad14bd77fb8144ad379ffd7bcc00b0b7d451077da7bcd56f802ac6c833f6",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\LANTANA_ESR1_Usage_202601.xlsx": "0cb2da27622ebd4cd6aad0841d9c9396a9561752298680f933d59554fda75c51",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\MESQUITE_ESR1_Usage_202601.xlsx": "1e01110e1f6ab7b48b46ae01d7a2c3e83ad2268d5192086bfec1cc0a64db3b27",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\MOORE_FL_ESR1_Usage_202601.xlsx": "e217417b3b771f2b028deacfc24f74304bf642343be77034c5aee92c3a1974f5",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR1_Usage_202601.xlsx": "ae6c705e13b13c3aaccc51a3be82ec410e80789909188e9aa0f837f460b63e9c",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR2_Usage_202601.xlsx": "569d286f43d5d4fd9a6e2d37515e3c7baaaa90c6ffec69444943ce16dc18e13e",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\SHAMROCK_ESR1_Usage_202601.xlsx": "0428de2570b69535093316344be5375aef8ad9e7b5675428eb83234d7d2f3c59",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\STADIUM_ESR1_Usage_202601.xlsx": "55f7d05064d7eedb76a291ca9cc8cff7ad856eb236d6057b259207f747a8b746",
-      "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Data\\Micro\\Six_Month_Data\\STRG_SLR_ESR1_Usage_202601.xlsx": "b12bc90a04abea8d693e82a100339069af8503e3519e30af2e99ebb3d25831ce"
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BIG_STAR_ESR1_Usage_202601.xlsx": "ae03694ffdae66d1cacfd64af75a1f0eeea3e10aa277c0046ee2fded71db534b",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BLSUMMIT_ESR1_Usage_202601.xlsx": "9b3b202ae105e865cb1b95091041cf0285899089add41f6649f07c01ae6db274",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\BR_ARROW_ESR2_Usage_202601.xlsx": "9ab2d15fbda9162567800f88f71af709cfde4be0ed2efe10f73de3a964b0d278",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\INDL_ESR1_Usage_202601.xlsx": "846e6455371e63d78c2c09282a48bcbdf9dd1d99f6156d29892891978e39cae9",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\INRT_W_ESR1_Usage_202601.xlsx": "f7f5ad14bd77fb8144ad379ffd7bcc00b0b7d451077da7bcd56f802ac6c833f6",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\LANTANA_ESR1_Usage_202601.xlsx": "0cb2da27622ebd4cd6aad0841d9c9396a9561752298680f933d59554fda75c51",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\MESQUITE_ESR1_Usage_202601.xlsx": "1e01110e1f6ab7b48b46ae01d7a2c3e83ad2268d5192086bfec1cc0a64db3b27",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\MOORE_FL_ESR1_Usage_202601.xlsx": "e217417b3b771f2b028deacfc24f74304bf642343be77034c5aee92c3a1974f5",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR1_Usage_202601.xlsx": "ae6c705e13b13c3aaccc51a3be82ec410e80789909188e9aa0f837f460b63e9c",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\RRC_WIND_ESR2_Usage_202601.xlsx": "569d286f43d5d4fd9a6e2d37515e3c7baaaa90c6ffec69444943ce16dc18e13e",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\SHAMROCK_ESR1_Usage_202601.xlsx": "0428de2570b69535093316344be5375aef8ad9e7b5675428eb83234d7d2f3c59",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\STADIUM_ESR1_Usage_202601.xlsx": "55f7d05064d7eedb76a291ca9cc8cff7ad856eb236d6057b259207f747a8b746",
+      "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Data\\Micro\\Six_Month_Data\\STRG_SLR_ESR1_Usage_202601.xlsx": "b12bc90a04abea8d693e82a100339069af8503e3519e30af2e99ebb3d25831ce"
     }
   },
   "gurobi_version": [

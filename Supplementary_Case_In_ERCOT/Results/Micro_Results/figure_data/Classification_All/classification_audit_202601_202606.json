@@ -52,7 +52,8 @@
     2000.0,
     3000.0,
     4000.0,
-    5000.0
+    5000.0,
+    6000.0
   ],
   "aggregate_count_ticks": [
     0.0,
@@ -68,11 +69,11 @@
     "model_classified_hours": 55163,
     "model_unclassified_hours": 1296,
     "telemetry_rows": 56459,
-    "tied_hours": 5,
+    "tied_hours": 1,
     "beyond_display_range": 0,
     "telemetry_status": {
-      "Hit": 41355,
-      "Outside threshold": 13808,
+      "Hit": 42396,
+      "Outside threshold": 12767,
       "Excluded": 1296
     },
     "excluded_reasons": {
@@ -89,8 +90,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "33ef2f77c0f52cf6b8f2fe4cbe655b634cb0e1444299a2dfcc89623f5e4694b2",
-          "matched_sha256": "b3ab0ab8c38267d24a66caa411704af4f90f5ff0723982b7b24ed8d23d1d05c7"
+          "classified_sha256": "bafa3c06fe1d52d481398d2d889c7454f4325258e96544b8031e389385c86bcf",
+          "matched_sha256": "3703e528c5dfcdfa28c6654742b6c310f8e96de2a552a919ed197a96517761c8"
         },
         {
           "month": "2026-02",
@@ -98,8 +99,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "67f525ee8fe4ea3d0cf2eb6410eecbadaeb91133ce2b3c118241d188753ebb07",
-          "matched_sha256": "c7fdcb1735546a62140e5fbef3e408c2d749bd6ff4520c4174aacde9c79cd12d"
+          "classified_sha256": "340ba16ca05b18f203cf5be40ee9808db53d6040d1335368bf4c5e4f8f596184",
+          "matched_sha256": "c7b0c6f8bfc74bf809d2fa6cb915d940e41e9efcc2f1194fb896096963848a64"
         },
         {
           "month": "2026-03",
@@ -107,8 +108,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "f26d194aa47d490a18f409d11e7bd5300ea3f12fb6781dad0ad5a335ccccc551",
-          "matched_sha256": "ce5edc65cdba5656e70633f47a039d457f4ea26c5195cd9454eb94f12704886d"
+          "classified_sha256": "c35b3aeebbfaa32c7a0fc7e4270d36ec8c591e9fcce47c9fe17e9a10b4927be9",
+          "matched_sha256": "864ae99b523dbaf6afad8a7c50479d5a04d10bb861c3114bc0787ec162499c55"
         },
         {
           "month": "2026-04",
@@ -116,8 +117,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "a91515ea5d2751fa6f02564bc3ab6e0c0b353c92ff013ab7f4773e60c0f13ad4",
-          "matched_sha256": "3f92748dcc7a38e1df609672e9dc000d17237c02312fed8da343c7c55a760db2"
+          "classified_sha256": "56afa3a765cf67f1f188ef1b8b85423f93e2b93491fcfd097bf8e8d942c2f055",
+          "matched_sha256": "24bd5ef880897793837bb3ff82f0c7832169bca8b211a213531881e1ed8873c9"
         },
         {
           "month": "2026-05",
@@ -125,8 +126,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "e2944a750a63fd66854d88e0a660038990afe3dd685ac7ed4235297d1d507e83",
-          "matched_sha256": "3542fd7e20978973609e0d933de0035c2d0b5593e0bb2cf406581b1d11263469"
+          "classified_sha256": "01b19c276744628570d4061510e6361439e01be5b85d59cadf49f44aa6e8dd13",
+          "matched_sha256": "2b12ca8bc6abeb9b834d089b75ce10985ea187a5bfed0cd72a57d4ca1b660e6f"
         },
         {
           "month": "2026-06",
@@ -134,8 +135,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "56417bf2e1cb323510bba2549f32b112204582475a1d237a86751e52a1e0ce44",
-          "matched_sha256": "c95ef7e073159d38d53af110aa7afdfc2f36772d5145ab194ae14b6586183904"
+          "classified_sha256": "cb907a7587ae106228d033f0fa746147713dde83f16c85e49a91821c4fb69198",
+          "matched_sha256": "cb6b89b3a6602537305a2e6d4e206cb18059d6d814aad1904270269cf156b10f"
         }
       ],
       "monthly": [
@@ -146,8 +147,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 639,
-            "Outside threshold": 105,
+            "Hit": 642,
+            "Outside threshold": 102,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -161,8 +162,8 @@
           "model_unclassified_hours": 4,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 569,
-            "Outside threshold": 99,
+            "Hit": 567,
+            "Outside threshold": 101,
             "Excluded": 4
           },
           "excluded_reasons": {
@@ -178,8 +179,8 @@
           "model_unclassified_hours": 6,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 603,
-            "Outside threshold": 134,
+            "Hit": 593,
+            "Outside threshold": 144,
             "Excluded": 6
           },
           "excluded_reasons": {
@@ -195,8 +196,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 586,
-            "Outside threshold": 134,
+            "Hit": 583,
+            "Outside threshold": 137,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -210,8 +211,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 649,
-            "Outside threshold": 95,
+            "Hit": 640,
+            "Outside threshold": 104,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -225,8 +226,8 @@
           "model_unclassified_hours": 5,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 594,
-            "Outside threshold": 121,
+            "Hit": 592,
+            "Outside threshold": 123,
             "Excluded": 5
           },
           "excluded_reasons": {
@@ -241,8 +242,8 @@
       "model_unclassified_hours": 15,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3640,
-        "Outside threshold": 688,
+        "Hit": 3617,
+        "Outside threshold": 711,
         "Excluded": 15
       },
       "excluded_reasons": {
@@ -260,8 +261,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "36f6edd6550c968dd8a556c494ed2bad33ddfa2305ab86197f45edc8f7c32e1e",
-          "matched_sha256": "1212a9b10d8b839fb00e11e58df7bf32ab25783c5af22ba3ecf94a8ca3342a94"
+          "classified_sha256": "206e285abe41bf0626d0875e905e18ae668be6cda6ecd091608f8d0a61d7b118",
+          "matched_sha256": "4d45a3618b577046c2ef056a213fa8a63753aabedcb978ac9ea0e6178e8f6cb9"
         },
         {
           "month": "2026-02",
@@ -269,8 +270,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "0d647ca5de6e59f5756a72bb6f65857db5eddf517157df730db5b49c7617ded5",
-          "matched_sha256": "f8850848501471156b9ecf5b0e88f297da5c4940b99bf1add0046c6dc1626462"
+          "classified_sha256": "d25a4d0f585cff466553cf2b8b9acf8c0fa6dc297a84697574335ae5c8b145dd",
+          "matched_sha256": "a1b6b100d3ccaf439b1b954139e2a70824af4c9cdf4da6e9b154f0020efb1509"
         },
         {
           "month": "2026-03",
@@ -278,8 +279,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "a8b272b10f5f675838f80b59a2db6d8bf0e29f888ab5819348089d45a5d82df1",
-          "matched_sha256": "c6f9634f6613aa6dbc9f48b8678bbd268654158706089e258ee9d5351443607a"
+          "classified_sha256": "9e42f8e204b6935ab53e7ad8b3eb1fa7cd56642a7f85860b6af1aa3fb074710a",
+          "matched_sha256": "f1eb5c23deb7fd9d534de5647af740714b9e93727736fedc521525651b135aa2"
         },
         {
           "month": "2026-04",
@@ -287,8 +288,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "7bc5d61f3bf59e30f136f8813756c535c505923d07c51b197f91714eb3c4f125",
-          "matched_sha256": "ab006d531717c6fe653e5acb68470f755669d177d60b5775641ee6328c3a3656"
+          "classified_sha256": "85fc60d7973a9af34bc49c484e713c7041c3ed462dc60830605ecd7ee49ebf29",
+          "matched_sha256": "f05a25a6716e681d8afedab5d33e9e96b0f417e5ffbb4c53fd07fa24372df85f"
         },
         {
           "month": "2026-05",
@@ -296,8 +297,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "0de78426b2b0a260b63efe0eb55f36a1595592dc6f23f4d60b565175833004e7",
-          "matched_sha256": "3bb05205e07f94021efdd8e1e45ea39c313e6df4027d81a58ab47b4eca38034e"
+          "classified_sha256": "f58b1d691d3bc26b5c0d5b3e077e13fb569c571a26273c98f85ab98aef2c2e78",
+          "matched_sha256": "785359a04858112c7116427cb3dfc02dbd7d948301b3f2e39e152e23eb4a51ad"
         },
         {
           "month": "2026-06",
@@ -305,8 +306,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "1fd5908adc7dc378071a0cdb6d1044f1e6c5744cab0d1e4f24091d0429d773e5",
-          "matched_sha256": "8a4349561d64bf2590f333b2c9ee1f3986c5ab0a1c1eaf3dcdedf538523ca1b7"
+          "classified_sha256": "756e2d3933245b04e8cbd44a12b5a152b1a2b914e78841e5cc2f3e8c0c4e7f75",
+          "matched_sha256": "fc734f28ae55b28cf40c62ceb8ca9a32e3aec9a572655dc75c9483b512d32d7c"
         }
       ],
       "monthly": [
@@ -317,8 +318,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 591,
-            "Outside threshold": 153,
+            "Hit": 641,
+            "Outside threshold": 103,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -332,8 +333,8 @@
           "model_unclassified_hours": 21,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 514,
-            "Outside threshold": 137,
+            "Hit": 566,
+            "Outside threshold": 85,
             "Excluded": 21
           },
           "excluded_reasons": {
@@ -349,8 +350,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 545,
-            "Outside threshold": 198,
+            "Hit": 668,
+            "Outside threshold": 75,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -364,8 +365,8 @@
           "model_unclassified_hours": 32,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 497,
-            "Outside threshold": 191,
+            "Hit": 609,
+            "Outside threshold": 79,
             "Excluded": 32
           },
           "excluded_reasons": {
@@ -381,8 +382,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 623,
-            "Outside threshold": 121,
+            "Hit": 658,
+            "Outside threshold": 86,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -396,8 +397,8 @@
           "model_unclassified_hours": 17,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 597,
-            "Outside threshold": 106,
+            "Hit": 624,
+            "Outside threshold": 79,
             "Excluded": 17
           },
           "excluded_reasons": {
@@ -412,8 +413,8 @@
       "model_unclassified_hours": 70,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3367,
-        "Outside threshold": 906,
+        "Hit": 3766,
+        "Outside threshold": 507,
         "Excluded": 70
       },
       "excluded_reasons": {
@@ -431,8 +432,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202601.xlsx",
-          "classified_sha256": "8550060504c2c96ed2ebc7545aa2722cdf2e69e63a1c08764276293969e448f8",
-          "matched_sha256": "2b69ba72fa8845f7c639be9a0e5f637f83a491afd64b8a83f0b6134f0e7ef099"
+          "classified_sha256": "c0905dff374989631525fd28caf13910068b9bef22ce02cf4c9c0a6639e415e1",
+          "matched_sha256": "835f5b440e4cde6ffe482c6b7bb29987d1df53bee0f0473495f73c20a05ea9b8"
         },
         {
           "month": "2026-02",
@@ -440,8 +441,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202602.xlsx",
-          "classified_sha256": "52b43d619998ac048009f817799781670ee968594c22ea0ec650632f12f3b32c",
-          "matched_sha256": "b42fc6993c2f9dd3803b74bc28b654980389077e7988c1e4dfa53a8cb6a998e3"
+          "classified_sha256": "e7276431899f6b1e27762f0f2a3cd7e2ba4160edfa4b54bfb1cf657df8f8b7b0",
+          "matched_sha256": "7bb09ceaf6e01b200a541e5becb48ab7a99ffce41b220eabbc24a97ccd215266"
         },
         {
           "month": "2026-03",
@@ -449,8 +450,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202603.xlsx",
-          "classified_sha256": "f4a9b4d15b204aaac13a2bfa1d72bc81983be643331bea4d4040ac115f8a1e92",
-          "matched_sha256": "ae206909de1b51612537a2a9c01ce13d3c3f25f1d79cbee49785d0cd6d57d8cb"
+          "classified_sha256": "084e23acea3b3b06ebe5623933c29d189a218496e475d6d8af29878b4d3873ce",
+          "matched_sha256": "50b7026c5573f48d34c8fda11466c90683c66650739df51048763c4276981bfc"
         },
         {
           "month": "2026-04",
@@ -458,8 +459,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202604.xlsx",
-          "classified_sha256": "8658eb66bf319839c8cd340c76cdbddb364f52e18d510987c4ba32fd07c3c4e8",
-          "matched_sha256": "de7a80790402bc1d13dc843faf892f9d857c36c21a81da0a3b2273d96c5d2909"
+          "classified_sha256": "4997c3414af927d4d4bc17cedff52978e7e2c2252b49f21faa2dba0f4fc03b6a",
+          "matched_sha256": "e034940a93be6e19fe3fe8c0fe3f3b7b4a0da8cdab45f54fcf7063e2647a9f65"
         },
         {
           "month": "2026-05",
@@ -467,8 +468,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202605.xlsx",
-          "classified_sha256": "1b7d43f2b23907523051c7c0185ad4a55e415d184131bb870e0feda72ef8f018",
-          "matched_sha256": "6b3216885273d82f564a7cefc793cf7783af4317c9291ce796e0fa626f6dde3a"
+          "classified_sha256": "564445c0ed89b5f5b954d6c5814f380190e8b121b53fa811d4b8d50738c0867e",
+          "matched_sha256": "e28ea9e92054b152de4845daca6c451de2438a644d074a00eab7f0d43a7ff98c"
         },
         {
           "month": "2026-06",
@@ -476,8 +477,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202606.xlsx",
-          "classified_sha256": "5d754556b093c652361ffce9e88dc7aaf78a96a42baa5a270829f089d18b1f8b",
-          "matched_sha256": "a5cb498fd2442469490d78fbf9138d190b4891eee6b30d6fa8655510fcdbc297"
+          "classified_sha256": "3f67ca46939c2082d5f261790dc99bb77ec26d6ef1d077f469acda0585283ead",
+          "matched_sha256": "5974c9a7dd4b330ed28f29a8d5457f78b361928a3201786285e5ee2afb150cff"
         }
       ],
       "monthly": [
@@ -488,8 +489,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 590,
-            "Outside threshold": 154,
+            "Hit": 585,
+            "Outside threshold": 159,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -508,7 +509,7 @@
             "Excluded": 0
           },
           "excluded_reasons": {},
-          "tied_hours": 1,
+          "tied_hours": 0,
           "beyond_display_range": 0
         },
         {
@@ -518,12 +519,12 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 535,
-            "Outside threshold": 208,
+            "Hit": 528,
+            "Outside threshold": 215,
             "Excluded": 0
           },
           "excluded_reasons": {},
-          "tied_hours": 2,
+          "tied_hours": 0,
           "beyond_display_range": 0
         },
         {
@@ -533,12 +534,12 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 514,
-            "Outside threshold": 206,
+            "Hit": 518,
+            "Outside threshold": 202,
             "Excluded": 0
           },
           "excluded_reasons": {},
-          "tied_hours": 2,
+          "tied_hours": 0,
           "beyond_display_range": 0
         },
         {
@@ -548,8 +549,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 592,
-            "Outside threshold": 152,
+            "Hit": 606,
+            "Outside threshold": 138,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -563,8 +564,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 551,
-            "Outside threshold": 169,
+            "Hit": 558,
+            "Outside threshold": 162,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -577,12 +578,12 @@
       "model_unclassified_hours": 0,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3294,
-        "Outside threshold": 1049,
+        "Hit": 3307,
+        "Outside threshold": 1036,
         "Excluded": 0
       },
       "excluded_reasons": {},
-      "tied_hours": 5,
+      "tied_hours": 0,
       "beyond_display_range": 0
     },
     {
@@ -594,8 +595,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INDL_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "b584b4e3c26bbe3345ed797b72f3acdc002118f9582925eb21394650944dc39a",
-          "matched_sha256": "d005bbc9bf5294fde255a99c6c0ef9ccb0d9a1a742c259f628bcb77a3a9deb0e"
+          "classified_sha256": "d22914c1610b67493b68fe710fd8ca025413f86489a858d29765eca6c2c82bfa",
+          "matched_sha256": "95e59d7a192e789beed26b14381be8d069f31bdd9ef0670811311987d1019a1a"
         },
         {
           "month": "2026-02",
@@ -603,8 +604,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_INDL_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "521054de4dfb2d44e4fc93c6932de564a9c63af3f2cee0030d4bff47aaed826d",
-          "matched_sha256": "a1cd997510050cef837fd1e6c999296753194deabe3bf75290896e2c132cb7cd"
+          "classified_sha256": "8279cafde38ef8ff120c49dd1f66b1492e9cf0261c5ac9d656bbe279255c36a7",
+          "matched_sha256": "bfe482ad2f2066e6bd65ac47b574ee1a47e4f72246e9709c0876118ad22846c6"
         },
         {
           "month": "2026-03",
@@ -612,8 +613,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_INDL_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "79f4d795768d3f70a02b6ee397165d6c388622e9aaa408142de2d158e9d54c53",
-          "matched_sha256": "134aaf053b5955bc8de52f0ce88afd2f6dd3e04e4d4a54be76d20bf0288317f7"
+          "classified_sha256": "6a10235610fe66923ba5f9782727c668ab3be3b22453eaaf559444ff4c26678d",
+          "matched_sha256": "cdd35fa980d8e5c3930c38b31584898e4ffbdee829b441cc001d3afa66542086"
         },
         {
           "month": "2026-04",
@@ -621,8 +622,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INDL_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "a5e672ad9e03b4b09e5eb08ca9972bfdaa71b9c4521da99e8b16a8abd79254d1",
-          "matched_sha256": "78b70fd0aa9cd71e766f1d3c60f5f3cb1aece3b9d1c8d1a5344e330d8fa9f3c2"
+          "classified_sha256": "01f7cc08c380a4e48b7c6eb785be6a530d77af98f34d615c2658271ba806c0e6",
+          "matched_sha256": "4818c930e8d85c430c21bacc330407d38d892351d6f4656a635ba733e6f5a0bf"
         },
         {
           "month": "2026-05",
@@ -630,8 +631,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INDL_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "7204c997c6ee8f25081a17c3eec9d2fe9c0de07c5ca6f1a6123b5a2f5d4630dc",
-          "matched_sha256": "41d927dabad5e1bdf1296ed545224c3b07ad4854dae23090813134c6cb21094e"
+          "classified_sha256": "889f3dd524f6644b4b701b76a17b4e9dbdde0a481b928ca2eac8a96bc0edc266",
+          "matched_sha256": "427fe1f25a6c15a47688fa492f48cc719bde422856ed78b342ae1d232903f215"
         },
         {
           "month": "2026-06",
@@ -639,8 +640,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INDL_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "53f7d7325093faa8e5f76d3f2877783e0e6b2e4c80c6ba90ad62ccfcaced7d9b",
-          "matched_sha256": "d786de8ba5557ffa7f7e606c09f0d7108f0757894df0a015aae394845b24aa0a"
+          "classified_sha256": "1e1921a0f51781df71d2f88abc03e6afefb38a4565059eca18d5e150d981e56c",
+          "matched_sha256": "64aec59c75d1270bcfc9f5e936933bc3891c3b328bda3c58c6bf82495db6c3ad"
         }
       ],
       "monthly": [
@@ -651,8 +652,8 @@
           "model_unclassified_hours": 18,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 642,
-            "Outside threshold": 84,
+            "Hit": 668,
+            "Outside threshold": 58,
             "Excluded": 18
           },
           "excluded_reasons": {
@@ -668,8 +669,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 566,
-            "Outside threshold": 106,
+            "Hit": 606,
+            "Outside threshold": 66,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -683,8 +684,8 @@
           "model_unclassified_hours": 18,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 568,
-            "Outside threshold": 157,
+            "Hit": 661,
+            "Outside threshold": 64,
             "Excluded": 18
           },
           "excluded_reasons": {
@@ -700,8 +701,8 @@
           "model_unclassified_hours": 1,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 556,
-            "Outside threshold": 163,
+            "Hit": 655,
+            "Outside threshold": 64,
             "Excluded": 1
           },
           "excluded_reasons": {
@@ -717,8 +718,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 634,
-            "Outside threshold": 110,
+            "Hit": 672,
+            "Outside threshold": 72,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -732,8 +733,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 618,
-            "Outside threshold": 102,
+            "Hit": 641,
+            "Outside threshold": 79,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -746,8 +747,8 @@
       "model_unclassified_hours": 37,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3584,
-        "Outside threshold": 722,
+        "Hit": 3903,
+        "Outside threshold": 403,
         "Excluded": 37
       },
       "excluded_reasons": {
@@ -765,8 +766,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INRT_W_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "4475758a33402f2d8f0156176594561b54f3404fe0291d7c2c2ab3e7eb1e08bc",
-          "matched_sha256": "e969c615de98e093e2751a15e3f12c3b3cc0b6606e006cea2c2c749d2154f6d7"
+          "classified_sha256": "b1ebed474a23eeefcd5c699022851fb4ad5a2c616d7f402a2109b30f3f15f015",
+          "matched_sha256": "a08474c1ed6ce2b776cfb389ad2a65f44e75c19a2e2e8c4279253c14e9bdf816"
         },
         {
           "month": "2026-02",
@@ -774,8 +775,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_INRT_W_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "1507a4484910a8646d52006f1a657765dbafdc771ec99b5d97b6094dc91e915c",
-          "matched_sha256": "ad2910cc8f9b8ba0ea3e4f706b323432060781b3f1c275d265e72da61747e32e"
+          "classified_sha256": "5e860b4e72a89a1f4a356ac2fb97f2753bff855f5521602435d023b89d76b8b9",
+          "matched_sha256": "684777179334533c8c2d2cba17feb714a001699e015b8f606170e1a5dff78f8f"
         },
         {
           "month": "2026-03",
@@ -783,8 +784,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_INRT_W_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "eec50c6701c346fecbc20140d7a6f8052d227941c99f8af9c7826bfb08c10127",
-          "matched_sha256": "55947fb090291d3907250f2653c960b3cd0c49ccc2690fac2e39174cdec96ab8"
+          "classified_sha256": "e0ab17b079119469db3120a6b521ba41176b2ae463a7d1a5b43edc23bb9b20d4",
+          "matched_sha256": "0f6291a143cbeda7e81bf4e9b4316a2c7e5ebc3ce6b603cb1cb38f6051cfb026"
         },
         {
           "month": "2026-04",
@@ -792,8 +793,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INRT_W_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "4ae6d6ad2842f4ce0bfb507a25365d796f54ad28dfb1bff50020b53c19679e88",
-          "matched_sha256": "dfa7224ed78a7efdc8a8abfa8387d778557c1ce3349ca355c7876fc07ece3718"
+          "classified_sha256": "3d3f5d0b47ece54e3bb6b0a034ea3d49a7ae999062500baea1f689e33ebdccc7",
+          "matched_sha256": "54b1533aaa45d7a8bda9c3bbee4970ee26ebd4120c4f87f1697fcdbac26452c9"
         },
         {
           "month": "2026-05",
@@ -801,8 +802,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INRT_W_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "85d709554cd054379ea60b3c6b52faa0c98c824d359ec7d78db945d75bdeabe4",
-          "matched_sha256": "81e40b8f84548b6266cd1e9597c84fb056ea5e24eef897fba1c4538657b98f75"
+          "classified_sha256": "8f127c7825261351489315ca5aaaf5b39320efc9b6b164f2261b6941d5e2a04e",
+          "matched_sha256": "3ac7715c023b0724fbea1c4c49b31fc4763a9f103def85fcec0ea0328d725bd1"
         },
         {
           "month": "2026-06",
@@ -810,8 +811,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INRT_W_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "a467565264a2ebee43861ce3549d4cf8b9f60eda66ebed7f14ab4c08c6cea88d",
-          "matched_sha256": "47c90331312e1e7088d831cf3c56fe83132d6b469f70951f82a35bc631a32b91"
+          "classified_sha256": "67aa5542979c50c50e6739386f776d8c1508a1b09e9e62a237ffb2a4b7cebd49",
+          "matched_sha256": "9507a38374b3c63c7602b40c7d28b3a6d15266725ad7ac83b72b769ff2f06559"
         }
       ],
       "monthly": [
@@ -822,8 +823,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 463,
-            "Outside threshold": 281,
+            "Hit": 441,
+            "Outside threshold": 303,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -837,8 +838,8 @@
           "model_unclassified_hours": 3,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 378,
-            "Outside threshold": 291,
+            "Hit": 385,
+            "Outside threshold": 284,
             "Excluded": 3
           },
           "excluded_reasons": {
@@ -854,8 +855,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 372,
-            "Outside threshold": 371,
+            "Hit": 451,
+            "Outside threshold": 292,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -869,8 +870,8 @@
           "model_unclassified_hours": 2,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 395,
-            "Outside threshold": 323,
+            "Hit": 440,
+            "Outside threshold": 278,
             "Excluded": 2
           },
           "excluded_reasons": {
@@ -886,8 +887,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 477,
-            "Outside threshold": 267,
+            "Hit": 519,
+            "Outside threshold": 225,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -901,8 +902,8 @@
           "model_unclassified_hours": 12,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 518,
-            "Outside threshold": 190,
+            "Hit": 506,
+            "Outside threshold": 202,
             "Excluded": 12
           },
           "excluded_reasons": {
@@ -917,8 +918,8 @@
       "model_unclassified_hours": 17,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 2603,
-        "Outside threshold": 1723,
+        "Hit": 2742,
+        "Outside threshold": 1584,
         "Excluded": 17
       },
       "excluded_reasons": {
@@ -936,8 +937,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_LANTANA_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "e70fd8cbe643e49108fb859e0f37a7bc3de97dc74c9267c5a88d97f5b5f3335e",
-          "matched_sha256": "e85fe753d83314fa9851b243d4aa3686e061bbc6c41dd3fcacfc7d65fc154d1b"
+          "classified_sha256": "fb722adc831f2eee0676933ef03ea05b4db57458508fb2599163b01fd03e623a",
+          "matched_sha256": "c09436c051ec538e80a842b3c8365e0e9c677c31d11e095cd9bfeedbb3050432"
         },
         {
           "month": "2026-02",
@@ -945,8 +946,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_LANTANA_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "948815032bea521f2b8e37b0616a8ada5aaade97c98c6009a6cd76c8f14a1d06",
-          "matched_sha256": "9fe857dbb69c7df6d8db998f66cb029d1db0d913d291cb1ecfb5a5b6b92de7dc"
+          "classified_sha256": "735c76d95fbb487f0eacead585bb9505f08352f2724fa960a5a8ef6f0fdee4bc",
+          "matched_sha256": "8df8b2480ca482f88300df63f60644c64aabd95d9ec69f981b5f15ef0e34686b"
         },
         {
           "month": "2026-03",
@@ -954,8 +955,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_LANTANA_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "cbb73f72c4acd9a50d8fc1d0cbf594a639c67815e1d49262a6f2b0b1112c1ae7",
-          "matched_sha256": "908471ff40c1b34d7ab51eab394cdf05cd5277cd18b284b79fd0b0f32bb806a1"
+          "classified_sha256": "8ae7c8d7131f938192beca674b131c97276257630ba63b0ef97bc2b66b2330a2",
+          "matched_sha256": "a0851e4f47fde292e53cd7d951c9ce0e27c218959279dec4955cfdf5950286dc"
         },
         {
           "month": "2026-04",
@@ -963,8 +964,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_LANTANA_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "65c5b642f2027d8d09ab4d8be85c522c49f73a6753c1537463f94a41d54aecdd",
-          "matched_sha256": "4be04a4f1d5087134b70c19dc439adebc9b459e812327fc1040414101c057182"
+          "classified_sha256": "3f031abace075c32eebd09a63cfb18a5513a0657caec9b324a4a703f97e20692",
+          "matched_sha256": "b407c683936efbc6bdae38bf71f1c5fece16baf590c453c5b159a4cd4cd6f3c5"
         },
         {
           "month": "2026-05",
@@ -972,8 +973,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_LANTANA_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "447f8962e37745443e7289620ddc5e50ade7fef283707c453361ecf786f057ae",
-          "matched_sha256": "7c392a201861c23575f3fbb4651c913570d9bfe49459e921a0cec37efe2b172b"
+          "classified_sha256": "c10c30ad30787d0322bbb8aa0e1cdf792187fd1e1fd2fed1247ede884dce0ea4",
+          "matched_sha256": "429c75d46e5765e700b00218de90429b21b55891afd2dea3dde9426b6577eb7a"
         },
         {
           "month": "2026-06",
@@ -981,8 +982,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_LANTANA_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "6a0436d80226b5ff74c4bd2f8dbd7e8c3d42a886c18c556386a00405b26fb67c",
-          "matched_sha256": "79e1cf9ce738c3c06269d7465d48d447409decf88afaf4a784e30ac41d7c6d48"
+          "classified_sha256": "904fa1dc1df207fcff6b7427719ccd3ab38eb2ab99f8de2efc41f93d3efca338",
+          "matched_sha256": "257a39b89c7efeb9f6ca86526a143f95076b728f83da4e8f8bbb1631569713ce"
         }
       ],
       "monthly": [
@@ -1010,8 +1011,8 @@
           "model_unclassified_hours": 192,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 459,
-            "Outside threshold": 21,
+            "Hit": 456,
+            "Outside threshold": 24,
             "Excluded": 192
           },
           "excluded_reasons": {
@@ -1027,8 +1028,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 723,
-            "Outside threshold": 20,
+            "Hit": 724,
+            "Outside threshold": 19,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1042,8 +1043,8 @@
           "model_unclassified_hours": 24,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 505,
-            "Outside threshold": 191,
+            "Hit": 496,
+            "Outside threshold": 200,
             "Excluded": 24
           },
           "excluded_reasons": {
@@ -1059,8 +1060,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 404,
-            "Outside threshold": 340,
+            "Hit": 382,
+            "Outside threshold": 362,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1074,8 +1075,8 @@
           "model_unclassified_hours": 3,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 422,
-            "Outside threshold": 295,
+            "Hit": 430,
+            "Outside threshold": 287,
             "Excluded": 3
           },
           "excluded_reasons": {
@@ -1090,8 +1091,8 @@
       "model_unclassified_hours": 867,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 2608,
-        "Outside threshold": 868,
+        "Hit": 2583,
+        "Outside threshold": 893,
         "Excluded": 867
       },
       "excluded_reasons": {
@@ -1109,8 +1110,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "5f778b13d192388777056c15b753df0cbe16da02515fdfb3fe97484fd425fcb1",
-          "matched_sha256": "39f16427bbd734eb8b33b0d93867b9edfc4a03c6f07566330843d70548c41beb"
+          "classified_sha256": "f1c4ee1f2d46b610049cf8c3cf28d8907007f99d1892ac77cb5f0c6890d7e992",
+          "matched_sha256": "20d2058e529054ad1daeb37fce64d7fea76cdc53fea8714b1dc9646e58cd6131"
         },
         {
           "month": "2026-02",
@@ -1118,8 +1119,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "5e13396315b4e06aa0408b2d7197b9d2d85a01bc5e6cad3dc3258af8ae70345b",
-          "matched_sha256": "ec58ac12f1df7252a07a73fbcca058e8f485156a6a5c0aca79b084d0fc4649cb"
+          "classified_sha256": "20192a4ddd9e307caef0f4bdbc4252b20f0086bba07ed1cdc6849530cdd8e691",
+          "matched_sha256": "3be62db8c719c14a1ce29c430f7085a0fb440485f1a44b0a82c89a7691d76dc0"
         },
         {
           "month": "2026-03",
@@ -1127,8 +1128,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "31eca415e3efbedc9d35993ba65b9b0cf963282c81e59e12eaff7a2a62b41385",
-          "matched_sha256": "80ee0aa9f3011f0ca32b711a402a650e87583da607bba84eb2bee0d61875be0a"
+          "classified_sha256": "d544637b2c32b3c8298a34a7b9b2bb9774f6e562fde4229f84bcc582dcb88e8f",
+          "matched_sha256": "e6e01d2d4937384b3d2e43b99c0e7f5eb5b5e2d42e8748b5cf0173d32dcf3c04"
         },
         {
           "month": "2026-04",
@@ -1136,8 +1137,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "0a21d9e026a53050f7e8424a0e039d3260d1fc58b6a03b0055100b678b0b0992",
-          "matched_sha256": "745a674e0bc323903bc289cc99947a48589c2b110b32a81fdc0161b25c7fff87"
+          "classified_sha256": "767dd9c432c8108cfe82021fb552e52dd7b53cfa52e864b3a8e4809e8bc0dead",
+          "matched_sha256": "4651468f1394f1fb816dca89d115f7e5cf593c00469100857008155d3c5803c6"
         },
         {
           "month": "2026-05",
@@ -1145,8 +1146,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "7c49af0bf969a6dfeb08bc8bb76a33eb87d4353435293d67b0baf00efed32df1",
-          "matched_sha256": "e35d5e9141614940ee7f6356f7454ae2b2188411fa4bb31f99121937705800e0"
+          "classified_sha256": "3c6c135cb918b13509e875d7e752fc835d8dc2ff7daf01ea66814f81e953df9e",
+          "matched_sha256": "dc1974956fa7e63555eb63b64943f659bffe5eb940e0ecb020065a8cca5e24e8"
         },
         {
           "month": "2026-06",
@@ -1154,8 +1155,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "50b59c3fc350484042439808d4ccd35510765135994de6bcb32a9d45da75276b",
-          "matched_sha256": "bff2c0cc852f38007dbfa1deebade9b74a83320eb7be2c4463c63ebe3b47c228"
+          "classified_sha256": "59b52a4f8a37fbd544d6a8685d2d6dc916bfaf7fcd3c2b1796910226b31ea034",
+          "matched_sha256": "95701aece4dd8307757a47c476a3b416c7bd04602974cad2ac6e1da81bedfa41"
         }
       ],
       "monthly": [
@@ -1166,8 +1167,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 712,
-            "Outside threshold": 32,
+            "Hit": 703,
+            "Outside threshold": 41,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1181,8 +1182,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 613,
-            "Outside threshold": 59,
+            "Hit": 599,
+            "Outside threshold": 73,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1196,8 +1197,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 591,
-            "Outside threshold": 152,
+            "Hit": 599,
+            "Outside threshold": 144,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1228,8 +1229,8 @@
           "model_unclassified_hours": 32,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 552,
-            "Outside threshold": 160,
+            "Hit": 568,
+            "Outside threshold": 144,
             "Excluded": 32
           },
           "excluded_reasons": {
@@ -1245,8 +1246,8 @@
           "model_unclassified_hours": 11,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 515,
-            "Outside threshold": 194,
+            "Hit": 510,
+            "Outside threshold": 199,
             "Excluded": 11
           },
           "excluded_reasons": {
@@ -1261,8 +1262,8 @@
       "model_unclassified_hours": 60,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3520,
-        "Outside threshold": 763,
+        "Hit": 3516,
+        "Outside threshold": 767,
         "Excluded": 60
       },
       "excluded_reasons": {
@@ -1280,8 +1281,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "36c2c5d366e1f45c56664a1592bee36f8c064f50a36b9ee75df19c52bfc5736a",
-          "matched_sha256": "161aeadcc9bbdae043f45e872e80853419cc1c9d16d0b7abf24034afe604e7ca"
+          "classified_sha256": "30941148be064a0d4a5c71d24bc069b25fbe0cc979e2fcfd505769eca649254e",
+          "matched_sha256": "7773377423c2524a661be99ef941741f1807f490d1b529f3a52f8a80f76d6425"
         },
         {
           "month": "2026-02",
@@ -1289,8 +1290,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "f3f889dae21e9d80d9f38f9cf641572a503603f38b09b2244d994f382bb77a25",
-          "matched_sha256": "4d1442477e6c05760f804a0b7f6377d4ff081197770d107d553b0cde4b4241b1"
+          "classified_sha256": "cc7724d47d48a4f9e4482547bd270390859584cc9d1c98349940cc78e63de754",
+          "matched_sha256": "7186c2ebcbf3dbaede11b1e7b21a519cada8308af2086b0e1b3c2ad40abbc040"
         },
         {
           "month": "2026-03",
@@ -1298,8 +1299,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "d5ad793270853397172a1ff8549d7ae712ea715de5d7643431bf36507a55c718",
-          "matched_sha256": "70981eef73106d83ccf4b534f97d9eed3addddce2a77c6bd59c55e99fcd360de"
+          "classified_sha256": "f1586a52a67c9cfce331f8b6eef964eeadacfdab0507645ac6be501c2e10cb29",
+          "matched_sha256": "7b4d087b6c348bab47b7cfea57e024644a10a8bb8ec664623f1b0a6e687a7bc2"
         },
         {
           "month": "2026-04",
@@ -1307,8 +1308,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "59a5c45d672d5942345275c07cc4656046bf17c4eab7ee36878b87977e350b6f",
-          "matched_sha256": "f2b1a135649db6d3c0894798dc1bcf70ec2dd483d34b1d43445b1b44a9dad228"
+          "classified_sha256": "1ca640a2af9d9c58a23506dbbbd452aeff9756b6ebdeade035bf2555fc540ae5",
+          "matched_sha256": "1d382ba8a9581af59273988fb14bd1c2fdaf7ba1a6f2679835f0a4fba441fdd9"
         },
         {
           "month": "2026-05",
@@ -1316,8 +1317,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "298c74cfbcde57e9d42946cd7509b1637955ba66bcc622127a2a728134b9fd9a",
-          "matched_sha256": "b5c4531ad772b8cf6a7b49a6d0542cc1dc28a00ca5ec06522399c633a226c101"
+          "classified_sha256": "10b89f43ba8c7837b3d62698068e3ace65b92a97f3068875aed28f83e86c2bf1",
+          "matched_sha256": "a5082e791ebdb49838c808d70426c14a591e44abf4affec6759e7f90006cbc1d"
         },
         {
           "month": "2026-06",
@@ -1325,8 +1326,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "f50efc4a3fc4e314737b09aae8f3c431b467ca38f52ce2b481b56b3ade3f42a6",
-          "matched_sha256": "c1758a2995c036a1dab7c8121b9c84d79448f755e06684f979e95f00b22d00dc"
+          "classified_sha256": "171c5e298ccd8c5821b6db1e2fc755631f89e4d1d575ba645cbd67294eaec6ad",
+          "matched_sha256": "d4c74024b406846e9445f5b99b75bbb2b35569134ea86028f93f5315c6992f41"
         }
       ],
       "monthly": [
@@ -1337,8 +1338,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 482,
-            "Outside threshold": 262,
+            "Hit": 486,
+            "Outside threshold": 258,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1352,8 +1353,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 397,
-            "Outside threshold": 275,
+            "Hit": 411,
+            "Outside threshold": 261,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1367,8 +1368,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 555,
-            "Outside threshold": 188,
+            "Hit": 566,
+            "Outside threshold": 177,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1382,8 +1383,8 @@
           "model_unclassified_hours": 14,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 528,
-            "Outside threshold": 178,
+            "Hit": 533,
+            "Outside threshold": 173,
             "Excluded": 14
           },
           "excluded_reasons": {
@@ -1399,8 +1400,8 @@
           "model_unclassified_hours": 11,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 584,
-            "Outside threshold": 149,
+            "Hit": 582,
+            "Outside threshold": 151,
             "Excluded": 11
           },
           "excluded_reasons": {
@@ -1416,8 +1417,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 548,
-            "Outside threshold": 172,
+            "Hit": 550,
+            "Outside threshold": 170,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1430,8 +1431,8 @@
       "model_unclassified_hours": 25,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3094,
-        "Outside threshold": 1224,
+        "Hit": 3128,
+        "Outside threshold": 1190,
         "Excluded": 25
       },
       "excluded_reasons": {
@@ -1449,8 +1450,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "26369ee5a73c59bed35bab5a34f87d48787fc9473dd178bb70665ac79557356f",
-          "matched_sha256": "c11fd2890c0aefe2763938c4846b54b73a1d4052db88eee34a910259405ba9ec"
+          "classified_sha256": "9c0bf1c5e3ea4179a8ef8d24885fe053641575ea5db109e40714d8f8f40507a0",
+          "matched_sha256": "06dea0f7bc5875e260cc4cac33c26605e5f4cc9a3bcf0b0513b21e56be3a9ac7"
         },
         {
           "month": "2026-02",
@@ -1458,8 +1459,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "f00620b03aa8c4e3f87aad2dd3b1a2f969f45f037f99d015471956b9e41db81e",
-          "matched_sha256": "a3b822fe42a5f976bd149a9f05ad092ad7edcb6841ab52414340a9d91f716070"
+          "classified_sha256": "ca7f3fc47aaccc055a367911e1d8e5375f5ae43aa18aedb02c19048de8b514de",
+          "matched_sha256": "dc0f1cc5c0a70f23886e7959aa6190bb8a7009dc9a3ee55d6d4ec815068fbc30"
         },
         {
           "month": "2026-03",
@@ -1467,8 +1468,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "58000129791781a9d3fc1d1df379a634d42b03d250ef22979d7e4ba4fa796636",
-          "matched_sha256": "165db1fc701c93bf1b8effe9b7409bc7cc59c77f1cb10d16e3d9f2fe066533d0"
+          "classified_sha256": "b6bf962238bdb943b104e34b15ce87da0f237a12ecc11e1660ba454c38d661d0",
+          "matched_sha256": "1a1312ae00fe67d64d9b7b21b6a389345be920bf895d5408d1d66c084f6632ef"
         },
         {
           "month": "2026-04",
@@ -1476,8 +1477,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "fa3e7e78b809a1a3e11239cc8798570921ec3e02fc50283fc321788559f76d1c",
-          "matched_sha256": "7ec5a56f1fe450eb021f26a5df1d772569eb26155fa007dddfa4b67eae4ed996"
+          "classified_sha256": "69856294daa1993a035654a46cbb9b98d1027e147e3de8af8dc5af0961256fa7",
+          "matched_sha256": "4b39b1e3ee1d28da56dbf79f83af1acd600f2c72741383971ca6a0cb8858b5df"
         },
         {
           "month": "2026-05",
@@ -1485,8 +1486,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "682930b6bad5418f8a8e7378d50bf146b32a1917d01b4e0717962fb54603f4e4",
-          "matched_sha256": "bcc77acde943bf58ac9c60b577b7fa10a676516bcdd5eead09faade975c4d7d0"
+          "classified_sha256": "c295a3317f726212052aa78675863365443f4a50c56aa45c9ba600f809ef9c8e",
+          "matched_sha256": "612c09cd756e35c01f84bdb9d1e9e75e8b30654225f3e2e7db8d88c4cbd5be54"
         },
         {
           "month": "2026-06",
@@ -1494,8 +1495,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "61fa0b9af3d1b853e27beb1ce2e537ffc0dce42437270f80bc739420326722f5",
-          "matched_sha256": "ca2a774dea08d26f80151f607720936752826474f0828920bbc7139937539fd8"
+          "classified_sha256": "26b8d4ff23ccf4ea8151ee39bca90982f71996850e2237cfd1f7a2aff6ade652",
+          "matched_sha256": "c579aaacfb600917d29c38abe1ff529bf3b130b286e2078d44af846d6999e7ec"
         }
       ],
       "monthly": [
@@ -1506,8 +1507,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 545,
-            "Outside threshold": 199,
+            "Hit": 543,
+            "Outside threshold": 201,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1521,8 +1522,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 454,
-            "Outside threshold": 218,
+            "Hit": 458,
+            "Outside threshold": 214,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1536,8 +1537,8 @@
           "model_unclassified_hours": 8,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 526,
-            "Outside threshold": 209,
+            "Hit": 514,
+            "Outside threshold": 221,
             "Excluded": 8
           },
           "excluded_reasons": {
@@ -1553,8 +1554,8 @@
           "model_unclassified_hours": 9,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 414,
-            "Outside threshold": 297,
+            "Hit": 437,
+            "Outside threshold": 274,
             "Excluded": 9
           },
           "excluded_reasons": {
@@ -1570,8 +1571,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 511,
-            "Outside threshold": 233,
+            "Hit": 540,
+            "Outside threshold": 204,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1585,8 +1586,8 @@
           "model_unclassified_hours": 18,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 488,
-            "Outside threshold": 214,
+            "Hit": 483,
+            "Outside threshold": 219,
             "Excluded": 18
           },
           "excluded_reasons": {
@@ -1601,8 +1602,8 @@
       "model_unclassified_hours": 35,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 2938,
-        "Outside threshold": 1370,
+        "Hit": 2975,
+        "Outside threshold": 1333,
         "Excluded": 35
       },
       "excluded_reasons": {
@@ -1620,8 +1621,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202601.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202601.xlsx",
-          "classified_sha256": "d29e41ec1b008cb5eec459a03cc97823e8160a30bbc612db589f90b6d392ce78",
-          "matched_sha256": "8f72052d559d6976e1cd21c6a366e3c5ab1d96782603e3f328d2e5cf9e430b76"
+          "classified_sha256": "17a526a13f3d8a0b968f856226a5e25005e5c86f8f8d787a0cbf6ae7ed2f70d0",
+          "matched_sha256": "af1ba448ea1a7fa3d8585fb941bcb27c35c26bab9d60a9879131509a343a1820"
         },
         {
           "month": "2026-02",
@@ -1629,8 +1630,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202602.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202602.xlsx",
-          "classified_sha256": "7851c1038c5ebcc733835d09f009706376b015b0e325222a2812d174c541472a",
-          "matched_sha256": "d5ebb8afcb775223cf510f57fe56a743b6dcaf7198e7fad72e5a3506f0aa5540"
+          "classified_sha256": "dd8112d692d2203c6815c16786855b8f67a79c47cc65db4499a4518a16d1618a",
+          "matched_sha256": "911518ae68bae24ee2eefa6ac3d6d5d38fac1ac2eba4657e49473cfe2acb9f84"
         },
         {
           "month": "2026-03",
@@ -1638,8 +1639,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202603.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202603.xlsx",
-          "classified_sha256": "c148cfef8099180a9c1feb20027d3c0fb7d219dcfa97e517a9609c11d0871bcc",
-          "matched_sha256": "2f1fd865d3dbee78c66eadd2c65b415e19e70537ed5b4052e55e5b82ec8c5f8e"
+          "classified_sha256": "c9d78d12e08824bf597b443ca62442959987ca59b682edf363d1b416595ae94c",
+          "matched_sha256": "16d2c74953de4c632fe24f5476d7f8c1060a762599b0064c2172b5250a1c2c2c"
         },
         {
           "month": "2026-04",
@@ -1647,8 +1648,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202604.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202604.xlsx",
-          "classified_sha256": "0a210b68648dc53609bed34091007cd0783bab867809c84b0e05743a0283f027",
-          "matched_sha256": "dbe069ef113581e9b6c70f34e9e241fc4882dee1123f52a1187b54a979b03757"
+          "classified_sha256": "50ae19e863c069c711624b174700ffd08c9bf87469cbc91c433783017e91ff55",
+          "matched_sha256": "694e1469520e4fe8738c56e51590608d8ff7739c1c8ca41bcd15f27eb0c1b312"
         },
         {
           "month": "2026-05",
@@ -1656,8 +1657,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202605.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202605.xlsx",
-          "classified_sha256": "239570e365d5d8b33d69bc5449fba4492fa068e91a2718a4dc685e61accfd0b7",
-          "matched_sha256": "73997c39f87d5df91be8ab5ad361a530f1df4129b46512cd495c080fdb8289e3"
+          "classified_sha256": "6cfb134639588883802c9f99a78aea8f0a68074e36446189359a2899fbe24fc2",
+          "matched_sha256": "a635a5cad64b8198e2f3dee9c7ec1c732d8a11d3c7f9409795e43b35a09b9346"
         },
         {
           "month": "2026-06",
@@ -1665,8 +1666,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202606.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202606.xlsx",
-          "classified_sha256": "09c7cd993e7868b2f6d97a210543dcb3ca360007cf0d429b96fd94f655b15fc8",
-          "matched_sha256": "4edc7691393c3f96e6cd42358ce7c717ac861019a00e71b129657598772c7411"
+          "classified_sha256": "4dd4182ba4c47b26a8a9dea86e19598b7a6455ea48435fa727fdbff38d8e587a",
+          "matched_sha256": "4d0076cf1d307ee5a6d14244c21659a2a64163c712d48cbfa79cdc61f6120ce1"
         }
       ],
       "monthly": [
@@ -1677,8 +1678,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 535,
-            "Outside threshold": 209,
+            "Hit": 534,
+            "Outside threshold": 210,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1692,8 +1693,8 @@
           "model_unclassified_hours": 13,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 441,
-            "Outside threshold": 218,
+            "Hit": 437,
+            "Outside threshold": 222,
             "Excluded": 13
           },
           "excluded_reasons": {
@@ -1709,8 +1710,8 @@
           "model_unclassified_hours": 8,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 525,
-            "Outside threshold": 210,
+            "Hit": 521,
+            "Outside threshold": 214,
             "Excluded": 8
           },
           "excluded_reasons": {
@@ -1726,8 +1727,8 @@
           "model_unclassified_hours": 8,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 425,
-            "Outside threshold": 287,
+            "Hit": 452,
+            "Outside threshold": 260,
             "Excluded": 8
           },
           "excluded_reasons": {
@@ -1743,8 +1744,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 526,
-            "Outside threshold": 218,
+            "Hit": 545,
+            "Outside threshold": 199,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1758,8 +1759,8 @@
           "model_unclassified_hours": 18,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 503,
-            "Outside threshold": 199,
+            "Hit": 486,
+            "Outside threshold": 216,
             "Excluded": 18
           },
           "excluded_reasons": {
@@ -1774,8 +1775,8 @@
       "model_unclassified_hours": 47,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 2955,
-        "Outside threshold": 1341,
+        "Hit": 2975,
+        "Outside threshold": 1321,
         "Excluded": 47
       },
       "excluded_reasons": {
@@ -1793,8 +1794,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "eaaa752502a40d14476e3e86ad041d493c8418086418c064b8af2937d0139b56",
-          "matched_sha256": "e2bfb92b178eee38e22387fc00a86c935811b7e1719f7dbcb6675c49758fdf9e"
+          "classified_sha256": "bcc8537cb45509b980b3b94a5e1d7255438a1396415a2bd2241ecd73ea736dbe",
+          "matched_sha256": "0020ff0c9213f4a65edba8dc3b6d3a941faa13681fbb499917b5def7e93b2521"
         },
         {
           "month": "2026-02",
@@ -1802,8 +1803,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "117494c47878ab6d432a0ddbec63a99f5b330862e6dd00b3b3d3d92044d1e59c",
-          "matched_sha256": "1f1b884cbe4a5e6f14a7915ce15b633c8b8eaec3564519ae283dd0ae27367e96"
+          "classified_sha256": "26a0688361fb6a37ff06f67efcbbe2179c7e9f87a8e8a709958b959dbff262dc",
+          "matched_sha256": "acf5c0769033f8086761d3f7efaabc6fb99e4faafeee60940ef12a17790562cd"
         },
         {
           "month": "2026-03",
@@ -1811,8 +1812,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "9c6c6b89e6b0770be5402be1cda22b85ace648f1c28e0b81ae059266a25977bf",
-          "matched_sha256": "e2b54b9df8a37069749878e6670a1aa203ef18fe40b3dff4e9952cfc07336398"
+          "classified_sha256": "328a10d76b48da718a4da03d19ead9bb5ccb77a7cfb6d5210755e121c8627957",
+          "matched_sha256": "bdc441ca0f8c54295a769ba14f0d172a43451c70504a6a9a4e5fa3577d577a3a"
         },
         {
           "month": "2026-04",
@@ -1820,8 +1821,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "8eb326678cce3020dc138c7e603d7538d8f4b2f959a829f4b166443d886198f8",
-          "matched_sha256": "2b9eb3b7ad40c3a7db59594ad41f9759391d7b77aa6ad45e2535bdd858c88375"
+          "classified_sha256": "36647218ea681c89ec3fe07604af4172e51bee121831f7f7fb6ddb25399c8e55",
+          "matched_sha256": "e085fba0117ccca8c96e1e6b61ae00e0a370f0ddea7e95dcefb8757a634afa81"
         },
         {
           "month": "2026-05",
@@ -1829,8 +1830,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "54f70df72ee53c8ccd8f6c04b96c68def3c10804ab502436c3d1d8108d799974",
-          "matched_sha256": "acbb3bddad226a73d7c13e28040c12cb9ddfc655def70d78dad14b2acd3d6b54"
+          "classified_sha256": "cea95d5c087f8dc44027b5e3f05259579c62573cf98c54c9b5d16b992096c891",
+          "matched_sha256": "6e3c497f5de4a4b40693e4f145c6dfefb025f73daa502a942708080cf5527438"
         },
         {
           "month": "2026-06",
@@ -1838,8 +1839,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "3b5f9527fafeaa0e549513d70b72f0c1418f0ed710ae8c9a007f0fa128119271",
-          "matched_sha256": "cab490fee20d4db3b46ae87d735c97d25c97ab26a05aa157ff1754bb604720d8"
+          "classified_sha256": "fe1748d0906b0abefe46f9a14fbf1630292e8849dda760a6bf577b65b898fdca",
+          "matched_sha256": "b6f264ae5f1cae2bb9ec445f7e20ad3ca60bd8c45d0d0fd7c265aa8e304321f8"
         }
       ],
       "monthly": [
@@ -1850,8 +1851,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 525,
-            "Outside threshold": 219,
+            "Hit": 528,
+            "Outside threshold": 216,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1865,8 +1866,8 @@
           "model_unclassified_hours": 1,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 444,
-            "Outside threshold": 227,
+            "Hit": 459,
+            "Outside threshold": 212,
             "Excluded": 1
           },
           "excluded_reasons": {
@@ -1882,14 +1883,14 @@
           "model_unclassified_hours": 4,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 391,
-            "Outside threshold": 348,
+            "Hit": 462,
+            "Outside threshold": 277,
             "Excluded": 4
           },
           "excluded_reasons": {
             "Zero effective power range": 4
           },
-          "tied_hours": 0,
+          "tied_hours": 1,
           "beyond_display_range": 0
         },
         {
@@ -1899,8 +1900,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 468,
-            "Outside threshold": 252,
+            "Hit": 483,
+            "Outside threshold": 237,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1914,8 +1915,8 @@
           "model_unclassified_hours": 11,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 482,
-            "Outside threshold": 251,
+            "Hit": 516,
+            "Outside threshold": 217,
             "Excluded": 11
           },
           "excluded_reasons": {
@@ -1931,8 +1932,8 @@
           "model_unclassified_hours": 8,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 482,
-            "Outside threshold": 230,
+            "Hit": 493,
+            "Outside threshold": 219,
             "Excluded": 8
           },
           "excluded_reasons": {
@@ -1947,14 +1948,14 @@
       "model_unclassified_hours": 24,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 2792,
-        "Outside threshold": 1527,
+        "Hit": 2941,
+        "Outside threshold": 1378,
         "Excluded": 24
       },
       "excluded_reasons": {
         "Zero effective power range": 24
       },
-      "tied_hours": 0,
+      "tied_hours": 1,
       "beyond_display_range": 0
     },
     {
@@ -1966,8 +1967,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STADIUM_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "b6b5b5f91979fc8f221468ff922fb4c5165ab08f690682c1f63d9fab161a4be3",
-          "matched_sha256": "088d889b97853d798eb144b06a94cfdb105a3ad2ded9448921952403dde8dce4"
+          "classified_sha256": "f47848ebab48e40c16cd07b372e298ea21d00eefcee63dc9a7587e01655c1f41",
+          "matched_sha256": "1992e5914fd5cd95c7e28da599350d380901a4d811e5c6ce8c4fc50950be074d"
         },
         {
           "month": "2026-02",
@@ -1975,8 +1976,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_STADIUM_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "72608357ec7d49571110ff06b8842ec7a54d531df31cf2a6f6b32d6a398fece7",
-          "matched_sha256": "78c5852962db5f40b02b67ad92a7eed6308013abd39a9fca11f5259cd338ffad"
+          "classified_sha256": "6e4d9eb71b32c6a6a59159a06db565c2a7198191ed61f9402c795ae601097bf1",
+          "matched_sha256": "c629a9044975f2d5ea0fab4febbc720617f5166df509822206e92ba5b9915b3e"
         },
         {
           "month": "2026-03",
@@ -1984,8 +1985,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_STADIUM_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "d8ae3db18a8cdfd7e9e15e8276c1af68ad65b0ca153e9abbdd899770a0b81374",
-          "matched_sha256": "1f398ff32faa076807355161a12ea2618348c68b3c90c2544f13d076756900dd"
+          "classified_sha256": "bf52c63137010a7e8ca62a5d94e0884d07fc6c4bb3f429061a67129d8bc65483",
+          "matched_sha256": "ba507b6ec84915cac4d81d531b05e3997df28d33e7fcd0fe197c7f322f0bb96b"
         },
         {
           "month": "2026-04",
@@ -1993,8 +1994,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STADIUM_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "f5fec229d68a67544189ebb10f38bb4a37ab40a78cdb23f5e257839e2b4a5675",
-          "matched_sha256": "e0094d0b7952588d7b11d9921862662c93f9aeb796b7e3af08151b6bdad243d6"
+          "classified_sha256": "a0cf81c7239426a4ab9d23b709dbd1f18fec54f45148e40ff7f9f1d6d8f62baf",
+          "matched_sha256": "162e9c0fbecc56ad17219db64326674a005f38fa79583673deb64a3fb760484b"
         },
         {
           "month": "2026-05",
@@ -2002,8 +2003,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STADIUM_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "e1fdff4318558584b8a7efcd3b5fb185ea8f591a5f62b89d548b21b58952b49f",
-          "matched_sha256": "dbd1488afc6648a5e401a23cb88c2ec3e36556f99283cb924c5e834eac025e2e"
+          "classified_sha256": "99a842052463a4edfbeca7f8f7cbecf088451bb470eed36d31144bfd3a3d0028",
+          "matched_sha256": "c4edfa1c1e4ed3ae35b187e5060d21d1d57b8f665ed5639f16ab2236cfeb7a82"
         },
         {
           "month": "2026-06",
@@ -2011,8 +2012,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STADIUM_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "710617d6f38fe96e062e4d6d90533107513ca96abd1334c913299c1f867a4831",
-          "matched_sha256": "dd6b5dd357ddae13615a994d1d6d8acbfda11f3aec3e2a948c90f4d1a1a653be"
+          "classified_sha256": "d244ad1c032d54a8006a829493a7ab70fa8481a7c42c1c3567fc339cc6843c6a",
+          "matched_sha256": "b22da321bf34f8fef36233433c20e600593e95091a224762d7f8120cf28dea2f"
         }
       ],
       "monthly": [
@@ -2023,8 +2024,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 717,
-            "Outside threshold": 27,
+            "Hit": 720,
+            "Outside threshold": 24,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2038,8 +2039,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 543,
-            "Outside threshold": 129,
+            "Hit": 545,
+            "Outside threshold": 127,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2053,8 +2054,8 @@
           "model_unclassified_hours": 49,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 518,
-            "Outside threshold": 176,
+            "Hit": 513,
+            "Outside threshold": 181,
             "Excluded": 49
           },
           "excluded_reasons": {
@@ -2070,8 +2071,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 530,
-            "Outside threshold": 190,
+            "Hit": 533,
+            "Outside threshold": 187,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2085,8 +2086,8 @@
           "model_unclassified_hours": 1,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 561,
-            "Outside threshold": 182,
+            "Hit": 562,
+            "Outside threshold": 181,
             "Excluded": 1
           },
           "excluded_reasons": {
@@ -2102,8 +2103,8 @@
           "model_unclassified_hours": 2,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 547,
-            "Outside threshold": 171,
+            "Hit": 544,
+            "Outside threshold": 174,
             "Excluded": 2
           },
           "excluded_reasons": {
@@ -2118,8 +2119,8 @@
       "model_unclassified_hours": 52,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3416,
-        "Outside threshold": 875,
+        "Hit": 3417,
+        "Outside threshold": 874,
         "Excluded": 52
       },
       "excluded_reasons": {
@@ -2137,8 +2138,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "6cd7bebfdb8bf8ae83695e8ab5f0b53cde8b3168d8af7a7a293ee7414d4a7e6f",
-          "matched_sha256": "30f9428f7981e6a2d90fa93032ec434622441e15c3e39fae8ac4a944f3da0ac0"
+          "classified_sha256": "239a60b19976912931bd1b638b114bb042528ae5340081972e81cbc91bdda22e",
+          "matched_sha256": "0fbd2ce9f21e88b502fa284fb4f0e30284bf10be6f8282eb73ca6ae3c39a68c0"
         },
         {
           "month": "2026-02",
@@ -2146,8 +2147,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "2ab2c75b4d9892c4d2f08cd047d1a44c8c5055c0b00665f1c5a8cb1deba3005f",
-          "matched_sha256": "125b8fe1865d19b1c96258daa04327054a3fb86a51a6ee091912c3c96523c30e"
+          "classified_sha256": "4485434c7080d8b44de13560ee1042fce6232ac95458b1ccc601f016b317e4b5",
+          "matched_sha256": "09feaa01d6e7d04f2e2a0dce637d6c131d424ef8802b9400c9e60d722eba11bb"
         },
         {
           "month": "2026-03",
@@ -2155,8 +2156,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "7ad2fea4f1b42da4f32362f9ddb7e90b0aa87632ee1c72787cbd60ae9edaec6d",
-          "matched_sha256": "ae0f60abe587b899a236a5f941f47cf8609cf6d7772e9620e1f1f1ca7d1f4703"
+          "classified_sha256": "b406a18fdb4eb7b9ac3f865a925332345c44939c44988b3fe995f0adda3d28d2",
+          "matched_sha256": "fe46ed30ad3e94c83db719cc25f3249d7c244a427432c3efce6b590f44b56c37"
         },
         {
           "month": "2026-04",
@@ -2164,8 +2165,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "029f1d14f32333e76f953c20d1fc6cbb48d19479e0d10970de4c599ab424bbb0",
-          "matched_sha256": "4b9d432a271136c9b617634a9408dfef3f007997451f6dd3c8a1293b30038b3c"
+          "classified_sha256": "7cb824426565d6011a0ea8bee8cd4f49a6d97bb0bd67df5570e04e95f5755904",
+          "matched_sha256": "61ccb5aded5ade8391f46c004c4d7f1bf7026e93c87100bc88147db510e09ead"
         },
         {
           "month": "2026-05",
@@ -2173,8 +2174,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "9ba3b94a98464d63245311c3c8b9077e777f8130df1792c6119c02ef95014a89",
-          "matched_sha256": "8e3dadc01aeb15daf748a0fe79bdb3062ff17f7d728ea98d039b97050f1c71ba"
+          "classified_sha256": "f193729195fae039add9196d7166c4e9683cf690cf4f01040184d3f3e44acd98",
+          "matched_sha256": "e4042d13c8c5561d54d19aff9f6aa7c15413e3d868677e59a96f07cbfc8e39e7"
         },
         {
           "month": "2026-06",
@@ -2182,8 +2183,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "1522d701eeef09cde4cee938224e966f4ef0a82097d5610b4f98517078fdd2f3",
-          "matched_sha256": "bab999fe8ca9580ab0130cf400df24dcde1936e1d9983377ef8ec4ba84dc3d90"
+          "classified_sha256": "448893ab2ce620e88122f520fdd167657585e0497d84fcec4140677a76c3846a",
+          "matched_sha256": "8fd33e4cd4ca2ba581dd5ad550697aecb0153801e2bf595bdf78e380162d825e"
         }
       ],
       "monthly": [
@@ -2194,8 +2195,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 613,
-            "Outside threshold": 131,
+            "Hit": 608,
+            "Outside threshold": 136,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2209,8 +2210,8 @@
           "model_unclassified_hours": 24,
           "telemetry_rows": 672,
           "telemetry_status": {
-            "Hit": 527,
-            "Outside threshold": 121,
+            "Hit": 528,
+            "Outside threshold": 120,
             "Excluded": 24
           },
           "excluded_reasons": {
@@ -2226,8 +2227,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 743,
           "telemetry_status": {
-            "Hit": 602,
-            "Outside threshold": 141,
+            "Hit": 588,
+            "Outside threshold": 155,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2241,8 +2242,8 @@
           "model_unclassified_hours": 4,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 581,
-            "Outside threshold": 135,
+            "Hit": 573,
+            "Outside threshold": 143,
             "Excluded": 4
           },
           "excluded_reasons": {
@@ -2258,8 +2259,8 @@
           "model_unclassified_hours": 19,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 607,
-            "Outside threshold": 118,
+            "Hit": 609,
+            "Outside threshold": 116,
             "Excluded": 19
           },
           "excluded_reasons": {
@@ -2275,8 +2276,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 614,
-            "Outside threshold": 106,
+            "Hit": 620,
+            "Outside threshold": 100,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -2289,8 +2290,8 @@
       "model_unclassified_hours": 47,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3544,
-        "Outside threshold": 752,
+        "Hit": 3526,
+        "Outside threshold": 770,
         "Excluded": 47
       },
       "excluded_reasons": {

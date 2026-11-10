@@ -35,7 +35,6 @@ from classify_p_ess import (  # noqa: E402
     classify_p_ess,
     parse_dsfunction,
     row_has_zero_power_limit,
-    values_match,
 )
 
 
@@ -43,8 +42,8 @@ DEFAULT_MONTH = "202605"
 TIMEZONE = "America/Chicago"
 PNG_DPI = 720
 CONFIDENCE_LEVEL = 0.90
-# Keep the archive range check separate from the MWh classification band.
-SOC_RANGE_TOLERANCE = 1e-5
+# Keep physical range validation separate from the MWh classification band.
+ENERGY_RANGE_TOLERANCE_MWH = 1e-5
 MB_ENERGY_TOLERANCE_MWH = 1e-3
 STATE_ORDER = ("MC", "CC", "CD", "NU", "DC", "DD", "MD")
 WIDTH_STATE_ORDER = ("CC", "CD", "NU", "DC", "DD")
@@ -214,17 +213,20 @@ def segment_widths(
     pcmax: float,
     pdmax: float,
     maximum_soc: float,
+    minimum_soc: float = 0.0,
     context: str = "dsfunction",
 ) -> dict[str, float]:
     """Reconstruct five price-width totals, excluding max-rate and SOC boundaries.
 
     Segment categories and their priority are delegated to classify_p_ess.
     Zero-width sampled first segments carry no area but do not remove an hour.
-    The current energy contract has minimum SOC zero and capacity maximum_soc.
+    Energies and both monthly bounds are absolute MWh. A zero energy range
+    contributes no retained price widths because every segment is a boundary.
     """
-    capacity = _number(maximum_soc, f"{context}, maximum SOC")
-    if capacity <= 0:
-        raise ValueError(f"{context}: maximum SOC must be positive.")
+    minimum = _number(minimum_soc, f"{context}, minimum SOC")
+    maximum = _number(maximum_soc, f"{context}, maximum SOC")
+    if not 0 <= minimum <= maximum:
+        raise ValueError(f"{context}: SOC bounds must satisfy 0 <= minimum <= maximum.")
     pcmax = _number(pcmax, f"{context}, Pcmax")
     pdmax = _number(pdmax, f"{context}, Pdmax")
     try:
@@ -255,15 +257,18 @@ def segment_widths(
         ):
             raise ValueError(f"{segment_context}: price intervals are not contiguous.")
         previous_upper = upper
-        soc = energy / capacity
-        if soc < -SOC_RANGE_TOLERANCE or soc > 1 + SOC_RANGE_TOLERANCE:
+        if (
+            energy < minimum - ENERGY_RANGE_TOLERANCE_MWH
+            or energy > maximum + ENERGY_RANGE_TOLERANCE_MWH
+        ):
             raise ValueError(
-                f"{segment_context}: normalized energy {soc} is outside [0, 1]."
+                f"{segment_context}: energy {energy} MWh is outside "
+                f"[{minimum}, {maximum}] MWh."
             )
         # Boundary occupancy takes priority even when dispatch is zero or inward.
         if (
-            energy <= MB_ENERGY_TOLERANCE_MWH
-            or energy >= capacity - MB_ENERGY_TOLERANCE_MWH
+            energy <= minimum + MB_ENERGY_TOLERANCE_MWH
+            or energy >= maximum - MB_ENERGY_TOLERANCE_MWH
         ):
             continue
         state = classify_p_ess(power, values, 0, pcmax=pcmax, pdmax=pdmax)
@@ -445,17 +450,11 @@ def load_month_data(resource: str, month: str = DEFAULT_MONTH) -> ESRFigureData:
                 continue
             if state not in STATE_ORDER:
                 raise ValueError(f"{context}: unknown P_ESS_state {state!r}.")
-            minimum_soc = _number(
-                value["Applied Minimum SOC"], f"{context}, minimum SOC"
-            )
-            if not values_match(minimum_soc, 0.0):
-                raise ValueError(
-                    f"{context}: width normalization requires minimum SOC zero."
-                )
             row_widths = segment_widths(
                 value["dsfunction"],
                 pcmax=pcmax,
                 pdmax=pdmax,
+                minimum_soc=value["Applied Minimum SOC"],
                 maximum_soc=value["Applied Maximum SOC"],
                 context=context,
             )
@@ -472,8 +471,8 @@ def load_month_data(resource: str, month: str = DEFAULT_MONTH) -> ESRFigureData:
     if any(valid[hour] + excluded[hour] != raw[hour] for hour in range(24)):
         raise ValueError(f"{source_path.name}: state counts do not reconcile.")
     state_counts = Counter({state: sum(counts[state]) for state in STATE_ORDER})
-    if not sum(state_counts.values()) or not sum(widths.values()) > 0:
-        raise ValueError(f"{source_path.name}: no plotted states or five-state widths.")
+    # A zero-capacity or unavailable member may contribute zero counts/widths;
+    # the pooled plot validates its combined denominators after all members load.
     prices = summarize_prices(prices_by_hour)
     expected_hour_counts = Counter(expected.tz_convert(TIMEZONE).hour)
     if any(

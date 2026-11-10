@@ -2,6 +2,8 @@
 
 Run from the release root. The included results can be plotted directly. To
 recompute results, follow [the Micro run order](../../Program/Micro/RUN_ORDER.md).
+The complete Micro pipeline verifies Rolling results before postprocessing and
+regenerates every figure family below, including a+b/c for every configured month.
 
 ## Classification and profit figures
 
@@ -64,7 +66,9 @@ The unified entry writes two transparent 720 dpi PNGs, each with a source-data C
 
 The a+b canvas is 180 by 70 mm. Panel a reconstructs the five price spans
 CC/CD/NU/DC/DD from `dsfunction`, validates the eighth-column energy against each
-row's `Applied Maximum SOC`, and excludes SOC-boundary and maximum-rate segments.
+row's `Applied Minimum SOC` and `Applied Maximum SOC`, and excludes SOC-boundary
+and maximum-rate segments. Both bounds and energies are absolute MWh; the lower
+bound may be positive. A zero energy range contributes no retained price spans.
 Boundary membership takes priority even for zero power or power directed into
 the battery's interior: energy within the existing 0.001 MWh boundary band is
 mB and contributes no area to the five retained categories. This energy band is

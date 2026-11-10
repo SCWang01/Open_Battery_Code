@@ -87,11 +87,14 @@ def configure_matplotlib() -> None:
 
 
 def _validate_distributions(
-    state_counts: Counter[str], width_sums: dict[str, float], record_count: int
+    state_counts: Counter[str], width_sums: dict[str, float], record_count: int,
+    *, allow_empty: bool = False,
 ) -> None:
     """Reject invalid denominators or omitted categories before drawing."""
-    if not isinstance(record_count, Integral) or record_count <= 0:
-        raise ValueError("record_count must be a positive integer.")
+    if not isinstance(record_count, Integral) or record_count < 0:
+        raise ValueError("record_count must be a nonnegative integer.")
+    if not allow_empty and record_count == 0:
+        raise ValueError("record_count must be positive for a plotted distribution.")
     for state, count in state_counts.items():
         if not isinstance(count, Integral) or count < 0:
             raise ValueError(f"State {state!r} has invalid count {count!r}.")
@@ -104,7 +107,9 @@ def _validate_distributions(
     for state, width in width_sums.items():
         if not math.isfinite(width) or width < 0:
             raise ValueError(f"State {state!r} has invalid width {width!r}.")
-    if sum(width_sums.values()) <= 0:
+    if record_count == 0 and sum(width_sums.values()) > 0:
+        raise ValueError("A member without valid states cannot contribute price widths.")
+    if not allow_empty and sum(width_sums.values()) <= 0:
         raise ValueError("The five dsfunction price-width totals are all zero.")
 
 
@@ -333,7 +338,9 @@ def aggregate_distributions(
     for data in members:
         if data.month != month:
             raise ValueError("Aggregation requires one common calendar month.")
-        _validate_distributions(data.state_counts, data.width_sums, data.valid_rows)
+        _validate_distributions(
+            data.state_counts, data.width_sums, data.valid_rows, allow_empty=True
+        )
         for name, value in (
             ("raw_rows", data.raw_rows),
             ("excluded_zero_limit", data.excluded_zero_limit),

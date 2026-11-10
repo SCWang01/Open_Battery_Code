@@ -1,9 +1,10 @@
-"""Hourly rolling bidding with monthly submitted power and telemetry-based energy.
+"""Hourly rolling bidding with monthly submitted power and SOC bounds.
 
 Default input is experiment_config_1hour.json; results live directly in Results/Micro_Results/rolling with YYYYMM filenames.
 The CLI runs all configured months using 12 processes; --month selects one.
 The hourly loader uses raw monthly max(HSL)/min(LSL) for power ratings.
-Capacity and initial MWh remain reconstructed from hourly telemetry.
+SOC bounds are raw monthly Minimum/Maximum SOC extrema. Each month starts at
+its first observed State of Charge; forecast-tail rows do not set these values.
 Any ON/ONTEST source slot enables the hour unless its entire day has zero hourly
 net output. Every forecast hour carries its own gate. There is no terminal SOC
 target; reported Modeled SOC and dsfunction column eight are energy in MWh.
@@ -69,7 +70,7 @@ AVAILABLE_STATUSES = ("ON", "ONTEST")
 POWER_LIMIT_POLICY = (
     experiment_data.SUBMITTED_POWER_POLICY + "_hourly_any_ON_ONTEST_nonzero_day"
 )
-SOC_POLICY = "telemetry_reconstructed"
+SOC_POLICY = experiment_data.SUBMITTED_SOC_POLICY
 
 REQUIRED_COLUMNS = (
     TIME_COLUMN,
@@ -230,6 +231,8 @@ def validate_config(config: RollingConfig) -> RollingConfig:
         experiment = experiment_data.load_experiment(
             config.experiment_path, config.month
         )
+        if experiment.payload["soc_policy"] != SOC_POLICY:
+            raise ValueError(f"Rolling requires soc_policy={SOC_POLICY!r}")
         config = replace(
             config,
             data_dir=experiment.data_dir,
@@ -393,6 +396,7 @@ def _load_experiment_resources(
         audit_all=audit_all,
         workers=workers,
         power_policy=experiment_data.SUBMITTED_POWER_POLICY,
+        soc_policy=SOC_POLICY,
     )
     resources = []
     for member in members:
@@ -1191,6 +1195,10 @@ def _config_payload(config: RollingConfig) -> dict[str, object]:
 
 
 def _validate_rolling_result(frame: pd.DataFrame, config: RollingConfig) -> None:
+    if experiment_data.SOC_POLICY_COLUMN not in frame or not frame[
+        experiment_data.SOC_POLICY_COLUMN
+    ].eq(SOC_POLICY).all():
+        raise ValueError("Rolling requires monthly submitted SOC bounds")
     if experiment_data.POWER_POLICY not in frame or not frame[
         experiment_data.POWER_POLICY
     ].eq(experiment_data.SUBMITTED_POWER_POLICY).all():

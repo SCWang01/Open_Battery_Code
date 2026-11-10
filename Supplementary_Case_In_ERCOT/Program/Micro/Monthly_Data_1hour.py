@@ -3,6 +3,8 @@
 Physical slots are keyed by UTC; month/day boundaries use America/Chicago.
 Missing five-minute observations are never fabricated. All callers validate the
 same complete implementation month plus the next local day before dispatch.
+Rolling uses submitted monthly SOC bounds and the first observed monthly SOC;
+the optional Benchmark can retain telemetry-reconstructed energy parameters.
 """
 
 from __future__ import annotations
@@ -202,6 +204,7 @@ def resolve_monthly_curves(raw, hourly, name, path, experiment):
 def inspect_monthly_member(
     path: Path, experiment: data.Experiment, tail_steps: int = 0,
     *, power_policy: str = data.TELEMETRY_POWER_POLICY,
+    soc_policy: str = data.TELEMETRY_SOC_POLICY,
 ):
     """Return a shared member or a classified rejection with source provenance."""
     month = experiment.payload["month"]
@@ -212,10 +215,13 @@ def inspect_monthly_member(
         "month": month,
         "source": str(path.resolve()),
         "interval_minutes": 60,
+        "soc_policy": soc_policy,
         "valid": False,
         "failure_kind": "invalid_input",
     }
     try:
+        if soc_policy not in (data.TELEMETRY_SOC_POLICY, data.SUBMITTED_SOC_POLICY):
+            raise ValueError(f"unknown SOC policy: {soc_policy}")
         if name not in experiment.member_seeds:
             raise ValueError(f"member {name} is not in fixed registry")
         if not path.is_file():
@@ -267,8 +273,16 @@ def inspect_monthly_member(
             raw[data.STATUS].fillna("").astype(str).str.strip().str.upper()
         )
         raw["_Hour"] = raw[SLOT].dt.floor("h")
+        # Validate source SOC before coercion, and exclude the forecast tail from
+        # both energy and power envelopes even when the tail has larger limits.
+        monthly_raw = raw.loc[raw[SLOT].lt(end)]
         submitted = data.submitted_power_parameters(
-            raw.loc[raw[SLOT].lt(end)], power_policy
+            monthly_raw, power_policy
+        )
+        submitted_soc = (
+            data.submitted_soc_parameters(monthly_raw)
+            if soc_policy == data.SUBMITTED_SOC_POLICY
+            else None
         )
         audit["power_limit_policy"] = power_policy
         for col in ("HSL", "LSL", "State of Charge", "Minimum SOC", "Maximum SOC"):
@@ -332,10 +346,26 @@ def inspect_monthly_member(
             data.TELEMETRY
         ].transform(lambda v: bool(v.eq(0).all()))
         implementation = hourly.loc[hourly[data.IS_IMPLEMENTATION]]
-        parameters = data.reconstruct_ess(
-            implementation[data.TELEMETRY].to_numpy(), experiment.efficiency
-        )
+        if submitted_soc is None:
+            parameters = data.reconstruct_ess(
+                implementation[data.TELEMETRY].to_numpy(), experiment.efficiency
+            )
+            parameters.update(
+                minimum_energy_mwh=0.0,
+                maximum_energy_mwh=parameters["capacity_mwh"],
+                usable_capacity_mwh=parameters["capacity_mwh"],
+                soc_policy=soc_policy,
+            )
+        else:
+            parameters = dict(submitted_soc)
+            if not submitted:
+                power = implementation[data.TELEMETRY].to_numpy(dtype=float)
+                parameters.update(
+                    rated_charge_mw=data.ceil_tenth(max(0.0, -float(power.min()))),
+                    rated_discharge_mw=data.ceil_tenth(max(0.0, float(power.max()))),
+                )
         parameters.update(submitted)
+        hourly[data.SOC_POLICY_COLUMN] = soc_policy
         hourly[data.AVAILABLE] = hourly[data.PARTICIPATING] & ~hourly[data.ZERO_DAY]
         hourly[data.EFFECTIVE_HSL] = np.where(
             hourly[data.AVAILABLE], parameters["rated_discharge_mw"], 0.0
@@ -345,6 +375,7 @@ def inspect_monthly_member(
         )
         for col, key in (
             (data.CAPACITY, "capacity_mwh"),
+            (data.USABLE_CAPACITY, "usable_capacity_mwh"),
             (data.INITIAL_ENERGY, "initial_energy_mwh"),
             (data.RATED_CHARGE, "rated_charge_mw"),
             (data.RATED_DISCHARGE, "rated_discharge_mw"),
@@ -382,7 +413,7 @@ def inspect_monthly_member(
                 name,
                 path,
                 frame,
-                0.0,
+                parameters["minimum_energy_mwh"],
                 parameters["capacity_mwh"],
                 parameters["initial_energy_mwh"],
                 float(prices.min()),
@@ -423,6 +454,7 @@ def write_quality(experiment, audits):
 def load_monthly_members(
     experiment, requested: Sequence[str] | None, *, tail_steps=0, workers=12,
     power_policy=data.TELEMETRY_POWER_POLICY,
+    soc_policy=data.TELEMETRY_SOC_POLICY,
 ):
     if isinstance(workers, bool) or not isinstance(workers, int) or workers < 1:
         raise ValueError("workers must be a positive integer")
@@ -439,6 +471,7 @@ def load_monthly_members(
                 experiment,
                 tail_steps,
                 power_policy=power_policy,
+                soc_policy=soc_policy,
             ): name
             for name in names
         }
@@ -536,7 +569,11 @@ def write_batch_summary(
             "missing_bins",
             "missing_power_values",
             "missing_price_values",
+            "soc_policy",
+            "minimum_energy_mwh",
+            "maximum_energy_mwh",
             "capacity_mwh",
+            "usable_capacity_mwh",
             "rated_charge_mw",
             "rated_discharge_mw",
             "initial_energy_mwh",

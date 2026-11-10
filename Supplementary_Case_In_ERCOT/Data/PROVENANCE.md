@@ -56,7 +56,7 @@ The code validates stack ordering/fields, fuel membership, and carbon intensity 
 
 ## What can be reproduced
 
-- The prepared workbooks and saved random arrays are included, with release SHA-256 fingerprints.
+- The prepared workbooks and saved random arrays are included. The release SHA-256 inventory under `Archive/2026-11-10/` describes the earlier packaging snapshot; it has not been refreshed for the current tree.
 - The code reproduces hourly loading, modeled dispatch (with a suitable solver license), realized revenue, classification/matching, monthly comparisons, three Macro bases, and the retained figures.
 - Exact figure bytes may vary with fonts and library versions. Solver versions/settings and optimization degeneracy can also affect exact dispatch equality.
 - Acquisition from ERCOT endpoints, historical node-mapping verification, and construction of the fuel stacks require upstream material not included here. No download command in this release claims to reconstruct those missing steps.

@@ -2,7 +2,7 @@
 
 | Location | Responsibility |
 |---|---|
-| [Micro](Micro/README.md) | Hourly resource data loading, optimization, realized revenue, classification, matching, and comparison |
+| [Micro](Micro/RUN_ORDER.md) | Hourly resource data loading, optimization, realized revenue, classification, matching, and comparison |
 | [Macro](Macro/README.md) | Aggregate the same resources and estimate system generation, curtailment proxy, cost, and emissions changes |
 | [tools/validate_release.py](tools/validate_release.py) | Validate packaged files and the SHA-256 inventory using the Python standard library |
 

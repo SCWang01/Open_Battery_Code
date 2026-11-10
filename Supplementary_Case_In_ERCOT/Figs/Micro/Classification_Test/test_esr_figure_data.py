@@ -1,13 +1,17 @@
 """Scientific regression fixtures for ESR state widths and mean-price CIs.
 
-Run directly with ``python -B test_esr_figure_data.py``; fixtures do not read
-workbooks or render figures.
+Run directly with ``python -B test_esr_figure_data.py``; fixtures use synthetic
+data and temporary workbooks, without reading production results or drawing.
 """
 
 import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
+
+from openpyxl import Workbook
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import esr_figure_data as data
@@ -16,19 +20,61 @@ import esr_figure_data as data
 WIDTH_STATES = ("CC", "CD", "NU", "DC", "DD")
 
 
-def fixture_widths(segments, *, capacity=100.0):
+def fixture_widths(segments, *, capacity=100.0, minimum=0.0):
     """Evaluate raw-energy staircase fixtures using fixed signed MW limits."""
     return data.segment_widths(
         json.dumps(segments),
         pcmax=-10.0,
         pdmax=10.0,
         maximum_soc=capacity,
+        minimum_soc=minimum,
         context="scientific fixture",
     )
 
 
 class SegmentWidthTests(unittest.TestCase):
-    def test_raw_energy_is_normalized_before_marginal_boundary_detection(self):
+    def test_positive_lower_bound_excludes_only_its_absolute_boundary_band(self):
+        widths = fixture_widths(
+            [
+                [0.0, 2.0, 0.0, 3.0, 3.0, 0.0, 0.0, 2.0005],
+                [2.0, 5.0, 0.0, 3.0, 3.0, 0.0, 0.0, 2.0015],
+                [5.0, 9.0, 0.0, 3.0, 3.0, 0.0, 0.0, 9.9995],
+            ],
+            capacity=10.0,
+            minimum=2.0,
+        )
+        self.assertEqual(widths["NU"], 3.0)
+        self.assertEqual(sum(widths.values()), 3.0)
+
+    def test_zero_energy_range_has_no_retained_widths(self):
+        for bound in (0.0, 2.0):
+            with self.subTest(bound=bound):
+                widths = fixture_widths(
+                    [[0.0, 5.0, 0.0, 3.0, 3.0, 0.0, 0.0, bound]],
+                    capacity=bound,
+                    minimum=bound,
+                )
+                self.assertEqual(widths, dict.fromkeys(WIDTH_STATES, 0.0))
+
+    def test_energy_outside_actual_bounds_is_rejected(self):
+        for energy in (1.99, 10.01):
+            with self.subTest(energy=energy), self.assertRaisesRegex(ValueError, "outside"):
+                fixture_widths(
+                    [[0.0, 5.0, 0.0, 3.0, 3.0, 0.0, 0.0, energy]],
+                    capacity=10.0,
+                    minimum=2.0,
+                )
+
+    def test_invalid_monthly_bounds_are_rejected(self):
+        for minimum, maximum in ((-1.0, 10.0), (2.0, 1.0), (0.0, float("nan"))):
+            with self.subTest(minimum=minimum, maximum=maximum), self.assertRaises(ValueError):
+                fixture_widths(
+                    [[0.0, 5.0, 0.0, 3.0, 3.0, 0.0, 0.0, 2.0]],
+                    capacity=maximum,
+                    minimum=minimum,
+                )
+
+    def test_one_mwh_is_interior_energy_not_the_upper_boundary(self):
         # One MWh in a 100 MWh battery is 1%, not the upper SOC boundary.
         expected_span = 3.9153433265
         widths = fixture_widths(
@@ -136,6 +182,45 @@ class SegmentWidthTests(unittest.TestCase):
     def test_reversed_price_interval_is_rejected(self):
         with self.assertRaises(ValueError):
             fixture_widths([[4.0, 3.0, 0.0, 3.0, 3.0, 0.0, 0.0, 50.0]])
+
+
+class MonthlySourceTests(unittest.TestCase):
+    def test_month_loader_accepts_positive_minimum_and_zero_capacity(self):
+        resource = "FIXTURE"
+        month = "202602"
+        hours = data._month_hours(month)
+        for minimum, maximum, energy in ((2.0, 10.0, 3.0), (0.0, 0.0, 0.0)):
+            with self.subTest(minimum=minimum, maximum=maximum), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                workbook = Workbook()
+                worksheet = workbook.active
+                worksheet.title = "Rolling"
+                worksheet.append(data.REQUIRED_HEADERS)
+                segment = json.dumps([[0.0, 5.0, 0.0, 3.0, 3.0, 0.0, 0.0, energy]])
+                for utc in hours:
+                    values = {
+                        "Time": utc.tz_convert(data.TIMEZONE).tz_localize(None),
+                        "Hour Start UTC": utc.tz_localize(None),
+                        "Resource Name": resource,
+                        "Price Source": "member_lmp",
+                        "LMP": 5.0,
+                        "Pcmax": -10.0,
+                        "Pdmax": 10.0,
+                        "P_ESS_state": "NU",
+                        "dsfunction": segment,
+                        "Applied Minimum SOC": minimum,
+                        "Applied Maximum SOC": maximum,
+                    }
+                    worksheet.append([values[name] for name in data.REQUIRED_HEADERS])
+                workbook.save(directory / f"classified_{resource}_1hour_{month}.xlsx")
+                workbook.close()
+                with patch.object(data, "CLASSIFIED_DIR", directory), patch.object(
+                    data, "configured_resources", return_value=(resource,)
+                ):
+                    result = data.load_month_data(resource, month)
+                self.assertEqual(result.raw_rows, len(hours))
+                self.assertEqual(result.state_counts["NU"], len(hours))
+                self.assertEqual(sum(result.width_sums.values()), 5.0 * len(hours) if maximum else 0.0)
 
 
 class PriceConfidenceIntervalTests(unittest.TestCase):

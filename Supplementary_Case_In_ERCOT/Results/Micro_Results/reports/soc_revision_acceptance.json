@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-09T10:30:42.767925+00:00",
+  "experiment": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Program\\Micro\\experiment_config_1hour.json",
+  "pipeline": {
+    "run_id": "20261109T170401",
+    "stage_count": 16,
+    "status_path": "D:\\Study_Learn_Download\\2026.11\\ERCOT_CASE_REVISION\\Results\\Micro_Results\\reports\\pipeline_runs\\20261109T170401\\status.json"
+  },
+  "workbooks": {
+    "rolling": {
+      "workbooks": 78,
+      "rows": 56459
+    },
+    "realized_profit": {
+      "workbooks": 78,
+      "rows": 56459
+    },
+    "Classified": {
+      "workbooks": 78,
+      "rows": 56459
+    },
+    "realized_match": {
+      "workbooks": 78,
+      "rows": 56459
+    }
+  },
+  "verification": {
+    "complete_manifests": 6,
+    "verification_reports": 6,
+    "verified_member_months": 78
+  },
+  "rolling_summary": {
+    "member_month_rows": 78,
+    "total_profit": 16403412.238475721,
+    "terminal_soc_value": 193356.10409158334,
+    "total_profit_with_terminal_soc": 16596768.342567306
+  },
+  "comparison": {
+    "monthly_rows": 78,
+    "comparison_rows": 14,
+    "totals": {
+      "Actual_Realized_Profit": 7954629.80448734,
+      "Final_SOC_Value_Realized": 67190.84305175001,
+      "Sum_Realized": 8021820.647539091,
+      "Actual_Rolling_Window_Profit": 16403412.23847572,
+      "Final_SOC_Value_Rolling": 193356.1040915833,
+      "Sum_Rolling": 16596768.3425673
+    }
+  },
+  "classification": {
+    "count_reconciliation": "passed",
+    "resource_count": 13,
+    "resource_month_pairs": 78,
+    "rows": 56459
+  },
+  "figures": {
+    "image_files": 87,
+    "abc_source_csv_files": 12,
+    "all_nonempty_and_current": true
+  }
+}

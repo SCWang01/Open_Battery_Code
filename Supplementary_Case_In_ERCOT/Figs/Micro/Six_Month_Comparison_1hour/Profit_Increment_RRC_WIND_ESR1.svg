@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-08T12:46:39.823994</dc:date>
+    <dc:date>2026-11-10T20:37:58.762117</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -41,12 +41,12 @@ z
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="mf8476a1efb" d="M 0 0 
+       <path id="mf0ccc1271d" d="M 0 0 
 L 0 3 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#mf8476a1efb" x="128.017495" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf0ccc1271d" x="128.017495" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
@@ -56,7 +56,7 @@ L 0 3
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#mf8476a1efb" x="235.131411" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf0ccc1271d" x="235.131411" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
@@ -69,16 +69,16 @@ L 0 3
      <g id="line2d_3">
       <path d="M 63.749146 240.598197 
 L 299.39976 240.598197 
-" clip-path="url(#pbee7f93c99)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
+" clip-path="url(#p2ad80dfd0f)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
      </g>
      <g id="line2d_4">
       <defs>
-       <path id="m97d12ba93e" d="M 0 0 
+       <path id="md671337826" d="M 0 0 
 L -3 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m97d12ba93e" x="63.749146" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#md671337826" x="63.749146" y="240.598197" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
@@ -87,47 +87,47 @@ L -3 0
     </g>
     <g id="ytick_2">
      <g id="line2d_5">
-      <path d="M 63.749146 185.527746 
-L 299.39976 185.527746 
-" clip-path="url(#pbee7f93c99)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
+      <path d="M 63.749146 181.343882 
+L 299.39976 181.343882 
+" clip-path="url(#p2ad80dfd0f)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
      </g>
      <g id="line2d_6">
       <g>
-       <use xlink:href="#m97d12ba93e" x="63.749146" y="185.527746" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#md671337826" x="63.749146" y="181.343882" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
-      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="188.999621" transform="rotate(-0 57.249146 188.999621)">1,500,000</text>
+      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="184.815757" transform="rotate(-0 57.249146 184.815757)">1,000,000</text>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_7">
-      <path d="M 63.749146 130.457295 
-L 299.39976 130.457295 
-" clip-path="url(#pbee7f93c99)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
+      <path d="M 63.749146 122.089567 
+L 299.39976 122.089567 
+" clip-path="url(#p2ad80dfd0f)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
      </g>
      <g id="line2d_8">
       <g>
-       <use xlink:href="#m97d12ba93e" x="63.749146" y="130.457295" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#md671337826" x="63.749146" y="122.089567" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
-      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="133.92917" transform="rotate(-0 57.249146 133.92917)">3,000,000</text>
+      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="125.561442" transform="rotate(-0 57.249146 125.561442)">2,000,000</text>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_9">
-      <path d="M 63.749146 75.386844 
-L 299.39976 75.386844 
-" clip-path="url(#pbee7f93c99)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
+      <path d="M 63.749146 62.835252 
+L 299.39976 62.835252 
+" clip-path="url(#p2ad80dfd0f)" style="fill: none; stroke: #e4e7ea; stroke-width: 0.5; stroke-linecap: square"/>
      </g>
      <g id="line2d_10">
       <g>
-       <use xlink:href="#m97d12ba93e" x="63.749146" y="75.386844" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#md671337826" x="63.749146" y="62.835252" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
-      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="78.858719" transform="rotate(-0 57.249146 78.858719)">4,500,000</text>
+      <text style="font: 10px 'Times New Roman'; text-anchor: end" x="57.249146" y="66.307127" transform="rotate(-0 57.249146 66.307127)">3,000,000</text>
      </g>
     </g>
     <g id="text_7">
@@ -147,10 +147,10 @@ L 299.39976 240.598197
    <g id="patch_5">
     <path d="M 100.167877 240.598197 
 L 155.867113 240.598197 
-L 155.867113 181.430523 
-L 100.167877 181.430523 
+L 155.867113 145.392399 
+L 100.167877 145.392399 
 z
-" clip-path="url(#pbee7f93c99)" style="fill: #a6a6a6"/>
+" clip-path="url(#p2ad80dfd0f)" style="fill: #a6a6a6"/>
    </g>
    <g id="patch_6">
     <path d="M 207.281793 240.598197 
@@ -158,16 +158,16 @@ L 262.981029 240.598197
 L 262.981029 78.162673 
 L 207.281793 78.162673 
 z
-" clip-path="url(#pbee7f93c99)" style="fill: #3274a1"/>
+" clip-path="url(#p2ad80dfd0f)" style="fill: #3274a1"/>
    </g>
    <g id="text_8">
-    <text style="font: 10px 'Times New Roman'; text-anchor: middle" x="128.017495" y="174.29146" transform="rotate(-0 128.017495 174.29146)">1,611,599.51</text>
+    <text style="font: 10px 'Times New Roman'; text-anchor: middle" x="128.017495" y="138.253336" transform="rotate(-0 128.017495 138.253336)">1,606,731.91</text>
    </g>
    <g id="text_9">
-    <text style="font: 10px 'Times New Roman'; text-anchor: middle" x="235.131411" y="71.023611" transform="rotate(-0 235.131411 71.023611)">4,424,392.40</text>
+    <text style="font: 10px 'Times New Roman'; text-anchor: middle" x="235.131411" y="71.023611" transform="rotate(-0 235.131411 71.023611)">2,741,328.19</text>
    </g>
    <g id="text_10">
-    <text style="fill: #202a32; font: 10px 'Times New Roman'; text-anchor: middle" x="181.574453" y="33.736189" transform="rotate(-0 181.574453 33.736189)">Growth: +174.5%</text>
+    <text style="fill: #202a32; font: 10px 'Times New Roman'; text-anchor: middle" x="181.574453" y="33.736189" transform="rotate(-0 181.574453 33.736189)">Growth: +70.6%</text>
    </g>
    <g id="text_11">
     <text style="font: 12px 'Times New Roman'; text-anchor: middle" x="181.574453" y="11.31024" transform="rotate(-0 181.574453 11.31024)">RRC_WIND_ESR1</text>
@@ -175,7 +175,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pbee7f93c99">
+  <clipPath id="p2ad80dfd0f">
    <rect x="63.749146" y="21.31024" width="235.650614" height="219.287958"/>
   </clipPath>
  </defs>

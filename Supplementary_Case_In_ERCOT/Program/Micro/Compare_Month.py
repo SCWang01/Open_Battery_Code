@@ -7,8 +7,9 @@ not only the final month's inventory. Sum_* adds trading profit and that value;
 initial inventory is not deducted and no efficiency adjustment is applied.
 
 Telemetry uses exported Profit (including its hourly mean imputation), plus
-the last in-month five-minute source SOC valued at the final hourly LMP.
-Rolling uses its own Profit and final Modeled SOC After times its final LMP.
+the last in-month five-minute source SOC valued at the monthly mean hourly LMP.
+Rolling uses its own Profit and final Modeled SOC After times the same monthly
+mean LMP convention.
 Missing inputs or invalid contributions abort before replacing the workbook.
 """
 
@@ -111,8 +112,8 @@ def _read_hourly(
 
 def _final_soc_value(frame: pd.DataFrame, path: Path, soc_column: str) -> float:
     soc = _number(frame.tail(1), soc_column, path).iloc[0]
-    lmp = _number(frame.tail(1), "LMP", path).iloc[0]
-    return float(soc * lmp)
+    average_lmp = float(_number(frame, "LMP", path).mean())
+    return float(soc * average_lmp)
 
 
 def _realized_soc_value(
@@ -122,7 +123,7 @@ def _realized_soc_value(
     resource: str,
     experiment: experiment_data.Experiment,
 ) -> float:
-    """Value the last actual source SOC; never substitute an earlier valid SOC."""
+    """Value the last actual source SOC at the monthly mean LMP."""
     month = experiment.payload["month"].replace("-", "")
     usage_path = soc_dir / f"{resource}_Usage_{month}.xlsx"
     usage = _read_columns(usage_path, [UTC_SOURCE, RESOURCE, "State of Charge"], "Usage")
@@ -138,8 +139,8 @@ def _realized_soc_value(
     if usage[UTC_SOURCE].dt.floor("5min").duplicated().any():
         raise ValueError(f"{usage_path}: duplicate five-minute UTC source slots")
     final_soc = _number(usage.tail(1), "State of Charge", usage_path).iloc[0]
-    final_lmp = _number(realized.tail(1), "LMP", realized_path).iloc[0]
-    return float(final_soc * final_lmp)
+    average_lmp = float(_number(realized, "LMP", realized_path).mean())
+    return float(final_soc * average_lmp)
 
 
 def _write_output(summary: pd.DataFrame, monthly: pd.DataFrame, output_path: Path) -> None:

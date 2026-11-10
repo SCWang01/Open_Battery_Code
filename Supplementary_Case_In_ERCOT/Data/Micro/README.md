@@ -16,13 +16,18 @@
 | `Telemetered Resource Status` | Source status; `NA` is a literal status, not a missing-value token |
 | `HSL`, `LSL` | Submitted upper/lower power limits, MW |
 | TPO curve fields | Historical offer curve fields validated by the shared loader |
-| SOC fields | Original audit fields; the current model reconstructs its energy envelope from telemetry |
+| `State of Charge` | Stored energy in MWh; the first current-month observation initializes Rolling independently each month |
+| `Minimum SOC`, `Maximum SOC` | Submitted stored-energy limits in MWh; Rolling uses their current-month minimum and maximum respectively |
 
 Exact required curve fields and timestamp validation are defined in `Program/Micro/Monthly_Data_1hour.py`. Preserve original header names and status values when preparing replacement data.
+
+Rolling requires finite current-month SOC values, ordered monthly energy bounds, and an initial SOC inside those bounds. It uses original five-minute extrema without rounding or telemetry integration. Nonzero lower bounds and zero-width energy intervals are valid. `Capacity MWh` in the output means the upper energy bound; `Usable Capacity MWh` is upper minus lower. The optional Benchmark retains its reconstructed telemetry-based energy envelope.
 
 ## Time range and missing data
 
 Each file contains its local calendar month plus the entire first local day of the following month. This tail supports the 24-hour horizon. Adjacent monthly workbooks therefore overlap by one day. Deduplicate by resource, physical timestamp, and repeated-hour identity before concatenating source data.
+
+The appended day does not contribute to current-month SOC or HSL/LSL extrema, initial energy, or executed profit.
 
 Five-minute preparation retains the last actual SCED record in a slot. The model then independently averages valid power and price samples within physical UTC hours. Missing records and prices remain missing; they are not interpolated or filled with zero. `monthly_with_next_day_index.csv` records original rows, added-day rows, expected rows, gaps, missing prices, and the recorded source filenames.
 
@@ -32,4 +37,4 @@ Physical implementation hours are 744, 672, 743, 720, 744, and 720 for January t
 
 ## Source scope
 
-The acquisition/export programs used to prepare these monthly workbooks are outside this distribution. The included index is a historical export record, not a command that can regenerate the workbooks. See [provenance](../PROVENANCE.md) for the recorded product identifiers, appended July 1 data, mapping limitation, and upstream reproducibility boundary.
+The acquisition/export programs used to prepare these monthly workbooks are outside this distribution. The included index is a historical export record, not a command that can regenerate the workbooks. The [processing guide](../../Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) describes the included preparation and loading rules; it does not supply the upstream acquisition workflow. The June workbook tail includes July 1 under the next-day rule described above. Recorded source filenames, node-mapping limitations, and tail provenance are consolidated in [Data/PROVENANCE.md](../PROVENANCE.md).

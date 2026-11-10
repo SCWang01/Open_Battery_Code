@@ -451,7 +451,7 @@ The supplied results include 78 resource-month dispatch workbooks, corresponding
 | Location | Contents and guide |
 |---|---|
 | [`Data/`](Supplementary_Case_In_ERCOT/Data/README.md) | Prepared monthly resource workbooks, nodal prices, hourly system inputs, and fuel cost/emissions stacks |
-| [`Program/Micro/`](Supplementary_Case_In_ERCOT/Program/Micro/README.md) | Resource data loading, rolling optimisation, classification, realised revenue, matching, and comparison; see the [run order](Supplementary_Case_In_ERCOT/Program/Micro/RUN_ORDER.md) |
+| [`Program/Micro/`](Supplementary_Case_In_ERCOT/Program/Micro/RUN_ORDER.md) | Resource data loading, rolling optimisation, classification, realised revenue, matching, and comparison; see the [processing guide](Supplementary_Case_In_ERCOT/Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) |
 | [`Program/Macro/`](Supplementary_Case_In_ERCOT/Program/Macro/README.md) | Aggregate the selected ESRs and estimate generation, fuel-cost, carbon, and curtailment-proxy changes |
 | [`Results/`](Supplementary_Case_In_ERCOT/Results/README.md) | Saved resource outputs in `Micro_Results/` and system outputs in `Macro_Results/` |
 | [`Figs/`](Supplementary_Case_In_ERCOT/Figs/README.md) | ERCOT plotting commands, source tables, regression tests, and current figure exports |
@@ -466,11 +466,11 @@ The following PowerShell examples start at `<repo-root>` and explicitly enter th
 
 ```powershell
 Push-Location Supplementary_Case_In_ERCOT
-python -B Program/tools/validate_release.py
+python -B Program/tools/validate_release.py --skip-manifest
 Pop-Location
 ```
 
-Run this check before regenerating outputs: it compares files against the packaged release manifest. After intentional changes, use `--skip-manifest` to run the remaining checks. File-integrity validation does not rerun or establish the optimality of the saved optimisation results.
+The ERCOT source, outputs, and documentation have changed since the [archived packaging inventory](Supplementary_Case_In_ERCOT/Archive/2026-11-10/RELEASE_MANIFEST.csv) was created. The current package has no root-level release manifest, so this command skips snapshot verification. It checks syntax, local links, text, input/result coverage, and persisted random hashes, including workbook XML. A new release requires a refreshed complete inventory and validation without `--skip-manifest`. This validation does not rerun or establish the optimality of saved optimisation results.
 
 ### Reproduce analysis from supplied results
 
@@ -498,12 +498,12 @@ python -u -B Program/Micro/run_pipeline.py --workers 4
 Pop-Location
 ```
 
-This runner covers the Micro computation and its classification, comparison, and example plots. Macro post-processing and the additional Figure 4 plotting commands are separate steps. Adjust worker count to available memory, CPU capacity, and Gurobi licence limits. For a single-resource execution check before a full run, follow the [ERCOT optimisation examples](Supplementary_Case_In_ERCOT/README.md#4-rerun-optimization). Repeated runs replace their corresponding outputs; the Micro guide explains separate dispatch directories and configuration-level output isolation.
+This runner covers Micro computation, full-month Rolling verification, classification, comparison, classification/profit/example plots, and pooled Figure 4 a/b/c plots for all six months. Macro post-processing and Figure 4 d/e plotting are separate steps. Adjust worker count to available memory, CPU capacity, and Gurobi licence limits. For a single-resource execution check before a full run, follow the [ERCOT optimisation examples](Supplementary_Case_In_ERCOT/README.md#4-rerun-optimization). Repeated runs replace their corresponding outputs; the Micro guide explains separate dispatch directories and configuration-level output isolation.
 
 ### Interpretation and reproduction limits
 
 - Resource dispatch and revenue use individual nodal LMPs; Hub Average prices provide Macro reference fields and selected figure inputs.
-- The experiment is a retrospective backtest using perturbed historical future prices, historical availability, reconstructed monthly capacity, and full-month price bounds. Revenue excludes ancillary services, degradation, and capital costs.
+- The experiment is a retrospective backtest using perturbed historical future prices, historical availability, monthly submitted SOC and HSL/LSL extrema, and full-month price bounds. Each month starts from its first observed SOC. One-way efficiency is assumed to be 0.95. Revenue excludes ancillary services, degradation, and capital costs.
 - Macro outputs are static counterfactual estimates for the selected 13 ESRs under the named fuel basis. They do not represent removal of all ERCOT storage or a network-constrained unit-commitment model. The renewable-curtailment input is a derived proxy.
 - Local calendars use `America/Chicago`, with physical intervals identified in UTC. March 2026 has 743 modelled hours; appended next-day observations support forecasts and are excluded from monthly executed totals.
 - Prepared inputs and saved random arrays are included. Upstream acquisition/export programs and complete fuel-stack construction provenance are outside the distribution; see [data provenance and reproduction boundaries](Supplementary_Case_In_ERCOT/Data/PROVENANCE.md).

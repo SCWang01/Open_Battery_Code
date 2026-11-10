@@ -1,7 +1,7 @@
 """Shared ERCOT experiment contracts, validation, random files and reports.
 
 This module has no solver dependency. Experiment-mode callers consume the same
-validated hourly grid and telemetry-reconstructed energy envelope. Source data
+validated hourly grid and explicit monthly energy policy. Source data
 remain five-minute records; model states and settlements are hourly.
 """
 
@@ -29,6 +29,10 @@ TELEMETRY = "Telemetered Net Output"
 PARTICIPATING = "Market Participating"
 ZERO_DAY = "Zero Output Day"
 CAPACITY = "Capacity MWh"
+USABLE_CAPACITY = "Usable Capacity MWh"
+SOC_POLICY_COLUMN = "SOC Policy"
+TELEMETRY_SOC_POLICY = "telemetry_reconstructed"
+SUBMITTED_SOC_POLICY = "monthly_raw_submitted_soc_bounds_initial_observed"
 INITIAL_ENERGY = "Initial Energy MWh"
 RATED_CHARGE = "Rated Charge MW"
 RATED_DISCHARGE = "Rated Discharge MW"
@@ -217,7 +221,6 @@ def load_experiment(path: Path | str, month: str | None = None) -> Experiment:
         experiment_months(path, month)
     for key, expected in (
         ("available_status", "hourly_any_ON_ONTEST"),
-        ("soc_policy", "telemetry_reconstructed"),
         ("source_interval_minutes", 5),
         ("interval_minutes", 60),
         ("power_rounding_mw", 0.1),
@@ -227,6 +230,10 @@ def load_experiment(path: Path | str, month: str | None = None) -> Experiment:
     ):
         if payload.get(key) != expected:
             raise ValueError(f"{key} must be {expected!r}")
+    if payload.get("soc_policy") not in (TELEMETRY_SOC_POLICY, SUBMITTED_SOC_POLICY):
+        raise ValueError("unknown soc_policy")
+    if payload["soc_policy"] == SUBMITTED_SOC_POLICY and payload["schema_version"] != 3:
+        raise ValueError("submitted SOC bounds require monthly schema_version=3")
     dates = []
     for key in ("study_start_date", "study_end_date", "innovation_origin_date"):
         value = payload.get(key, "")
@@ -392,6 +399,44 @@ def reconstruct_ess(power: np.ndarray, efficiency: float = 0.95) -> dict[str, fl
     }
 
 
+def submitted_soc_parameters(raw: pd.DataFrame) -> dict[str, float | str]:
+    """Derive exact energy bounds from chronologically sorted in-month source rows.
+
+    The caller owns month filtering and ordering. No missing initial observation
+    is substituted, and no observed energy or submitted bound is rounded/clipped.
+    """
+    if raw.empty:
+        raise ValueError("no current-month SOC source records")
+    numbers = {}
+    for column in ("State of Charge", "Minimum SOC", "Maximum SOC"):
+        if column not in raw:
+            raise ValueError(f"missing SOC column: {column}")
+        original = raw[column]
+        numeric = pd.to_numeric(original, errors="coerce")
+        invalid = (
+            ~np.isfinite(numeric.to_numpy(dtype=float))
+            | original.map(lambda v: isinstance(v, (bool, np.bool_))).to_numpy()
+        )
+        if invalid.any():
+            raise ValueError(f"invalid monthly {column}")
+        numbers[column] = numeric
+    minimum = float(numbers["Minimum SOC"].min())
+    maximum = float(numbers["Maximum SOC"].max())
+    initial = float(numbers["State of Charge"].iloc[0])
+    if not 0 <= minimum <= maximum:
+        raise ValueError(f"invalid monthly SOC bounds: [{minimum}, {maximum}]")
+    if not minimum <= initial <= maximum:
+        raise ValueError(f"initial observed SOC {initial} outside [{minimum}, {maximum}]")
+    return {
+        "minimum_energy_mwh": minimum,
+        "maximum_energy_mwh": maximum,
+        "capacity_mwh": maximum,
+        "usable_capacity_mwh": maximum - minimum,
+        "initial_energy_mwh": initial,
+        "soc_policy": SUBMITTED_SOC_POLICY,
+    }
+
+
 def submitted_power_parameters(raw: pd.DataFrame, power_policy: str) -> dict[str, float]:
     """Validate current-month raw submissions before any averaging or coercion."""
     if power_policy == TELEMETRY_POWER_POLICY:
@@ -457,6 +502,8 @@ def result_metadata(row: dict) -> dict:
     )
     result = {col: row[col] for col in columns}
     for col in (
+        SOC_POLICY_COLUMN,
+        USABLE_CAPACITY,
         POWER_POLICY,
         SUBMITTED_HIGH,
         SUBMITTED_LOW,
@@ -485,18 +532,24 @@ def normalize_energy(energy: float, capacity: float) -> float:
 def inspect_member(
     path: Path, experiment: Experiment, tail_steps: int = 0,
     *, power_policy: str = TELEMETRY_POWER_POLICY,
+    soc_policy: str = TELEMETRY_SOC_POLICY,
 ) -> tuple[MemberData | None, dict]:
     """Validate five-minute sources, then derive one shared hourly ESS contract.
 
     Full calendar days of tail telemetry determine day-zero gates. Only the
-    requested tail prices are required, and no tail enters ESS reconstruction.
-    Rolling can select submitted power limits; energy reconstruction is unchanged.
+    requested tail prices are required. Monthly callers select their energy and
+    power policies explicitly; forecast-tail rows never set monthly parameters.
     """
     _integer(tail_steps, "tail_steps", 0, 35)
     if experiment.payload.get("schema_version") == 3:
         from Monthly_Data_1hour import inspect_monthly_member
 
-        return inspect_monthly_member(path, experiment, tail_steps, power_policy=power_policy)
+        return inspect_monthly_member(
+            path, experiment, tail_steps, power_policy=power_policy,
+            soc_policy=soc_policy,
+        )
+    if soc_policy != TELEMETRY_SOC_POLICY:
+        raise ValueError("submitted SOC bounds require monthly inputs")
     name = path.stem.removesuffix("_Usage")
     audit = {"member": name, "source": str(path.resolve()), "interval_minutes": 60}
     try:
@@ -681,6 +734,7 @@ def load_members(
     audit_all: bool = False,
     workers: int = 12,
     power_policy: str = TELEMETRY_POWER_POLICY,
+    soc_policy: str = TELEMETRY_SOC_POLICY,
 ) -> tuple[MemberData, ...]:
     """Write quality reports before failing invalid selected inputs."""
     if experiment.payload.get("schema_version") == 3:
@@ -689,6 +743,7 @@ def load_members(
         return load_monthly_members(
             experiment, requested, tail_steps=tail_steps, workers=workers,
             power_policy=power_policy,
+            soc_policy=soc_policy,
         )
     names = selected_names(experiment, requested)
     paths = discover_member_paths(experiment)
@@ -699,7 +754,8 @@ def load_members(
     audits = []
     for name in sorted(paths if audit_all else names):
         resource, audit = inspect_member(
-            paths[name], experiment, tail_steps, power_policy=power_policy
+            paths[name], experiment, tail_steps, power_policy=power_policy,
+            soc_policy=soc_policy,
         )
         audits.append(audit)
         if resource is not None:
@@ -863,7 +919,18 @@ def validate_result_frame(
         if not policies.eq(SUBMITTED_POWER_POLICY).all() or method != "Rolling":
             raise ValueError("invalid submitted power policy in result")
         submitted_policy = True
+    soc_policy = TELEMETRY_SOC_POLICY
+    if SOC_POLICY_COLUMN in frame:
+        soc_policy = frame[SOC_POLICY_COLUMN].iloc[0]
+        if (
+            soc_policy not in (TELEMETRY_SOC_POLICY, SUBMITTED_SOC_POLICY)
+            or not frame[SOC_POLICY_COLUMN].eq(soc_policy).all()
+        ):
+            raise ValueError("invalid or changing SOC policy in result")
+    submitted_soc = soc_policy == SUBMITTED_SOC_POLICY
     monthly = "Hour Start UTC" in frame
+    if submitted_soc and not monthly:
+        raise ValueError("submitted SOC result requires a monthly UTC timeline")
     if monthly:
         utc = pd.DatetimeIndex(pd.to_datetime(frame["Hour Start UTC"], utc=True))
         times = utc.tz_convert("America/Chicago")
@@ -965,16 +1032,31 @@ def validate_result_frame(
         np.any(low > 0)
         or np.any(high < 0)
         or np.any(capacity < 0)
-        or np.any(lower != 0)
+        or np.any(lower < 0)
+        or np.any(lower > upper)
+        or (not submitted_soc and np.any(lower != 0))
         or not np.array_equal(upper, capacity)
     ):
         raise ValueError("invalid hourly power/capacity bounds")
     if (
         not np.all(capacity == capacity[0])
+        or not np.all(lower == lower[0])
         or not np.all(initial == initial[0])
         or not np.isclose(before[0], initial[0], atol=1e-5, rtol=0)
     ):
         raise ValueError("monthly capacity or initial energy is inconsistent")
+    if submitted_soc or USABLE_CAPACITY in frame:
+        usable = frame[USABLE_CAPACITY].to_numpy(dtype=float)
+        if not np.isfinite(usable).all() or not np.allclose(
+            usable, upper - lower, atol=1e-8, rtol=0
+        ):
+            raise ValueError("usable capacity does not reconcile with SOC bounds")
+    if submitted_soc:
+        observed_initial = float(frame["Observed SOC"].iloc[0])
+        if not math.isfinite(observed_initial) or not np.isclose(
+            initial[0], observed_initial, atol=1e-8, rtol=0
+        ):
+            raise ValueError("initial energy disagrees with first observed SOC")
     if not np.allclose(before[1:], after[:-1], atol=1e-5, rtol=0):
         raise ValueError("SOC is not continuous")
     expected_after = (
@@ -990,7 +1072,7 @@ def validate_result_frame(
     if not np.allclose(after, expected_after, atol=energy_atol, rtol=0):
         raise ValueError("SOC transition does not conserve energy")
     for energy, normalized in ((before, norm_before), (after, norm_after)):
-        if np.any(energy < -1e-5) or np.any(energy > capacity + 1e-5):
+        if np.any(energy < lower - 1e-5) or np.any(energy > upper + 1e-5):
             raise ValueError("SOC outside capacity bounds")
         expected_soc = np.divide(
             energy, capacity, out=np.zeros_like(energy), where=capacity > 0
@@ -1006,7 +1088,24 @@ def validate_result_frame(
         and times[0].hour == 0
         and times[-1] + pd.Timedelta(hours=1) == times[0] + pd.offsets.MonthBegin(1)
     ):
-        parameters = reconstruct_ess(frame[TELEMETRY].to_numpy(), efficiency)
+        if submitted_soc:
+            parameters = submitted_soc_parameters(
+                frame[["Observed SOC", "Observed Minimum SOC", "Observed Maximum SOC"]]
+                .rename(columns={
+                    "Observed SOC": "State of Charge",
+                    "Observed Minimum SOC": "Minimum SOC",
+                    "Observed Maximum SOC": "Maximum SOC",
+                })
+            )
+            if not np.isclose(lower[0], parameters["minimum_energy_mwh"], atol=1e-8, rtol=0):
+                raise ValueError("monthly minimum SOC does not reconcile")
+            power_samples = frame[TELEMETRY].to_numpy(dtype=float)
+            parameters.update(
+                rated_charge_mw=ceil_tenth(max(0.0, -float(power_samples.min()))),
+                rated_discharge_mw=ceil_tenth(max(0.0, float(power_samples.max()))),
+            )
+        else:
+            parameters = reconstruct_ess(frame[TELEMETRY].to_numpy(), efficiency)
         if submitted_policy:
             parameters.update(submitted_power_parameters(
                 frame[[SUBMITTED_HIGH, SUBMITTED_LOW]].rename(
@@ -1027,6 +1126,38 @@ def validate_result_frame(
                 )
 
 
+def verify_submitted_soc_source(
+    frame: pd.DataFrame, experiment: Experiment, member: str
+) -> None:
+    """Independently reconcile a new-policy result against its original workbook."""
+    if not frame["Resource Name"].eq(member).all():
+        raise ValueError(f"{member}: result resource identity disagrees with filename")
+    month = experiment.payload["month"].replace("-", "")
+    path = experiment.data_dir / f"{member}_Usage_{month}.xlsx"
+    columns = {"Resource Name", "SCED Timestamp UTC", "State of Charge", "Minimum SOC", "Maximum SOC"}
+    raw = pd.read_excel(
+        path, sheet_name="Usage", keep_default_na=False,
+        usecols=lambda column: column in columns,
+    )
+    if set(raw) != columns or not raw["Resource Name"].eq(member).all():
+        raise ValueError(f"{path}: invalid SOC source columns or resource identity")
+    raw["SCED Timestamp UTC"] = pd.to_datetime(raw["SCED Timestamp UTC"], utc=True, errors="raise")
+    raw = raw.loc[
+        raw["SCED Timestamp UTC"].ge(experiment.start.tz_convert("UTC"))
+        & raw["SCED Timestamp UTC"].lt(experiment.end_exclusive.tz_convert("UTC"))
+    ].sort_values("SCED Timestamp UTC", kind="stable")
+    parameters = submitted_soc_parameters(raw)
+    for column, key in (
+        ("Applied Minimum SOC", "minimum_energy_mwh"),
+        ("Applied Maximum SOC", "maximum_energy_mwh"),
+        (CAPACITY, "capacity_mwh"),
+        (USABLE_CAPACITY, "usable_capacity_mwh"),
+        (INITIAL_ENERGY, "initial_energy_mwh"),
+    ):
+        if not np.allclose(frame[column].to_numpy(dtype=float), parameters[key], atol=1e-8, rtol=0):
+            raise ValueError(f"{member}: {column} disagrees with original monthly SOC source")
+
+
 def summarize_frame(
     frame: pd.DataFrame, method: str, *, seed: int | None = None
 ) -> dict:
@@ -1045,6 +1176,19 @@ def summarize_frame(
         "steps": len(frame),
         "interval_minutes": 60,
         "total_profit": float(frame["Profit"].sum()),
+        "terminal_soc_value": final * float(frame["LMP"].iloc[-1]),
+        "total_profit_with_terminal_soc": (
+            float(frame["Profit"].sum()) + final * float(frame["LMP"].iloc[-1])
+        ),
+        "soc_policy": (
+            str(frame[SOC_POLICY_COLUMN].iloc[0])
+            if SOC_POLICY_COLUMN in frame else TELEMETRY_SOC_POLICY
+        ),
+        "minimum_energy_mwh": float(frame["Applied Minimum SOC"].iloc[0]),
+        "maximum_energy_mwh": float(frame["Applied Maximum SOC"].iloc[0]),
+        "usable_capacity_mwh": float(
+            frame["Applied Maximum SOC"].iloc[0] - frame["Applied Minimum SOC"].iloc[0]
+        ),
         "capacity_mwh": float(frame[CAPACITY].iloc[0]),
         "rated_charge_mw": float(frame[RATED_CHARGE].iloc[0]),
         "rated_discharge_mw": float(frame[RATED_DISCHARGE].iloc[0]),
@@ -1179,6 +1323,15 @@ if __name__ == "__main__":
             if manifest.get("status") != "complete":
                 raise ValueError("cannot verify an incomplete run")
             names = manifest.get("processed_resources", list(experiment.member_seeds))
+            new_rolling = (
+                args.verify_results == "rolling"
+                and experiment.payload["soc_policy"] == SUBMITTED_SOC_POLICY
+            )
+            if new_rolling:
+                if manifest.get("soc_policy") != SUBMITTED_SOC_POLICY:
+                    raise ValueError("Rolling manifest uses a different SOC policy")
+                if len(names) != len(experiment.member_seeds) or set(names) != set(experiment.member_seeds):
+                    raise ValueError("full Rolling verification requires every configured member")
             for member in names:
                 methods = (
                     ("Rolling",)
@@ -1199,6 +1352,10 @@ if __name__ == "__main__":
                         expected_start=experiment.start,
                         expected_steps=experiment.steps,
                     )
+                    if new_rolling:
+                        if SOC_POLICY_COLUMN not in frame or not frame[SOC_POLICY_COLUMN].eq(SUBMITTED_SOC_POLICY).all():
+                            raise ValueError("Rolling result uses a different SOC policy")
+                        verify_submitted_soc_source(frame, experiment, member)
                     rows.append(
                         {
                             "member": member,
@@ -1221,4 +1378,7 @@ if __name__ == "__main__":
         elif args.compare:
             print(compare_completed_runs(experiment))
         else:
-            load_members(experiment, audit_all=True)
+            load_members(
+                experiment, audit_all=True,
+                soc_policy=experiment.payload["soc_policy"],
+            )

@@ -1,0 +1,26 @@
+{
+  "dataset": "EIA-860 annual detailed data",
+  "data_year": 2025,
+  "source_page": "https://www.eia.gov/electricity/data/eia860/",
+  "download_url": "https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip",
+  "download_date_user_timezone": "2026-11-09",
+  "user_timezone": "Asia/Singapore",
+  "archive_bytes": 23622347,
+  "sha256": "2b27929d26cc1da9ad6a530da1cac6718cd8496098ee560c4d47cfffd96d08ba",
+  "zip_crc_check": "passed",
+  "files": [
+    "LayoutY2025.xlsx",
+    "1___Utility_Y2025.xlsx",
+    "2___Plant_Y2025.xlsx",
+    "3_1_Generator_Y2025.xlsx",
+    "3_2_Wind_Y2025.xlsx",
+    "3_3_Solar_Y2025.xlsx",
+    "3_4_Energy_Storage_Y2025.xlsx",
+    "3_5_Multifuel_Y2025.xlsx",
+    "4___Owner_Y2025.xlsx",
+    "6_1_EnviroAssoc_Y2025.xlsx",
+    "6_2_EnviroEquip_Y2025.xlsx",
+    "EIA-860 Form.xlsx",
+    "EIA-860 instructions.pdf"
+  ]
+}

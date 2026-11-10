@@ -182,11 +182,39 @@ class AggregateDistributionsTests(unittest.TestCase):
             "fractional raw total": replace(first, raw_rows=12.5),
             "fractional exclusions": replace(first, raw_rows=12.5, excluded_zero_limit=2.5),
             "no valid counts": replace(first, state_counts=Counter(), raw_rows=2),
-            "no positive widths": replace(first, width_sums=dict.fromkeys(data.WIDTH_STATE_ORDER, 0.0)),
         }
         for reason, invalid in bad_members.items():
             with self.subTest(reason=reason), self.assertRaises(ValueError):
                 ab.aggregate_distributions([invalid, second])
+
+    def test_boundary_only_member_contributes_counts_but_no_widths(self):
+        first, second = self.members
+        first = replace(first, width_sums=dict.fromkeys(data.WIDTH_STATE_ORDER, 0.0))
+        aggregate = ab.aggregate_distributions([first, second])
+        self.assertEqual(aggregate.valid_rows, 40)
+        self.assertEqual(aggregate.width_sums, second.width_sums)
+
+    def test_fully_unavailable_member_remains_in_population_and_audit(self):
+        first, second = self.members
+        first = replace(
+            first,
+            state_counts=Counter(),
+            width_sums=dict.fromkeys(data.WIDTH_STATE_ORDER, 0.0),
+            excluded_zero_limit=first.raw_rows,
+        )
+        aggregate = ab.aggregate_distributions([first, second])
+        self.assertEqual(aggregate.resources, RESOURCES)
+        self.assertEqual(aggregate.raw_rows, 47)
+        self.assertEqual(aggregate.valid_rows, second.valid_rows)
+        self.assertEqual(aggregate.excluded_zero_limit, first.raw_rows + second.excluded_zero_limit)
+
+    def test_pooled_figure_still_requires_positive_widths(self):
+        members = [
+            replace(member, width_sums=dict.fromkeys(data.WIDTH_STATE_ORDER, 0.0))
+            for member in self.members
+        ]
+        with self.assertRaisesRegex(ValueError, "all zero"):
+            ab.aggregate_distributions(members)
 
     def test_plot_export_writes_matching_source_csv(self):
         aggregate = ab.aggregate_distributions(self.members)

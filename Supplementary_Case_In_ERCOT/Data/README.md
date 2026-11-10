@@ -12,4 +12,6 @@ The distribution includes 186 Excel workbooks: 144 Micro input files and 42 Macr
 
 The [experiment configuration](../Program/Micro/experiment_config_1hour.json) selects 13 of the 24 resources. Keeping the larger collection does not change the configured experiment. The remaining resources have not been represented as validated members of the supplied 13-resource result set.
 
-See [Micro schema and coverage](Micro/README.md), [Macro schemas](Macro/README.md), and [provenance and upstream limits](PROVENANCE.md). The file inventory and SHA-256 checksums for this distribution are in [RELEASE_MANIFEST.csv](../RELEASE_MANIFEST.csv).
+See [Micro schema and coverage](Micro/README.md), [Macro schemas and upstream limits](Macro/README.md), and [data provenance](PROVENANCE.md). The archived [release manifest](../Archive/2026-11-10/RELEASE_MANIFEST.csv) describes an earlier packaging snapshot; it is not an updated checksum inventory for the current tree.
+
+`External/EIA860/` is a separate reference collection retained for upload, outside the 186 active input workbooks counted above. Current model and figure programs do not consume it. See the [external-data note](External/README.md).

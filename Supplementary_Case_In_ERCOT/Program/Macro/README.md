@@ -134,8 +134,8 @@ capacity filling, matching the legacy exact mode. A capacity breakpoint takes
 the cheaper block's marginal price; output above total stack capacity
 extrapolates the final block's cost and carbon intensity. The hourly
 `gas_excess_capacity_mw*` and `gas_extrapolated*` fields and monthly statistics
-expose extrapolation. Current January has 16 such hours in each scenario;
-February–June have none. NG CO2 uses heat rate × 0.05306 t CO2/MMBtu in the
+expose extrapolation. Inspect the regenerated monthly flags and counts for the
+selected dispatch snapshot. NG CO2 uses heat rate × 0.05306 t CO2/MMBtu in the
 same cost order. Cost and carbon are model estimates for NG only, without unit
 commitment, ramping, startup costs, coal redispatch, or network constraints.
 
@@ -149,10 +149,10 @@ CO2 per interval, and `marginal_price_gas*` is USD/MWh. Hourly `profit` and
 existing realized imputation. The reference Hub price does not recalculate them.
 
 Monthly profit preserves Micro's trading income plus terminal valuation.
-Rolling uses each member's final `Modeled SOC After` times its own final node
-LMP. Actual uses its last in-month raw five-minute SOC times its last Realized
-hourly node LMP. No initial inventory deduction or additional efficiency
-adjustment is introduced. ESS income and NG fuel-cost savings are separate
+Rolling uses each member's final `Modeled SOC After` times its own monthly mean
+hourly node LMP. Actual uses its last in-month raw five-minute SOC times its
+monthly mean Realized hourly node LMP. No initial inventory deduction or
+additional efficiency adjustment is introduced. ESS income and NG fuel-cost savings are separate
 metrics. Income and terminal value for the removal scenario are `n.a.`.
 
 Dates are Excel date values: local `Interval Start` is America/Chicago;

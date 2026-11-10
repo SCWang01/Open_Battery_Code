@@ -23,3 +23,16 @@ Thumbs.db
 /Program/repair_first_boundary_archives.py
 /Program/tests/test_boundary_archive_repair.py
 /Program/tests/test_first_boundary.py
+
+# output
+/outputs/
+#
+/Supplemental
+# Keep ERCOT documentation and External reference data available for upload.
+/Supplementary_Case_In_ERCOT/Data/**
+!/Supplementary_Case_In_ERCOT/Data/**/
+!/Supplementary_Case_In_ERCOT/Data/**/*.md
+!/Supplementary_Case_In_ERCOT/Data/External/**
+
+# Local ERCOT revision comparison; not part of the Git release.
+/ERCOT_CASE_REVISION/

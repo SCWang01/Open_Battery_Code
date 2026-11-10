@@ -1,0 +1,80 @@
+[
+  {
+    "member": "BIG_STAR_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "BLSUMMIT_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "BR_ARROW_ESR2",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "INDL_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "INRT_W_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "LANTANA_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "MESQUITE_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "MOORE_FL_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "RRC_WIND_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "RRC_WIND_ESR2",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "SHAMROCK_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "STADIUM_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  },
+  {
+    "member": "STRG_SLR_ESR1",
+    "method": "Rolling",
+    "steps": 743,
+    "verified": true
+  }
+]
