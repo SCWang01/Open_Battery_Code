@@ -3,8 +3,8 @@
 Default input is experiment_config_1hour.json; results live directly in Results/Micro_Results/rolling with YYYYMM filenames.
 The CLI runs all configured months using 12 processes; --month selects one.
 The hourly loader uses raw monthly max(HSL)/min(LSL) for power ratings.
-SOC bounds are raw monthly Minimum/Maximum SOC extrema. Each month starts at
-its first observed State of Charge; forecast-tail rows do not set these values.
+SOC has a fixed lower bound of zero and the raw monthly Maximum SOC upper bound.
+Each month starts at its first observed State of Charge; forecast-tail rows do not set these values.
 Any ON/ONTEST source slot enables the hour unless its entire day has zero hourly
 net output. Every forecast hour carries its own gate. There is no terminal SOC
 target; reported Modeled SOC and dsfunction column eight are energy in MWh.
@@ -70,7 +70,7 @@ AVAILABLE_STATUSES = ("ON", "ONTEST")
 POWER_LIMIT_POLICY = (
     experiment_data.SUBMITTED_POWER_POLICY + "_hourly_any_ON_ONTEST_nonzero_day"
 )
-SOC_POLICY = experiment_data.SUBMITTED_SOC_POLICY
+SOC_POLICY = experiment_data.ZERO_MIN_SOC_POLICY
 
 REQUIRED_COLUMNS = (
     TIME_COLUMN,
@@ -413,7 +413,7 @@ def _load_experiment_resources(
                 member.name,
                 member.source_path,
                 frame,
-                member.minimum_soc,
+                member.minimum_soc,  # Zero under ZERO_MIN_SOC_POLICY.
                 member.maximum_soc,
                 member.initial_soc,
                 member.price_min,

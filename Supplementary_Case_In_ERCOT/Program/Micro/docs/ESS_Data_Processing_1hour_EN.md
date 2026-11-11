@@ -2,7 +2,7 @@
 
 This guide explains how the current [Rolling_Window_1hour.py](../Rolling_Window_1hour.py) workflow converts five-minute ERCOT records into hourly inputs and generates the parameters of an equivalent energy storage system (ESS). It describes the default monthly configuration in [experiment_config_1hour.json](../experiment_config_1hour.json), which uses schema version 3.
 
-For each resource and month, Rolling power limits use raw operator-submitted HSL/LSL extrema. Its energy bounds use the raw monthly SOC limits, and its initial energy is the first observed SOC in that month. Rolling does not reconstruct capacity or initial energy by integrating telemetry. These parameters are not manufacturer nameplate specifications. The optional Benchmark retains its telemetry-derived power ratings and reconstructed energy envelope.
+For each resource and month, Rolling power limits use raw operator-submitted HSL/LSL extrema. Its minimum energy is zero, its maximum energy is the raw monthly Maximum SOC maximum, and its initial energy is the first observed SOC in that month. Rolling does not reconstruct capacity or initial energy by integrating telemetry. These parameters are not manufacturer nameplate specifications. The optional Benchmark retains its telemetry-derived power ratings and reconstructed energy envelope.
 
 ## 1. Workflow and source-code responsibilities
 
@@ -134,7 +134,7 @@ Exports retain `Submitted HSL Maximum` and `Submitted LSL Minimum` for each hour
 Let $I_m$ be the raw five-minute observations inside the current local calendar month, sorted by physical timestamp. Rolling uses:
 
 $$
-E_{\min,m}=\min_{i\in I_m}\mathrm{Minimum\ SOC}_i,
+E_{\min,m}=0,
 \qquad
 E_{\max,m}=\max_{i\in I_m}\mathrm{Maximum\ SOC}_i,
 $$
@@ -153,9 +153,9 @@ $$
 E_{\mathrm{usable},m}=E_{\max,m}-E_{\min,m}.
 $$
 
-A positive minimum is retained, rather than shifting the modeled trajectory to zero. Equal bounds are valid and allow no net charging or discharging. In particular, the LANTANA_ESR1 January input has bounds $[0,0]$ and initial energy zero.
+The applied lower bound is zero even when submitted Minimum SOC is positive. Raw observed Minimum SOC remains available for auditing. Equal bounds are valid and allow no net charging or discharging. In particular, the LANTANA_ESR1 January input has bounds $[0,0]$ and initial energy zero.
 
-For example, BLSUMMIT_ESR1 January has a lower bound of 0.808 MWh and an upper bound of 13.5 MWh, giving a usable capacity of 12.692 MWh. BIG_STAR_ESR1 May retains the unrounded bounds 3.6236 and 114.6877 MWh.
+For example, BLSUMMIT_ESR1 January now has an applied lower bound of 0 MWh and an upper bound of 13.5 MWh, giving a usable capacity of 13.5 MWh. BIG_STAR_ESR1 May uses bounds 0 and 114.6877 MWh. The policy identifier is `monthly_zero_min_submitted_max_soc_initial_observed`; historical raw-minimum outputs retain their older identifier and require regeneration for the new experiment.
 
 ### 4.4 Optional Benchmark policy
 
@@ -197,7 +197,7 @@ An eligible hour receives the full monthly power rating. The rating is not scale
 | Maximum stored energy | `Capacity MWh`; `ResourceData.maximum_soc` | MWh |
 | Usable energy interval | `Usable Capacity MWh` | MWh; maximum minus minimum |
 | Initial energy | `Initial Energy MWh`; `ResourceData.initial_soc` | MWh |
-| Minimum stored energy | `ResourceData.minimum_soc`; `Applied Minimum SOC` | MWh; monthly minimum submitted limit |
+| Minimum stored energy | `ResourceData.minimum_soc`; `Applied Minimum SOC` | MWh; fixed at zero |
 | Effective discharge limit | `Effective HSL`; `Pdmax` | Nonnegative MW |
 | Effective charging limit | `Effective LSL`; exported `Pcmax` | Nonpositive MW |
 

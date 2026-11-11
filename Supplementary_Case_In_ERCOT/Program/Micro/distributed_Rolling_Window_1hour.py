@@ -3,8 +3,8 @@
 The parent validates shared inputs and writes every output; workers only solve
 independent resources.  Model, random-sequence, and output contracts are the
 same as ``Rolling_Window_1hour.py``. Power limits use each month's raw submitted
-max(HSL)/min(LSL), with no rounding. SOC bounds use raw monthly submitted
-extrema; initial energy resets to that month's first observed State of Charge.
+max(HSL)/min(LSL), with no rounding. Minimum SOC is zero; maximum SOC is the raw
+monthly submitted maximum. Initial energy resets to the first observed SOC.
 
 Running without arguments (including an editor's Run button) loads the
 experiment_config_1hour.json beside this script, with 12 workers and one solver

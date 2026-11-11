@@ -33,6 +33,8 @@ USABLE_CAPACITY = "Usable Capacity MWh"
 SOC_POLICY_COLUMN = "SOC Policy"
 TELEMETRY_SOC_POLICY = "telemetry_reconstructed"
 SUBMITTED_SOC_POLICY = "monthly_raw_submitted_soc_bounds_initial_observed"
+ZERO_MIN_SOC_POLICY = "monthly_zero_min_submitted_max_soc_initial_observed"
+SUBMITTED_SOC_POLICIES = (SUBMITTED_SOC_POLICY, ZERO_MIN_SOC_POLICY)
 INITIAL_ENERGY = "Initial Energy MWh"
 RATED_CHARGE = "Rated Charge MW"
 RATED_DISCHARGE = "Rated Discharge MW"
@@ -230,9 +232,9 @@ def load_experiment(path: Path | str, month: str | None = None) -> Experiment:
     ):
         if payload.get(key) != expected:
             raise ValueError(f"{key} must be {expected!r}")
-    if payload.get("soc_policy") not in (TELEMETRY_SOC_POLICY, SUBMITTED_SOC_POLICY):
+    if payload.get("soc_policy") not in (TELEMETRY_SOC_POLICY, *SUBMITTED_SOC_POLICIES):
         raise ValueError("unknown soc_policy")
-    if payload["soc_policy"] == SUBMITTED_SOC_POLICY and payload["schema_version"] != 3:
+    if payload["soc_policy"] in SUBMITTED_SOC_POLICIES and payload["schema_version"] != 3:
         raise ValueError("submitted SOC bounds require monthly schema_version=3")
     dates = []
     for key in ("study_start_date", "study_end_date", "innovation_origin_date"):
@@ -399,12 +401,18 @@ def reconstruct_ess(power: np.ndarray, efficiency: float = 0.95) -> dict[str, fl
     }
 
 
-def submitted_soc_parameters(raw: pd.DataFrame) -> dict[str, float | str]:
+def submitted_soc_parameters(
+    raw: pd.DataFrame, *, soc_policy: str = SUBMITTED_SOC_POLICY
+) -> dict[str, float | str]:
     """Derive exact energy bounds from chronologically sorted in-month source rows.
 
-    The caller owns month filtering and ordering. No missing initial observation
-    is substituted, and no observed energy or submitted bound is rounded/clipped.
+    The zero-min policy fixes the lower bound at zero; both policies retain the
+    raw Maximum SOC maximum. The caller owns month filtering and ordering.
+    No missing initial observation is substituted, and no observed energy or
+    submitted bound is rounded/clipped.
     """
+    if soc_policy not in SUBMITTED_SOC_POLICIES:
+        raise ValueError(f"unknown submitted SOC policy: {soc_policy}")
     if raw.empty:
         raise ValueError("no current-month SOC source records")
     numbers = {}
@@ -420,7 +428,11 @@ def submitted_soc_parameters(raw: pd.DataFrame) -> dict[str, float | str]:
         if invalid.any():
             raise ValueError(f"invalid monthly {column}")
         numbers[column] = numeric
-    minimum = float(numbers["Minimum SOC"].min())
+    minimum = (
+        0.0
+        if soc_policy == ZERO_MIN_SOC_POLICY
+        else float(numbers["Minimum SOC"].min())
+    )
     maximum = float(numbers["Maximum SOC"].max())
     initial = float(numbers["State of Charge"].iloc[0])
     if not 0 <= minimum <= maximum:
@@ -433,7 +445,7 @@ def submitted_soc_parameters(raw: pd.DataFrame) -> dict[str, float | str]:
         "capacity_mwh": maximum,
         "usable_capacity_mwh": maximum - minimum,
         "initial_energy_mwh": initial,
-        "soc_policy": SUBMITTED_SOC_POLICY,
+        "soc_policy": soc_policy,
     }
 
 
@@ -923,11 +935,11 @@ def validate_result_frame(
     if SOC_POLICY_COLUMN in frame:
         soc_policy = frame[SOC_POLICY_COLUMN].iloc[0]
         if (
-            soc_policy not in (TELEMETRY_SOC_POLICY, SUBMITTED_SOC_POLICY)
+            soc_policy not in (TELEMETRY_SOC_POLICY, *SUBMITTED_SOC_POLICIES)
             or not frame[SOC_POLICY_COLUMN].eq(soc_policy).all()
         ):
             raise ValueError("invalid or changing SOC policy in result")
-    submitted_soc = soc_policy == SUBMITTED_SOC_POLICY
+    submitted_soc = soc_policy in SUBMITTED_SOC_POLICIES
     monthly = "Hour Start UTC" in frame
     if submitted_soc and not monthly:
         raise ValueError("submitted SOC result requires a monthly UTC timeline")
@@ -1034,7 +1046,7 @@ def validate_result_frame(
         or np.any(capacity < 0)
         or np.any(lower < 0)
         or np.any(lower > upper)
-        or (not submitted_soc and np.any(lower != 0))
+        or ((not submitted_soc or soc_policy == ZERO_MIN_SOC_POLICY) and np.any(lower != 0))
         or not np.array_equal(upper, capacity)
     ):
         raise ValueError("invalid hourly power/capacity bounds")
@@ -1095,7 +1107,8 @@ def validate_result_frame(
                     "Observed SOC": "State of Charge",
                     "Observed Minimum SOC": "Minimum SOC",
                     "Observed Maximum SOC": "Maximum SOC",
-                })
+                }),
+                soc_policy=soc_policy,
             )
             if not np.isclose(lower[0], parameters["minimum_energy_mwh"], atol=1e-8, rtol=0):
                 raise ValueError("monthly minimum SOC does not reconcile")
@@ -1146,7 +1159,9 @@ def verify_submitted_soc_source(
         raw["SCED Timestamp UTC"].ge(experiment.start.tz_convert("UTC"))
         & raw["SCED Timestamp UTC"].lt(experiment.end_exclusive.tz_convert("UTC"))
     ].sort_values("SCED Timestamp UTC", kind="stable")
-    parameters = submitted_soc_parameters(raw)
+    parameters = submitted_soc_parameters(
+        raw, soc_policy=experiment.payload["soc_policy"]
+    )
     for column, key in (
         ("Applied Minimum SOC", "minimum_energy_mwh"),
         ("Applied Maximum SOC", "maximum_energy_mwh"),
@@ -1325,10 +1340,10 @@ if __name__ == "__main__":
             names = manifest.get("processed_resources", list(experiment.member_seeds))
             new_rolling = (
                 args.verify_results == "rolling"
-                and experiment.payload["soc_policy"] == SUBMITTED_SOC_POLICY
+                and experiment.payload["soc_policy"] in SUBMITTED_SOC_POLICIES
             )
             if new_rolling:
-                if manifest.get("soc_policy") != SUBMITTED_SOC_POLICY:
+                if manifest.get("soc_policy") != experiment.payload["soc_policy"]:
                     raise ValueError("Rolling manifest uses a different SOC policy")
                 if len(names) != len(experiment.member_seeds) or set(names) != set(experiment.member_seeds):
                     raise ValueError("full Rolling verification requires every configured member")
@@ -1353,7 +1368,7 @@ if __name__ == "__main__":
                         expected_steps=experiment.steps,
                     )
                     if new_rolling:
-                        if SOC_POLICY_COLUMN not in frame or not frame[SOC_POLICY_COLUMN].eq(SUBMITTED_SOC_POLICY).all():
+                        if SOC_POLICY_COLUMN not in frame or not frame[SOC_POLICY_COLUMN].eq(experiment.payload["soc_policy"]).all():
                             raise ValueError("Rolling result uses a different SOC policy")
                         verify_submitted_soc_source(frame, experiment, member)
                     rows.append(

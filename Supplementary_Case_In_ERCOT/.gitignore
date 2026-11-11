@@ -14,3 +14,4 @@ gurobi.log
 .env.*
 Results/smoke/
 Results/validation/
+Writing_ERCOT/

@@ -1,0 +1,43 @@
+Loaded BIG_STAR_ESR1: 4343 telemetry rows
+Loaded BLSUMMIT_ESR1: 4343 telemetry rows
+Loaded BR_ARROW_ESR2: 4343 telemetry rows
+Loaded INDL_ESR1: 4343 telemetry rows
+Loaded INRT_W_ESR1: 4343 telemetry rows
+Loaded LANTANA_ESR1: 4343 telemetry rows
+Loaded MESQUITE_ESR1: 4343 telemetry rows
+Loaded MOORE_FL_ESR1: 4343 telemetry rows
+Loaded RRC_WIND_ESR1: 4343 telemetry rows
+Loaded RRC_WIND_ESR2: 4343 telemetry rows
+Loaded SHAMROCK_ESR1: 4343 telemetry rows
+Loaded STADIUM_ESR1: 4343 telemetry rows
+Loaded STRG_SLR_ESR1: 4343 telemetry rows
+Rendered BIG_STAR_ESR1
+Rendered BLSUMMIT_ESR1
+Rendered BR_ARROW_ESR2
+Rendered INDL_ESR1
+Rendered INRT_W_ESR1
+Rendered LANTANA_ESR1
+Rendered MESQUITE_ESR1
+Rendered MOORE_FL_ESR1
+Rendered RRC_WIND_ESR1
+Rendered RRC_WIND_ESR2
+Rendered SHAMROCK_ESR1
+Rendered STADIUM_ESR1
+Rendered STRG_SLR_ESR1
+Rendered ALL_ESR
+{
+  "model_rows": 56459,
+  "model_classified_hours": 55163,
+  "model_unclassified_hours": 1296,
+  "telemetry_rows": 56459,
+  "tied_hours": 1,
+  "beyond_display_range": 0,
+  "telemetry_status": {
+    "Hit": 42392,
+    "Outside threshold": 12771,
+    "Excluded": 1296
+  },
+  "excluded_reasons": {
+    "Zero effective power range": 1296
+  }
+}

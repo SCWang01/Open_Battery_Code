@@ -220,7 +220,7 @@ def inspect_monthly_member(
         "failure_kind": "invalid_input",
     }
     try:
-        if soc_policy not in (data.TELEMETRY_SOC_POLICY, data.SUBMITTED_SOC_POLICY):
+        if soc_policy not in (data.TELEMETRY_SOC_POLICY, *data.SUBMITTED_SOC_POLICIES):
             raise ValueError(f"unknown SOC policy: {soc_policy}")
         if name not in experiment.member_seeds:
             raise ValueError(f"member {name} is not in fixed registry")
@@ -280,8 +280,8 @@ def inspect_monthly_member(
             monthly_raw, power_policy
         )
         submitted_soc = (
-            data.submitted_soc_parameters(monthly_raw)
-            if soc_policy == data.SUBMITTED_SOC_POLICY
+            data.submitted_soc_parameters(monthly_raw, soc_policy=soc_policy)
+            if soc_policy in data.SUBMITTED_SOC_POLICIES
             else None
         )
         audit["power_limit_policy"] = power_policy

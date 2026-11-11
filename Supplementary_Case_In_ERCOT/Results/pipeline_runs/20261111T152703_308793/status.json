@@ -1,0 +1,335 @@
+{
+  "run_id": "20261111T152703_308793",
+  "status": "complete",
+  "stages": [
+    {
+      "name": "01_preflight",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Rolling_Window_1hour.py",
+        "--validate-only",
+        "--workers",
+        "12"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T15:27:03.309796+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\01_preflight.log",
+      "returncode": 0,
+      "elapsed_seconds": 264.641,
+      "finished": "2026-11-11T15:31:27.954759+08:00"
+    },
+    {
+      "name": "02_rolling",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\distributed_Rolling_Window_1hour.py",
+        "--workers",
+        "12",
+        "--solver-threads",
+        "1"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T15:31:27.956755+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\02_rolling.log",
+      "returncode": 0,
+      "elapsed_seconds": 3788.047,
+      "finished": "2026-11-11T16:34:36.007835+08:00"
+    },
+    {
+      "name": "03_verify_rolling",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Experiment_Data_1hour.py",
+        "--experiment",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\experiment_config_1hour.json",
+        "--verify-results",
+        "rolling"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:34:36.010845+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\03_verify_rolling.log",
+      "returncode": 0,
+      "elapsed_seconds": 333.563,
+      "finished": "2026-11-11T16:40:09.578623+08:00"
+    },
+    {
+      "name": "04_realized",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Reality_Profit.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:40:09.580619+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\04_realized.log",
+      "returncode": 0,
+      "elapsed_seconds": 324.828,
+      "finished": "2026-11-11T16:45:34.409641+08:00"
+    },
+    {
+      "name": "05_classify",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\classify_p_ess.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:45:34.411644+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\05_classify.log",
+      "returncode": 0,
+      "elapsed_seconds": 74.813,
+      "finished": "2026-11-11T16:46:49.234676+08:00"
+    },
+    {
+      "name": "06_match",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Realized_Match.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:46:49.236677+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\06_match.log",
+      "returncode": 0,
+      "elapsed_seconds": 41.282,
+      "finished": "2026-11-11T16:47:30.520781+08:00"
+    },
+    {
+      "name": "07_compare",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Compare_Month.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:47:30.522781+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\07_compare.log",
+      "returncode": 0,
+      "elapsed_seconds": 333.609,
+      "finished": "2026-11-11T16:53:04.132184+08:00"
+    },
+    {
+      "name": "08_classification_figures",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_classification_all.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:53:04.133743+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\08_classification_figures.log",
+      "returncode": 0,
+      "elapsed_seconds": 40.328,
+      "finished": "2026-11-11T16:53:44.458059+08:00"
+    },
+    {
+      "name": "09_profit_figures",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\Profit_Increment.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:53:44.460196+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\09_profit_figures.log",
+      "returncode": 0,
+      "elapsed_seconds": 6.313,
+      "finished": "2026-11-11T16:53:50.776234+08:00"
+    },
+    {
+      "name": "10_example_figure",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\Classification_Test\\plot_classification_example.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:53:50.779233+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\10_example_figure.log",
+      "returncode": 0,
+      "elapsed_seconds": 4.187,
+      "finished": "2026-11-11T16:53:54.955075+08:00"
+    },
+    {
+      "name": "11_abc_202601",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202601"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:53:54.957135+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\11_abc_202601.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.828,
+      "finished": "2026-11-11T16:54:00.792705+08:00"
+    },
+    {
+      "name": "12_abc_202602",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202602"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:00.794708+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\12_abc_202602.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.453,
+      "finished": "2026-11-11T16:54:06.247367+08:00"
+    },
+    {
+      "name": "13_abc_202603",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202603"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:06.249367+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\13_abc_202603.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.985,
+      "finished": "2026-11-11T16:54:12.222919+08:00"
+    },
+    {
+      "name": "14_abc_202604",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202604"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:12.224990+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\14_abc_202604.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.765,
+      "finished": "2026-11-11T16:54:17.996976+08:00"
+    },
+    {
+      "name": "15_abc_202605",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202605"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:17.998553+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\15_abc_202605.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.938,
+      "finished": "2026-11-11T16:54:23.937523+08:00"
+    },
+    {
+      "name": "16_abc_202606",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Micro\\plot_esr_abc.py",
+        "--month",
+        "202606"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:23.939567+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\16_abc_202606.log",
+      "returncode": 0,
+      "elapsed_seconds": 5.718,
+      "finished": "2026-11-11T16:54:29.663739+08:00"
+    },
+    {
+      "name": "17_bridge",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Micro\\Bridge.py",
+        "--output-dir",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Macro_Results\\ESR_Output_Rolling"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:29.666018+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\17_bridge.log",
+      "returncode": 0,
+      "elapsed_seconds": 19.375,
+      "finished": "2026-11-11T16:54:49.035226+08:00"
+    },
+    {
+      "name": "18_macro_thermal",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Program\\Macro\\System_Rolling_Result.py",
+        "--basis",
+        "thermal"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T16:54:49.037723+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\18_macro_thermal.log",
+      "returncode": 0,
+      "elapsed_seconds": 332.203,
+      "finished": "2026-11-11T17:00:21.241845+08:00"
+    },
+    {
+      "name": "19_figure_4d_thermal",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Macro\\figure_plot_4_d\\plot_thermal_reduction_rates_radial.py"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T17:00:21.244049+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\19_figure_4d_thermal.log",
+      "returncode": 0,
+      "elapsed_seconds": 1.672,
+      "finished": "2026-11-11T17:00:22.921385+08:00"
+    },
+    {
+      "name": "20_figure_4e",
+      "command": [
+        "C:\\Software\\Anaconda\\python.exe",
+        "-u",
+        "-B",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Figs\\Macro\\figure_plot_4_e\\Fig_4_e_plot.py",
+        "--results-dir",
+        "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\Macro_Results\\System_Results\\thermal"
+      ],
+      "status": "complete",
+      "started": "2026-11-11T17:00:22.923386+08:00",
+      "log": "D:\\Research\\Release_Open\\Supplementary_Case_In_ERCOT\\Results\\pipeline_runs\\20261111T152703_308793\\20_figure_4e.log",
+      "returncode": 0,
+      "elapsed_seconds": 1.234,
+      "finished": "2026-11-11T17:00:24.159736+08:00"
+    }
+  ]
+}

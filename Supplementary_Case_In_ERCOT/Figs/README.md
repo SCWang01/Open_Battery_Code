@@ -13,6 +13,13 @@ are unchanged by a font substitution, but text metrics and image bytes may diffe
 
 ## Reproduce the current figures
 
+To recompute dispatch and every current figure family with **thermal-only Macro**,
+run `python -u -B run_all.py --workers 4` from the release root. This includes all
+six a/b/c months, thermal Figure 4d, and Figure 4e from the new thermal workbooks.
+Use `--postprocess-only` only after a complete current-SOC-policy Rolling run.
+See the [one-command guide](../README.md). The manual commands below also retain
+the optional gas/coal plotting entries for existing scenario results.
+
 The included results support these commands without running the optimization.
 Each command replaces the corresponding figure files at its default output path.
 

@@ -4,7 +4,39 @@ Hourly backtesting of ERCOT Energy Storage Resources (ESRs), with historical ope
 
 This distribution contains source code, prepared data, external reference data, results, and figures. Superseded explanatory notes are kept in [Archive](Archive/README.md). Manuscripts, writing drafts, peer-review packets, historical code archives, and local development files are excluded.
 
-Rolling uses monthly operator-submitted SOC and HSL/LSL bounds, with initial energy reset to the first observed SOC of each month. See the [processing guide](Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) for the implemented model and information assumptions.
+Rolling now uses a zero SOC lower bound, the monthly operator-submitted Maximum SOC maximum, and monthly HSL/LSL bounds, with initial energy reset to the first observed SOC of each month. Existing supplied results predate this zero-minimum revision; regenerate them before using them as updated results. See the [processing guide](Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) for the implemented model and information assumptions.
+
+## One-command recomputation and all figures (thermal Macro only)
+
+After installing the environment and configuring the Gurobi license below:
+
+```powershell
+python -u -B run_all.py --workers 4
+```
+
+On Windows, double-click `run_all.bat` to use the default 12 worker processes, or
+run `run_all.bat --workers 4` in the configured Python environment. Each worker
+uses one solver thread. The months run sequentially; resources within each month
+run in parallel on this machine. No multi-machine scheduler is required.
+
+The entry point runs preflight, distributed Rolling, full-month verification,
+realized profit, classification, matching, comparison, every Micro figure family
+(including a/b/c for all six months), Bridge, thermal Macro, thermal Figure 4d,
+and Figure 4e. Figure 4e explicitly reads the new thermal results. Gas and coal
+Macro calculations and their figures are not part of this workflow.
+
+Existing active results and figures are replaced. Logs and `status.json` are
+saved under `Results/pipeline_runs/<timestamp>/`; the first failure stops later
+stages. Preview commands without changing files:
+
+```powershell
+python -B run_all.py --dry-run --workers 4
+```
+
+After a complete Rolling run under the current zero-minimum policy, use
+`python -u -B run_all.py --postprocess-only` to repeat validation, downstream
+analysis and figures. Old-policy or partial Rolling outputs fail verification.
+The optional Benchmark and historical verification investigations are excluded.
 
 ## Repository layout
 
@@ -106,7 +138,7 @@ For individual stages, configuration options, output fields, and the optional Be
 
 - Power is MW, stored energy is MWh, price is USD/MWh, and energy-market revenue is USD. Positive resource power is discharge/export; negative power is charge/import.
 - Local calendars use `America/Chicago`, while physical intervals are identified in UTC. March 2026 contains 743 modeled hours. Next-day tails support the forecast horizon and are excluded from monthly executed totals.
-- Rolling uses current-month raw `min(Minimum SOC)` and `max(Maximum SOC)` for energy bounds, and resets initial energy to that month's first observed `State of Charge`. It does not integrate telemetry to estimate capacity. Power ratings use unrounded current-month `max(HSL)` and `min(LSL)`.
+- Rolling uses zero for its minimum SOC and current-month raw `max(Maximum SOC)` for its maximum SOC, and resets initial energy to that month's first observed `State of Charge`. `Usable Capacity MWh` therefore equals the maximum SOC. It does not integrate telemetry to estimate capacity. Power ratings use unrounded current-month `max(HSL)` and `min(LSL)`.
 - The model uses synthetic forecasts made by perturbing historical future prices, historical availability, full-month submitted SOC/power extrema, and full-month price bounds. It is a retrospective backtest with these information assumptions.
 - Rolling assumes one-way efficiency η = 0.95 (round trip 0.9025) and does not model standby drain. An efficiency-estimation program is not included in the current package; the configuration value is a model assumption.
 - Revenue covers the implemented energy-market accounting. Ancillary-service revenue, degradation, capital costs, and network-constrained redispatch are outside this implementation.

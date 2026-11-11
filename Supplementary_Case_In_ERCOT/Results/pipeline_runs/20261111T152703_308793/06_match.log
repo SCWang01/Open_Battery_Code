@@ -1,0 +1,80 @@
+Done [BIG_STAR_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 35, 'MULTIPLE_CATEGORY_POINTS': 36}
+Done [BIG_STAR_ESR1, 2026-02]: {'rows': 672, 'calculated': 668, 'annotated': 40, 'MULTIPLE_CATEGORY_POINTS': 36, 'blank_distance': 4, 'ZERO_POWER_RANGE': 4}
+Done [BIG_STAR_ESR1, 2026-03]: {'rows': 743, 'calculated': 737, 'annotated': 39, 'MULTIPLE_CATEGORY_POINTS': 33, 'blank_distance': 6, 'ZERO_POWER_RANGE': 6}
+Done [BIG_STAR_ESR1, 2026-04]: {'rows': 720, 'calculated': 720, 'annotated': 58, 'MULTIPLE_CATEGORY_POINTS': 59}
+Done [BIG_STAR_ESR1, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 34, 'MULTIPLE_CATEGORY_POINTS': 34}
+Done [BIG_STAR_ESR1, 2026-06]: {'rows': 720, 'calculated': 715, 'annotated': 39, 'MULTIPLE_CATEGORY_POINTS': 34, 'blank_distance': 5, 'ZERO_POWER_RANGE': 5}
+Done [BLSUMMIT_ESR1, 2026-01]: {'rows': 744, 'calculated': 744}
+Done [BLSUMMIT_ESR1, 2026-02]: {'rows': 672, 'calculated': 651, 'blank_distance': 21, 'annotated': 21, 'CLIPPED_LSL': 19, 'ZERO_POWER_RANGE': 21, 'CLIPPED_HSL': 2}
+Done [BLSUMMIT_ESR1, 2026-03]: {'rows': 743, 'calculated': 743}
+Done [BLSUMMIT_ESR1, 2026-04]: {'rows': 720, 'calculated': 688, 'blank_distance': 32, 'annotated': 32, 'CLIPPED_LSL': 29, 'ZERO_POWER_RANGE': 32, 'CLIPPED_HSL': 3}
+Done [BLSUMMIT_ESR1, 2026-05]: {'rows': 744, 'calculated': 744}
+Done [BLSUMMIT_ESR1, 2026-06]: {'rows': 720, 'calculated': 703, 'blank_distance': 17, 'annotated': 17, 'CLIPPED_LSL': 17, 'ZERO_POWER_RANGE': 17}
+Done [BR_ARROW_ESR2, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 49, 'MULTIPLE_CATEGORY_POINTS': 22, 'UNSORTED_POWER': 27, 'DUPLICATE_POWER': 27}
+Done [BR_ARROW_ESR2, 2026-02]: {'rows': 672, 'calculated': 672, 'annotated': 42, 'MULTIPLE_CATEGORY_POINTS': 25, 'UNSORTED_POWER': 16, 'DUPLICATE_POWER': 17}
+Done [BR_ARROW_ESR2, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 34, 'MULTIPLE_CATEGORY_POINTS': 20, 'UNSORTED_POWER': 13, 'DUPLICATE_POWER': 14}
+Done [BR_ARROW_ESR2, 2026-04]: {'rows': 720, 'calculated': 720, 'annotated': 55, 'MULTIPLE_CATEGORY_POINTS': 35, 'UNSORTED_POWER': 18, 'DUPLICATE_POWER': 20}
+Done [BR_ARROW_ESR2, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 34, 'MULTIPLE_CATEGORY_POINTS': 20, 'UNSORTED_POWER': 13, 'DUPLICATE_POWER': 14}
+Done [BR_ARROW_ESR2, 2026-06]: {'rows': 720, 'calculated': 720, 'annotated': 39, 'MULTIPLE_CATEGORY_POINTS': 29, 'UNSORTED_POWER': 10, 'DUPLICATE_POWER': 10}
+Done [INDL_ESR1, 2026-01]: {'rows': 744, 'calculated': 726, 'blank_distance': 18, 'annotated': 18, 'CLIPPED_LSL': 18, 'ZERO_POWER_RANGE': 18}
+Done [INDL_ESR1, 2026-02]: {'rows': 672, 'calculated': 672}
+Done [INDL_ESR1, 2026-03]: {'rows': 743, 'calculated': 725, 'blank_distance': 18, 'annotated': 18, 'CLIPPED_LSL': 7, 'ZERO_POWER_RANGE': 18}
+Done [INDL_ESR1, 2026-04]: {'rows': 720, 'calculated': 719, 'blank_distance': 1, 'annotated': 1, 'CLIPPED_LSL': 1, 'ZERO_POWER_RANGE': 1}
+Done [INDL_ESR1, 2026-05]: {'rows': 744, 'calculated': 744}
+Done [INDL_ESR1, 2026-06]: {'rows': 720, 'calculated': 720}
+Done [INRT_W_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 50, 'MULTIPLE_CATEGORY_POINTS': 48, 'CLIPPED_HSL': 1, 'CLIPPED_LSL': 1}
+Done [INRT_W_ESR1, 2026-02]: {'rows': 672, 'calculated': 669, 'annotated': 64, 'MULTIPLE_CATEGORY_POINTS': 61, 'blank_distance': 3, 'CLIPPED_LSL': 3, 'ZERO_POWER_RANGE': 3, 'UNSORTED_POWER': 1, 'DUPLICATE_POWER': 1}
+Done [INRT_W_ESR1, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 78, 'MULTIPLE_CATEGORY_POINTS': 64, 'UNSORTED_POWER': 18, 'DUPLICATE_POWER': 20}
+Done [INRT_W_ESR1, 2026-04]: {'rows': 720, 'calculated': 718, 'annotated': 63, 'MULTIPLE_CATEGORY_POINTS': 61, 'blank_distance': 2, 'CLIPPED_LSL': 2, 'ZERO_POWER_RANGE': 2}
+Done [INRT_W_ESR1, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 61, 'MULTIPLE_CATEGORY_POINTS': 62}
+Done [INRT_W_ESR1, 2026-06]: {'rows': 720, 'calculated': 708, 'annotated': 99, 'MULTIPLE_CATEGORY_POINTS': 76, 'DUPLICATE_POWER': 17, 'UNSORTED_POWER': 11, 'CLIPPED_LSL': 13, 'blank_distance': 12, 'ZERO_POWER_RANGE': 12}
+Done [LANTANA_ESR1, 2026-01]: {'rows': 744, 'calculated': 96, 'blank_distance': 648, 'annotated': 648, 'ZERO_POWER_RANGE': 648}
+Done [LANTANA_ESR1, 2026-02]: {'rows': 672, 'blank_distance': 192, 'annotated': 235, 'ZERO_POWER_RANGE': 192, 'calculated': 480, 'MULTIPLE_CATEGORY_POINTS': 43}
+Done [LANTANA_ESR1, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 178, 'MULTIPLE_CATEGORY_POINTS': 179}
+Done [LANTANA_ESR1, 2026-04]: {'rows': 720, 'calculated': 696, 'annotated': 252, 'MULTIPLE_CATEGORY_POINTS': 216, 'CLIPPED_LSL': 40, 'blank_distance': 24, 'ZERO_POWER_RANGE': 24}
+Done [LANTANA_ESR1, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 75, 'MULTIPLE_CATEGORY_POINTS': 74, 'DUPLICATE_POWER': 1}
+Done [LANTANA_ESR1, 2026-06]: {'rows': 720, 'calculated': 717, 'annotated': 80, 'MULTIPLE_CATEGORY_POINTS': 77, 'DUPLICATE_POWER': 7, 'blank_distance': 3, 'CLIPPED_HSL': 1, 'ZERO_POWER_RANGE': 3, 'CLIPPED_LSL': 2}
+Done [MESQUITE_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 35, 'MULTIPLE_CATEGORY_POINTS': 34, 'DUPLICATE_POWER': 1}
+Done [MESQUITE_ESR1, 2026-02]: {'rows': 672, 'calculated': 672, 'annotated': 50, 'MULTIPLE_CATEGORY_POINTS': 46, 'DUPLICATE_POWER': 4, 'UNSORTED_POWER': 1}
+Done [MESQUITE_ESR1, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 97, 'MULTIPLE_CATEGORY_POINTS': 90, 'DUPLICATE_POWER': 9, 'CLIPPED_LSL': 1, 'UNSORTED_POWER': 2}
+Done [MESQUITE_ESR1, 2026-04]: {'rows': 720, 'calculated': 703, 'annotated': 127, 'MULTIPLE_CATEGORY_POINTS': 92, 'UNSORTED_POWER': 19, 'DUPLICATE_POWER': 19, 'blank_distance': 17, 'CLIPPED_LSL': 14, 'ZERO_POWER_RANGE': 17}
+Done [MESQUITE_ESR1, 2026-05]: {'rows': 744, 'calculated': 712, 'annotated': 145, 'MULTIPLE_CATEGORY_POINTS': 103, 'DUPLICATE_POWER': 11, 'CLIPPED_HSL': 1, 'CLIPPED_LSL': 2, 'blank_distance': 32, 'ZERO_POWER_RANGE': 32}
+Done [MESQUITE_ESR1, 2026-06]: {'rows': 720, 'calculated': 709, 'blank_distance': 11, 'annotated': 74, 'CLIPPED_LSL': 4, 'ZERO_POWER_RANGE': 11, 'MULTIPLE_CATEGORY_POINTS': 47, 'DUPLICATE_POWER': 18, 'CLIPPED_HSL': 5}
+Done [MOORE_FL_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 244, 'MULTIPLE_CATEGORY_POINTS': 261, 'DUPLICATE_POWER': 15}
+Done [MOORE_FL_ESR1, 2026-02]: {'rows': 672, 'calculated': 672, 'annotated': 188, 'MULTIPLE_CATEGORY_POINTS': 200}
+Done [MOORE_FL_ESR1, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 271, 'MULTIPLE_CATEGORY_POINTS': 301, 'CLIPPED_LSL': 9}
+Done [MOORE_FL_ESR1, 2026-04]: {'rows': 720, 'calculated': 706, 'annotated': 306, 'MULTIPLE_CATEGORY_POINTS': 322, 'CLIPPED_LSL': 22, 'blank_distance': 14, 'ZERO_POWER_RANGE': 14}
+Done [MOORE_FL_ESR1, 2026-05]: {'rows': 744, 'calculated': 733, 'annotated': 303, 'MULTIPLE_CATEGORY_POINTS': 328, 'CLIPPED_LSL': 6, 'blank_distance': 11, 'ZERO_POWER_RANGE': 11}
+Done [MOORE_FL_ESR1, 2026-06]: {'rows': 720, 'calculated': 720, 'annotated': 231, 'MULTIPLE_CATEGORY_POINTS': 261, 'DUPLICATE_POWER': 21, 'UNSORTED_POWER': 4}
+Done [RRC_WIND_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 31, 'MULTIPLE_CATEGORY_POINTS': 31}
+Done [RRC_WIND_ESR1, 2026-02]: {'rows': 672, 'calculated': 672, 'annotated': 24, 'MULTIPLE_CATEGORY_POINTS': 25}
+Done [RRC_WIND_ESR1, 2026-03]: {'rows': 743, 'calculated': 735, 'annotated': 41, 'DUPLICATE_POWER': 1, 'MULTIPLE_CATEGORY_POINTS': 23, 'CLIPPED_LSL': 12, 'blank_distance': 8, 'CLIPPED_HSL': 5, 'ZERO_POWER_RANGE': 8}
+Done [RRC_WIND_ESR1, 2026-04]: {'rows': 720, 'calculated': 711, 'annotated': 53, 'MULTIPLE_CATEGORY_POINTS': 34, 'CLIPPED_LSL': 18, 'blank_distance': 9, 'ZERO_POWER_RANGE': 9}
+Done [RRC_WIND_ESR1, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 42, 'MULTIPLE_CATEGORY_POINTS': 28, 'CLIPPED_LSL': 13, 'CLIPPED_HSL': 1}
+Done [RRC_WIND_ESR1, 2026-06]: {'rows': 720, 'calculated': 702, 'annotated': 59, 'MULTIPLE_CATEGORY_POINTS': 34, 'DUPLICATE_POWER': 7, 'UNSORTED_POWER': 2, 'blank_distance': 18, 'CLIPPED_LSL': 18, 'ZERO_POWER_RANGE': 18}
+Done [RRC_WIND_ESR2, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 61, 'MULTIPLE_CATEGORY_POINTS': 33, 'DUPLICATE_POWER': 28, 'UNSORTED_POWER': 17}
+Done [RRC_WIND_ESR2, 2026-02]: {'rows': 672, 'calculated': 659, 'annotated': 34, 'MULTIPLE_CATEGORY_POINTS': 21, 'blank_distance': 13, 'CLIPPED_LSL': 13, 'ZERO_POWER_RANGE': 13}
+Done [RRC_WIND_ESR2, 2026-03]: {'rows': 743, 'calculated': 735, 'annotated': 39, 'CLIPPED_LSL': 17, 'MULTIPLE_CATEGORY_POINTS': 21, 'blank_distance': 8, 'ZERO_POWER_RANGE': 8, 'CLIPPED_HSL': 1}
+Done [RRC_WIND_ESR2, 2026-04]: {'rows': 720, 'calculated': 712, 'blank_distance': 8, 'annotated': 48, 'CLIPPED_HSL': 2, 'ZERO_POWER_RANGE': 8, 'MULTIPLE_CATEGORY_POINTS': 28, 'CLIPPED_LSL': 18}
+Done [RRC_WIND_ESR2, 2026-05]: {'rows': 744, 'calculated': 744, 'annotated': 46, 'CLIPPED_LSL': 18, 'MULTIPLE_CATEGORY_POINTS': 29}
+Done [RRC_WIND_ESR2, 2026-06]: {'rows': 720, 'calculated': 702, 'annotated': 75, 'MULTIPLE_CATEGORY_POINTS': 49, 'DUPLICATE_POWER': 10, 'UNSORTED_POWER': 3, 'blank_distance': 18, 'CLIPPED_LSL': 18, 'ZERO_POWER_RANGE': 18}
+Done [SHAMROCK_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 48, 'MULTIPLE_CATEGORY_POINTS': 48}
+Done [SHAMROCK_ESR1, 2026-02]: {'rows': 672, 'calculated': 671, 'annotated': 32, 'MULTIPLE_CATEGORY_POINTS': 31, 'blank_distance': 1, 'CLIPPED_LSL': 1, 'ZERO_POWER_RANGE': 1}
+Done [SHAMROCK_ESR1, 2026-03]: {'rows': 743, 'calculated': 739, 'annotated': 40, 'MULTIPLE_CATEGORY_POINTS': 25, 'blank_distance': 4, 'CLIPPED_HSL': 4, 'ZERO_POWER_RANGE': 4, 'CLIPPED_LSL': 7, 'DUPLICATE_POWER': 5, 'UNSORTED_POWER': 2}
+Done [SHAMROCK_ESR1, 2026-04]: {'rows': 720, 'calculated': 720, 'annotated': 38, 'MULTIPLE_CATEGORY_POINTS': 28, 'CLIPPED_HSL': 5, 'CLIPPED_LSL': 4, 'DUPLICATE_POWER': 4}
+Done [SHAMROCK_ESR1, 2026-05]: {'rows': 744, 'calculated': 733, 'annotated': 43, 'MULTIPLE_CATEGORY_POINTS': 28, 'CLIPPED_HSL': 3, 'blank_distance': 11, 'CLIPPED_LSL': 11, 'ZERO_POWER_RANGE': 11, 'DUPLICATE_POWER': 1}
+Done [SHAMROCK_ESR1, 2026-06]: {'rows': 720, 'calculated': 712, 'annotated': 55, 'MULTIPLE_CATEGORY_POINTS': 36, 'CLIPPED_HSL': 10, 'DUPLICATE_POWER': 6, 'CLIPPED_LSL': 5, 'UNSORTED_POWER': 2, 'blank_distance': 8, 'ZERO_POWER_RANGE': 8}
+Done [STADIUM_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 32, 'DUPLICATE_POWER': 8, 'MULTIPLE_CATEGORY_POINTS': 24, 'UNSORTED_POWER': 1}
+Done [STADIUM_ESR1, 2026-02]: {'rows': 672, 'calculated': 672, 'annotated': 43, 'MULTIPLE_CATEGORY_POINTS': 40, 'DUPLICATE_POWER': 4, 'UNSORTED_POWER': 3}
+Done [STADIUM_ESR1, 2026-03]: {'rows': 743, 'calculated': 694, 'annotated': 85, 'MULTIPLE_CATEGORY_POINTS': 34, 'UNSORTED_POWER': 2, 'DUPLICATE_POWER': 2, 'blank_distance': 49, 'CLIPPED_LSL': 2, 'ZERO_POWER_RANGE': 49}
+Done [STADIUM_ESR1, 2026-04]: {'rows': 720, 'calculated': 720, 'annotated': 56, 'MULTIPLE_CATEGORY_POINTS': 50, 'DUPLICATE_POWER': 7}
+Done [STADIUM_ESR1, 2026-05]: {'rows': 744, 'calculated': 743, 'annotated': 53, 'MULTIPLE_CATEGORY_POINTS': 36, 'UNSORTED_POWER': 8, 'DUPLICATE_POWER': 18, 'blank_distance': 1, 'CLIPPED_LSL': 1, 'ZERO_POWER_RANGE': 1}
+Done [STADIUM_ESR1, 2026-06]: {'rows': 720, 'calculated': 718, 'annotated': 55, 'MULTIPLE_CATEGORY_POINTS': 54, 'blank_distance': 2, 'CLIPPED_LSL': 1, 'ZERO_POWER_RANGE': 2}
+Done [STRG_SLR_ESR1, 2026-01]: {'rows': 744, 'calculated': 744, 'annotated': 41, 'MULTIPLE_CATEGORY_POINTS': 41}
+Done [STRG_SLR_ESR1, 2026-02]: {'rows': 672, 'calculated': 648, 'annotated': 42, 'MULTIPLE_CATEGORY_POINTS': 17, 'blank_distance': 24, 'ZERO_POWER_RANGE': 24, 'CLIPPED_LSL': 1}
+Done [STRG_SLR_ESR1, 2026-03]: {'rows': 743, 'calculated': 743, 'annotated': 49, 'MULTIPLE_CATEGORY_POINTS': 47, 'CLIPPED_LSL': 2}
+Done [STRG_SLR_ESR1, 2026-04]: {'rows': 720, 'calculated': 716, 'annotated': 47, 'MULTIPLE_CATEGORY_POINTS': 42, 'CLIPPED_LSL': 1, 'blank_distance': 4, 'ZERO_POWER_RANGE': 4}
+Done [STRG_SLR_ESR1, 2026-05]: {'rows': 744, 'calculated': 725, 'annotated': 62, 'MULTIPLE_CATEGORY_POINTS': 44, 'blank_distance': 19, 'ZERO_POWER_RANGE': 19}
+Done [STRG_SLR_ESR1, 2026-06]: {'rows': 720, 'calculated': 720, 'annotated': 32, 'DUPLICATE_POWER': 7, 'MULTIPLE_CATEGORY_POINTS': 25, 'UNSORTED_POWER': 3}
+Batch complete: 78 succeeded, 0 failed. {'rows': 56459, 'calculated': 55163, 'annotated': 5965, 'MULTIPLE_CATEGORY_POINTS': 4435, 'blank_distance': 1296, 'ZERO_POWER_RANGE': 1296, 'CLIPPED_LSL': 391, 'CLIPPED_HSL': 44, 'UNSORTED_POWER': 196, 'DUPLICATE_POWER': 354}
+Output: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\realized_match

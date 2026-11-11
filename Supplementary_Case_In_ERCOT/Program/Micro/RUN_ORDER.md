@@ -4,6 +4,13 @@ Run these commands from the release root containing `Data`, `Figs`, `Results`, a
 
 ## Complete Micro workflow
 
+For the full Micro workflow plus thermal Macro and all associated figures, use
+`python -u -B run_all.py --workers 4` at the release root. Its logs are under
+`Results/pipeline_runs/`. It uses zero minimum SOC, monthly raw Maximum SOC
+maximum, and the month's first observed initial SOC. `--dry-run` previews the
+commands; `--postprocess-only` reuses complete current-policy Rolling results
+after verification. See the [release guide](../../README.md).
+
 ```powershell
 python -u -B Program/Micro/run_pipeline.py --workers 4
 ```
@@ -17,7 +24,7 @@ python -u -B Program/Micro/Rolling_Window_1hour.py --workers 4 --validate-only
 python -u -B Program/Micro/distributed_Rolling_Window_1hour.py --workers 4 --solver-threads 1
 ```
 
-The first command validates inputs and writes quality reports without solving. The second requires a valid Gurobi license. Rolling uses the current month's raw SOC bounds and first observed SOC, with a fresh initialization each month.
+The first command validates inputs and writes quality reports without solving. The second requires a valid Gurobi license. Rolling uses a zero SOC minimum, the current month's raw Maximum SOC maximum and first observed SOC, with a fresh initialization each month.
 
 | Product | Location |
 |---|---|

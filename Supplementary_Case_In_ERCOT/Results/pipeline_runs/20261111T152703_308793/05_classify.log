@@ -1,0 +1,869 @@
+Done [BIG_STAR_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 84
+  P_ESS_state=MD: 65
+  P_ESS_state=NU: 463
+  P_ESS_state=DC: 9
+  P_ESS_state=DD: 65
+  P_ESS_state=CC: 52
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [BIG_STAR_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202602.xlsx
+  Analyzed records: 668
+  Zero-limit rows left blank: 4
+  P_ESS_state=MC: 73
+  P_ESS_state=MD: 58
+  P_ESS_state=NU: 417
+  P_ESS_state=DC: 4
+  P_ESS_state=DD: 59
+  P_ESS_state=CC: 50
+  P_ESS_state=CD: 7
+  P_ESS_state=NC: 0
+Done [BIG_STAR_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202603.xlsx
+  Analyzed records: 737
+  Zero-limit rows left blank: 6
+  P_ESS_state=MC: 90
+  P_ESS_state=MD: 68
+  P_ESS_state=NU: 436
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 67
+  P_ESS_state=CC: 60
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [BIG_STAR_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202604.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 92
+  P_ESS_state=MD: 75
+  P_ESS_state=NU: 409
+  P_ESS_state=DC: 12
+  P_ESS_state=DD: 63
+  P_ESS_state=CC: 61
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [BIG_STAR_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 84
+  P_ESS_state=MD: 67
+  P_ESS_state=NU: 463
+  P_ESS_state=DC: 11
+  P_ESS_state=DD: 54
+  P_ESS_state=CC: 52
+  P_ESS_state=CD: 13
+  P_ESS_state=NC: 0
+Done [BIG_STAR_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BIG_STAR_ESR1_1hour_202606.xlsx
+  Analyzed records: 715
+  Zero-limit rows left blank: 5
+  P_ESS_state=MC: 77
+  P_ESS_state=MD: 68
+  P_ESS_state=NU: 439
+  P_ESS_state=DC: 6
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 60
+  P_ESS_state=CD: 7
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 523
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 110
+  P_ESS_state=CC: 111
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202602.xlsx
+  Analyzed records: 651
+  Zero-limit rows left blank: 21
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 467
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 92
+  P_ESS_state=CC: 92
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 517
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 113
+  P_ESS_state=CC: 113
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202604.xlsx
+  Analyzed records: 688
+  Zero-limit rows left blank: 32
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 484
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 102
+  P_ESS_state=CC: 102
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 546
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 99
+  P_ESS_state=CC: 99
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BLSUMMIT_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BLSUMMIT_ESR1_1hour_202606.xlsx
+  Analyzed records: 703
+  Zero-limit rows left blank: 17
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 508
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 98
+  P_ESS_state=CC: 97
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 144
+  P_ESS_state=MD: 67
+  P_ESS_state=NU: 401
+  P_ESS_state=DC: 16
+  P_ESS_state=DD: 60
+  P_ESS_state=CC: 51
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 145
+  P_ESS_state=MD: 69
+  P_ESS_state=NU: 331
+  P_ESS_state=DC: 15
+  P_ESS_state=DD: 59
+  P_ESS_state=CC: 47
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 159
+  P_ESS_state=MD: 71
+  P_ESS_state=NU: 376
+  P_ESS_state=DC: 24
+  P_ESS_state=DD: 63
+  P_ESS_state=CC: 50
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202604.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 151
+  P_ESS_state=MD: 76
+  P_ESS_state=NU: 351
+  P_ESS_state=DC: 16
+  P_ESS_state=DD: 60
+  P_ESS_state=CC: 55
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 143
+  P_ESS_state=MD: 68
+  P_ESS_state=NU: 401
+  P_ESS_state=DC: 21
+  P_ESS_state=DD: 55
+  P_ESS_state=CC: 46
+  P_ESS_state=CD: 10
+  P_ESS_state=NC: 0
+Done [BR_ARROW_ESR2, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_BR_ARROW_ESR2_1hour_202606.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 128
+  P_ESS_state=MD: 64
+  P_ESS_state=NU: 405
+  P_ESS_state=DC: 11
+  P_ESS_state=DD: 56
+  P_ESS_state=CC: 46
+  P_ESS_state=CD: 10
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202601.xlsx
+  Analyzed records: 726
+  Zero-limit rows left blank: 18
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 537
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 94
+  P_ESS_state=CC: 95
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 500
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 86
+  P_ESS_state=CC: 86
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202603.xlsx
+  Analyzed records: 725
+  Zero-limit rows left blank: 18
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 481
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 122
+  P_ESS_state=CC: 122
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202604.xlsx
+  Analyzed records: 719
+  Zero-limit rows left blank: 1
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 491
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 114
+  P_ESS_state=CC: 114
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 526
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 109
+  P_ESS_state=CC: 109
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INDL_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INDL_ESR1_1hour_202606.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 521
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 100
+  P_ESS_state=CC: 99
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 225
+  P_ESS_state=MD: 165
+  P_ESS_state=NU: 278
+  P_ESS_state=DC: 12
+  P_ESS_state=DD: 46
+  P_ESS_state=CC: 5
+  P_ESS_state=CD: 13
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202602.xlsx
+  Analyzed records: 669
+  Zero-limit rows left blank: 3
+  P_ESS_state=MC: 182
+  P_ESS_state=MD: 160
+  P_ESS_state=NU: 219
+  P_ESS_state=DC: 8
+  P_ESS_state=DD: 47
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 14
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 209
+  P_ESS_state=MD: 174
+  P_ESS_state=NU: 238
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 59
+  P_ESS_state=CC: 41
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202604.xlsx
+  Analyzed records: 718
+  Zero-limit rows left blank: 2
+  P_ESS_state=MC: 204
+  P_ESS_state=MD: 165
+  P_ESS_state=NU: 232
+  P_ESS_state=DC: 16
+  P_ESS_state=DD: 56
+  P_ESS_state=CC: 37
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 203
+  P_ESS_state=MD: 168
+  P_ESS_state=NU: 257
+  P_ESS_state=DC: 19
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 38
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [INRT_W_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_INRT_W_ESR1_1hour_202606.xlsx
+  Analyzed records: 708
+  Zero-limit rows left blank: 12
+  P_ESS_state=MC: 185
+  P_ESS_state=MD: 150
+  P_ESS_state=NU: 266
+  P_ESS_state=DC: 14
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 29
+  P_ESS_state=CD: 13
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202601.xlsx
+  Analyzed records: 96
+  Zero-limit rows left blank: 648
+  P_ESS_state=MC: 0
+  P_ESS_state=MD: 0
+  P_ESS_state=NU: 96
+  P_ESS_state=DC: 0
+  P_ESS_state=DD: 0
+  P_ESS_state=CC: 0
+  P_ESS_state=CD: 0
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202602.xlsx
+  Analyzed records: 480
+  Zero-limit rows left blank: 192
+  P_ESS_state=MC: 146
+  P_ESS_state=MD: 49
+  P_ESS_state=NU: 204
+  P_ESS_state=DC: 8
+  P_ESS_state=DD: 41
+  P_ESS_state=CC: 31
+  P_ESS_state=CD: 1
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 330
+  P_ESS_state=MD: 61
+  P_ESS_state=NU: 236
+  P_ESS_state=DC: 21
+  P_ESS_state=DD: 57
+  P_ESS_state=CC: 34
+  P_ESS_state=CD: 4
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202604.xlsx
+  Analyzed records: 696
+  Zero-limit rows left blank: 24
+  P_ESS_state=MC: 312
+  P_ESS_state=MD: 55
+  P_ESS_state=NU: 215
+  P_ESS_state=DC: 30
+  P_ESS_state=DD: 49
+  P_ESS_state=CC: 33
+  P_ESS_state=CD: 2
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 182
+  P_ESS_state=MD: 68
+  P_ESS_state=NU: 377
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [LANTANA_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_LANTANA_ESR1_1hour_202606.xlsx
+  Analyzed records: 717
+  Zero-limit rows left blank: 3
+  P_ESS_state=MC: 189
+  P_ESS_state=MD: 68
+  P_ESS_state=NU: 341
+  P_ESS_state=DC: 20
+  P_ESS_state=DD: 54
+  P_ESS_state=CC: 38
+  P_ESS_state=CD: 7
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 214
+  P_ESS_state=MD: 75
+  P_ESS_state=NU: 316
+  P_ESS_state=DC: 13
+  P_ESS_state=DD: 67
+  P_ESS_state=CC: 53
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 207
+  P_ESS_state=MD: 76
+  P_ESS_state=NU: 263
+  P_ESS_state=DC: 19
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 43
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 241
+  P_ESS_state=MD: 124
+  P_ESS_state=NU: 245
+  P_ESS_state=DC: 23
+  P_ESS_state=DD: 65
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202604.xlsx
+  Analyzed records: 703
+  Zero-limit rows left blank: 17
+  P_ESS_state=MC: 215
+  P_ESS_state=MD: 119
+  P_ESS_state=NU: 254
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 50
+  P_ESS_state=CC: 41
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202605.xlsx
+  Analyzed records: 712
+  Zero-limit rows left blank: 32
+  P_ESS_state=MC: 189
+  P_ESS_state=MD: 101
+  P_ESS_state=NU: 310
+  P_ESS_state=DC: 21
+  P_ESS_state=DD: 47
+  P_ESS_state=CC: 33
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [MESQUITE_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MESQUITE_ESR1_1hour_202606.xlsx
+  Analyzed records: 709
+  Zero-limit rows left blank: 11
+  P_ESS_state=MC: 180
+  P_ESS_state=MD: 67
+  P_ESS_state=NU: 348
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 50
+  P_ESS_state=CC: 38
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 323
+  P_ESS_state=MD: 52
+  P_ESS_state=NU: 247
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 59
+  P_ESS_state=CC: 43
+  P_ESS_state=CD: 2
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 260
+  P_ESS_state=MD: 52
+  P_ESS_state=NU: 249
+  P_ESS_state=DC: 16
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 34
+  P_ESS_state=CD: 3
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 381
+  P_ESS_state=MD: 45
+  P_ESS_state=NU: 202
+  P_ESS_state=DC: 33
+  P_ESS_state=DD: 56
+  P_ESS_state=CC: 25
+  P_ESS_state=CD: 1
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202604.xlsx
+  Analyzed records: 706
+  Zero-limit rows left blank: 14
+  P_ESS_state=MC: 348
+  P_ESS_state=MD: 40
+  P_ESS_state=NU: 210
+  P_ESS_state=DC: 34
+  P_ESS_state=DD: 49
+  P_ESS_state=CC: 23
+  P_ESS_state=CD: 2
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202605.xlsx
+  Analyzed records: 733
+  Zero-limit rows left blank: 11
+  P_ESS_state=MC: 319
+  P_ESS_state=MD: 39
+  P_ESS_state=NU: 275
+  P_ESS_state=DC: 20
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 27
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [MOORE_FL_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_MOORE_FL_ESR1_1hour_202606.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 319
+  P_ESS_state=MD: 38
+  P_ESS_state=NU: 266
+  P_ESS_state=DC: 22
+  P_ESS_state=DD: 47
+  P_ESS_state=CC: 22
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 186
+  P_ESS_state=MD: 119
+  P_ESS_state=NU: 327
+  P_ESS_state=DC: 17
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 184
+  P_ESS_state=MD: 116
+  P_ESS_state=NU: 259
+  P_ESS_state=DC: 13
+  P_ESS_state=DD: 53
+  P_ESS_state=CC: 38
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202603.xlsx
+  Analyzed records: 735
+  Zero-limit rows left blank: 8
+  P_ESS_state=MC: 201
+  P_ESS_state=MD: 124
+  P_ESS_state=NU: 278
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 61
+  P_ESS_state=CC: 45
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202604.xlsx
+  Analyzed records: 711
+  Zero-limit rows left blank: 9
+  P_ESS_state=MC: 193
+  P_ESS_state=MD: 130
+  P_ESS_state=NU: 270
+  P_ESS_state=DC: 12
+  P_ESS_state=DD: 54
+  P_ESS_state=CC: 40
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 198
+  P_ESS_state=MD: 129
+  P_ESS_state=NU: 295
+  P_ESS_state=DC: 15
+  P_ESS_state=DD: 53
+  P_ESS_state=CC: 44
+  P_ESS_state=CD: 10
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR1_1hour_202606.xlsx
+  Analyzed records: 702
+  Zero-limit rows left blank: 18
+  P_ESS_state=MC: 171
+  P_ESS_state=MD: 112
+  P_ESS_state=NU: 310
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 37
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 187
+  P_ESS_state=MD: 117
+  P_ESS_state=NU: 332
+  P_ESS_state=DC: 17
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 35
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202602.xlsx
+  Analyzed records: 659
+  Zero-limit rows left blank: 13
+  P_ESS_state=MC: 182
+  P_ESS_state=MD: 115
+  P_ESS_state=NU: 254
+  P_ESS_state=DC: 11
+  P_ESS_state=DD: 53
+  P_ESS_state=CC: 38
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202603.xlsx
+  Analyzed records: 735
+  Zero-limit rows left blank: 8
+  P_ESS_state=MC: 204
+  P_ESS_state=MD: 123
+  P_ESS_state=NU: 276
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 63
+  P_ESS_state=CC: 45
+  P_ESS_state=CD: 6
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202604.xlsx
+  Analyzed records: 712
+  Zero-limit rows left blank: 8
+  P_ESS_state=MC: 196
+  P_ESS_state=MD: 126
+  P_ESS_state=NU: 268
+  P_ESS_state=DC: 14
+  P_ESS_state=DD: 60
+  P_ESS_state=CC: 40
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202605.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 202
+  P_ESS_state=MD: 130
+  P_ESS_state=NU: 285
+  P_ESS_state=DC: 16
+  P_ESS_state=DD: 56
+  P_ESS_state=CC: 46
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [RRC_WIND_ESR2, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_RRC_WIND_ESR2_1hour_202606.xlsx
+  Analyzed records: 702
+  Zero-limit rows left blank: 18
+  P_ESS_state=MC: 172
+  P_ESS_state=MD: 115
+  P_ESS_state=NU: 312
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 36
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 192
+  P_ESS_state=MD: 163
+  P_ESS_state=NU: 283
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 35
+  P_ESS_state=CD: 13
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202602.xlsx
+  Analyzed records: 671
+  Zero-limit rows left blank: 1
+  P_ESS_state=MC: 179
+  P_ESS_state=MD: 110
+  P_ESS_state=NU: 269
+  P_ESS_state=DC: 11
+  P_ESS_state=DD: 56
+  P_ESS_state=CC: 36
+  P_ESS_state=CD: 10
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202603.xlsx
+  Analyzed records: 739
+  Zero-limit rows left blank: 4
+  P_ESS_state=MC: 225
+  P_ESS_state=MD: 141
+  P_ESS_state=NU: 235
+  P_ESS_state=DC: 24
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 51
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202604.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 193
+  P_ESS_state=MD: 124
+  P_ESS_state=NU: 276
+  P_ESS_state=DC: 24
+  P_ESS_state=DD: 47
+  P_ESS_state=CC: 47
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202605.xlsx
+  Analyzed records: 733
+  Zero-limit rows left blank: 11
+  P_ESS_state=MC: 189
+  P_ESS_state=MD: 123
+  P_ESS_state=NU: 295
+  P_ESS_state=DC: 20
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 42
+  P_ESS_state=CD: 16
+  P_ESS_state=NC: 0
+Done [SHAMROCK_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_SHAMROCK_ESR1_1hour_202606.xlsx
+  Analyzed records: 712
+  Zero-limit rows left blank: 8
+  P_ESS_state=MC: 194
+  P_ESS_state=MD: 129
+  P_ESS_state=NU: 272
+  P_ESS_state=DC: 19
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 153
+  P_ESS_state=MD: 73
+  P_ESS_state=NU: 378
+  P_ESS_state=DC: 11
+  P_ESS_state=DD: 67
+  P_ESS_state=CC: 57
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202602.xlsx
+  Analyzed records: 672
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 153
+  P_ESS_state=MD: 130
+  P_ESS_state=NU: 267
+  P_ESS_state=DC: 13
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 46
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202603.xlsx
+  Analyzed records: 694
+  Zero-limit rows left blank: 49
+  P_ESS_state=MC: 170
+  P_ESS_state=MD: 90
+  P_ESS_state=NU: 290
+  P_ESS_state=DC: 18
+  P_ESS_state=DD: 61
+  P_ESS_state=CC: 54
+  P_ESS_state=CD: 11
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202604.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 166
+  P_ESS_state=MD: 146
+  P_ESS_state=NU: 277
+  P_ESS_state=DC: 15
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 53
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202605.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 1
+  P_ESS_state=MC: 136
+  P_ESS_state=MD: 70
+  P_ESS_state=NU: 414
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 46
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [STADIUM_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STADIUM_ESR1_1hour_202606.xlsx
+  Analyzed records: 718
+  Zero-limit rows left blank: 2
+  P_ESS_state=MC: 136
+  P_ESS_state=MD: 113
+  P_ESS_state=NU: 359
+  P_ESS_state=DC: 13
+  P_ESS_state=DD: 48
+  P_ESS_state=CC: 37
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-01]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202601.xlsx
+  Analyzed records: 744
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 137
+  P_ESS_state=MD: 113
+  P_ESS_state=NU: 377
+  P_ESS_state=DC: 10
+  P_ESS_state=DD: 51
+  P_ESS_state=CC: 48
+  P_ESS_state=CD: 8
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-02]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202602.xlsx
+  Analyzed records: 648
+  Zero-limit rows left blank: 24
+  P_ESS_state=MC: 120
+  P_ESS_state=MD: 59
+  P_ESS_state=NU: 356
+  P_ESS_state=DC: 6
+  P_ESS_state=DD: 55
+  P_ESS_state=CC: 47
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-03]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202603.xlsx
+  Analyzed records: 743
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 148
+  P_ESS_state=MD: 119
+  P_ESS_state=NU: 349
+  P_ESS_state=DC: 12
+  P_ESS_state=DD: 58
+  P_ESS_state=CC: 48
+  P_ESS_state=CD: 9
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-04]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202604.xlsx
+  Analyzed records: 716
+  Zero-limit rows left blank: 4
+  P_ESS_state=MC: 152
+  P_ESS_state=MD: 77
+  P_ESS_state=NU: 349
+  P_ESS_state=DC: 21
+  P_ESS_state=DD: 55
+  P_ESS_state=CC: 49
+  P_ESS_state=CD: 13
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-05]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202605.xlsx
+  Analyzed records: 725
+  Zero-limit rows left blank: 19
+  P_ESS_state=MC: 139
+  P_ESS_state=MD: 110
+  P_ESS_state=NU: 368
+  P_ESS_state=DC: 7
+  P_ESS_state=DD: 50
+  P_ESS_state=CC: 39
+  P_ESS_state=CD: 12
+  P_ESS_state=NC: 0
+Done [STRG_SLR_ESR1, 2026-06]: D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Results\Micro_Results\Classified\classified_STRG_SLR_ESR1_1hour_202606.xlsx
+  Analyzed records: 720
+  Zero-limit rows left blank: 0
+  P_ESS_state=MC: 139
+  P_ESS_state=MD: 70
+  P_ESS_state=NU: 387
+  P_ESS_state=DC: 12
+  P_ESS_state=DD: 59
+  P_ESS_state=CC: 48
+  P_ESS_state=CD: 5
+  P_ESS_state=NC: 0
+Batch complete: 78 succeeded, 0 failed.
+  Analyzed records: 55163
+  Zero-limit rows left blank: 1296
+  P_ESS_state=MC: 12130
+  P_ESS_state=MD: 6343
+  P_ESS_state=NU: 26404
+  P_ESS_state=DC: 1013
+  P_ESS_state=DD: 4788
+  P_ESS_state=CC: 3959
+  P_ESS_state=CD: 526
+  P_ESS_state=NC: 0

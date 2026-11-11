@@ -196,7 +196,8 @@ def _read_day_table(
 
 
 def read_day_data(
-    date: str = DEFAULT_DATE, project_root: Path = PROJECT_ROOT
+    date: str = DEFAULT_DATE, project_root: Path = PROJECT_ROOT,
+    *, results_dir: Path | None = None,
 ) -> DayFigureData:
     """Read 13-ESR dispatch plus direct curtailment and hourly Official_Price.
 
@@ -208,13 +209,11 @@ def read_day_data(
     root = Path(project_root)
     token = date[:7].replace("-", "")
     month_name = calendar.month_name[int(date[5:7])]
-    system_path = (
-        root
-        / "Results"
-        / "Macro_Results"
-        / "System_Results"
-        / f"Rolling_Result_{token}.xlsx"
+    system_dir = (
+        Path(results_dir) if results_dir is not None
+        else root / "Results/Macro_Results/System_Results"
     )
+    system_path = system_dir / f"Rolling_Result_{token}.xlsx"
     source = _read_day_table(
         system_path,
         "Rolling",
@@ -358,9 +357,10 @@ def plot_fig_4_e(
     output_path: Path | None = None,
     *,
     project_root: Path = PROJECT_ROOT,
+    results_dir: Path | None = None,
 ) -> Path:
     """Export one transparent 720 dpi PNG after validating all three sources."""
-    data = read_day_data(date, project_root)
+    data = read_day_data(date, project_root, results_dir=results_dir)
     path = (
         Path(output_path)
         if output_path is not None
@@ -393,8 +393,14 @@ def main() -> int:
         help="PNG output path; default Figs/Fig_4_e_YYYYMMDD.png beside this script",
     )
     parser.add_argument("--project-root", type=Path, default=PROJECT_ROOT)
+    parser.add_argument(
+        "--results-dir", type=Path,
+        help="system workbook directory; use System_Results/thermal for thermal runs",
+    )
     args = parser.parse_args()
-    print(plot_fig_4_e(args.date, args.output, project_root=args.project_root))
+    print(plot_fig_4_e(
+        args.date, args.output, project_root=args.project_root, results_dir=args.results_dir
+    ))
     return 0
 
 

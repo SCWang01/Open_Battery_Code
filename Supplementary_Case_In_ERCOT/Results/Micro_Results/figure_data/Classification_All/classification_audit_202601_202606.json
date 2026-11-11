@@ -72,8 +72,8 @@
     "tied_hours": 1,
     "beyond_display_range": 0,
     "telemetry_status": {
-      "Hit": 42396,
-      "Outside threshold": 12767,
+      "Hit": 42392,
+      "Outside threshold": 12771,
       "Excluded": 1296
     },
     "excluded_reasons": {
@@ -90,8 +90,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "bafa3c06fe1d52d481398d2d889c7454f4325258e96544b8031e389385c86bcf",
-          "matched_sha256": "3703e528c5dfcdfa28c6654742b6c310f8e96de2a552a919ed197a96517761c8"
+          "classified_sha256": "e06effc9fb6349c22a9802defcafa6f148e464d002c49710e8984da80a6bad28",
+          "matched_sha256": "bb1e2826f68063cca9c3de6fa2c113bb48bf8baccac57d6181c198eb628db007"
         },
         {
           "month": "2026-02",
@@ -99,8 +99,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "340ba16ca05b18f203cf5be40ee9808db53d6040d1335368bf4c5e4f8f596184",
-          "matched_sha256": "c7b0c6f8bfc74bf809d2fa6cb915d940e41e9efcc2f1194fb896096963848a64"
+          "classified_sha256": "1015ba1dea23900a8ae995a2f15335d95a33a7544144571764e6f23e020ae87d",
+          "matched_sha256": "65e0e42dd18ebb5784e5c08492107d7dae7092371fd7c3df8bd3bc1c1aa2eaeb"
         },
         {
           "month": "2026-03",
@@ -108,8 +108,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "c35b3aeebbfaa32c7a0fc7e4270d36ec8c591e9fcce47c9fe17e9a10b4927be9",
-          "matched_sha256": "864ae99b523dbaf6afad8a7c50479d5a04d10bb861c3114bc0787ec162499c55"
+          "classified_sha256": "637b1d4db383742fad3f86feaabe84280e288b4e2305101498ad32f1d58dd50e",
+          "matched_sha256": "a2acfbb809236e981fbc83ddfd4ef5270eca59d04314087a4ca9f550c6641623"
         },
         {
           "month": "2026-04",
@@ -117,8 +117,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "56afa3a765cf67f1f188ef1b8b85423f93e2b93491fcfd097bf8e8d942c2f055",
-          "matched_sha256": "24bd5ef880897793837bb3ff82f0c7832169bca8b211a213531881e1ed8873c9"
+          "classified_sha256": "4866759cd0c27dd62a3903b6fd75f5d020ab5a9e1e05239687a640ae3db43283",
+          "matched_sha256": "8c1e420350d5224cdfa677538e8c411d53b10adc69c7f1ef53c11b1889188573"
         },
         {
           "month": "2026-05",
@@ -126,8 +126,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "01b19c276744628570d4061510e6361439e01be5b85d59cadf49f44aa6e8dd13",
-          "matched_sha256": "2b12ca8bc6abeb9b834d089b75ce10985ea187a5bfed0cd72a57d4ca1b660e6f"
+          "classified_sha256": "d9b054e67a916ffcffd3cc267bf346a7703def8cee1faad6edd30123afbd283d",
+          "matched_sha256": "7e448f9ed65deb37dc50e5f4e15383def18f0ccfd9b3d65d3fde6a081db90fa3"
         },
         {
           "month": "2026-06",
@@ -135,8 +135,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BIG_STAR_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BIG_STAR_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "cb907a7587ae106228d033f0fa746147713dde83f16c85e49a91821c4fb69198",
-          "matched_sha256": "cb6b89b3a6602537305a2e6d4e206cb18059d6d814aad1904270269cf156b10f"
+          "classified_sha256": "3f7fdfa9b2fb8d164bf88ac21929e0976af3c48a659e61491acec6e697e64019",
+          "matched_sha256": "4dc6a8d12d1453df8dfea9cc2cc0b27f6a43a195cbe79c7068f95cbb2f6fa890"
         }
       ],
       "monthly": [
@@ -211,8 +211,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 744,
           "telemetry_status": {
-            "Hit": 640,
-            "Outside threshold": 104,
+            "Hit": 642,
+            "Outside threshold": 102,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -242,8 +242,8 @@
       "model_unclassified_hours": 15,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3617,
-        "Outside threshold": 711,
+        "Hit": 3619,
+        "Outside threshold": 709,
         "Excluded": 15
       },
       "excluded_reasons": {
@@ -261,8 +261,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "206e285abe41bf0626d0875e905e18ae668be6cda6ecd091608f8d0a61d7b118",
-          "matched_sha256": "4d45a3618b577046c2ef056a213fa8a63753aabedcb978ac9ea0e6178e8f6cb9"
+          "classified_sha256": "558f3f02b3e299edf7e2ecbea72186c4914a063e38a45c867b8071a013d21aa6",
+          "matched_sha256": "b99685b48a0687a808db47321e4b40b12e4b1f613e2419730e408f8ac2507dd2"
         },
         {
           "month": "2026-02",
@@ -270,8 +270,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "d25a4d0f585cff466553cf2b8b9acf8c0fa6dc297a84697574335ae5c8b145dd",
-          "matched_sha256": "a1b6b100d3ccaf439b1b954139e2a70824af4c9cdf4da6e9b154f0020efb1509"
+          "classified_sha256": "ce4310809230f1fc15418e5df86ce59d3512ab480929f9c91022cb080266cb75",
+          "matched_sha256": "854789249cd1b68eb6923bc5c6338d879216e39e685c59d2f8e522b16ed4639b"
         },
         {
           "month": "2026-03",
@@ -279,8 +279,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "9e42f8e204b6935ab53e7ad8b3eb1fa7cd56642a7f85860b6af1aa3fb074710a",
-          "matched_sha256": "f1eb5c23deb7fd9d534de5647af740714b9e93727736fedc521525651b135aa2"
+          "classified_sha256": "13c0a326cce07a59b2b8920922a1d47aee8107f86ac3805fc157f2cb4f655f3a",
+          "matched_sha256": "95c8de4d30aeb1ef7d87e2a0a1359b8da0020c4a58b1114dcafac18849fc7ec2"
         },
         {
           "month": "2026-04",
@@ -288,8 +288,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "85fc60d7973a9af34bc49c484e713c7041c3ed462dc60830605ecd7ee49ebf29",
-          "matched_sha256": "f05a25a6716e681d8afedab5d33e9e96b0f417e5ffbb4c53fd07fa24372df85f"
+          "classified_sha256": "02b6f97329995715e58d4cb4f4d0b0f2eed133b25ff6aac0828e9d57ca482c4e",
+          "matched_sha256": "e60fe0bb5f421d74910b517d080ec8603d32124cea496c56842eecacf7874558"
         },
         {
           "month": "2026-05",
@@ -297,8 +297,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "f58b1d691d3bc26b5c0d5b3e077e13fb569c571a26273c98f85ab98aef2c2e78",
-          "matched_sha256": "785359a04858112c7116427cb3dfc02dbd7d948301b3f2e39e152e23eb4a51ad"
+          "classified_sha256": "fc94cf78b2174662167f0df82395cde08900d82cd54ac22f635ba3e3d3ac044b",
+          "matched_sha256": "d8f2aea75d4c6b23ce5848bb431d362dc0cfcdf92cfbf320e6fb5000e01f9e30"
         },
         {
           "month": "2026-06",
@@ -306,8 +306,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BLSUMMIT_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BLSUMMIT_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "756e2d3933245b04e8cbd44a12b5a152b1a2b914e78841e5cc2f3e8c0c4e7f75",
-          "matched_sha256": "fc734f28ae55b28cf40c62ceb8ca9a32e3aec9a572655dc75c9483b512d32d7c"
+          "classified_sha256": "a903d91ff6002819db1678ee0899bb6f26f1863652f9346fa5528eb58c5715f9",
+          "matched_sha256": "70b2844e35ce3166bbdb5c51fe951b69dfd49ebe70308e679ffbb4d16db8d535"
         }
       ],
       "monthly": [
@@ -432,8 +432,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202601.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202601.xlsx",
-          "classified_sha256": "c0905dff374989631525fd28caf13910068b9bef22ce02cf4c9c0a6639e415e1",
-          "matched_sha256": "835f5b440e4cde6ffe482c6b7bb29987d1df53bee0f0473495f73c20a05ea9b8"
+          "classified_sha256": "332f57d04ce37757aa43a554cd48ced9a98f7d5e115bee94e9eb017b05ae86a6",
+          "matched_sha256": "53a0fb5b9c367f1918bcc96af344b148b338ae3a1ce5f2d5866f282448cd049b"
         },
         {
           "month": "2026-02",
@@ -441,8 +441,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202602.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202602.xlsx",
-          "classified_sha256": "e7276431899f6b1e27762f0f2a3cd7e2ba4160edfa4b54bfb1cf657df8f8b7b0",
-          "matched_sha256": "7bb09ceaf6e01b200a541e5becb48ab7a99ffce41b220eabbc24a97ccd215266"
+          "classified_sha256": "714fec86d0d0b3b1d66f99a1925bd7b5ab2113f42b01bfd2cec50b23dc4f4a58",
+          "matched_sha256": "b41fa3f26ea18a1a12ce9fea153e1404b9a15ca298b77ad9c0cf86c82a47edea"
         },
         {
           "month": "2026-03",
@@ -450,8 +450,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202603.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202603.xlsx",
-          "classified_sha256": "084e23acea3b3b06ebe5623933c29d189a218496e475d6d8af29878b4d3873ce",
-          "matched_sha256": "50b7026c5573f48d34c8fda11466c90683c66650739df51048763c4276981bfc"
+          "classified_sha256": "9317116dfb8a88e4cd763ac522cd45c336d7f69963ac9ae8c3fa88c172d99f2f",
+          "matched_sha256": "6522b802af963c8537561a06c795d0e2e3b9cd80b5aa621e291421f037b9d785"
         },
         {
           "month": "2026-04",
@@ -459,8 +459,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202604.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202604.xlsx",
-          "classified_sha256": "4997c3414af927d4d4bc17cedff52978e7e2c2252b49f21faa2dba0f4fc03b6a",
-          "matched_sha256": "e034940a93be6e19fe3fe8c0fe3f3b7b4a0da8cdab45f54fcf7063e2647a9f65"
+          "classified_sha256": "0fc8aaa2ad17258e2ff6e8321b6edb63d243c6f3060b7087ea1fa404adb68941",
+          "matched_sha256": "fb1ba08363f604fb78a9c928eeafb2503b07b60af569d09525bb3b5ef4217b61"
         },
         {
           "month": "2026-05",
@@ -468,8 +468,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202605.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202605.xlsx",
-          "classified_sha256": "564445c0ed89b5f5b954d6c5814f380190e8b121b53fa811d4b8d50738c0867e",
-          "matched_sha256": "e28ea9e92054b152de4845daca6c451de2438a644d074a00eab7f0d43a7ff98c"
+          "classified_sha256": "e390e522a7d2b1a6ee156f2a66e01b097f1c23cd8e795fdd32b3f232d541a4eb",
+          "matched_sha256": "65c838ee25dda8700610d3275230a751bcff6c7e478bc70fb32859d65ce57e00"
         },
         {
           "month": "2026-06",
@@ -477,8 +477,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_BR_ARROW_ESR2_1hour_202606.xlsx",
           "matched_file": "Realized_Match_BR_ARROW_ESR2_1hour_202606.xlsx",
-          "classified_sha256": "3f67ca46939c2082d5f261790dc99bb77ec26d6ef1d077f469acda0585283ead",
-          "matched_sha256": "5974c9a7dd4b330ed28f29a8d5457f78b361928a3201786285e5ee2afb150cff"
+          "classified_sha256": "b4c4549813291df89b4bc190d491294c0c0b08470cedf4613f7e2059803b8980",
+          "matched_sha256": "6334422c8c4e811c15490574596f86803ced8efdfa8b7ee24182edcfe179f2b0"
         }
       ],
       "monthly": [
@@ -595,8 +595,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INDL_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "d22914c1610b67493b68fe710fd8ca025413f86489a858d29765eca6c2c82bfa",
-          "matched_sha256": "95e59d7a192e789beed26b14381be8d069f31bdd9ef0670811311987d1019a1a"
+          "classified_sha256": "520bcc27929af6d57655426731dac0b1c99ed1efbc62ef8d45c67313e07e6072",
+          "matched_sha256": "8feb49c797e4b64830fd6cb60d0588cfc6203c67daed0b5552d7b29fdc481cbd"
         },
         {
           "month": "2026-02",
@@ -604,8 +604,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_INDL_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "8279cafde38ef8ff120c49dd1f66b1492e9cf0261c5ac9d656bbe279255c36a7",
-          "matched_sha256": "bfe482ad2f2066e6bd65ac47b574ee1a47e4f72246e9709c0876118ad22846c6"
+          "classified_sha256": "0336b5f95d3284afa6ee0574f71ed4bf0eac4dd79d44a880af3ee3597455d307",
+          "matched_sha256": "2dec218ca056bfbf14acf82d6b69f2d83bc14864e560750113fb0c45beb298d6"
         },
         {
           "month": "2026-03",
@@ -613,8 +613,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_INDL_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "6a10235610fe66923ba5f9782727c668ab3be3b22453eaaf559444ff4c26678d",
-          "matched_sha256": "cdd35fa980d8e5c3930c38b31584898e4ffbdee829b441cc001d3afa66542086"
+          "classified_sha256": "69c5619934ce2c10a09cc8f211ea48c4b125a106f6a5c5a9b148920a5751e6bc",
+          "matched_sha256": "3346dcd14f2f07ec6e2c2e670bccaca95db50caec2b796da62e875390c1cd71b"
         },
         {
           "month": "2026-04",
@@ -622,8 +622,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INDL_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "01f7cc08c380a4e48b7c6eb785be6a530d77af98f34d615c2658271ba806c0e6",
-          "matched_sha256": "4818c930e8d85c430c21bacc330407d38d892351d6f4656a635ba733e6f5a0bf"
+          "classified_sha256": "8a35f5dc19461cce2f55c2f6f929725a339e0107a2f0bb4ac505c984b2226d34",
+          "matched_sha256": "cc78d4d0115299af04bb2be796c539be6d569ec3295bd225afce238430a19efb"
         },
         {
           "month": "2026-05",
@@ -631,8 +631,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INDL_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "889f3dd524f6644b4b701b76a17b4e9dbdde0a481b928ca2eac8a96bc0edc266",
-          "matched_sha256": "427fe1f25a6c15a47688fa492f48cc719bde422856ed78b342ae1d232903f215"
+          "classified_sha256": "d4e7bd747d6145c8d347eede3b8a829c5533876248ce2f905e15ce59b92f7f13",
+          "matched_sha256": "f8d57e9fa18866249e2ea96b5b5bbacfd1cbbf706c8dfa8e786d26aa9a29f12a"
         },
         {
           "month": "2026-06",
@@ -640,8 +640,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INDL_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_INDL_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "1e1921a0f51781df71d2f88abc03e6afefb38a4565059eca18d5e150d981e56c",
-          "matched_sha256": "64aec59c75d1270bcfc9f5e936933bc3891c3b328bda3c58c6bf82495db6c3ad"
+          "classified_sha256": "bedea6bb4f4cd15b1e85c5fe8b1b02c5738ca93baa2fcd8b9e5263741fdd9539",
+          "matched_sha256": "c7d5e04aaa6b93509e3b11238a92aa276d497114e84f682188751078eb82009c"
         }
       ],
       "monthly": [
@@ -766,8 +766,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INRT_W_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "b1ebed474a23eeefcd5c699022851fb4ad5a2c616d7f402a2109b30f3f15f015",
-          "matched_sha256": "a08474c1ed6ce2b776cfb389ad2a65f44e75c19a2e2e8c4279253c14e9bdf816"
+          "classified_sha256": "8fddb55a329bc9ba115f20217df36b88a07ad5f05f67f81fe8dc58eedc78d48c",
+          "matched_sha256": "61cc4b9d7a3950f04d711b645e152ba23b3219de4d2b84abb91687e234df5767"
         },
         {
           "month": "2026-02",
@@ -775,8 +775,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_INRT_W_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "5e860b4e72a89a1f4a356ac2fb97f2753bff855f5521602435d023b89d76b8b9",
-          "matched_sha256": "684777179334533c8c2d2cba17feb714a001699e015b8f606170e1a5dff78f8f"
+          "classified_sha256": "7869445c9474c89f4cf9a4e723a3d8a6dfcd194608f1d4274693a3920aed1ddf",
+          "matched_sha256": "362a28d678e7bde2b53e22a068abec93dc22336bd3c38d8d79a08712d8a28bc5"
         },
         {
           "month": "2026-03",
@@ -784,8 +784,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_INRT_W_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "e0ab17b079119469db3120a6b521ba41176b2ae463a7d1a5b43edc23bb9b20d4",
-          "matched_sha256": "0f6291a143cbeda7e81bf4e9b4316a2c7e5ebc3ce6b603cb1cb38f6051cfb026"
+          "classified_sha256": "b28ac177544841ea3bb4b887c79475666fd5bce341454dba1dd437b1f91491b0",
+          "matched_sha256": "cc06563f49f1cc9b825ab7f285f2563ed2819c846f8a82103a0eb199b35a5e6e"
         },
         {
           "month": "2026-04",
@@ -793,8 +793,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INRT_W_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "3d3f5d0b47ece54e3bb6b0a034ea3d49a7ae999062500baea1f689e33ebdccc7",
-          "matched_sha256": "54b1533aaa45d7a8bda9c3bbee4970ee26ebd4120c4f87f1697fcdbac26452c9"
+          "classified_sha256": "61d002a847ee7a949d19c1d3117ff4ab4107d13f969d3ae3aa8418970285fd08",
+          "matched_sha256": "99b014593c11d5aadc6af07f2dc153ffc4f95bc04f63570c0d2a0a5308104a5d"
         },
         {
           "month": "2026-05",
@@ -802,8 +802,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_INRT_W_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "8f127c7825261351489315ca5aaaf5b39320efc9b6b164f2261b6941d5e2a04e",
-          "matched_sha256": "3ac7715c023b0724fbea1c4c49b31fc4763a9f103def85fcec0ea0328d725bd1"
+          "classified_sha256": "d4b0c9303ea5a47f925a10abb2f42dfaf133251975b6ebd5823a58faa09df7c4",
+          "matched_sha256": "2ceba39773e5f5875650a0b48f97b1f0d491621b9b5ce4e51ae96896bd1b1826"
         },
         {
           "month": "2026-06",
@@ -811,8 +811,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_INRT_W_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_INRT_W_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "67aa5542979c50c50e6739386f776d8c1508a1b09e9e62a237ffb2a4b7cebd49",
-          "matched_sha256": "9507a38374b3c63c7602b40c7d28b3a6d15266725ad7ac83b72b769ff2f06559"
+          "classified_sha256": "bd53e61882025901c22ddca508404f1c1a14bbb02a79b919076122ebc81e3395",
+          "matched_sha256": "5765cccaada9a9ed706bd38aa695a3c2c62a645b1f7f2351a05291e517e48f5d"
         }
       ],
       "monthly": [
@@ -937,8 +937,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_LANTANA_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "fb722adc831f2eee0676933ef03ea05b4db57458508fb2599163b01fd03e623a",
-          "matched_sha256": "c09436c051ec538e80a842b3c8365e0e9c677c31d11e095cd9bfeedbb3050432"
+          "classified_sha256": "436c0704b73939e4775f965dabd5be2c596b3f38dbdb2c8ed43e77575a115e4d",
+          "matched_sha256": "a0d029aaad006abd59d32e254bd792e04b6fe5c3821f6c9f1093d184175b2aa6"
         },
         {
           "month": "2026-02",
@@ -946,8 +946,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_LANTANA_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "735c76d95fbb487f0eacead585bb9505f08352f2724fa960a5a8ef6f0fdee4bc",
-          "matched_sha256": "8df8b2480ca482f88300df63f60644c64aabd95d9ec69f981b5f15ef0e34686b"
+          "classified_sha256": "c36289a7e2a29f5d499aa4a9ed9d73c57709aa46796529559b8eef7f5e5d63e1",
+          "matched_sha256": "1ef2a981e284a7dde8f5a637b9af84b56a459c2bcb600ea0070c23d084a76efd"
         },
         {
           "month": "2026-03",
@@ -955,8 +955,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_LANTANA_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "8ae7c8d7131f938192beca674b131c97276257630ba63b0ef97bc2b66b2330a2",
-          "matched_sha256": "a0851e4f47fde292e53cd7d951c9ce0e27c218959279dec4955cfdf5950286dc"
+          "classified_sha256": "1b0a5f024f8862836479a0ab21b03bfcaef218cabca746eb4536960f7ec481f3",
+          "matched_sha256": "5ac1e63f5f0c42f92c33bfb60999db7d2cc4496f83d5575a52026985863da62c"
         },
         {
           "month": "2026-04",
@@ -964,8 +964,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_LANTANA_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "3f031abace075c32eebd09a63cfb18a5513a0657caec9b324a4a703f97e20692",
-          "matched_sha256": "b407c683936efbc6bdae38bf71f1c5fece16baf590c453c5b159a4cd4cd6f3c5"
+          "classified_sha256": "c6a100650102463c0c6a982c33f34a614ac3c192b12b54c8f8828f7e5bf9a25f",
+          "matched_sha256": "e5d02edb949205d0f77794a5a0a97026792671555f026997926798f519c71005"
         },
         {
           "month": "2026-05",
@@ -973,8 +973,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_LANTANA_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "c10c30ad30787d0322bbb8aa0e1cdf792187fd1e1fd2fed1247ede884dce0ea4",
-          "matched_sha256": "429c75d46e5765e700b00218de90429b21b55891afd2dea3dde9426b6577eb7a"
+          "classified_sha256": "4096249ab26047f4c9ab981107f2412fedfd2f14095bc37766cdcfd775efd7bb",
+          "matched_sha256": "c23dd44f959aa99ae65d989286b11cdefd0fa81ed28050229242fb640dfa124d"
         },
         {
           "month": "2026-06",
@@ -982,8 +982,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_LANTANA_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_LANTANA_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "904fa1dc1df207fcff6b7427719ccd3ab38eb2ab99f8de2efc41f93d3efca338",
-          "matched_sha256": "257a39b89c7efeb9f6ca86526a143f95076b728f83da4e8f8bbb1631569713ce"
+          "classified_sha256": "081a186f85521d0396326db9119b000242a7c2f63575cfbf579a8b79c5dd1557",
+          "matched_sha256": "fd867e621ccf747157021dff5c3e694815eeba8c65ff96c3254425db419f2304"
         }
       ],
       "monthly": [
@@ -1110,8 +1110,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "f1c4ee1f2d46b610049cf8c3cf28d8907007f99d1892ac77cb5f0c6890d7e992",
-          "matched_sha256": "20d2058e529054ad1daeb37fce64d7fea76cdc53fea8714b1dc9646e58cd6131"
+          "classified_sha256": "e4b76c14c91f13e1f13735d585cc8e5d4b4711eca5648d0dd01f1118452bad5b",
+          "matched_sha256": "243eb2eb3a7a46548182faaafcc8e98b8a024381343c51f45193c28fb1ccc21b"
         },
         {
           "month": "2026-02",
@@ -1119,8 +1119,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "20192a4ddd9e307caef0f4bdbc4252b20f0086bba07ed1cdc6849530cdd8e691",
-          "matched_sha256": "3be62db8c719c14a1ce29c430f7085a0fb440485f1a44b0a82c89a7691d76dc0"
+          "classified_sha256": "a40ded6240e9e6092c192fd6f96d9c0b7756bfffda2055e20760b092bbdaad11",
+          "matched_sha256": "bf3d03bb52477a67ca2af027403cde6a864679989264d7da08ce36afa1da3123"
         },
         {
           "month": "2026-03",
@@ -1128,8 +1128,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "d544637b2c32b3c8298a34a7b9b2bb9774f6e562fde4229f84bcc582dcb88e8f",
-          "matched_sha256": "e6e01d2d4937384b3d2e43b99c0e7f5eb5b5e2d42e8748b5cf0173d32dcf3c04"
+          "classified_sha256": "e4c592150d17d30d2aa78ab7894fd2b4286aa7f5642900e615b8fb2e3a848856",
+          "matched_sha256": "ed525cc91d67488a9b12d17169c54dbe7e1cdc2f61afacafaef6537bfe57980c"
         },
         {
           "month": "2026-04",
@@ -1137,8 +1137,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "767dd9c432c8108cfe82021fb552e52dd7b53cfa52e864b3a8e4809e8bc0dead",
-          "matched_sha256": "4651468f1394f1fb816dca89d115f7e5cf593c00469100857008155d3c5803c6"
+          "classified_sha256": "aff807605908e9a8c76d04218f6608a14fbe3e106a9abc568794d63b968ae5e3",
+          "matched_sha256": "ed5c70ff116fe56e604de3e640dc02a4abbe6dddfdfb00530f6aeb90f003f561"
         },
         {
           "month": "2026-05",
@@ -1146,8 +1146,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "3c6c135cb918b13509e875d7e752fc835d8dc2ff7daf01ea66814f81e953df9e",
-          "matched_sha256": "dc1974956fa7e63555eb63b64943f659bffe5eb940e0ecb020065a8cca5e24e8"
+          "classified_sha256": "d723a7693522f5cac2bb6ba121048e76b56a7b890311856676465f384cd1b1a0",
+          "matched_sha256": "c8b2e32cba999af57f3b4523479739f4e6a56e74bb7ce05568e9d7adda4072a2"
         },
         {
           "month": "2026-06",
@@ -1155,8 +1155,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MESQUITE_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_MESQUITE_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "59b52a4f8a37fbd544d6a8685d2d6dc916bfaf7fcd3c2b1796910226b31ea034",
-          "matched_sha256": "95701aece4dd8307757a47c476a3b416c7bd04602974cad2ac6e1da81bedfa41"
+          "classified_sha256": "6ac259099e8ba0cae6120f2199b20afa37189b7ff20fe4ac55bfab36ea337011",
+          "matched_sha256": "49a94b5cab2ee97e755987728c08a8cb47921a94d8ed748c56e8e0b88e50f1b9"
         }
       ],
       "monthly": [
@@ -1281,8 +1281,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "30941148be064a0d4a5c71d24bc069b25fbe0cc979e2fcfd505769eca649254e",
-          "matched_sha256": "7773377423c2524a661be99ef941741f1807f490d1b529f3a52f8a80f76d6425"
+          "classified_sha256": "f2cc0866c55b01c671622b8f25856131aa8b3d07122d93e9b91b71fac6b832c3",
+          "matched_sha256": "cfd883d41a9712ca11af179ff19fb44d24a43b8f7284687a66f0b7c46e30f9d5"
         },
         {
           "month": "2026-02",
@@ -1290,8 +1290,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "cc7724d47d48a4f9e4482547bd270390859584cc9d1c98349940cc78e63de754",
-          "matched_sha256": "7186c2ebcbf3dbaede11b1e7b21a519cada8308af2086b0e1b3c2ad40abbc040"
+          "classified_sha256": "ca7d34f5183790dec9de5e3d150f42e621132732c75938d32280a55b662c27ce",
+          "matched_sha256": "da801a95a154f43aeaffa3ecc67da257a9012dee3cf9eb89d2dc426683bb21ca"
         },
         {
           "month": "2026-03",
@@ -1299,8 +1299,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "f1586a52a67c9cfce331f8b6eef964eeadacfdab0507645ac6be501c2e10cb29",
-          "matched_sha256": "7b4d087b6c348bab47b7cfea57e024644a10a8bb8ec664623f1b0a6e687a7bc2"
+          "classified_sha256": "ed6f013356c6cb8bb9a46625bc84d8f545065eb0668d66335016c29650f223e2",
+          "matched_sha256": "e305a26cff08e2a439367d9992589412ebe4d7dc02bddc26a7cd608e1764a286"
         },
         {
           "month": "2026-04",
@@ -1308,8 +1308,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "1ca640a2af9d9c58a23506dbbbd452aeff9756b6ebdeade035bf2555fc540ae5",
-          "matched_sha256": "1d382ba8a9581af59273988fb14bd1c2fdaf7ba1a6f2679835f0a4fba441fdd9"
+          "classified_sha256": "e98acb6678ecc7f7f6e93fd2781c19cb2e6d8954f0443d0521f93f1c645168af",
+          "matched_sha256": "314d2604b0806f9fd730a72ab9cd32deff10472177927dd30ea641c2a5f55099"
         },
         {
           "month": "2026-05",
@@ -1317,8 +1317,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "10b89f43ba8c7837b3d62698068e3ace65b92a97f3068875aed28f83e86c2bf1",
-          "matched_sha256": "a5082e791ebdb49838c808d70426c14a591e44abf4affec6759e7f90006cbc1d"
+          "classified_sha256": "a8a65612bfbbed7cc4a0d6b422e0ee727874b92e8b2a2cc679af0c75f1c10cdd",
+          "matched_sha256": "c411549e2f9d4696c09ad3502505e62c2102dd931600c87a3535fbd25302f786"
         },
         {
           "month": "2026-06",
@@ -1326,8 +1326,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_MOORE_FL_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_MOORE_FL_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "171c5e298ccd8c5821b6db1e2fc755631f89e4d1d575ba645cbd67294eaec6ad",
-          "matched_sha256": "d4c74024b406846e9445f5b99b75bbb2b35569134ea86028f93f5315c6992f41"
+          "classified_sha256": "d57e16ecd69a06bced7692f220e70ae1d4e9e55f406b5f1c4c15c4964855fbab",
+          "matched_sha256": "a504660191c968d31757f449532ac9a82f2f16a449dbf843bcec7f94329fe891"
         }
       ],
       "monthly": [
@@ -1417,8 +1417,8 @@
           "model_unclassified_hours": 0,
           "telemetry_rows": 720,
           "telemetry_status": {
-            "Hit": 550,
-            "Outside threshold": 170,
+            "Hit": 544,
+            "Outside threshold": 176,
             "Excluded": 0
           },
           "excluded_reasons": {},
@@ -1431,8 +1431,8 @@
       "model_unclassified_hours": 25,
       "telemetry_rows": 4343,
       "telemetry_status": {
-        "Hit": 3128,
-        "Outside threshold": 1190,
+        "Hit": 3122,
+        "Outside threshold": 1196,
         "Excluded": 25
       },
       "excluded_reasons": {
@@ -1450,8 +1450,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "9c0bf1c5e3ea4179a8ef8d24885fe053641575ea5db109e40714d8f8f40507a0",
-          "matched_sha256": "06dea0f7bc5875e260cc4cac33c26605e5f4cc9a3bcf0b0513b21e56be3a9ac7"
+          "classified_sha256": "d0c1ec7f7755e6e6c1b51c786a99510f2282396fa215829d035fea63c0d57953",
+          "matched_sha256": "2b64a361ea5e371be1ed9b3dac68ad80b150b4783b638d4e13f97f3300b7ff2d"
         },
         {
           "month": "2026-02",
@@ -1459,8 +1459,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "ca7f3fc47aaccc055a367911e1d8e5375f5ae43aa18aedb02c19048de8b514de",
-          "matched_sha256": "dc0f1cc5c0a70f23886e7959aa6190bb8a7009dc9a3ee55d6d4ec815068fbc30"
+          "classified_sha256": "b30cad1c7b43ada1db9b9e19dfc0f9ad4fd6e37a3fbdf4917f5e30ebb53a18f6",
+          "matched_sha256": "ef34757d7da973924b1dbeb7f9611e55bc3e3a1143fc67581c5a7c79af8bc2df"
         },
         {
           "month": "2026-03",
@@ -1468,8 +1468,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "b6bf962238bdb943b104e34b15ce87da0f237a12ecc11e1660ba454c38d661d0",
-          "matched_sha256": "1a1312ae00fe67d64d9b7b21b6a389345be920bf895d5408d1d66c084f6632ef"
+          "classified_sha256": "61a4af57167be35f9a7e6ac87a4e9ed7a9c5e70b0b6cb84a657170dd19e4435b",
+          "matched_sha256": "4fc6d0ab17a030fe3d71ef0aa867ed15ba97f55934c368a62d65c90843cbbbfd"
         },
         {
           "month": "2026-04",
@@ -1477,8 +1477,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "69856294daa1993a035654a46cbb9b98d1027e147e3de8af8dc5af0961256fa7",
-          "matched_sha256": "4b39b1e3ee1d28da56dbf79f83af1acd600f2c72741383971ca6a0cb8858b5df"
+          "classified_sha256": "f5f2953d7bcae85043e7682231d24a816b061e6b41557bdb6fce1a8224d7e2d4",
+          "matched_sha256": "ddb52b40ace4d0d19412a629c05595dbffdbfebb85e584f93ad73ae7ae0aee6d"
         },
         {
           "month": "2026-05",
@@ -1486,8 +1486,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "c295a3317f726212052aa78675863365443f4a50c56aa45c9ba600f809ef9c8e",
-          "matched_sha256": "612c09cd756e35c01f84bdb9d1e9e75e8b30654225f3e2e7db8d88c4cbd5be54"
+          "classified_sha256": "db558ac8c4e5707bdfe8d0db8a15b8f16b23a30dd4c21c7841cd961cabef363f",
+          "matched_sha256": "ca5b3c5d51407b390fe3d95d7925d2d858cd218da83aadcd7ddaccfb72c08605"
         },
         {
           "month": "2026-06",
@@ -1495,8 +1495,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "26b8d4ff23ccf4ea8151ee39bca90982f71996850e2237cfd1f7a2aff6ade652",
-          "matched_sha256": "c579aaacfb600917d29c38abe1ff529bf3b130b286e2078d44af846d6999e7ec"
+          "classified_sha256": "356606eca56c15a1d46460146fbd76732ad818f5caff4675b753cd7ae799f137",
+          "matched_sha256": "f94a92f5c109fdb1db358ad08ab04444394faef2042413f06fbf012428f30c76"
         }
       ],
       "monthly": [
@@ -1621,8 +1621,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202601.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202601.xlsx",
-          "classified_sha256": "17a526a13f3d8a0b968f856226a5e25005e5c86f8f8d787a0cbf6ae7ed2f70d0",
-          "matched_sha256": "af1ba448ea1a7fa3d8585fb941bcb27c35c26bab9d60a9879131509a343a1820"
+          "classified_sha256": "74822fb2019d81b4d4d1ecf6deace9b926b8bd1a0f3520f61a6f7abc4cb4c472",
+          "matched_sha256": "13aaeacf44daaf59b8727f3bc7924bb623fd9926511eadfcc4147cb7d33f28ff"
         },
         {
           "month": "2026-02",
@@ -1630,8 +1630,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202602.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202602.xlsx",
-          "classified_sha256": "dd8112d692d2203c6815c16786855b8f67a79c47cc65db4499a4518a16d1618a",
-          "matched_sha256": "911518ae68bae24ee2eefa6ac3d6d5d38fac1ac2eba4657e49473cfe2acb9f84"
+          "classified_sha256": "1b602f2d6e2c1264648e60a7c0059a47e42d4a6f33e937dbdb7a3aa6bac5ee26",
+          "matched_sha256": "70f5d37194e599fd8eec769baffee70edde827cea7d210139bbccd44e63a3517"
         },
         {
           "month": "2026-03",
@@ -1639,8 +1639,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202603.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202603.xlsx",
-          "classified_sha256": "c9d78d12e08824bf597b443ca62442959987ca59b682edf363d1b416595ae94c",
-          "matched_sha256": "16d2c74953de4c632fe24f5476d7f8c1060a762599b0064c2172b5250a1c2c2c"
+          "classified_sha256": "2caa5a19336805e8bcc4648ab4f3e6a75190c5e824bb0e08d494435f74e163a6",
+          "matched_sha256": "3850668845ccffc1086acc9c9a292029a6c4288b6dde6c56b0d0b40b6e07da3f"
         },
         {
           "month": "2026-04",
@@ -1648,8 +1648,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202604.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202604.xlsx",
-          "classified_sha256": "50ae19e863c069c711624b174700ffd08c9bf87469cbc91c433783017e91ff55",
-          "matched_sha256": "694e1469520e4fe8738c56e51590608d8ff7739c1c8ca41bcd15f27eb0c1b312"
+          "classified_sha256": "9ac592a339f9657fc523e79b8527a4a3e4ef30eeeb38fcfbd2932bb2e407e406",
+          "matched_sha256": "8f0116dc7eba18cfd775de09a77ea6f86e1fbee00f3ee5fb04041d474508548c"
         },
         {
           "month": "2026-05",
@@ -1657,8 +1657,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202605.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202605.xlsx",
-          "classified_sha256": "6cfb134639588883802c9f99a78aea8f0a68074e36446189359a2899fbe24fc2",
-          "matched_sha256": "a635a5cad64b8198e2f3dee9c7ec1c732d8a11d3c7f9409795e43b35a09b9346"
+          "classified_sha256": "3fb01200cf73032e604605157aa09ba838056f52758571813f93fefc6c0d8bf1",
+          "matched_sha256": "a3ae9ceaddbc3fc4515ebb80b08489db6d82d5695f8ed3c6e88662e20cf66d82"
         },
         {
           "month": "2026-06",
@@ -1666,8 +1666,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_RRC_WIND_ESR2_1hour_202606.xlsx",
           "matched_file": "Realized_Match_RRC_WIND_ESR2_1hour_202606.xlsx",
-          "classified_sha256": "4dd4182ba4c47b26a8a9dea86e19598b7a6455ea48435fa727fdbff38d8e587a",
-          "matched_sha256": "4d0076cf1d307ee5a6d14244c21659a2a64163c712d48cbfa79cdc61f6120ce1"
+          "classified_sha256": "be5ce0e1f558748b2b7d8c6ee4275f09527a469495abf9334dbc8da0b7195830",
+          "matched_sha256": "f09fb3de4ae787782ed48b45abb0d2a616e2c20dae5f1d208ddb4d6724dd266a"
         }
       ],
       "monthly": [
@@ -1794,8 +1794,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "bcc8537cb45509b980b3b94a5e1d7255438a1396415a2bd2241ecd73ea736dbe",
-          "matched_sha256": "0020ff0c9213f4a65edba8dc3b6d3a941faa13681fbb499917b5def7e93b2521"
+          "classified_sha256": "d162ac72557c4658a094cf13c8eada95f71f195894202e9349723c5ceeb72043",
+          "matched_sha256": "1d1f9831427b841adc3300a2ebef879a6e6ac98c48d0f75c6ff48d9ae57f858b"
         },
         {
           "month": "2026-02",
@@ -1803,8 +1803,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "26a0688361fb6a37ff06f67efcbbe2179c7e9f87a8e8a709958b959dbff262dc",
-          "matched_sha256": "acf5c0769033f8086761d3f7efaabc6fb99e4faafeee60940ef12a17790562cd"
+          "classified_sha256": "bfd259b27f3266e1e589281e40cb8aa5315b1e5752bdc6dd189bbd82871bb1b6",
+          "matched_sha256": "61294812fb53d4d775088dd0aee7b1f6f13e4bbafc901b4f6635f5af4ba501e3"
         },
         {
           "month": "2026-03",
@@ -1812,8 +1812,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "328a10d76b48da718a4da03d19ead9bb5ccb77a7cfb6d5210755e121c8627957",
-          "matched_sha256": "bdc441ca0f8c54295a769ba14f0d172a43451c70504a6a9a4e5fa3577d577a3a"
+          "classified_sha256": "ec50e85490d3b0c3fd52117d6dbe75fd4b8ce866f72386f50c047181d548626f",
+          "matched_sha256": "3c350c067dc7e375f6b326e219c864bee94cc0ea63ff5a01637729742886dcc2"
         },
         {
           "month": "2026-04",
@@ -1821,8 +1821,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "36647218ea681c89ec3fe07604af4172e51bee121831f7f7fb6ddb25399c8e55",
-          "matched_sha256": "e085fba0117ccca8c96e1e6b61ae00e0a370f0ddea7e95dcefb8757a634afa81"
+          "classified_sha256": "6529567849a244419b170b2d65982dd0b9712cce0684ed92b51fb286f229e2e3",
+          "matched_sha256": "5010b898793f8eb33343737425c2c26400227cebe75a9994b63eec2e4216f705"
         },
         {
           "month": "2026-05",
@@ -1830,8 +1830,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "cea95d5c087f8dc44027b5e3f05259579c62573cf98c54c9b5d16b992096c891",
-          "matched_sha256": "6e3c497f5de4a4b40693e4f145c6dfefb025f73daa502a942708080cf5527438"
+          "classified_sha256": "130aa0e586ac61d535acba727075ec29bf88f107155870d09b0c9b5f6d98eacf",
+          "matched_sha256": "8c435de99308735f70ec068f8f304523577eb02e938d9591abad4a1e657e1978"
         },
         {
           "month": "2026-06",
@@ -1839,8 +1839,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_SHAMROCK_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_SHAMROCK_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "fe1748d0906b0abefe46f9a14fbf1630292e8849dda760a6bf577b65b898fdca",
-          "matched_sha256": "b6f264ae5f1cae2bb9ec445f7e20ad3ca60bd8c45d0d0fd7c265aa8e304321f8"
+          "classified_sha256": "755e1eaf48793df2a786800961107489375464a7827747b6b9142357493cb2be",
+          "matched_sha256": "e2aafb35952b8ab6fac8ce71de3cf987b4fdc9aad7ff5c26067e17e55c911aba"
         }
       ],
       "monthly": [
@@ -1967,8 +1967,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STADIUM_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "f47848ebab48e40c16cd07b372e298ea21d00eefcee63dc9a7587e01655c1f41",
-          "matched_sha256": "1992e5914fd5cd95c7e28da599350d380901a4d811e5c6ce8c4fc50950be074d"
+          "classified_sha256": "8fc7ba98eec170df2d2ff5aa1971b6de13081a646ac0f8c746e10d46e37a4ab9",
+          "matched_sha256": "5dde897af8b77bfbc927dad404bcbc91bfe3dfc1fa3ac2934e96816c996393ab"
         },
         {
           "month": "2026-02",
@@ -1976,8 +1976,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_STADIUM_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "6e4d9eb71b32c6a6a59159a06db565c2a7198191ed61f9402c795ae601097bf1",
-          "matched_sha256": "c629a9044975f2d5ea0fab4febbc720617f5166df509822206e92ba5b9915b3e"
+          "classified_sha256": "760076e6bbce4f342bee92152f3029950c6f848f28efa9f81965005b213fdc24",
+          "matched_sha256": "381be2758886f316655c79a9cb4343d0330f4fa8a757875dd85781807ad9f7a2"
         },
         {
           "month": "2026-03",
@@ -1985,8 +1985,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_STADIUM_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "bf52c63137010a7e8ca62a5d94e0884d07fc6c4bb3f429061a67129d8bc65483",
-          "matched_sha256": "ba507b6ec84915cac4d81d531b05e3997df28d33e7fcd0fe197c7f322f0bb96b"
+          "classified_sha256": "d4a606ef4c4e3a90668b275b5360883ffb77135e0a2eeab7ef3912c6bfca4a6f",
+          "matched_sha256": "f27c5f15d057ec8ffa34821776a85ceea4377f21756d35611219c1007f3ec95d"
         },
         {
           "month": "2026-04",
@@ -1994,8 +1994,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STADIUM_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "a0cf81c7239426a4ab9d23b709dbd1f18fec54f45148e40ff7f9f1d6d8f62baf",
-          "matched_sha256": "162e9c0fbecc56ad17219db64326674a005f38fa79583673deb64a3fb760484b"
+          "classified_sha256": "700cbad96fdb2b4d60b931bd621fe837c4987d758835edcd7b5d2073476f56be",
+          "matched_sha256": "3d0c7840f98b0d4106ced3c5eea39cfd03dd483dbde9811e50ea27fae777eaea"
         },
         {
           "month": "2026-05",
@@ -2003,8 +2003,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STADIUM_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "99a842052463a4edfbeca7f8f7cbecf088451bb470eed36d31144bfd3a3d0028",
-          "matched_sha256": "c4edfa1c1e4ed3ae35b187e5060d21d1d57b8f665ed5639f16ab2236cfeb7a82"
+          "classified_sha256": "bd94ff9aee291df071ac87f9fb3cc63b11ea959171f1589b66c1f03c30c3535a",
+          "matched_sha256": "d8058733acca189e8539a68b69a88de1e6873bfe47d4a6ec47eacc1018817958"
         },
         {
           "month": "2026-06",
@@ -2012,8 +2012,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STADIUM_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_STADIUM_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "d244ad1c032d54a8006a829493a7ab70fa8481a7c42c1c3567fc339cc6843c6a",
-          "matched_sha256": "b22da321bf34f8fef36233433c20e600593e95091a224762d7f8120cf28dea2f"
+          "classified_sha256": "0e3fc9eefa82cc66e172ba6d2be91dc8fcef7c3c508533c338509a7c05704f6c",
+          "matched_sha256": "448247d80fc639ee0925ce6c1794d4c78f531ab8ae483bd74cdbd76544412083"
         }
       ],
       "monthly": [
@@ -2138,8 +2138,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202601.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202601.xlsx",
-          "classified_sha256": "239a60b19976912931bd1b638b114bb042528ae5340081972e81cbc91bdda22e",
-          "matched_sha256": "0fbd2ce9f21e88b502fa284fb4f0e30284bf10be6f8282eb73ca6ae3c39a68c0"
+          "classified_sha256": "4d432d16a5b09f344d7ead1e6d2794607ff2e66bc41ea877f5c4c860524dc3d2",
+          "matched_sha256": "c82e6fab1f148300e20f4d40988dfcfe9d3be6b4c94dc653f997e33d85619f57"
         },
         {
           "month": "2026-02",
@@ -2147,8 +2147,8 @@
           "telemetry_rows": 672,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202602.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202602.xlsx",
-          "classified_sha256": "4485434c7080d8b44de13560ee1042fce6232ac95458b1ccc601f016b317e4b5",
-          "matched_sha256": "09feaa01d6e7d04f2e2a0dce637d6c131d424ef8802b9400c9e60d722eba11bb"
+          "classified_sha256": "6355c33ac5d9ba87c3a458de7a7afc2b3c4b12e1a0638f1c8d07855246cdfb41",
+          "matched_sha256": "e37f44f297ed4b672fcb953f7d79cadc847aff2554ef0c8122201a86722d66c7"
         },
         {
           "month": "2026-03",
@@ -2156,8 +2156,8 @@
           "telemetry_rows": 743,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202603.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202603.xlsx",
-          "classified_sha256": "b406a18fdb4eb7b9ac3f865a925332345c44939c44988b3fe995f0adda3d28d2",
-          "matched_sha256": "fe46ed30ad3e94c83db719cc25f3249d7c244a427432c3efce6b590f44b56c37"
+          "classified_sha256": "7c4f05ecc01c892ef67a7eaff22c83578a73e25a4ac70875679c2940a1f493bb",
+          "matched_sha256": "0ee680ae9aec803a037d716e125409d1c619c4a83487f3263152c923edc4f1bc"
         },
         {
           "month": "2026-04",
@@ -2165,8 +2165,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202604.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202604.xlsx",
-          "classified_sha256": "7cb824426565d6011a0ea8bee8cd4f49a6d97bb0bd67df5570e04e95f5755904",
-          "matched_sha256": "61ccb5aded5ade8391f46c004c4d7f1bf7026e93c87100bc88147db510e09ead"
+          "classified_sha256": "7906c40fcf998d0bf63e79e59a7f5a77af957566f51560d08e75b5e8bdbe2cad",
+          "matched_sha256": "43a326a0c399118950305abc0403df297e6173a568c971da084b0a8269480514"
         },
         {
           "month": "2026-05",
@@ -2174,8 +2174,8 @@
           "telemetry_rows": 744,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202605.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202605.xlsx",
-          "classified_sha256": "f193729195fae039add9196d7166c4e9683cf690cf4f01040184d3f3e44acd98",
-          "matched_sha256": "e4042d13c8c5561d54d19aff9f6aa7c15413e3d868677e59a96f07cbfc8e39e7"
+          "classified_sha256": "fcf760d978314a04af7a2c497627544da4eec8cb9951d6d6f1723afafc5ea86a",
+          "matched_sha256": "0d59a612bb1dea158ea2f87fafce844c8abe1c206b1f672a8c793be167809e4c"
         },
         {
           "month": "2026-06",
@@ -2183,8 +2183,8 @@
           "telemetry_rows": 720,
           "classified_file": "classified_STRG_SLR_ESR1_1hour_202606.xlsx",
           "matched_file": "Realized_Match_STRG_SLR_ESR1_1hour_202606.xlsx",
-          "classified_sha256": "448893ab2ce620e88122f520fdd167657585e0497d84fcec4140677a76c3846a",
-          "matched_sha256": "8fd33e4cd4ca2ba581dd5ad550697aecb0153801e2bf595bdf78e380162d825e"
+          "classified_sha256": "a7d8f8ed1b6701876b5b657747f2ae4632619ee6b4cc246fafe4b0d3b2412188",
+          "matched_sha256": "26c44468f87f6487dd077a88eec97a3a505380170ee102ec266b4b11ef1b25cb"
         }
       ],
       "monthly": [

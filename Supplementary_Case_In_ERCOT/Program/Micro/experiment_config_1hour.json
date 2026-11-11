@@ -3,7 +3,7 @@
   "data_dir": "../../Data/Micro/Six_Month_Data",
   "output_root": "../../Results/Micro_Results",
   "available_status": "hourly_any_ON_ONTEST",
-  "soc_policy": "monthly_raw_submitted_soc_bounds_initial_observed",
+  "soc_policy": "monthly_zero_min_submitted_max_soc_initial_observed",
   "horizon_steps": 24,
   "price_samples": 300,
   "efficiency": 0.95,

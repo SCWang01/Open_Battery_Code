@@ -2,6 +2,13 @@
 __pycache__/
 *.py[cod]
 
+# Local verification and tests; excluded from the GitHub release.
+/Supplementary_Case_In_ERCOT/Verification/
+tests/
+test_*.py
+*_test.py
+.pytest_cache/
+
 # Local editor settings
 .vscode/
 .claude/
@@ -19,10 +26,8 @@ Thumbs.db
 /Results/First_Boundary_Repair/
 /Results/Logic_Audit_20261108/
 
-# Local one-off recovery tools and their regression checks
+# Local one-off recovery tools
 /Program/repair_first_boundary_archives.py
-/Program/tests/test_boundary_archive_repair.py
-/Program/tests/test_first_boundary.py
 
 # output
 /outputs/
@@ -36,3 +41,4 @@ Thumbs.db
 
 # Local ERCOT revision comparison; not part of the Git release.
 /ERCOT_CASE_REVISION/
+/Writing_ERCOT/

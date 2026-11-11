@@ -75,8 +75,12 @@ hourly `Official_Price` from `Data/Macro/Price/` in USD/MWh.
 
 The loader selects the ERCOT local date, checks 24 consecutive UTC hours, and
 compares each price and curtailment value with the independent monthly sources.
-It reads the gas system result for the same month. `--project-root` can redirect
-all inputs. No row-number slice or historical 0.2 scale factor is used.
+By default it reads the gas system result for the same month. To use only
+thermal results, pass `--results-dir Results/Macro_Results/System_Results/thermal`;
+the release-root `run_all.py` does this automatically. The plotted storage
+dispatch, baseline curtailment and price columns are shared across fuel bases.
+`--project-root` can redirect all default inputs; an explicit `--results-dir` is
+used directly. No row-number slice or historical 0.2 scale factor is used.
 
 Dates must be in January-June 2026 and have 24 physical hours. Missing data,
 daylight-saving transition days with a different length, and values outside

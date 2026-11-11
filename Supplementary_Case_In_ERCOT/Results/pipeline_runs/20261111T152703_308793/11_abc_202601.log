@@ -1,0 +1,7 @@
+ALL_ESR 202601: 13 resources; 9006/9672 state hours; excluded zero-limit hours=666
+  D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Figs\Micro\figure_plot_4_a_b\Figs\Fig_4_a_b_ALL_ESR_202601.png
+  D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Figs\Micro\figure_plot_4_a_b\Figs\Fig_4_a_b_ALL_ESR_202601_source_data.csv
+  D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Figs\Micro\figure_plot_4_c\Figs\Fig_4_c_ALL_ESR_202601.png
+  D:\Research\Release_Open\Supplementary_Case_In_ERCOT\Figs\Micro\figure_plot_4_c\Figs\Fig_4_c_ALL_ESR_202601_source_data.csv
+Hub daily samples/hour=31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31
+Exported one pooled a+b and one mean-ESR c PNG at 720 dpi, each with source CSV.
