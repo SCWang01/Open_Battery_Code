@@ -4,7 +4,7 @@ Hourly backtesting of ERCOT Energy Storage Resources (ESRs), with historical ope
 
 This distribution contains source code, prepared data, external reference data, results, and figures. Superseded explanatory notes are kept in [Archive](Archive/README.md). Manuscripts, writing drafts, peer-review packets, historical code archives, and local development files are excluded.
 
-Rolling now uses a zero SOC lower bound, the monthly operator-submitted Maximum SOC maximum, and monthly HSL/LSL bounds, with initial energy reset to the first observed SOC of each month. Existing supplied results predate this zero-minimum revision; regenerate them before using them as updated results. See the [processing guide](Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) for the implemented model and information assumptions.
+Rolling now uses a zero SOC lower bound, the monthly operator-submitted Maximum SOC maximum, and monthly HSL/LSL bounds, with initial energy reset to the first observed SOC of each month. The supplied results were regenerated under this zero-minimum policy by the complete pipeline run in [Results/pipeline_runs/20261111T152703_308793](Results/pipeline_runs/20261111T152703_308793/). See the [processing guide](Program/Micro/docs/ESS_Data_Processing_1hour_EN.md) for the implemented model and information assumptions.
 
 ## One-command recomputation and all figures (thermal Macro only)
 

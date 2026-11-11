@@ -1,6 +1,6 @@
 # Micro Input Workbooks
 
-`Six_Month_Data/<resource>_Usage_<YYYYMM>.xlsx` contains a `Usage` sheet with 202 fields. Files cover January through June 2026 for 24 ESRs. The active experiment uses 13 resources, listed in [experiment_config_1hour.json](../../Program/Micro/experiment_config_1hour.json).
+`Six_Month_Data/<resource>_Usage_<YYYYMM>.xlsx` contains a `Usage` sheet with 202 fields. Files cover January through June 2026 for 24 ESRs. The active experiment uses the 13 resources whose `Telemetered Resource Status` is `ON` or `ONTEST` in more than 90% of current-month records in every month; they are listed in [experiment_config_1hour.json](../../Program/Micro/experiment_config_1hour.json).
 
 ## Important fields
 
@@ -17,11 +17,11 @@
 | `HSL`, `LSL` | Submitted upper/lower power limits, MW |
 | TPO curve fields | Historical offer curve fields validated by the shared loader |
 | `State of Charge` | Stored energy in MWh; the first current-month observation initializes Rolling independently each month |
-| `Minimum SOC`, `Maximum SOC` | Submitted stored-energy limits in MWh; Rolling uses their current-month minimum and maximum respectively |
+| `Minimum SOC`, `Maximum SOC` | Submitted stored-energy limits in MWh. Rolling fixes its lower energy bound at 0 MWh and uses the current-month maximum of `Maximum SOC` as its upper bound; `Minimum SOC` must still be finite and is kept for auditing |
 
 Exact required curve fields and timestamp validation are defined in `Program/Micro/Monthly_Data_1hour.py`. Preserve original header names and status values when preparing replacement data.
 
-Rolling requires finite current-month SOC values, ordered monthly energy bounds, and an initial SOC inside those bounds. It uses original five-minute extrema without rounding or telemetry integration. Nonzero lower bounds and zero-width energy intervals are valid. `Capacity MWh` in the output means the upper energy bound; `Usable Capacity MWh` is upper minus lower. The optional Benchmark retains its reconstructed telemetry-based energy envelope.
+Rolling requires finite current-month SOC values and an initial SOC between 0 MWh and the upper bound. It uses the original five-minute maximum without rounding or telemetry integration. A zero upper bound is valid and allows no charging or discharging, as in the LANTANA_ESR1 January input. `Capacity MWh` and `Usable Capacity MWh` in the output both equal the upper bound. The optional Benchmark retains its reconstructed telemetry-based energy envelope.
 
 ## Time range and missing data
 
