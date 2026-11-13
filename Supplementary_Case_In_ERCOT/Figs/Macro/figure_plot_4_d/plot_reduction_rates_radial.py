@@ -41,7 +41,6 @@ OUTPUT_STEM = "Fig_4_d_202601_202606"
 FIGURE_WIDTH_MM = 250.0
 FIGURE_HEIGHT_MM = 90.0
 PNG_DPI = 720
-GOLDEN_RATIO = (1.0 + 5.0**0.5) / 2.0
 
 
 @dataclass(frozen=True)
@@ -84,10 +83,17 @@ class FigureSpec:
 
 
 def _fuel_panels(
-    label: str, axis_max: float, tick_interval: float
+    label: str,
+    axis_max: float,
+    tick_interval: float,
+    *,
+    profit_axis_max: float = 400.0,
+    profit_tick_interval: float = 100.0,
 ) -> tuple[PanelSpec, ...]:
     return (
-        PANELS[0],
+        replace(
+            PANELS[0], axis_max=profit_axis_max, tick_interval=profit_tick_interval
+        ),
         replace(
             PANELS[1],
             title=f"{label} CO₂ reduction rate",
@@ -112,14 +118,16 @@ FIGURES = {
         300.0,
         110.0,
         "Fig_4_d_thermal_202601_202606",
-        _fuel_panels("Thermal", 1.2, 0.3),
+        _fuel_panels(
+            "Thermal", 0.8, 0.2, profit_axis_max=200.0, profit_tick_interval=50.0
+        ),
         bar_width_fraction=54.0 / 60.0,
         # Give the longer profit labels enough arc length, including MAR below.
         label_span_degrees=43.0,
         annulus_width_fraction=1.0,
-        # Retain the established white gap while slightly widening the label band.
-        annulus_gap=(ANNULUS_OUTER_RADIUS - ANNULUS_INNER_RADIUS) / GOLDEN_RATIO,
-        annulus_thickness=0.28,
+        # Match the reference's compact gap and label band around the data area.
+        annulus_gap=ANNULUS_INNER_RADIUS - ZERO_RADIUS,
+        annulus_thickness=ANNULUS_OUTER_RADIUS - ANNULUS_INNER_RADIUS,
         title_fontsize=17.0,
     ),
 }
